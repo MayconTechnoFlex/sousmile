@@ -9,11 +9,11 @@ import signal
 import traceback, sys
 import time
 
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QMainWindow, QDialog
 from PyQt5.QtCore import *
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_v7 import Ui_MainWindow
 from ui_py.ui_cod_dialog_win import Ui_Dialog
 from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from ui_py.ui_login_dialog import Ui_LoginDialog
@@ -21,7 +21,7 @@ from ui_py.ui_login_dialog import Ui_LoginDialog
 from utils.gui_functions import *
 from utils.workers import *
 from utils.ctrl_plc import *
-from utils.alarm_message_list import get_alarm_list
+from utils.alarm_control import *
 ##############################################################
 
 class RnRobotics_Gui:
@@ -41,15 +41,27 @@ class RnRobotics_Gui:
         self.login_dialog = QDialog()
         self.ui_login_dialog = Ui_LoginDialog()
         self.ui_login_dialog.setupUi(self.login_dialog)
+
+        win_icon = QIcon("./assets/images/RN_ico.png")
+        self.main_win.setWindowIcon(win_icon)
+        self.cod_dialog_win.setWindowIcon(win_icon)
+        self.alt_val_dialog.setWindowIcon(win_icon)
+        self.login_dialog.setWindowIcon(win_icon)
+
+        self.main_win.setWindowTitle("HMI SouSmile")
+        ##################################################################
+        self.userName = "Não Conectado"
+        self.ui.lbl_username.setText(self.userName)
         ##################################################################
         # thread - to update PLC values
         self.threadpool = QThreadPool()
         ###################################################################
         # timer to execute the update of tags
-        self.timer = QTimer()
-        self.timer.setInterval(1000)
-        self.timer.timeout.connect(self.update_tags)
-        self.timer.start()
+        self.update_tags()
+        # self.timer = QTimer()
+        # self.timer.setInterval(1000)
+        # self.timer.timeout.connect()
+        # self.timer.start()
         ###################################################################
         # main screen of the application
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
@@ -63,9 +75,18 @@ class RnRobotics_Gui:
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
         self.ui.btnLogin.clicked.connect(self.show_login_dialog)
+        self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
+        self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         ####################################################################
         # button to back screen
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
+        ####################################################################
+        # adding alarms to list
+        # ToDo => ver como receber os alarmes e os tempos
+        define_alarm_list(self.ui, "12:35:31", 0)
+        define_alarm_list(self.ui, "13:18:57", 11)
+        define_alarm_list(self.ui, "15:16:22", 34)
+        define_alarm_list(self.ui, "15:34:46", 64)
         ####################################################################
         # button to show pop up to insert code manually
         self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
@@ -103,7 +124,7 @@ class RnRobotics_Gui:
         # login button
         self.ui_login_dialog.btn_login.clicked.connect(
             lambda:
-            login(
+            self.login(
                 self.login_dialog,
                 self.ui_login_dialog.user_login,
                 self.ui_login_dialog.user_password
@@ -133,7 +154,6 @@ class RnRobotics_Gui:
         # self.ui.btn_DoorSideA_fechar.clicked.connect(lambda: change_button("Cyl_DoorSideA.ManExt"))
         # self.ui.btn_DoorSideA_manut.clicked.connect(lambda: change_button("Cyl_DoorSideA.MaintTest"))
 
-        ####################################################################
         # self.ui.btn_DoorSideB_abrir.clicked.connect(lambda: change_button("Cyl_DoorSideB.ManRet"))
         # self.ui.btn_DoorSideB_fechar.clicked.connect(lambda: change_button("Cyl_DoorSideB.ManExt"))
         # self.ui.btn_DoorSideB_manut.clicked.connect(lambda: change_button("Cyl_DoorSideB.MaintTest"))
@@ -142,6 +162,10 @@ class RnRobotics_Gui:
         # self.ui.btn_SpindleRobo_fechar.clicked.connect(lambda: change_button("Cyl_SpindleRobo.ManExt"))
         # self.ui.btn_SpindleRobo_manut.clicked.connect(lambda: change_button("Cyl_SpindleRobo.MaintTest"))
         ####################################################################
+        self.ui.btn_sobe_alarm.clicked.connect(lambda: row_up(self.ui.alarm_list_widget))
+        self.ui.btn_desce_alarm.clicked.connect(lambda: row_down(self.ui.alarm_list_widget))
+        self.ui.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(self.ui.hist_alarm_list_widget))
+        self.ui.btn_desce_alarm_hist.clicked.connect(lambda: row_down(self.ui.hist_alarm_list_widget))
 
     def show(self):
         self.main_win.show()
@@ -149,7 +173,9 @@ class RnRobotics_Gui:
     def show_max(self):
         self.main_win.showMaximized()
 
-    # functions to navigate between screens
+    ####################################################################
+    #### functions to navigate between screens
+    ####################################################################
     def show_home(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
 
@@ -157,6 +183,7 @@ class RnRobotics_Gui:
         self.ui.stackedWidget.setCurrentWidget(self.ui.robot_screen)
 
     def show_alarm(self):
+        self.ui.alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarms_screen)
 
     def show_production(self):
@@ -171,6 +198,12 @@ class RnRobotics_Gui:
     def show_engineering(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.engineering_screen)
 
+    def show_alarm_history(self):
+        self.ui.hist_alarm_list_widget.horizontalHeader().setVisible(True)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.alarm_history_screen)
+    ####################################################################
+    #### function to dialogs
+    ####################################################################
     def show_cod_dialog_win(self, tag, type):
         self.tag_index = tag
         self.tag_type = type
@@ -184,7 +217,10 @@ class RnRobotics_Gui:
 
     def show_login_dialog(self):
         self.login_dialog.exec_()
-
+    ####################################################################
+    #### others buttons functions (test)
+    # ToDo => melhorar botões e estados
+    ####################################################################
     def multistate_button(self, tag, value):
         write_tag(tag, value)
 
@@ -225,7 +261,15 @@ class RnRobotics_Gui:
                 pass
         except:
             pass
-
+    #######################################################################
+    #### Login
+    def login(self, dialog: QDialog, *widgets: QLineEdit):
+        for widget in widgets:
+            if widget.objectName() == "user_login":
+                self.userName = widget.text()
+            widget.clear()
+        self.ui.lbl_username.setText(self.userName)
+        dialog.close()
     #######################################################################
     #### Updating Tags on the PLC
     #######################################################################

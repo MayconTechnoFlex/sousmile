@@ -1,4 +1,4 @@
-from pycomm3 import LogixDriver, INT, DataType
+from pycomm3 import LogixDriver
 
 IP = '192.168.1.10'
 

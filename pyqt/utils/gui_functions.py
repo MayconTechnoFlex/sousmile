@@ -4,14 +4,12 @@
 ## Label actions
 ## Line edit actions
 #############################################
-import time
-
+from PyQt5.QtWidgets import QWidget, QDialog
 from utils.ctrl_plc import *
-
 #############################################
 ## Edit PLC information with a QLineEdit
 #############################################
-def write_QlineEdit(tag_name, dialog, widget, dataType="string"):
+def write_QlineEdit(tag_name: str, dialog: QDialog, widget: QWidget, dataType="string"):
 
     if dataType == "string":
         data = str(widget.text())
@@ -26,20 +24,20 @@ def write_QlineEdit(tag_name, dialog, widget, dataType="string"):
     widget.clear()
     dialog.close()
 #############################################
-def sts_string(tag_name, widget):
-    if tag_name == 100:
+def sts_string(id_num: int, widget: QWidget):
+    if id_num == 100:
         widget.setText('Transferencia do codigo da peca habilitado para o lado A1')
-    elif tag_name == 110:
+    elif id_num == 110:
         widget.setText('Transferencia do lado A1 aguardando python iniciar a transferencia')
-    elif tag_name == 120:
+    elif id_num == 120:
         widget.setText('Transferencia iniciou A1  python -> CLP')
-    elif tag_name == 200:
+    elif id_num == 200:
         widget.setText('Transferencia do codigo da peca habilitado para o lado A2')
-    elif tag_name == 210:
+    elif id_num == 210:
         widget.setText('Transferencia do lado A2 aguardando python iniciar a transferencia')
-    elif tag_name == 220:
+    elif id_num == 220:
         widget.setText('Transferencia iniciou lado A2  python -> CLP')
-    elif tag_name == 0:
+    elif id_num == 0:
         widget.setText('Aguardando leitura do código')
     else:
         widget.setText('Erro')
@@ -151,8 +149,4 @@ def spindle_status_update(tag, ui):
     change_status(tag["OutExtCyl"], ui.sts_plc_liga_spindle)
     change_status(tag["OutRetCyl"], ui.sts_plc_desl_spindle)
 #############################################
-def login(dialog, *widgets):
-    for widget in widgets:
-        widget.clear()
-    dialog.close()
 #############################################
