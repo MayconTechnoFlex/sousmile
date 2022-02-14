@@ -5,15 +5,13 @@
 ##############################################################
 ### IMPORTS
 ##############################################################
-import signal
-import traceback, sys
-import time
+import sys
 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
-from ui_py.ui_gui_v7 import Ui_MainWindow
+from ui_py.ui_gui import Ui_MainWindow
 from ui_py.ui_cod_dialog_win import Ui_Dialog
 from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from ui_py.ui_login_dialog import Ui_LoginDialog
@@ -57,11 +55,10 @@ class RnRobotics_Gui:
         self.threadpool = QThreadPool()
         ###################################################################
         # timer to execute the update of tags
-        self.update_tags()
-        # self.timer = QTimer()
-        # self.timer.setInterval(1000)
-        # self.timer.timeout.connect()
-        # self.timer.start()
+        self.timer = QTimer()
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.update_tags)
+        self.timer.start()
         ###################################################################
         # main screen of the application
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
@@ -78,15 +75,20 @@ class RnRobotics_Gui:
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         ####################################################################
+        self.tag_index = ""
+        self.tag_type = ""
+        ####################################################################
         # button to back screen
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
         ####################################################################
         # adding alarms to list
         # ToDo => ver como receber os alarmes e os tempos
+        """
         define_alarm_list(self.ui, "12:35:31", 0)
         define_alarm_list(self.ui, "13:18:57", 11)
         define_alarm_list(self.ui, "15:16:22", 34)
         define_alarm_list(self.ui, "15:34:46", 64)
+        """
         ####################################################################
         # button to show pop up to insert code manually
         self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
@@ -140,8 +142,10 @@ class RnRobotics_Gui:
         self.ui.btn_reset_prod_a2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA2"))
         self.ui.btn_reset_prod_b1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1"))
         self.ui.btn_reset_prod_b2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB2"))
-        self.ui.btn_reset_prod_total_a.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1", "HMI.Production.PartsDoneA2"))
-        self.ui.btn_reset_prod_total_b.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1", "HMI.Production.PartsDoneB2"))
+        self.ui.btn_reset_prod_total_a.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1",
+                                                                             "HMI.Production.PartsDoneA2"))
+        self.ui.btn_reset_prod_total_b.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1",
+                                                                             "HMI.Production.PartsDoneB2"))
         ####################################################################
         # button to hold robot
         self.ui.btn_parar_robo.clicked.connect(lambda: self.hold_robot("HMI.HoldRobo"))
@@ -172,7 +176,6 @@ class RnRobotics_Gui:
 
     def show_max(self):
         self.main_win.showMaximized()
-
     ####################################################################
     #### functions to navigate between screens
     ####################################################################
@@ -204,14 +207,14 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to dialogs
     ####################################################################
-    def show_cod_dialog_win(self, tag, type):
+    def show_cod_dialog_win(self, tag, tag_type):
         self.tag_index = tag
-        self.tag_type = type
+        self.tag_type = tag_type
         self.cod_dialog_win.exec_()
 
-    def show_alt_val_dialog(self, text, tag, type):
+    def show_alt_val_dialog(self, text, tag, tag_type):
         self.tag_index = tag
-        self.tag_type = type
+        self.tag_type = tag_type
         self.ui_alt_val_dialog.description_text.setText(text)
         self.alt_val_dialog.exec_()
 
@@ -220,6 +223,7 @@ class RnRobotics_Gui:
     ####################################################################
     #### others buttons functions (test)
     # ToDo => melhorar botões e estados
+    # ToDo 2 => mover funções para outro arquivo
     ####################################################################
     def multistate_button(self, tag, value):
         write_tag(tag, value)

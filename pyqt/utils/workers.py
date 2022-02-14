@@ -1,6 +1,5 @@
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
-from utils.ctrl_plc import read_tags
-
+from .ctrl_plc import read_tags
 
 class WorkerSignals(QObject):
     """
@@ -74,7 +73,9 @@ class Worker(QRunnable):
             local_1_in = read_tags("Local:1:I.Data")
             local_1_out = read_tags("Local:1:O.Data")
             local_2_in = read_tags("Local:2:I.Data")
-
+        except:
+            print('Error on the thread')
+        else:
             self.signal_a1.result.emit(data_ctrl_a1)
             self.signal_a2.result.emit(data_ctrl_a2)
             self.signal_b1.result.emit(data_ctrl_b1)
@@ -91,5 +92,3 @@ class Worker(QRunnable):
             self.signal_local1In.result.emit(local_1_in)
             self.signal_local1Out.result.emit(local_1_out)
             self.signal_local2In.result.emit(local_2_in)
-        except:
-            print('Error on the thread')
