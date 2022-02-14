@@ -7,12 +7,19 @@ def read_tags(tag_name):
     try:
         with LogixDriver(IP) as plc:
             return plc.read(tag_name).value
-    except:
-        return print('Error on plc communication')
+    except Exception(e):
+        print(f"{e} - Error on plc communication")
 
 def write_tag(tag_name, value):
     try:
         with LogixDriver(IP) as plc:
             plc.write((tag_name, value))
-    except:
-        return print('Error on plc communication')
+    except Exception(e):
+        print(f"{e} - Error on plc communication")
+
+def read_multiples(tag_list):
+    try:
+        with LogixDriver(IP) as plc:
+            return plc.read(tag_list)
+    except Exception(e):
+        print(f"{e} - Error on plc communication")
