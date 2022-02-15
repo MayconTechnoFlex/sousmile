@@ -27,6 +27,12 @@ class Worker(QRunnable):
     def __init__(self, *args):
         super(Worker, self).__init__()
 
+<<<<<<< HEAD
+=======
+        #############################################
+        ## Add signal
+        #############################################
+>>>>>>> NathanTrain-main
         self.signal_barCodeReader = WorkerSignals()
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
