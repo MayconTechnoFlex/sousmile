@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5427c58-1dd2-4f1a-970c-477a842f72bf" name="Changes" comment="">
+    <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/1x/sharp_check_black_48dp.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/1x/sharp_close_black_48dp.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/2x/sharp_check_black_48dp.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/2x/sharp_close_black_48dp.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/ui/icons.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/icons.qrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/ui_py/icons_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/icons_rc.py" afterDir="false" />
@@ -33,100 +31,31 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/gui_functions.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/workers.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="256VZCWNVFI8V4CSEUtd00sUBOx" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="259YcQoNdTqkFTtmOe5tO2ofd92" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="ctrl_plc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="sousmile" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyqt/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="sousmile" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyqt" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyqt/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.ctrl_plc" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c5427c58-1dd2-4f1a-970c-477a842f72bf" name="Changes" comment="" />
-      <created>1644847576601</created>
+      <changelist id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="" />
+      <created>1644940849237</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1644847576601</updated>
+      <updated>1644940849237</updated>
     </task>
     <servers />
   </component>
@@ -135,19 +64,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="NathanTrain-main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
