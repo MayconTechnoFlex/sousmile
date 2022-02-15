@@ -51,10 +51,10 @@ class RnRobotics_Gui:
         ##################################################################
         # Login
         ##################################################################
-        self.userName = "Não Conectado"
+        self.userName = "Nenhum usuario logado"
         self.ui.lbl_username.setText(self.userName)
         ##################################################################
-        # thread - to update PLC values
+        # thread - to update PLC values ##################################
         ##################################################################
         self.threadpool_0 = QThreadPool()
         self.threadpool_1 = QThreadPool()
@@ -70,7 +70,7 @@ class RnRobotics_Gui:
         self.threadpool_11 = QThreadPool()
         self.threadpool_12 = QThreadPool()
         ###################################################################
-        # Workers
+        # Workers #########################################################
         ###################################################################
         self.worker = Worker()
         self.worker_data_ctrl_a1 = Worker_Data_Ctrl_A1()

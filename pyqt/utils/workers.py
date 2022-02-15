@@ -1,6 +1,6 @@
 import time
 
-from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, QMutex
 from pyqt.utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
@@ -26,7 +26,6 @@ class Worker(QRunnable):
 
     def __init__(self, *args):
         super(Worker, self).__init__()
-
         self.signal_barCodeReader = WorkerSignals()
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
@@ -49,6 +48,7 @@ class Worker(QRunnable):
 
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -73,6 +73,7 @@ class Worker_Data_Ctrl_A1(QRunnable):
                 self.signal_a1.result.emit(data_ctrl_a1)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -97,6 +98,7 @@ class Worker_Data_Ctrl_A2(QRunnable):
                 self.signal_a2.result.emit(data_ctrl_a2)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -115,12 +117,13 @@ class Worker_Data_Ctrl_B1(QRunnable):
 
     @pyqtSlot()
     def run(self):
-        while self.running:
+        while True: #self.running:
             try:
                 data_ctrl_b1 = read_tags('DataCtrl_B1')
                 self.signal_b1.result.emit(data_ctrl_b1)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -145,6 +148,7 @@ class Worker_Data_Ctrl_B2(QRunnable):
                 self.signal_b2.result.emit(data_ctrl_b2)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -169,6 +173,7 @@ class Worker_HMI(QRunnable):
                 self.signal_hmi.result.emit(hmi)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -193,6 +198,7 @@ class Worker_Config_Pts(QRunnable):
                 self.signal_configPts.result.emit(config_pts)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -217,6 +223,7 @@ class Worker_Cyl_Door_A(QRunnable):
                 self.signal_cylDoorA.result.emit(cyl_door_a)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -241,6 +248,7 @@ class Worker_Cyl_Door_B(QRunnable):
                 self.signal_cylDoorB.result.emit(cyl_door_b)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -265,6 +273,7 @@ class Worker_Cyl_Spindle(QRunnable):
                 self.signal_cylSpindle.result.emit(cyl_spindle)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -289,6 +298,7 @@ class Worker_Robot_Inputs(QRunnable):
                 self.signal_roboInput.result.emit(robo_input)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -313,6 +323,7 @@ class Worker_Robot_Outputs(QRunnable):
                 self.signal_robotOutput.result.emit(robo_output)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
@@ -341,6 +352,7 @@ class Worker_IndexRobotPos(QRunnable):
                 self.signal_indexRobotPos.result.emit(index_robot_pos)
             except Exception as e:
                 print(f'{e} - Error on the thread')
+                self.running = False
 
             time.sleep(sleep_time)
 
