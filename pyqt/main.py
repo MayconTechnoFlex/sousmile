@@ -50,20 +50,76 @@ class RnRobotics_Gui:
         ##################################################################
         self.userName = "Não Conectado"
         self.ui.lbl_username.setText(self.userName)
+        #######################################################################################################
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # Add here all the text and status that need to update on the initialization of the app
+        # Update of texts and status when the application starts
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        #######################################################################################################
+
+
         ##################################################################
         # thread - to update PLC values
-        self.threadpool = QThreadPool()
+        ##################################################################
+        self.threadpool_0 = QThreadPool()
+        self.threadpool_1 = QThreadPool()
+        self.threadpool_2 = QThreadPool()
+        self.threadpool_3 = QThreadPool()
+        self.threadpool_4 = QThreadPool()
+        self.threadpool_5 = QThreadPool()
+        self.threadpool_6 = QThreadPool()
+        self.threadpool_7 = QThreadPool()
+        self.threadpool_8 = QThreadPool()
+        self.threadpool_9 = QThreadPool()
+        self.threadpool_10 = QThreadPool()
+        self.threadpool_11 = QThreadPool()
         ###################################################################
-        # timer to execute the update of tags
-        self.timer = QTimer()
-        self.timer.setInterval(1000)
-        self.timer.timeout.connect(self.update_tags)
-        self.timer.start()
+        # Workers
+        ###################################################################
+        self.worker = Worker()
+        self.worker_data_ctrl_a1 = Worker_Data_Ctrl_A1()
+        self.worker_data_ctrl_a2 = Worker_Data_Ctrl_A2()
+        self.worker_data_ctrl_b1 = Worker_Data_Ctrl_B1()
+        self.worker_data_ctrl_b2 = Worker_Data_Ctrl_B2()
+        self.worker_hmi = Worker_HMI()
+        self.worker_config_pts = Worker_Config_Pts()
+        self.worker_cylDoorA = Worker_Cyl_Door_A()
+        self.worker_cylDoorB = Worker_Cyl_Door_B()
+        self.worker_cylSpindle = Worker_Cyl_Spindle()
+        self.worker_robotInputs = Worker_Robot_Inputs()
+        self.worker_robotOutputs = Worker_Robot_Outputs()
+
+        self.worker_data_ctrl_a1.signal_a1.result.connect(self.update_DataCtrl_A1)
+        self.worker_data_ctrl_a2.signal_a2.result.connect(self.update_DataCtrl_A2)
+        self.worker_data_ctrl_b1.signal_b1.result.connect(self.update_DataCtrl_B1)
+        self.worker_data_ctrl_b2.signal_b2.result.connect(self.update_DataCtrl_B2)
+        self.worker_hmi.signal_hmi.result.connect(self.update_hmi)
+        self.worker_config_pts.signal_configPts.result.connect(self.update_ConfigPontos)
+        self.worker_cylDoorA.signal_cylDoorA.result.connect(self.update_CylDoorSideA)
+        self.worker_cylDoorB.signal_cylDoorB.result.connect(self.update_CylDoorSideB)
+        self.worker_cylSpindle.signal_cylSpindle.result.connect(self.update_CylSpindle)
+        self.worker.signal_indexRobotPos.result.connect(self.update_indexRobotPos)
+        self.worker_robotInputs.signal_roboInput.result.connect(self.update_RoboInput)
+        self.worker_robotOutputs.signal_robotOutput.result.connect(self.update_RoboOutput)
+        self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
+
+        self.threadpool_0.start(self.worker)
+        self.threadpool_1.start(self.worker_data_ctrl_a1)
+        self.threadpool_2.start(self.worker_data_ctrl_a2)
+        self.threadpool_3.start(self.worker_data_ctrl_b1)
+        self.threadpool_4.start(self.worker_data_ctrl_b2)
+        self.threadpool_5.start(self.worker_hmi)
+        self.threadpool_6.start(self.worker_config_pts)
+        self.threadpool_7.start(self.worker_cylDoorA)
+        self.threadpool_8.start(self.worker_cylDoorB)
+
         ###################################################################
         # main screen of the application
+        ###################################################################
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
         ###################################################################
         # buttons to navigate between screens
+        ###################################################################
         self.ui.btnHomeScreen.clicked.connect(self.show_home)
         self.ui.btnRobotScreen.clicked.connect(self.show_robot)
         self.ui.btnAlarmScreen.clicked.connect(self.show_alarm)
@@ -82,6 +138,7 @@ class RnRobotics_Gui:
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
         ####################################################################
         # adding alarms to list
+        ####################################################################
         # ToDo => ver como receber os alarmes e os tempos
         """
         define_alarm_list(self.ui, "12:35:31", 0)
@@ -91,6 +148,7 @@ class RnRobotics_Gui:
         """
         ####################################################################
         # button to show pop up to insert code manually
+        ####################################################################
         self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
         self.ui.btn_in_cod_man_a2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A2.ProdCode', "string"))
         self.ui.btn_in_cod_man_b1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B1.ProdCode', "string"))
@@ -134,10 +192,18 @@ class RnRobotics_Gui:
         )
         ####################################################################
         # Side A: man - auto button
-        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: self.set_reset_button('HMI.SideA.ModeValue'))
-        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: self.set_reset_button('HMI.SideB.ModeValue'))
+        ####################################################################
+        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: self.set_reset_button('HMI.SideA.ModeValue',
+                                                                                  self.ui.btn_man_auto_lado_a,
+                                                                                  'Automático',
+                                                                                  'Manual'))
+        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: self.set_reset_button('HMI.SideB.ModeValue',
+                                                                                  self.ui.btn_man_auto_lado_b,
+                                                                                  'Automático',
+                                                                                  'Manual'))
         ####################################################################
         # Reset Production Count
+        ####################################################################
         self.ui.btn_reset_prod_a1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1"))
         self.ui.btn_reset_prod_a2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA2"))
         self.ui.btn_reset_prod_b1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1"))
@@ -176,6 +242,7 @@ class RnRobotics_Gui:
 
     def show_max(self):
         self.main_win.showMaximized()
+
     ####################################################################
     #### functions to navigate between screens
     ####################################################################
@@ -205,7 +272,7 @@ class RnRobotics_Gui:
         self.ui.hist_alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarm_history_screen)
     ####################################################################
-    #### function to dialogs
+    #### function to show dialogs
     ####################################################################
     def show_cod_dialog_win(self, tag, tag_type):
         self.tag_index = tag
@@ -225,20 +292,19 @@ class RnRobotics_Gui:
     # ToDo => melhorar botões e estados
     # ToDo 2 => mover funções para outro arquivo
     ####################################################################
-    def multistate_button(self, tag, value):
-        write_tag(tag, value)
-
-    def set_reset_button(self, tag):
+    def set_reset_button(self, tag, widget, text_on, text_off):
+        value = read_tags(tag)
         try:
-            value = read_tags(tag)
             if value == 0:
                 write_tag(tag, 1)
+                widget.setText(text_on)
             elif value == 1:
                 write_tag(tag, 0)
+                widget.setText(text_off)
             else:
-                pass
-        except:
-            pass
+                print('Erro na lógica IF')
+        except Exception(e):
+            print(e)
 
     def hold_robot(self, tag):
         try:
@@ -277,10 +343,11 @@ class RnRobotics_Gui:
     #######################################################################
     #### Updating Tags on the PLC
     #######################################################################
-    def update_tags(self):
-
+    # ToDo => apagar esta função
+    ''' def update_tags(self):
+    
         worker = Worker()
-
+    
         worker.signal_a1.result.connect(self.update_DataCtrl_A1)
         worker.signal_a2.result.connect(self.update_DataCtrl_A2)
         worker.signal_b1.result.connect(self.update_DataCtrl_B1)
@@ -294,8 +361,9 @@ class RnRobotics_Gui:
         worker.signal_roboInput.result.connect(self.update_RoboInput)
         worker.signal_robotOutput.result.connect(self.update_RoboOutput)
         worker.signal_barCodeReader.result.connect(self.update_BarCode)
+    
+        self.threadpool_0.start(worker)'''
 
-        self.threadpool.start(worker)
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
@@ -345,6 +413,26 @@ class RnRobotics_Gui:
                 sts_string(tag['Sts']['TransDataSideA'], self.ui.lbl_sts_TransDataSideA)
                 sts_string(tag['Sts']['TransDataSideB'], self.ui.lbl_sts_TransDataSideB)
 
+                #### Side A: manual - auto
+                if tag['SideA']['ModeValue'] == 0:
+                    self.ui.btn_man_auto_lado_a.setChecked(True)
+                    self.ui.sts_auto_man_a.setEnabled(True)
+                    self.ui.btn_man_auto_lado_a.setText('Manual')
+                else:
+                    self.ui.btn_man_auto_lado_a.setChecked(False)
+                    self.ui.sts_auto_man_a.setEnabled(False)
+                    self.ui.btn_man_auto_lado_a.setText('Automático')
+
+                #### Side B: manual - auto
+                if tag['SideB']['ModeValue'] == 1:
+                    self.ui.btn_man_auto_lado_b.setChecked(True)
+                    self.ui.sts_auto_man_b.setEnabled(True)
+                    self.ui.btn_man_auto_lado_b.setText('Manual')
+                else:
+                    self.ui.btn_man_auto_lado_b.setChecked(False)
+                    self.ui.sts_auto_man_b.setEnabled(False)
+                    self.ui.btn_man_auto_lado_b.setText('Automático')
+
                 #### setting alarm status
                 if tag["AlarmSideA"]:
                     self.ui.sts_sem_alarm_a.setEnabled(False)
@@ -355,32 +443,9 @@ class RnRobotics_Gui:
                     self.ui.sts_sem_alarm_b.setEnabled(False)
                 else:
                     self.ui.sts_sem_alarm_b.setEnabled(True)
+            except Exception(e):
+                print(e)
 
-                #### Side A: manual - auto
-                if tag['SideA']['ModeValue'] == 0:
-                    self.ui.btn_man_auto_lado_a.setChecked(False)
-                    self.ui.sts_auto_man_a.setEnabled(False)
-                    self.ui.btn_man_auto_lado_a.setText('Automático')
-                elif tag['SideA']['ModeValue'] == 1:
-                    self.ui.btn_man_auto_lado_a.setChecked(True)
-                    self.ui.sts_auto_man_a.setEnabled(True)
-                    self.ui.btn_man_auto_lado_a.setText('Manual')
-                else:
-                    pass
-
-                #### Side B: manual - auto
-                if tag['SideB']['ModeValue'] == 0:
-                    self.ui.btn_man_auto_lado_b.setChecked(False)
-                    self.ui.sts_auto_man_b.setEnabled(False)
-                    self.ui.btn_man_auto_lado_b.setText('Automático')
-                elif tag['SideB']['ModeValue'] == 1:
-                    self.ui.btn_man_auto_lado_b.setChecked(True)
-                    self.ui.sts_auto_man_b.setEnabled(True)
-                    self.ui.btn_man_auto_lado_b.setText('Manual')
-                else:
-                    pass
-            except:
-                pass
         if self.ui.stackedWidget.currentIndex() == 3:
             try:
                 ### updating tags
@@ -512,10 +577,39 @@ class RnRobotics_Gui:
             except:
                 pass
     ########################################################################
+    # Start Threads
+    ########################################################################
+    def start_threads(self):
+        self.threadpool_0.start(self.worker)
+        self.threadpool_1.start(self.worker_data_ctrl_a1)
+        self.threadpool_2.start(self.worker_data_ctrl_a2)
+        self.threadpool_3.start(self.worker_data_ctrl_b1)
+        self.threadpool_4.start(self.worker_data_ctrl_b2)
+        self.threadpool_5.start(self.worker_hmi)
+        self.threadpool_6.start(self.worker_config_pts)
+        self.threadpool_7.start(self.worker_cylDoorA)
+        self.threadpool_8.start(self.worker_cylDoorB)
+    ########################################################################
+    # Stop Threads
+    ########################################################################
+    def stop_threads(self):
+        self.threadpool_0.exit(self.worker)
+        self.threadpool_1.exit(self.worker_data_ctrl_a1)
+        self.threadpool_2.exit(self.worker_data_ctrl_a2)
+        self.threadpool_3.exit(self.worker_data_ctrl_b1)
+        self.threadpool_4.exit(self.worker_data_ctrl_b2)
+        self.threadpool_5.exit(self.worker_hmi)
+        self.threadpool_6.exit(self.worker_config_pts)
+        self.threadpool_7.exit(self.worker_cylDoorA)
+        self.threadpool_8.exit(self.worker_cylDoorB)
+    ########################################################################
+    # Stop the threads when the window is closed
+    ########################################################################
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.aboutToQuit.connect(RnRobotics_Gui.stop_threads)
     main_win = RnRobotics_Gui()
     main_win.show_max()
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
