@@ -44,5 +44,5 @@ class LoginDialog:
         if not login_successful:
             self.ui.lbl_login_staus.setText('Usuário ou senha incorreto')
 
-    def logoff_user(self):
+    def logout_user(self):
         self.lbl_username.setText('Nenhum usuário logado')

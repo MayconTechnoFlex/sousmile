@@ -128,6 +128,7 @@ class RnRobotics_Gui:
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
         self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
+        self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         ####################################################################
