@@ -15,6 +15,7 @@ from ui_py.ui_gui import Ui_MainWindow
 from ui_py.ui_cod_dialog_win import Ui_Dialog
 from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from ui_py.ui_login_dialog import Ui_LoginDialog
+from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 
 from utils.gui_functions import *
 from utils.workers import *
@@ -40,11 +41,16 @@ class RnRobotics_Gui:
         self.ui_login_dialog = Ui_LoginDialog()
         self.ui_login_dialog.setupUi(self.login_dialog)
 
+        self.confirm_dialog = QDialog()
+        self.ui_confirm_dialog = Ui_ConfirmDialog()
+        self.ui_confirm_dialog.setupUi(self.confirm_dialog)
+
         win_icon = QIcon("./assets/images/RN_ico.png")
         self.main_win.setWindowIcon(win_icon)
         self.cod_dialog_win.setWindowIcon(win_icon)
         self.alt_val_dialog.setWindowIcon(win_icon)
         self.login_dialog.setWindowIcon(win_icon)
+        self.confirm_dialog.setWindowIcon(win_icon)
 
         self.main_win.setWindowTitle("HMI SouSmile")
         ##################################################################
@@ -56,7 +62,6 @@ class RnRobotics_Gui:
         # Update of texts and status when the application starts
         # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         #######################################################################################################
-
 
         ##################################################################
         # thread - to update PLC values
@@ -133,6 +138,7 @@ class RnRobotics_Gui:
         ####################################################################
         self.tag_index = ""
         self.tag_type = ""
+        self.action_to_confirm = ""
         ####################################################################
         # button to back screen
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
@@ -160,6 +166,7 @@ class RnRobotics_Gui:
         )
         set_dialog_buttons_maintenance(self.ui, self.show_alt_val_dialog)
         set_dialog_buttons_engineering(self.ui, self.show_alt_val_dialog)
+        self.ui.btn_move_home.clicked.connect(lambda: self.show_confirm_dialog("MoveHome"))
         ####################################################################
         # button to send code to the PLC tag
         self.ui_cod_dialog_win.btn_insert_code_man.clicked.connect(
@@ -180,6 +187,10 @@ class RnRobotics_Gui:
                 self.tag_type
             )
         )
+        ####################################################################
+        # confirmation dialog
+        self.ui_confirm_dialog.btn_confirm.clicked.connect(self.confirm_action)
+        self.ui_confirm_dialog.btn_cancel.clicked.connect(self.cancel_action)
         ####################################################################
         # login button
         self.ui_login_dialog.btn_login.clicked.connect(
@@ -274,12 +285,12 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to show dialogs
     ####################################################################
-    def show_cod_dialog_win(self, tag, tag_type):
+    def show_cod_dialog_win(self, tag: str, tag_type: str):
         self.tag_index = tag
         self.tag_type = tag_type
         self.cod_dialog_win.exec_()
 
-    def show_alt_val_dialog(self, text, tag, tag_type):
+    def show_alt_val_dialog(self, text: str, tag: str, tag_type: str):
         self.tag_index = tag
         self.tag_type = tag_type
         self.ui_alt_val_dialog.description_text.setText(text)
@@ -287,12 +298,37 @@ class RnRobotics_Gui:
 
     def show_login_dialog(self):
         self.login_dialog.exec_()
+
+    def show_confirm_dialog(self, action_to_confirm: str, text: str = ""):
+        # self.ui_confirm_dialog.description_text.setText(text)
+        self.action_to_confirm = action_to_confirm
+        self.confirm_dialog.exec_()
+    ####################################################################
+    # confirmation functions
+    def confirm_action(self):
+        action = self.action_to_confirm
+        dialog = self.confirm_dialog
+        try:
+            if action == "MoveHome":
+                # escreve a tag referente para cada ação
+                # write_tag("", 1)
+                pass
+            elif action == "":
+                pass
+        except Exception(e):
+            print(f"{e} - Erro na ação")
+        finally:
+            dialog.close()
+
+    def cancel_action(self):
+        self.action_to_confirm = ""
+        self.confirm_dialog.close()
     ####################################################################
     #### others buttons functions (test)
     # ToDo => melhorar botões e estados
     # ToDo 2 => mover funções para outro arquivo
     ####################################################################
-    def set_reset_button(self, tag, widget, text_on, text_off):
+    def set_reset_button(self, tag: str, widget: QWidget, text_on: str, text_off: str):
         value = read_tags(tag)
         try:
             if value == 0:
@@ -306,7 +342,7 @@ class RnRobotics_Gui:
         except Exception(e):
             print(e)
 
-    def hold_robot(self, tag):
+    def hold_robot(self, tag: str):
         try:
             value = read_tags(tag)
             if value == 0:
@@ -318,7 +354,7 @@ class RnRobotics_Gui:
         except:
             pass
 
-    def enable_logs(self, tag):
+    def enable_logs(self, tag: str):
         try:
             value = read_tags(tag)
             if value == 0:
