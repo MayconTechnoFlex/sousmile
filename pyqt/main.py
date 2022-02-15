@@ -12,7 +12,6 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
 from ui_py.ui_gui import Ui_MainWindow
-from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from ui_py.ui_login_dialog import Ui_LoginDialog
 
 from utils.gui_functions import *
@@ -25,6 +24,7 @@ from utils.Types import *
 from screens import home
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
+from dialogs.altera_valor import AlteraValorDialog
 ##############################################################
 
 class RnRobotics_Gui:
@@ -36,9 +36,7 @@ class RnRobotics_Gui:
 
         self.insert_code_dialog = InsertCodeDialog()
 
-        self.alt_val_dialog = QDialog()
-        self.ui_alt_val_dialog = Ui_Dialog2()
-        self.ui_alt_val_dialog.setupUi(self.alt_val_dialog)
+        self.altera_valor_dialog = AlteraValorDialog()
 
         self.login_dialog = QDialog()
         self.ui_login_dialog = Ui_LoginDialog()
@@ -49,7 +47,7 @@ class RnRobotics_Gui:
         win_icon = QIcon("./assets/images/RN_ico.png")
         self.main_win.setWindowIcon(win_icon)
         self.insert_code_dialog.setWindowIcon(win_icon)
-        self.alt_val_dialog.setWindowIcon(win_icon)
+        self.altera_valor_dialog.setWindowIcon(win_icon)
         self.login_dialog.setWindowIcon(win_icon)
         self.confirm_dialog.setWindowIcon(win_icon)
 
@@ -168,22 +166,13 @@ class RnRobotics_Gui:
         ####################################################################
         # button to show pop up to change value
         self.ui.btn_alt_vel_robo_screen.clicked.connect(
-            lambda: self.show_alt_val_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
+            lambda: self.altera_valor_dialog.show("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
         )
-        set_dialog_buttons_maintenance(self.ui, self.show_alt_val_dialog)
-        set_dialog_buttons_engineering(self.ui, self.show_alt_val_dialog)
+        set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
+        set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
         self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
         ####################################################################
         # button to send code to the PLC tag
-        self.ui_alt_val_dialog.btn_alt_val.clicked.connect(
-            lambda:
-            write_QlineEdit(
-                self.tag_index,
-                self.alt_val_dialog,
-                self.ui_alt_val_dialog.new_value,
-                self.tag_type
-            )
-        )
         ####################################################################
         # login button
         self.ui_login_dialog.btn_login.clicked.connect(self.login_user)
@@ -271,12 +260,6 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to show dialogs
     ####################################################################
-    def show_alt_val_dialog(self, text: str, tag: str, tag_type: TagTypes):
-        self.tag_index = tag
-        self.tag_type = tag_type
-        self.ui_alt_val_dialog.description_text.setText(text)
-        self.alt_val_dialog.exec_()
-
     def show_login_dialog(self):
         self.ui_login_dialog.lbl_login_staus.setText('Insira o usuário e a senha para o login')
         self.login_dialog.exec_()
