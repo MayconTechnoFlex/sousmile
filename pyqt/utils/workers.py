@@ -1,7 +1,7 @@
 import time
 
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
-from utils.ctrl_plc import read_tags
+from pyqt.utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
 

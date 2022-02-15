@@ -1,12 +1,10 @@
 ########################################################################################
 # Contorl of widgets home screen
 ########################################################################################
-from main import *
-from typing import Callable, Literal
+from pyqt.main import *
+from pyqt.utils.Types import *
 
-tag_type = Literal ["string", "int", "float"]
-
-def home_screen_func(ui: Ui_MainWindow, show_dialog: Callable[[str, tag_type], None]):
+def home_screen_func(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText):
     ####################################################################
     # button to show pop up to insert code manually
     ####################################################################

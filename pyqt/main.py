@@ -22,11 +22,14 @@ from utils.workers import *
 from utils.ctrl_plc import *
 from utils.alarm_control import *
 
+from utils.Types import *
+
 from screens import home
 ##############################################################
 
 class RnRobotics_Gui:
     def __init__(self):
+        super(RnRobotics_Gui, self).__init__()
         self.main_win = QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.main_win)
@@ -146,8 +149,8 @@ class RnRobotics_Gui:
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         ####################################################################
         self.tag_index = ""
-        self.tag_type = ""
-        self.action_to_confirm = ""
+        self.tag_type: TagTypes = ""
+        self.action_to_confirm: ActionsToConfirm = ""
         ####################################################################
         # button to back screen
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
@@ -165,12 +168,6 @@ class RnRobotics_Gui:
         # Widgets on home screen
         ####################################################################
         home.home_screen_func(self.ui, self.show_cod_dialog_win)
-
-
-        '''self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
-        self.ui.btn_in_cod_man_a2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A2.ProdCode', "string"))
-        self.ui.btn_in_cod_man_b1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B1.ProdCode', "string"))
-        self.ui.btn_in_cod_man_b2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B2.ProdCode', "string"))'''
         ####################################################################
         # button to show pop up to change value
         self.ui.btn_alt_vel_robo_screen.clicked.connect(
@@ -290,12 +287,12 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to show dialogs
     ####################################################################
-    def show_cod_dialog_win(self, tag: str, tag_type: str):
+    def show_cod_dialog_win(self, tag: str, tag_type: TagTypes):
         self.tag_index = tag
         self.tag_type = tag_type
         self.cod_dialog_win.exec_()
 
-    def show_alt_val_dialog(self, text: str, tag: str, tag_type: str):
+    def show_alt_val_dialog(self, text: str, tag: str, tag_type: TagTypes):
         self.tag_index = tag
         self.tag_type = tag_type
         self.ui_alt_val_dialog.description_text.setText(text)
@@ -305,7 +302,7 @@ class RnRobotics_Gui:
         self.ui_login_dialog.lbl_login_staus.setText('Insira o usuário e a senha para o login')
         self.login_dialog.exec_()
 
-    def show_confirm_dialog(self, action_to_confirm: str, text: str = ""):
+    def show_confirm_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
         # self.ui_confirm_dialog.description_text.setText(text)
         self.action_to_confirm = action_to_confirm
         self.confirm_dialog.exec_()
@@ -320,10 +317,9 @@ class RnRobotics_Gui:
                 # write_tag("", 1)
                 pass
             elif action == "":
-                pass
+                raise Exception("Nenhuma ação foi passada")
         except Exception as e:
             print(f"{e} - Erro na ação")
-
         finally:
             dialog.close()
 
@@ -347,7 +343,7 @@ class RnRobotics_Gui:
             else:
                 print('Erro na lógica IF')
         except Exception as e:
-                print(e)
+            print(e)
 
     def hold_robot(self, tag: str):
         try:
@@ -380,7 +376,7 @@ class RnRobotics_Gui:
     def login_user(self):
         user = self.ui_login_dialog.user_login.text()
         password = self.ui_login_dialog.user_password.text()
-        login_sucessfull = False
+        login_successful = False
         self.ui_login_dialog.user_login.clear()
         self.ui_login_dialog.user_password.clear()
         for key, value in self.db_users.items():
@@ -388,16 +384,14 @@ class RnRobotics_Gui:
                 self.ui_login_dialog.lbl_login_staus.setText('Login efetuado com sucesso')
                 self.userName = user
                 self.ui.lbl_username.setText(self.userName)
-                login_sucessfull = True
+                login_successful = True
                 self.login_dialog.close()
                 break
-        if login_sucessfull == False:
+        if not login_successful:
             self.ui_login_dialog.lbl_login_staus.setText('Usuário ou senha incorreto')
 
     #######################################################################
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #### Updating Tags on the PLC
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
