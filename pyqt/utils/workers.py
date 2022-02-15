@@ -26,7 +26,13 @@ class Worker(QRunnable):
 
     def __init__(self, *args):
         super(Worker, self).__init__()
-        self.signal_indexRobotPos = WorkerSignals()
+
+<<<<<<< HEAD
+=======
+        #############################################
+        ## Add signal
+        #############################################
+>>>>>>> NathanTrain-main
         self.signal_barCodeReader = WorkerSignals()
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
@@ -36,20 +42,18 @@ class Worker(QRunnable):
     def run(self):
         while True:
             try:
-                index_robot_pos = read_tags("IndexRobotPos")
                 bar_code_reader = read_tags("BarCodeReader")
                 local_1_in = read_tags("Local:1:I.Data")
                 local_1_out = read_tags("Local:1:O.Data")
                 local_2_in = read_tags("Local:2:I.Data")
 
-                self.signal_indexRobotPos.result.emit(index_robot_pos)
                 self.signal_barCodeReader.result.emit(bar_code_reader)
                 self.signal_local1In.result.emit(local_1_in)
                 self.signal_local1Out.result.emit(local_1_out)
                 self.signal_local2In.result.emit(local_2_in)
 
-            except:
-                print('Error on the thread')
+            except Exception as e:
+                print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
 
@@ -68,8 +72,8 @@ class Worker_Data_Ctrl_A1(QRunnable):
             try:
                 data_ctrl_a1 = read_tags('DataCtrl_A1')
                 self.signal_a1.result.emit(data_ctrl_a1)
-            except:
-                print('Error on the thread')
+            except Exception as e:
+                print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
 
@@ -88,8 +92,8 @@ class Worker_Data_Ctrl_A2(QRunnable):
             try:
                 data_ctrl_a2 = read_tags('DataCtrl_A2')
                 self.signal_a2.result.emit(data_ctrl_a2)
-            except:
-                print('Error on the thread')
+            except Exception as e:
+                print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
 
@@ -108,8 +112,8 @@ class Worker_Data_Ctrl_B1(QRunnable):
             try:
                 data_ctrl_b1 = read_tags('DataCtrl_B1')
                 self.signal_b1.result.emit(data_ctrl_b1)
-            except:
-                print('Error on the thread')
+            except Exception as e:
+                print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
 
@@ -128,8 +132,8 @@ class Worker_Data_Ctrl_B2(QRunnable):
             try:
                 data_ctrl_b2 = read_tags('DataCtrl_B2')
                 self.signal_b2.result.emit(data_ctrl_b2)
-            except:
-                print('Error on the thread')
+            except Exception as e:
+                print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
 
@@ -148,7 +152,7 @@ class Worker_HMI(QRunnable):
             try:
                 hmi = read_tags('HMI')
                 self.signal_hmi.result.emit(hmi)
-            except Exception(e):
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
@@ -168,7 +172,7 @@ class Worker_Config_Pts(QRunnable):
             try:
                 config_pts = read_tags("ConfigPontos")
                 self.signal_configPts.result.emit(config_pts)
-            except Exception(e):
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
@@ -188,7 +192,7 @@ class Worker_Cyl_Door_A(QRunnable):
             try:
                 cyl_door_a = read_tags("Cyl_DoorSideA")
                 self.signal_cylDoorA.result.emit(cyl_door_a)
-            except Exception(e):
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
@@ -208,7 +212,7 @@ class Worker_Cyl_Door_B(QRunnable):
             try:
                 cyl_door_b = read_tags("Cyl_DoorSideB")
                 self.signal_cylDoorB.result.emit(cyl_door_b)
-            except Exception(e):
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
@@ -228,7 +232,7 @@ class Worker_Cyl_Spindle(QRunnable):
             try:
                 cyl_spindle = read_tags("Cyl_SpindleRobo")
                 self.signal_cylSpindle.result.emit(cyl_spindle)
-            except Exception(e):
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
@@ -248,7 +252,7 @@ class Worker_Robot_Inputs(QRunnable):
             try:
                 robo_input = read_tags("Robo.Input")
                 self.signal_roboInput.result.emit(robo_input)
-            except Exception(e):
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
@@ -268,7 +272,34 @@ class Worker_Robot_Outputs(QRunnable):
             try:
                 robo_output = read_tags("Robo.Output")
                 self.signal_robotOutput.result.emit(robo_output)
-            except Exception(e):
+            except Exception as e:
+                print(f'{e} - Error on the thread')
+
+            time.sleep(sleep_time)
+
+class Worker_IndexRobotPos(QRunnable):
+    """
+    Worker thread
+    """
+
+    def __init__(self, *args):
+        super(Worker_IndexRobotPos, self).__init__()
+        #############################################
+        ## Add signal
+        #############################################
+        self.signal_indexRobotPos = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        """
+        Code for this function
+        :return:
+        """
+        while True:
+            try:
+                index_robot_pos = read_tags("IndexRobotPos")
+                self.signal_indexRobotPos.result.emit(index_robot_pos)
+            except Exception as e:
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)

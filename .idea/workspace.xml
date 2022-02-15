@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/1x/sharp_check_black_48dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/1x/sharp_close_black_48dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/2x/sharp_check_black_48dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/2x/sharp_close_black_48dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui/icons.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/icons.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/icons_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/icons_rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/ui_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v5.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v6.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v7.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_message_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/workers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/workers.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="259YcQoNdTqkFTtmOe5tO2ofd92" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="" />
+      <created>1644940849237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644940849237</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -21,6 +21,8 @@ from utils.gui_functions import *
 from utils.workers import *
 from utils.ctrl_plc import *
 from utils.alarm_control import *
+
+from screens import home
 ##############################################################
 
 class RnRobotics_Gui:
@@ -54,14 +56,16 @@ class RnRobotics_Gui:
 
         self.main_win.setWindowTitle("HMI SouSmile")
         ##################################################################
+        # Login
+        ##################################################################
+        self.db_users = {
+            'oper': '12345',
+            'eng': 'engenharia',
+            'rn': 'rnrobotics'
+        }
+
         self.userName = "Não Conectado"
         self.ui.lbl_username.setText(self.userName)
-        #######################################################################################################
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # Add here all the text and status that need to update on the initialization of the app
-        # Update of texts and status when the application starts
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        #######################################################################################################
 
         ##################################################################
         # thread - to update PLC values
@@ -78,6 +82,7 @@ class RnRobotics_Gui:
         self.threadpool_9 = QThreadPool()
         self.threadpool_10 = QThreadPool()
         self.threadpool_11 = QThreadPool()
+        self.threadpool_12 = QThreadPool()
         ###################################################################
         # Workers
         ###################################################################
@@ -93,6 +98,7 @@ class RnRobotics_Gui:
         self.worker_cylSpindle = Worker_Cyl_Spindle()
         self.worker_robotInputs = Worker_Robot_Inputs()
         self.worker_robotOutputs = Worker_Robot_Outputs()
+        self.worker_indexRobotPos = Worker_IndexRobotPos()
 
         self.worker_data_ctrl_a1.signal_a1.result.connect(self.update_DataCtrl_A1)
         self.worker_data_ctrl_a2.signal_a2.result.connect(self.update_DataCtrl_A2)
@@ -103,7 +109,7 @@ class RnRobotics_Gui:
         self.worker_cylDoorA.signal_cylDoorA.result.connect(self.update_CylDoorSideA)
         self.worker_cylDoorB.signal_cylDoorB.result.connect(self.update_CylDoorSideB)
         self.worker_cylSpindle.signal_cylSpindle.result.connect(self.update_CylSpindle)
-        self.worker.signal_indexRobotPos.result.connect(self.update_indexRobotPos)
+        self.worker_indexRobotPos.signal_indexRobotPos.result.connect(self.update_indexRobotPos)
         self.worker_robotInputs.signal_roboInput.result.connect(self.update_RoboInput)
         self.worker_robotOutputs.signal_robotOutput.result.connect(self.update_RoboOutput)
         self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
@@ -117,6 +123,10 @@ class RnRobotics_Gui:
         self.threadpool_6.start(self.worker_config_pts)
         self.threadpool_7.start(self.worker_cylDoorA)
         self.threadpool_8.start(self.worker_cylDoorB)
+        self.threadpool_9.start(self.worker_robotInputs)
+        self.threadpool_10.start(self.worker_robotOutputs)
+        self.threadpool_11.start(self.worker_cylSpindle)
+        self.threadpool_12.start(self.worker_indexRobotPos)
 
         ###################################################################
         # main screen of the application
@@ -153,12 +163,15 @@ class RnRobotics_Gui:
         define_alarm_list(self.ui, "15:34:46", 64)
         """
         ####################################################################
-        # button to show pop up to insert code manually
+        # Widgets on home screen
         ####################################################################
-        self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
+        home.home_screen_func(self.ui, self.show_cod_dialog_win)
+
+
+        '''self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
         self.ui.btn_in_cod_man_a2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A2.ProdCode', "string"))
         self.ui.btn_in_cod_man_b1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B1.ProdCode', "string"))
-        self.ui.btn_in_cod_man_b2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B2.ProdCode', "string"))
+        self.ui.btn_in_cod_man_b2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B2.ProdCode', "string"))'''
         ####################################################################
         # button to show pop up to change value
         self.ui.btn_alt_vel_robo_screen.clicked.connect(
@@ -193,14 +206,7 @@ class RnRobotics_Gui:
         self.ui_confirm_dialog.btn_cancel.clicked.connect(self.cancel_action)
         ####################################################################
         # login button
-        self.ui_login_dialog.btn_login.clicked.connect(
-            lambda:
-            self.login(
-                self.login_dialog,
-                self.ui_login_dialog.user_login,
-                self.ui_login_dialog.user_password
-            )
-        )
+        self.ui_login_dialog.btn_login.clicked.connect(self.login_user)
         ####################################################################
         # Side A: man - auto button
         ####################################################################
@@ -297,6 +303,7 @@ class RnRobotics_Gui:
         self.alt_val_dialog.exec_()
 
     def show_login_dialog(self):
+        self.ui_login_dialog.lbl_login_staus.setText('Insira o usuário e a senha para o login')
         self.login_dialog.exec_()
 
     def show_confirm_dialog(self, action_to_confirm: str, text: str = ""):
@@ -315,8 +322,9 @@ class RnRobotics_Gui:
                 pass
             elif action == "":
                 pass
-        except Exception(e):
+        except Exception as e:
             print(f"{e} - Erro na ação")
+
         finally:
             dialog.close()
 
@@ -339,8 +347,8 @@ class RnRobotics_Gui:
                 widget.setText(text_off)
             else:
                 print('Erro na lógica IF')
-        except Exception(e):
-            print(e)
+        except Exception as e:
+                print(e)
 
     def hold_robot(self, tag: str):
         try:
@@ -369,37 +377,28 @@ class RnRobotics_Gui:
             pass
     #######################################################################
     #### Login
-    def login(self, dialog: QDialog, *widgets: QLineEdit):
-        for widget in widgets:
-            if widget.objectName() == "user_login":
-                self.userName = widget.text()
-            widget.clear()
-        self.ui.lbl_username.setText(self.userName)
-        dialog.close()
     #######################################################################
-    #### Updating Tags on the PLC
-    #######################################################################
-    # ToDo => apagar esta função
-    ''' def update_tags(self):
-    
-        worker = Worker()
-    
-        worker.signal_a1.result.connect(self.update_DataCtrl_A1)
-        worker.signal_a2.result.connect(self.update_DataCtrl_A2)
-        worker.signal_b1.result.connect(self.update_DataCtrl_B1)
-        worker.signal_b2.result.connect(self.update_DataCtrl_B2)
-        worker.signal_hmi.result.connect(self.update_hmi)
-        worker.signal_configPts.result.connect(self.update_ConfigPontos)
-        worker.signal_cylDoorA.result.connect(self.update_CylDoorSideA)
-        worker.signal_cylDoorB.result.connect(self.update_CylDoorSideB)
-        worker.signal_cylSpindle.result.connect(self.update_CylSpindle)
-        worker.signal_indexRobotPos.result.connect(self.update_indexRobotPos)
-        worker.signal_roboInput.result.connect(self.update_RoboInput)
-        worker.signal_robotOutput.result.connect(self.update_RoboOutput)
-        worker.signal_barCodeReader.result.connect(self.update_BarCode)
-    
-        self.threadpool_0.start(worker)'''
+    def login_user(self):
+        user = self.ui_login_dialog.user_login.text()
+        password = self.ui_login_dialog.user_password.text()
+        login_sucessfull = False
+        self.ui_login_dialog.user_login.clear()
+        self.ui_login_dialog.user_password.clear()
+        for key, value in self.db_users.items():
+            if key == user and value == password:
+                self.ui_login_dialog.lbl_login_staus.setText('Login efetuado com sucesso')
+                self.userName = user
+                self.ui.lbl_username.setText(self.userName)
+                login_sucessfull = True
+                self.login_dialog.close()
+                break
+        if login_sucessfull == False:
+            self.ui_login_dialog.lbl_login_staus.setText('Usuário ou senha incorreto')
 
+    #######################################################################
+    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #### Updating Tags on the PLC
+    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
@@ -479,8 +478,8 @@ class RnRobotics_Gui:
                     self.ui.sts_sem_alarm_b.setEnabled(False)
                 else:
                     self.ui.sts_sem_alarm_b.setEnabled(True)
-            except Exception(e):
-                print(e)
+            except Exception as e:
+                    print(e)
 
         if self.ui.stackedWidget.currentIndex() == 3:
             try:
@@ -513,10 +512,8 @@ class RnRobotics_Gui:
                 value = tag["EnableLog"]
                 if value == 0:
                     self.ui.btn_habilita_logs.setText("Desab. log\nde pontos")
-                    write_tag(tag, 1)
                 elif value == 1:
                     self.ui.btn_habilita_logs.setText("Habilita log\nde pontos")
-                    write_tag(tag, 0)
                 else:
                     pass
             except:
@@ -629,19 +626,22 @@ class RnRobotics_Gui:
     # Stop Threads
     ########################################################################
     def stop_threads(self):
-        self.threadpool_0.exit(self.worker)
-        self.threadpool_1.exit(self.worker_data_ctrl_a1)
-        self.threadpool_2.exit(self.worker_data_ctrl_a2)
-        self.threadpool_3.exit(self.worker_data_ctrl_b1)
-        self.threadpool_4.exit(self.worker_data_ctrl_b2)
-        self.threadpool_5.exit(self.worker_hmi)
-        self.threadpool_6.exit(self.worker_config_pts)
-        self.threadpool_7.exit(self.worker_cylDoorA)
-        self.threadpool_8.exit(self.worker_cylDoorB)
+        self.threadpool_0.stop(self.worker)
+        self.threadpool_1.stop(self.worker_data_ctrl_a1)
+        self.threadpool_2.stop(self.worker_data_ctrl_a2)
+        self.threadpool_3.stop(self.worker_data_ctrl_b1)
+        self.threadpool_4.stop(self.worker_data_ctrl_b2)
+        self.threadpool_5.stop(self.worker_hmi)
+        self.threadpool_6.stop(self.worker_config_pts)
+        self.threadpool_7.stop(self.worker_cylDoorA)
+        self.threadpool_8.stop(self.worker_cylDoorB)
+        self.threadpool_9.stop(self.worker_robotInputs)
+        self.threadpool_10.stop(self.worker_robotOutputs)
+        self.threadpool_11.stop(self.worker_cylSpindle)
+        self.threadpool_12.stop(self.worker_indexRobotPos)
     ########################################################################
     # Stop the threads when the window is closed
     ########################################################################
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
