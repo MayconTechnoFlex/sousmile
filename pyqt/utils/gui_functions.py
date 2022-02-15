@@ -51,6 +51,19 @@ def change_button(tag: str):
     else:
         write_tag(tag, 1)
 
+def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
+    value = read_tags(tag)
+    try:
+        if value == 0:
+            write_tag(tag, 1)
+            widget.setText(text_on)
+        elif value == 1:
+            write_tag(tag, 0)
+            widget.setText(text_off)
+        else:
+            print('Erro na lógica IF')
+    except Exception as e:
+        print(e)
 #############################################
 def set_dialog_buttons_engineering(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
     """Function for setting all the dialogs opened from all the buttons on engineering screen"""

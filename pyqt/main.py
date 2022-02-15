@@ -168,6 +168,7 @@ class RnRobotics_Gui:
         # Widgets on home screen
         ####################################################################
         home.home_screen_func(self.ui, self.show_cod_dialog_win)
+        home.home_btn_man_auto(self.ui)
         ####################################################################
         # button to show pop up to change value
         self.ui.btn_alt_vel_robo_screen.clicked.connect(
@@ -206,14 +207,14 @@ class RnRobotics_Gui:
         ####################################################################
         # Side A: man - auto button
         ####################################################################
-        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: self.set_reset_button('HMI.SideA.ModeValue',
-                                                                                  self.ui.btn_man_auto_lado_a,
-                                                                                  'Automático',
-                                                                                  'Manual'))
-        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: self.set_reset_button('HMI.SideB.ModeValue',
-                                                                                  self.ui.btn_man_auto_lado_b,
-                                                                                  'Automático',
-                                                                                  'Manual'))
+        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
+                                                                             self.ui.btn_man_auto_lado_a,
+                                                                             'Automático',
+                                                                             'Manual'))
+        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
+                                                                             self.ui.btn_man_auto_lado_b,
+                                                                             'Automático',
+                                                                             'Manual'))
         ####################################################################
         # Reset Production Count
         ####################################################################
@@ -331,20 +332,6 @@ class RnRobotics_Gui:
     # ToDo => melhorar botões e estados
     # ToDo 2 => mover funções para outro arquivo
     ####################################################################
-    def set_reset_button(self, tag: str, widget: QWidget, text_on: str, text_off: str):
-        value = read_tags(tag)
-        try:
-            if value == 0:
-                write_tag(tag, 1)
-                widget.setText(text_on)
-            elif value == 1:
-                write_tag(tag, 0)
-                widget.setText(text_off)
-            else:
-                print('Erro na lógica IF')
-        except Exception as e:
-            print(e)
-
     def hold_robot(self, tag: str):
         try:
             value = read_tags(tag)
@@ -395,85 +382,21 @@ class RnRobotics_Gui:
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_A1.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_A1.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_A1.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_A1.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_A1(self.ui, tag)
     def update_DataCtrl_A2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_A2.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_A2.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_A2.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_A2.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_A2(self.ui, tag)
     def update_DataCtrl_B1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_B1.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_B1.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_B1.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_B1.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_B1(self.ui, tag)
     def update_DataCtrl_B2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_B2.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_B2.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_B2.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_B2.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_B2(self.ui, tag)
     #######################################################################
     def update_hmi(self, tag):
         prodTag = tag["Production"]
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_production_TimeCutA1.setText(str(round(prodTag['TimeCutA1'], 2)))
-                self.ui.lbl_production_TimeCutA2.setText(str(round(prodTag['TimeCutA2'], 2)))
-                self.ui.lbl_production_TimeCutB1.setText(str(round(prodTag['TimeCutB1'], 2)))
-                self.ui.lbl_production_TimeCutB2.setText(str(round(prodTag['TimeCutB2'], 2)))
-                sts_string(tag['Sts']['TransDataSideA'], self.ui.lbl_sts_TransDataSideA)
-                sts_string(tag['Sts']['TransDataSideB'], self.ui.lbl_sts_TransDataSideB)
-
-                #### Side A: manual - auto
-                if tag['SideA']['ModeValue'] == 0:
-                    self.ui.btn_man_auto_lado_a.setChecked(True)
-                    self.ui.sts_auto_man_a.setEnabled(True)
-                    self.ui.btn_man_auto_lado_a.setText('Manual')
-                else:
-                    self.ui.btn_man_auto_lado_a.setChecked(False)
-                    self.ui.sts_auto_man_a.setEnabled(False)
-                    self.ui.btn_man_auto_lado_a.setText('Automático')
-
-                #### Side B: manual - auto
-                if tag['SideB']['ModeValue'] == 1:
-                    self.ui.btn_man_auto_lado_b.setChecked(True)
-                    self.ui.sts_auto_man_b.setEnabled(True)
-                    self.ui.btn_man_auto_lado_b.setText('Manual')
-                else:
-                    self.ui.btn_man_auto_lado_b.setChecked(False)
-                    self.ui.sts_auto_man_b.setEnabled(False)
-                    self.ui.btn_man_auto_lado_b.setText('Automático')
-
-                #### setting alarm status
-                if tag["AlarmSideA"]:
-                    self.ui.sts_sem_alarm_a.setEnabled(False)
-                else:
-                    self.ui.sts_sem_alarm_a.setEnabled(True)
-
-                if tag["AlarmSideB"]:
-                    self.ui.sts_sem_alarm_b.setEnabled(False)
-                else:
-                    self.ui.sts_sem_alarm_b.setEnabled(True)
-            except Exception as e:
-                    print(e)
-
+            home.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 3:
             try:
                 ### updating tags
