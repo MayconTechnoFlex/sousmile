@@ -25,6 +25,7 @@ from screens import home
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
+from dialogs.login import LoginDialog
 ##############################################################
 
 class RnRobotics_Gui:
@@ -35,13 +36,8 @@ class RnRobotics_Gui:
         self.ui.setupUi(self.main_win)
 
         self.insert_code_dialog = InsertCodeDialog()
-
         self.altera_valor_dialog = AlteraValorDialog()
-
-        self.login_dialog = QDialog()
-        self.ui_login_dialog = Ui_LoginDialog()
-        self.ui_login_dialog.setupUi(self.login_dialog)
-
+        self.login_dialog = LoginDialog()
         self.confirm_dialog = ConfirmationDialog()
 
         win_icon = QIcon("./assets/images/RN_ico.png")
@@ -55,15 +51,8 @@ class RnRobotics_Gui:
         ##################################################################
         # Login
         ##################################################################
-        self.db_users = {
-            'oper': '12345',
-            'eng': 'engenharia',
-            'rn': 'rnrobotics'
-        }
-
         self.userName = "Não Conectado"
         self.ui.lbl_username.setText(self.userName)
-
         ##################################################################
         # thread - to update PLC values
         ##################################################################
@@ -138,7 +127,7 @@ class RnRobotics_Gui:
         self.ui.btnMaintenaceScreen.clicked.connect(self.show_maintenance)
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
-        self.ui.btnLogin.clicked.connect(self.show_login_dialog)
+        self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         ####################################################################
@@ -171,11 +160,6 @@ class RnRobotics_Gui:
         set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
         set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
         self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
-        ####################################################################
-        # button to send code to the PLC tag
-        ####################################################################
-        # login button
-        self.ui_login_dialog.btn_login.clicked.connect(self.login_user)
         ####################################################################
         # Side A: man - auto button
         ####################################################################
@@ -260,9 +244,7 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to show dialogs
     ####################################################################
-    def show_login_dialog(self):
-        self.ui_login_dialog.lbl_login_staus.setText('Insira o usuário e a senha para o login')
-        self.login_dialog.exec_()
+
     ####################################################################
     #### others buttons functions (test)
     # ToDo => melhorar botões e estados
@@ -293,26 +275,6 @@ class RnRobotics_Gui:
                 pass
         except:
             pass
-    #######################################################################
-    #### Login
-    #######################################################################
-    def login_user(self):
-        user = self.ui_login_dialog.user_login.text()
-        password = self.ui_login_dialog.user_password.text()
-        login_successful = False
-        self.ui_login_dialog.user_login.clear()
-        self.ui_login_dialog.user_password.clear()
-        for key, value in self.db_users.items():
-            if key == user and value == password:
-                self.ui_login_dialog.lbl_login_staus.setText('Login efetuado com sucesso')
-                self.userName = user
-                self.ui.lbl_username.setText(self.userName)
-                login_successful = True
-                self.login_dialog.close()
-                break
-        if not login_successful:
-            self.ui_login_dialog.lbl_login_staus.setText('Usuário ou senha incorreto')
-
     #######################################################################
     #### Updating Tags on the PLC
     #######################################################################
