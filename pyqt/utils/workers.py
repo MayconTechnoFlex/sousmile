@@ -1,7 +1,7 @@
 import time
 
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
-from pyqt.utils.ctrl_plc import read_tags
+from utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
 
@@ -27,20 +27,15 @@ class Worker(QRunnable):
     def __init__(self, *args):
         super(Worker, self).__init__()
 
-<<<<<<< HEAD
-=======
-        #############################################
-        ## Add signal
-        #############################################
->>>>>>> NathanTrain-main
         self.signal_barCodeReader = WorkerSignals()
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
         self.signal_local2In = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 bar_code_reader = read_tags("BarCodeReader")
                 local_1_in = read_tags("Local:1:I.Data")
@@ -57,6 +52,9 @@ class Worker(QRunnable):
 
             time.sleep(sleep_time)
 
+    def stop(self):
+        self.running = False
+
 class Worker_Data_Ctrl_A1(QRunnable):
     """
     Worker thread
@@ -65,10 +63,11 @@ class Worker_Data_Ctrl_A1(QRunnable):
     def __init__(self, *args):
         super(Worker_Data_Ctrl_A1, self).__init__()
         self.signal_a1 = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 data_ctrl_a1 = read_tags('DataCtrl_A1')
                 self.signal_a1.result.emit(data_ctrl_a1)
@@ -76,6 +75,9 @@ class Worker_Data_Ctrl_A1(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Data_Ctrl_A2(QRunnable):
     """
@@ -85,10 +87,11 @@ class Worker_Data_Ctrl_A2(QRunnable):
     def __init__(self, *args):
         super(Worker_Data_Ctrl_A2, self).__init__()
         self.signal_a2 = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 data_ctrl_a2 = read_tags('DataCtrl_A2')
                 self.signal_a2.result.emit(data_ctrl_a2)
@@ -96,6 +99,9 @@ class Worker_Data_Ctrl_A2(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Data_Ctrl_B1(QRunnable):
     """
@@ -105,10 +111,11 @@ class Worker_Data_Ctrl_B1(QRunnable):
     def __init__(self, *args):
         super(Worker_Data_Ctrl_B1, self).__init__()
         self.signal_b1 = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 data_ctrl_b1 = read_tags('DataCtrl_B1')
                 self.signal_b1.result.emit(data_ctrl_b1)
@@ -116,6 +123,9 @@ class Worker_Data_Ctrl_B1(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Data_Ctrl_B2(QRunnable):
     """
@@ -125,10 +135,11 @@ class Worker_Data_Ctrl_B2(QRunnable):
     def __init__(self, *args):
         super(Worker_Data_Ctrl_B2, self).__init__()
         self.signal_b2 = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 data_ctrl_b2 = read_tags('DataCtrl_B2')
                 self.signal_b2.result.emit(data_ctrl_b2)
@@ -136,6 +147,9 @@ class Worker_Data_Ctrl_B2(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_HMI(QRunnable):
     """
@@ -145,10 +159,11 @@ class Worker_HMI(QRunnable):
     def __init__(self, *args):
         super(Worker_HMI, self).__init__()
         self.signal_hmi = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 hmi = read_tags('HMI')
                 self.signal_hmi.result.emit(hmi)
@@ -156,6 +171,9 @@ class Worker_HMI(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Config_Pts(QRunnable):
     """
@@ -165,10 +183,11 @@ class Worker_Config_Pts(QRunnable):
     def __init__(self, *args):
         super(Worker_Config_Pts, self).__init__()
         self.signal_configPts = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 config_pts = read_tags("ConfigPontos")
                 self.signal_configPts.result.emit(config_pts)
@@ -176,6 +195,9 @@ class Worker_Config_Pts(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Cyl_Door_A(QRunnable):
     """
@@ -185,10 +207,11 @@ class Worker_Cyl_Door_A(QRunnable):
     def __init__(self, *args):
         super(Worker_Cyl_Door_A, self).__init__()
         self.signal_cylDoorA = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 cyl_door_a = read_tags("Cyl_DoorSideA")
                 self.signal_cylDoorA.result.emit(cyl_door_a)
@@ -196,6 +219,9 @@ class Worker_Cyl_Door_A(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Cyl_Door_B(QRunnable):
     """
@@ -205,10 +231,11 @@ class Worker_Cyl_Door_B(QRunnable):
     def __init__(self, *args):
         super(Worker_Cyl_Door_B, self).__init__()
         self.signal_cylDoorB = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 cyl_door_b = read_tags("Cyl_DoorSideB")
                 self.signal_cylDoorB.result.emit(cyl_door_b)
@@ -216,6 +243,9 @@ class Worker_Cyl_Door_B(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Cyl_Spindle(QRunnable):
     """
@@ -225,10 +255,11 @@ class Worker_Cyl_Spindle(QRunnable):
     def __init__(self, *args):
         super(Worker_Cyl_Spindle, self).__init__()
         self.signal_cylSpindle = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 cyl_spindle = read_tags("Cyl_SpindleRobo")
                 self.signal_cylSpindle.result.emit(cyl_spindle)
@@ -236,6 +267,9 @@ class Worker_Cyl_Spindle(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Robot_Inputs(QRunnable):
     """
@@ -245,10 +279,11 @@ class Worker_Robot_Inputs(QRunnable):
     def __init__(self, *args):
         super(Worker_Robot_Inputs, self).__init__()
         self.signal_roboInput = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 robo_input = read_tags("Robo.Input")
                 self.signal_roboInput.result.emit(robo_input)
@@ -256,6 +291,9 @@ class Worker_Robot_Inputs(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False
 
 class Worker_Robot_Outputs(QRunnable):
     """
@@ -265,10 +303,11 @@ class Worker_Robot_Outputs(QRunnable):
     def __init__(self, *args):
         super(Worker_Robot_Outputs, self).__init__()
         self.signal_robotOutput = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
-        while True:
+        while self.running:
             try:
                 robo_output = read_tags("Robo.Output")
                 self.signal_robotOutput.result.emit(robo_output)
@@ -277,6 +316,9 @@ class Worker_Robot_Outputs(QRunnable):
 
             time.sleep(sleep_time)
 
+    def stop(self):
+        self.running = False
+
 class Worker_IndexRobotPos(QRunnable):
     """
     Worker thread
@@ -284,10 +326,8 @@ class Worker_IndexRobotPos(QRunnable):
 
     def __init__(self, *args):
         super(Worker_IndexRobotPos, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_indexRobotPos = WorkerSignals()
+        self.running = True
 
     @pyqtSlot()
     def run(self):
@@ -295,7 +335,7 @@ class Worker_IndexRobotPos(QRunnable):
         Code for this function
         :return:
         """
-        while True:
+        while self.running:
             try:
                 index_robot_pos = read_tags("IndexRobotPos")
                 self.signal_indexRobotPos.result.emit(index_robot_pos)
@@ -303,3 +343,6 @@ class Worker_IndexRobotPos(QRunnable):
                 print(f'{e} - Error on the thread')
 
             time.sleep(sleep_time)
+
+    def stop(self):
+        self.running = False

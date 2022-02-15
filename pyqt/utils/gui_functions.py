@@ -5,7 +5,7 @@
 ## Line edit actions
 #############################################
 from PyQt5.QtWidgets import QWidget, QDialog
-from pyqt.utils.ctrl_plc import *
+from utils.ctrl_plc import *
 #############################################
 ## Edit PLC information with a QLineEdit
 #############################################
@@ -151,5 +151,4 @@ def sideB_status_update(tag, ui):
 def spindle_status_update(tag, ui):
     change_status(tag["OutExtCyl"], ui.sts_plc_liga_spindle)
     change_status(tag["OutRetCyl"], ui.sts_plc_desl_spindle)
-#############################################
 #############################################

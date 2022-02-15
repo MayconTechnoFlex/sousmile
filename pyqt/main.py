@@ -127,7 +127,6 @@ class RnRobotics_Gui:
         self.threadpool_10.start(self.worker_robotOutputs)
         self.threadpool_11.start(self.worker_cylSpindle)
         self.threadpool_12.start(self.worker_indexRobotPos)
-
         ###################################################################
         # main screen of the application
         ###################################################################
@@ -622,30 +621,35 @@ class RnRobotics_Gui:
         self.threadpool_6.start(self.worker_config_pts)
         self.threadpool_7.start(self.worker_cylDoorA)
         self.threadpool_8.start(self.worker_cylDoorB)
+        self.threadpool_9.start(self.worker_robotInputs)
+        self.threadpool_10.start(self.worker_robotOutputs)
+        self.threadpool_11.start(self.worker_cylSpindle)
+        self.threadpool_12.start(self.worker_indexRobotPos)
     ########################################################################
     # Stop Threads
     ########################################################################
     def stop_threads(self):
-        self.threadpool_0.stop(self.worker)
-        self.threadpool_1.stop(self.worker_data_ctrl_a1)
-        self.threadpool_2.stop(self.worker_data_ctrl_a2)
-        self.threadpool_3.stop(self.worker_data_ctrl_b1)
-        self.threadpool_4.stop(self.worker_data_ctrl_b2)
-        self.threadpool_5.stop(self.worker_hmi)
-        self.threadpool_6.stop(self.worker_config_pts)
-        self.threadpool_7.stop(self.worker_cylDoorA)
-        self.threadpool_8.stop(self.worker_cylDoorB)
-        self.threadpool_9.stop(self.worker_robotInputs)
-        self.threadpool_10.stop(self.worker_robotOutputs)
-        self.threadpool_11.stop(self.worker_cylSpindle)
-        self.threadpool_12.stop(self.worker_indexRobotPos)
+        self.worker.stop()
+        self.worker_data_ctrl_a1.stop()
+        self.worker_data_ctrl_a2.stop()
+        self.worker_data_ctrl_b1.stop()
+        self.worker_data_ctrl_b2.stop()
+        self.worker_hmi.stop()
+        self.worker_config_pts.stop()
+        self.worker_cylDoorA.stop()
+        self.worker_cylDoorB.stop()
+        self.worker_robotInputs.stop()
+        self.worker_robotOutputs.stop()
+        self.worker_cylSpindle.stop()
+        self.worker_indexRobotPos.stop()
     ########################################################################
     # Stop the threads when the window is closed
     ########################################################################
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.aboutToQuit.connect(RnRobotics_Gui.stop_threads)
     main_win = RnRobotics_Gui()
     main_win.show_max()
+    app.aboutToQuit.connect(main_win.stop_threads)
     sys.exit(app.exec_())

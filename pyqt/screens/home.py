@@ -1,7 +1,7 @@
 ########################################################################################
 # Contorl of widgets home screen
 ########################################################################################
-from pyqt.main import *
+from main import *
 from typing import Callable, Literal
 
 tag_type = Literal ["string", "int", "float"]
