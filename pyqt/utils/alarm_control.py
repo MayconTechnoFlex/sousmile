@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
+from pyqt.ui_py.ui_gui import Ui_MainWindow
 
 alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
                       "Alarme 5:", "Alarme 6: Porta da Célula Aberta", "Alarme 7:", "Alarme 8:",
@@ -58,7 +59,7 @@ def get_alarm_message(alarm_id: int) -> str:
 def get_alarm_history() -> list:
     return alarm_history
 
-def define_alarm_list(ui, alarm_time: str, alarm_id: int):
+def define_alarm_list(ui: Ui_MainWindow, alarm_time: str, alarm_id: int):
     listWidget = ui.alarm_list_widget
     histWidget = ui.hist_alarm_list_widget
     # ToDo => da pra adicionar de duas formas:
@@ -90,7 +91,7 @@ def define_alarm_list(ui, alarm_time: str, alarm_id: int):
     histWidget.setItem(hist_row_num, 0, hist_time)
     histWidget.setItem(hist_row_num, 1, hist_msg)
 
-def delete_alarm_row(ui, alarm_id: int):
+def delete_alarm_row(ui: Ui_MainWindow, alarm_id: int):
     listWidget: QTableWidget = ui.alarm_list_widget
 
     itemFound = listWidget.findItems(f"Alarme {alarm_id}:", Qt.MatchContains)

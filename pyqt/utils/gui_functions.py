@@ -5,7 +5,7 @@
 ## Line edit actions
 #############################################
 from PyQt5.QtWidgets import QWidget, QDialog
-from utils.ctrl_plc import *
+from pyqt.utils.ctrl_plc import *
 #############################################
 ## Edit PLC information with a QLineEdit
 #############################################
@@ -42,7 +42,7 @@ def sts_string(id_num: int, widget: QWidget):
     else:
         widget.setText('Erro')
 #############################################
-def change_button(tag):
+def change_button(tag: str):
     value = read_tags(tag)
     if value:
         write_tag(tag, 0)
@@ -51,6 +51,7 @@ def change_button(tag):
 
 #############################################
 def set_dialog_buttons_engineering(ui, show_dialog):
+    """Function for setting all the dialogs opened from all the buttons on engineering screen"""
     ui.btn_md_val_dist_xyz.clicked.connect(
         lambda: show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
     ui.btn_md_val_dist_c.clicked.connect(
@@ -91,6 +92,7 @@ def set_dialog_buttons_engineering(ui, show_dialog):
         lambda: show_dialog("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
 #############################################
 def set_dialog_buttons_maintenance(ui, show_dialog):
+    """Function for setting all the dialogs opened from all the buttons on maintenance screen"""
     ui.btn_DoorSideA_TimeMaint.clicked.connect(
         lambda: show_dialog("Alterar tempo de manutenção do lado A:","Cyl_DoorSideA.TimeMaintTest", "int")
     )
@@ -101,7 +103,8 @@ def set_dialog_buttons_maintenance(ui, show_dialog):
         lambda: show_dialog("Alterar tempo de manutenção do spindle:","Cyl_SpindleRobo.TimeMaintTest", "int")
     )
 #############################################
-def change_status(tag, stsWidget):
+def change_status(tag: str, stsWidget: QWidget):
+    """Change the red/green circles of status"""
     if tag:
         stsWidget.setEnabled(True)
     else:
@@ -129,7 +132,7 @@ def robot_output_status_update(tag, ui):
     change_status(tag["MSA"], ui.sts_macro_a)
     change_status(tag["MSB"], ui.sts_macro_b)
 #############################################
-def reset_product(*tags):
+def reset_product(*tags: str):
     for tag in tags:
         write_tag(tag, 0)
 #############################################

@@ -1,7 +1,7 @@
 import time
 
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
-from utils.ctrl_plc import read_tags
+from pyqt.utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
 
@@ -9,34 +9,27 @@ sleep_time = 0.75
 class WorkerSignals(QObject):
     """
     Defines the signals available from a running worker thread.
-
     Supported signals are:
-
-    finished
-        No data
 
     error
         tuple (exctype, value, traceback.format_exc() )
-
     result
         object data returned from processing, anything
-
     """
-    finished = pyqtSignal()
     error = pyqtSignal(tuple)
     result = pyqtSignal(object)
 
 class Worker(QRunnable):
     """
-    Worker thread
+    Worker thread for multiple signals
     """
 
     def __init__(self, *args):
         super(Worker, self).__init__()
+
         #############################################
         ## Add signal
         #############################################
-
         self.signal_barCodeReader = WorkerSignals()
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
@@ -44,10 +37,6 @@ class Worker(QRunnable):
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 bar_code_reader = read_tags("BarCodeReader")
@@ -72,17 +61,10 @@ class Worker_Data_Ctrl_A1(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_A1, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_a1 = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 data_ctrl_a1 = read_tags('DataCtrl_A1')
@@ -99,17 +81,10 @@ class Worker_Data_Ctrl_A2(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_A2, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_a2 = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 data_ctrl_a2 = read_tags('DataCtrl_A2')
@@ -126,17 +101,10 @@ class Worker_Data_Ctrl_B1(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_B1, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_b1 = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 data_ctrl_b1 = read_tags('DataCtrl_B1')
@@ -153,17 +121,10 @@ class Worker_Data_Ctrl_B2(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_B2, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_b2 = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 data_ctrl_b2 = read_tags('DataCtrl_B2')
@@ -180,17 +141,10 @@ class Worker_HMI(QRunnable):
 
     def __init__(self, *args):
         super(Worker_HMI, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_hmi = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 hmi = read_tags('HMI')
@@ -207,17 +161,10 @@ class Worker_Config_Pts(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Config_Pts, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_configPts = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 config_pts = read_tags("ConfigPontos")
@@ -234,17 +181,10 @@ class Worker_Cyl_Door_A(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Cyl_Door_A, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_cylDoorA = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 cyl_door_a = read_tags("Cyl_DoorSideA")
@@ -261,17 +201,10 @@ class Worker_Cyl_Door_B(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Cyl_Door_B, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_cylDoorB = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 cyl_door_b = read_tags("Cyl_DoorSideB")
@@ -288,17 +221,10 @@ class Worker_Cyl_Spindle(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Cyl_Spindle, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_cylSpindle = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 cyl_spindle = read_tags("Cyl_SpindleRobo")
@@ -315,17 +241,10 @@ class Worker_Robot_Inputs(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Robot_Inputs, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_roboInput = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 robo_input = read_tags("Robo.Input")
@@ -342,17 +261,10 @@ class Worker_Robot_Outputs(QRunnable):
 
     def __init__(self, *args):
         super(Worker_Robot_Outputs, self).__init__()
-        #############################################
-        ## Add signal
-        #############################################
         self.signal_robotOutput = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while True:
             try:
                 robo_output = read_tags("Robo.Output")

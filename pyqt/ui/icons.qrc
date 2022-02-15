@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>../assets/icons/icons/2x/sharp_check_black_48dp.png</file>
+    <file>../assets/icons/icons/2x/sharp_close_black_48dp.png</file>
     <file>../assets/icons/icons/2x/sharp_precision_manufacturing_black_48dp.png</file>
     <file>../assets/icons/icons/2x/outline_arrow_back_black_48dp.png</file>
     <file>../assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png</file>
