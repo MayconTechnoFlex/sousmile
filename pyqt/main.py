@@ -12,10 +12,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
 from ui_py.ui_gui import Ui_MainWindow
-from ui_py.ui_cod_dialog_win import Ui_Dialog
 from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from ui_py.ui_login_dialog import Ui_LoginDialog
-from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 
 from utils.gui_functions import *
 from utils.workers import *
@@ -26,6 +24,7 @@ from utils.Types import *
 
 from screens import home
 from dialogs.confirmation import ConfirmationDialog
+from dialogs.insert_code import InsertCodeDialog
 ##############################################################
 
 class RnRobotics_Gui:
@@ -35,9 +34,7 @@ class RnRobotics_Gui:
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.main_win)
 
-        self.cod_dialog_win = QDialog()
-        self.ui_cod_dialog_win = Ui_Dialog()
-        self.ui_cod_dialog_win.setupUi(self.cod_dialog_win)
+        self.insert_code_dialog = InsertCodeDialog()
 
         self.alt_val_dialog = QDialog()
         self.ui_alt_val_dialog = Ui_Dialog2()
@@ -51,7 +48,7 @@ class RnRobotics_Gui:
 
         win_icon = QIcon("./assets/images/RN_ico.png")
         self.main_win.setWindowIcon(win_icon)
-        self.cod_dialog_win.setWindowIcon(win_icon)
+        self.insert_code_dialog.setWindowIcon(win_icon)
         self.alt_val_dialog.setWindowIcon(win_icon)
         self.login_dialog.setWindowIcon(win_icon)
         self.confirm_dialog.setWindowIcon(win_icon)
@@ -166,7 +163,7 @@ class RnRobotics_Gui:
         ####################################################################
         # Widgets on home screen
         ####################################################################
-        home.home_screen_func(self.ui, self.show_cod_dialog_win)
+        home.home_screen_func(self.ui, self.insert_code_dialog.show)
         home.home_btn_man_auto(self.ui)
         ####################################################################
         # button to show pop up to change value
@@ -175,18 +172,9 @@ class RnRobotics_Gui:
         )
         set_dialog_buttons_maintenance(self.ui, self.show_alt_val_dialog)
         set_dialog_buttons_engineering(self.ui, self.show_alt_val_dialog)
-        self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show_confirm_dialog("MoveHome"))
+        self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
         ####################################################################
         # button to send code to the PLC tag
-        self.ui_cod_dialog_win.btn_insert_code_man.clicked.connect(
-            lambda:
-            write_QlineEdit(
-                self.tag_index,
-                self.cod_dialog_win,
-                self.ui_cod_dialog_win.txt_code,
-                self.tag_type
-            )
-        )
         self.ui_alt_val_dialog.btn_alt_val.clicked.connect(
             lambda:
             write_QlineEdit(
@@ -283,11 +271,6 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to show dialogs
     ####################################################################
-    def show_cod_dialog_win(self, tag: str, tag_type: TagTypes):
-        self.tag_index = tag
-        self.tag_type = tag_type
-        self.cod_dialog_win.exec_()
-
     def show_alt_val_dialog(self, text: str, tag: str, tag_type: TagTypes):
         self.tag_index = tag
         self.tag_type = tag_type

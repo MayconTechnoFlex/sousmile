@@ -1,6 +1,5 @@
-from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QDialog
-from pyqt.main import Ui_ConfirmDialog
+from pyqt.ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 
 from pyqt.utils.Types import *
 
@@ -19,7 +18,7 @@ class ConfirmationDialog:
     def setWindowIcon(self, Icon):
         self.dialog.setWindowIcon(Icon)
 
-    def show_confirm_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
+    def show(self, action_to_confirm: ActionsToConfirm, text: str = ""):
         self.ACTION_TO_CONFIRM = action_to_confirm
         if text:
             self.ui.description_text.setText(text)
