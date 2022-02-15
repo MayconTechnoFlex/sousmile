@@ -25,6 +25,7 @@ from utils.alarm_control import *
 from utils.Types import *
 
 from screens import home
+from dialogs.confirmation import ConfirmationDialog
 ##############################################################
 
 class RnRobotics_Gui:
@@ -46,9 +47,7 @@ class RnRobotics_Gui:
         self.ui_login_dialog = Ui_LoginDialog()
         self.ui_login_dialog.setupUi(self.login_dialog)
 
-        self.confirm_dialog = QDialog()
-        self.ui_confirm_dialog = Ui_ConfirmDialog()
-        self.ui_confirm_dialog.setupUi(self.confirm_dialog)
+        self.confirm_dialog = ConfirmationDialog()
 
         win_icon = QIcon("./assets/images/RN_ico.png")
         self.main_win.setWindowIcon(win_icon)
@@ -176,7 +175,7 @@ class RnRobotics_Gui:
         )
         set_dialog_buttons_maintenance(self.ui, self.show_alt_val_dialog)
         set_dialog_buttons_engineering(self.ui, self.show_alt_val_dialog)
-        self.ui.btn_move_home.clicked.connect(lambda: self.show_confirm_dialog("MoveHome"))
+        self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show_confirm_dialog("MoveHome"))
         ####################################################################
         # button to send code to the PLC tag
         self.ui_cod_dialog_win.btn_insert_code_man.clicked.connect(
@@ -197,10 +196,6 @@ class RnRobotics_Gui:
                 self.tag_type
             )
         )
-        ####################################################################
-        # confirmation dialog
-        self.ui_confirm_dialog.btn_confirm.clicked.connect(self.confirm_action)
-        self.ui_confirm_dialog.btn_cancel.clicked.connect(self.cancel_action)
         ####################################################################
         # login button
         self.ui_login_dialog.btn_login.clicked.connect(self.login_user)
@@ -302,31 +297,6 @@ class RnRobotics_Gui:
     def show_login_dialog(self):
         self.ui_login_dialog.lbl_login_staus.setText('Insira o usuário e a senha para o login')
         self.login_dialog.exec_()
-
-    def show_confirm_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
-        # self.ui_confirm_dialog.description_text.setText(text)
-        self.action_to_confirm = action_to_confirm
-        self.confirm_dialog.exec_()
-    ####################################################################
-    # confirmation functions
-    def confirm_action(self):
-        action = self.action_to_confirm
-        dialog = self.confirm_dialog
-        try:
-            if action == "MoveHome":
-                # escreve a tag referente para cada ação
-                # write_tag("", 1)
-                pass
-            elif action == "":
-                raise Exception("Nenhuma ação foi passada")
-        except Exception as e:
-            print(f"{e} - Erro na ação")
-        finally:
-            dialog.close()
-
-    def cancel_action(self):
-        self.action_to_confirm = ""
-        self.confirm_dialog.close()
     ####################################################################
     #### others buttons functions (test)
     # ToDo => melhorar botões e estados
