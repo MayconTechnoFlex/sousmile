@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>236</height>
+    <height>300</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>414</width>
-    <height>236</height>
+    <height>250</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>414</width>
-    <height>236</height>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -273,6 +273,25 @@ border-radius: 18
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_login_staus">
+        <property name="font">
+         <font>
+          <family>Equinox Bold</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
       </item>
      </layout>
