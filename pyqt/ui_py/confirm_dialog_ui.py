@@ -124,4 +124,4 @@ class Ui_ConfirmDialog(object):
         self.description_text.setText(_translate("ConfirmDialog", "Cuidado, você vai movimentar o robô para a posição inicial, caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
         self.btn_confirm.setText(_translate("ConfirmDialog", "Confirmar"))
         self.btn_cancel.setText(_translate("ConfirmDialog", "Cancelar"))
-import pyqt.ui_py.icons_rc
+import ui_py.icons_rc

@@ -12,45 +12,38 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
 from ui_py.ui_gui import Ui_MainWindow
-from ui_py.ui_cod_dialog_win import Ui_Dialog
-from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from ui_py.ui_login_dialog import Ui_LoginDialog
-from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 
 from utils.gui_functions import *
 from utils.workers import *
 from utils.ctrl_plc import *
 from utils.alarm_control import *
 
+from utils.Types import *
+
 from screens import home
+from dialogs.confirmation import ConfirmationDialog
+from dialogs.insert_code import InsertCodeDialog
+from dialogs.altera_valor import AlteraValorDialog
+from dialogs.login import LoginDialog
 ##############################################################
 
 class RnRobotics_Gui:
     def __init__(self):
+        super(RnRobotics_Gui, self).__init__()
         self.main_win = QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.main_win)
 
-        self.cod_dialog_win = QDialog()
-        self.ui_cod_dialog_win = Ui_Dialog()
-        self.ui_cod_dialog_win.setupUi(self.cod_dialog_win)
-
-        self.alt_val_dialog = QDialog()
-        self.ui_alt_val_dialog = Ui_Dialog2()
-        self.ui_alt_val_dialog.setupUi(self.alt_val_dialog)
-
-        self.login_dialog = QDialog()
-        self.ui_login_dialog = Ui_LoginDialog()
-        self.ui_login_dialog.setupUi(self.login_dialog)
-
-        self.confirm_dialog = QDialog()
-        self.ui_confirm_dialog = Ui_ConfirmDialog()
-        self.ui_confirm_dialog.setupUi(self.confirm_dialog)
+        self.insert_code_dialog = InsertCodeDialog()
+        self.altera_valor_dialog = AlteraValorDialog()
+        self.login_dialog = LoginDialog()
+        self.confirm_dialog = ConfirmationDialog()
 
         win_icon = QIcon("./assets/images/RN_ico.png")
         self.main_win.setWindowIcon(win_icon)
-        self.cod_dialog_win.setWindowIcon(win_icon)
-        self.alt_val_dialog.setWindowIcon(win_icon)
+        self.insert_code_dialog.setWindowIcon(win_icon)
+        self.altera_valor_dialog.setWindowIcon(win_icon)
         self.login_dialog.setWindowIcon(win_icon)
         self.confirm_dialog.setWindowIcon(win_icon)
 
@@ -58,15 +51,8 @@ class RnRobotics_Gui:
         ##################################################################
         # Login
         ##################################################################
-        self.db_users = {
-            'oper': '12345',
-            'eng': 'engenharia',
-            'rn': 'rnrobotics'
-        }
-
         self.userName = "Não Conectado"
         self.ui.lbl_username.setText(self.userName)
-
         ##################################################################
         # thread - to update PLC values
         ##################################################################
@@ -127,7 +113,6 @@ class RnRobotics_Gui:
         self.threadpool_10.start(self.worker_robotOutputs)
         self.threadpool_11.start(self.worker_cylSpindle)
         self.threadpool_12.start(self.worker_indexRobotPos)
-
         ###################################################################
         # main screen of the application
         ###################################################################
@@ -142,13 +127,13 @@ class RnRobotics_Gui:
         self.ui.btnMaintenaceScreen.clicked.connect(self.show_maintenance)
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
-        self.ui.btnLogin.clicked.connect(self.show_login_dialog)
+        self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         ####################################################################
         self.tag_index = ""
-        self.tag_type = ""
-        self.action_to_confirm = ""
+        self.tag_type: TagTypes = ""
+        self.action_to_confirm: ActionsToConfirm = ""
         ####################################################################
         # button to back screen
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
@@ -165,59 +150,27 @@ class RnRobotics_Gui:
         ####################################################################
         # Widgets on home screen
         ####################################################################
-        home.home_screen_func(self.ui, self.show_cod_dialog_win)
-
-
-        '''self.ui.btn_in_cod_man_a1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A1.ProdCode', "string"))
-        self.ui.btn_in_cod_man_a2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_A2.ProdCode', "string"))
-        self.ui.btn_in_cod_man_b1.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B1.ProdCode', "string"))
-        self.ui.btn_in_cod_man_b2.clicked.connect(lambda: self.show_cod_dialog_win('DataCtrl_B2.ProdCode', "string"))'''
+        home.home_screen_func(self.ui, self.insert_code_dialog.show)
+        home.home_btn_man_auto(self.ui)
         ####################################################################
         # button to show pop up to change value
         self.ui.btn_alt_vel_robo_screen.clicked.connect(
-            lambda: self.show_alt_val_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
+            lambda: self.altera_valor_dialog.show("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
         )
-        set_dialog_buttons_maintenance(self.ui, self.show_alt_val_dialog)
-        set_dialog_buttons_engineering(self.ui, self.show_alt_val_dialog)
-        self.ui.btn_move_home.clicked.connect(lambda: self.show_confirm_dialog("MoveHome"))
-        ####################################################################
-        # button to send code to the PLC tag
-        self.ui_cod_dialog_win.btn_insert_code_man.clicked.connect(
-            lambda:
-            write_QlineEdit(
-                self.tag_index,
-                self.cod_dialog_win,
-                self.ui_cod_dialog_win.txt_code,
-                self.tag_type
-            )
-        )
-        self.ui_alt_val_dialog.btn_alt_val.clicked.connect(
-            lambda:
-            write_QlineEdit(
-                self.tag_index,
-                self.alt_val_dialog,
-                self.ui_alt_val_dialog.new_value,
-                self.tag_type
-            )
-        )
-        ####################################################################
-        # confirmation dialog
-        self.ui_confirm_dialog.btn_confirm.clicked.connect(self.confirm_action)
-        self.ui_confirm_dialog.btn_cancel.clicked.connect(self.cancel_action)
-        ####################################################################
-        # login button
-        self.ui_login_dialog.btn_login.clicked.connect(self.login_user)
+        set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
+        set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
+        self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
         ####################################################################
         # Side A: man - auto button
         ####################################################################
-        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: self.set_reset_button('HMI.SideA.ModeValue',
-                                                                                  self.ui.btn_man_auto_lado_a,
-                                                                                  'Automático',
-                                                                                  'Manual'))
-        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: self.set_reset_button('HMI.SideB.ModeValue',
-                                                                                  self.ui.btn_man_auto_lado_b,
-                                                                                  'Automático',
-                                                                                  'Manual'))
+        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
+                                                                             self.ui.btn_man_auto_lado_a,
+                                                                             'Automático',
+                                                                             'Manual'))
+        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
+                                                                             self.ui.btn_man_auto_lado_b,
+                                                                             'Automático',
+                                                                             'Manual'))
         ####################################################################
         # Reset Production Count
         ####################################################################
@@ -291,65 +244,12 @@ class RnRobotics_Gui:
     ####################################################################
     #### function to show dialogs
     ####################################################################
-    def show_cod_dialog_win(self, tag: str, tag_type: str):
-        self.tag_index = tag
-        self.tag_type = tag_type
-        self.cod_dialog_win.exec_()
 
-    def show_alt_val_dialog(self, text: str, tag: str, tag_type: str):
-        self.tag_index = tag
-        self.tag_type = tag_type
-        self.ui_alt_val_dialog.description_text.setText(text)
-        self.alt_val_dialog.exec_()
-
-    def show_login_dialog(self):
-        self.ui_login_dialog.lbl_login_staus.setText('Insira o usuário e a senha para o login')
-        self.login_dialog.exec_()
-
-    def show_confirm_dialog(self, action_to_confirm: str, text: str = ""):
-        # self.ui_confirm_dialog.description_text.setText(text)
-        self.action_to_confirm = action_to_confirm
-        self.confirm_dialog.exec_()
-    ####################################################################
-    # confirmation functions
-    def confirm_action(self):
-        action = self.action_to_confirm
-        dialog = self.confirm_dialog
-        try:
-            if action == "MoveHome":
-                # escreve a tag referente para cada ação
-                # write_tag("", 1)
-                pass
-            elif action == "":
-                pass
-        except Exception as e:
-            print(f"{e} - Erro na ação")
-
-        finally:
-            dialog.close()
-
-    def cancel_action(self):
-        self.action_to_confirm = ""
-        self.confirm_dialog.close()
     ####################################################################
     #### others buttons functions (test)
     # ToDo => melhorar botões e estados
     # ToDo 2 => mover funções para outro arquivo
     ####################################################################
-    def set_reset_button(self, tag: str, widget: QWidget, text_on: str, text_off: str):
-        value = read_tags(tag)
-        try:
-            if value == 0:
-                write_tag(tag, 1)
-                widget.setText(text_on)
-            elif value == 1:
-                write_tag(tag, 0)
-                widget.setText(text_off)
-            else:
-                print('Erro na lógica IF')
-        except Exception as e:
-                print(e)
-
     def hold_robot(self, tag: str):
         try:
             value = read_tags(tag)
@@ -376,111 +276,25 @@ class RnRobotics_Gui:
         except:
             pass
     #######################################################################
-    #### Login
-    #######################################################################
-    def login_user(self):
-        user = self.ui_login_dialog.user_login.text()
-        password = self.ui_login_dialog.user_password.text()
-        login_sucessfull = False
-        self.ui_login_dialog.user_login.clear()
-        self.ui_login_dialog.user_password.clear()
-        for key, value in self.db_users.items():
-            if key == user and value == password:
-                self.ui_login_dialog.lbl_login_staus.setText('Login efetuado com sucesso')
-                self.userName = user
-                self.ui.lbl_username.setText(self.userName)
-                login_sucessfull = True
-                self.login_dialog.close()
-                break
-        if login_sucessfull == False:
-            self.ui_login_dialog.lbl_login_staus.setText('Usuário ou senha incorreto')
-
-    #######################################################################
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #### Updating Tags on the PLC
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_A1.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_A1.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_A1.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_A1.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_A1(self.ui, tag)
     def update_DataCtrl_A2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_A2.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_A2.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_A2.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_A2.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_A2(self.ui, tag)
     def update_DataCtrl_B1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_B1.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_B1.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_B1.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_B1.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_B1(self.ui, tag)
     def update_DataCtrl_B2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_ProdCode_B2.setText(tag['ProdCode'])
-                self.ui.lbl_FileNumPos_B2.setText(str(tag['FileNumPos']))
-                self.ui.lbl_NumPos_B2.setText(str(tag['NumPos']))
-                self.ui.lbl_IndexPos_B2.setText(str(tag['IndexPos']))
-            except:
-                pass
+            home.UpdateDataCtrl_B2(self.ui, tag)
     #######################################################################
     def update_hmi(self, tag):
         prodTag = tag["Production"]
         if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                self.ui.lbl_production_TimeCutA1.setText(str(round(prodTag['TimeCutA1'], 2)))
-                self.ui.lbl_production_TimeCutA2.setText(str(round(prodTag['TimeCutA2'], 2)))
-                self.ui.lbl_production_TimeCutB1.setText(str(round(prodTag['TimeCutB1'], 2)))
-                self.ui.lbl_production_TimeCutB2.setText(str(round(prodTag['TimeCutB2'], 2)))
-                sts_string(tag['Sts']['TransDataSideA'], self.ui.lbl_sts_TransDataSideA)
-                sts_string(tag['Sts']['TransDataSideB'], self.ui.lbl_sts_TransDataSideB)
-
-                #### Side A: manual - auto
-                if tag['SideA']['ModeValue'] == 0:
-                    self.ui.btn_man_auto_lado_a.setChecked(True)
-                    self.ui.sts_auto_man_a.setEnabled(True)
-                    self.ui.btn_man_auto_lado_a.setText('Manual')
-                else:
-                    self.ui.btn_man_auto_lado_a.setChecked(False)
-                    self.ui.sts_auto_man_a.setEnabled(False)
-                    self.ui.btn_man_auto_lado_a.setText('Automático')
-
-                #### Side B: manual - auto
-                if tag['SideB']['ModeValue'] == 1:
-                    self.ui.btn_man_auto_lado_b.setChecked(True)
-                    self.ui.sts_auto_man_b.setEnabled(True)
-                    self.ui.btn_man_auto_lado_b.setText('Manual')
-                else:
-                    self.ui.btn_man_auto_lado_b.setChecked(False)
-                    self.ui.sts_auto_man_b.setEnabled(False)
-                    self.ui.btn_man_auto_lado_b.setText('Automático')
-
-                #### setting alarm status
-                if tag["AlarmSideA"]:
-                    self.ui.sts_sem_alarm_a.setEnabled(False)
-                else:
-                    self.ui.sts_sem_alarm_a.setEnabled(True)
-
-                if tag["AlarmSideB"]:
-                    self.ui.sts_sem_alarm_b.setEnabled(False)
-                else:
-                    self.ui.sts_sem_alarm_b.setEnabled(True)
-            except Exception as e:
-                    print(e)
-
+            home.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 3:
             try:
                 ### updating tags
@@ -622,30 +436,35 @@ class RnRobotics_Gui:
         self.threadpool_6.start(self.worker_config_pts)
         self.threadpool_7.start(self.worker_cylDoorA)
         self.threadpool_8.start(self.worker_cylDoorB)
+        self.threadpool_9.start(self.worker_robotInputs)
+        self.threadpool_10.start(self.worker_robotOutputs)
+        self.threadpool_11.start(self.worker_cylSpindle)
+        self.threadpool_12.start(self.worker_indexRobotPos)
     ########################################################################
     # Stop Threads
     ########################################################################
     def stop_threads(self):
-        self.threadpool_0.stop(self.worker)
-        self.threadpool_1.stop(self.worker_data_ctrl_a1)
-        self.threadpool_2.stop(self.worker_data_ctrl_a2)
-        self.threadpool_3.stop(self.worker_data_ctrl_b1)
-        self.threadpool_4.stop(self.worker_data_ctrl_b2)
-        self.threadpool_5.stop(self.worker_hmi)
-        self.threadpool_6.stop(self.worker_config_pts)
-        self.threadpool_7.stop(self.worker_cylDoorA)
-        self.threadpool_8.stop(self.worker_cylDoorB)
-        self.threadpool_9.stop(self.worker_robotInputs)
-        self.threadpool_10.stop(self.worker_robotOutputs)
-        self.threadpool_11.stop(self.worker_cylSpindle)
-        self.threadpool_12.stop(self.worker_indexRobotPos)
+        self.worker.stop()
+        self.worker_data_ctrl_a1.stop()
+        self.worker_data_ctrl_a2.stop()
+        self.worker_data_ctrl_b1.stop()
+        self.worker_data_ctrl_b2.stop()
+        self.worker_hmi.stop()
+        self.worker_config_pts.stop()
+        self.worker_cylDoorA.stop()
+        self.worker_cylDoorB.stop()
+        self.worker_robotInputs.stop()
+        self.worker_robotOutputs.stop()
+        self.worker_cylSpindle.stop()
+        self.worker_indexRobotPos.stop()
     ########################################################################
     # Stop the threads when the window is closed
     ########################################################################
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.aboutToQuit.connect(RnRobotics_Gui.stop_threads)
     main_win = RnRobotics_Gui()
     main_win.show_max()
+    app.aboutToQuit.connect(main_win.stop_threads)
     sys.exit(app.exec_())

@@ -11516,5 +11516,5 @@ class Ui_MainWindow(object):
         item = self.hist_alarm_list_widget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "MESSAGE"))
         self.btn_atual_alarm.setText(_translate("MainWindow", "ALARMES ATUAIS"))
-import pyqt.ui_py.icons_rc
-import pyqt.ui_py.images_rc
+import ui_py.icons_rc
+import ui_py.images_rc
