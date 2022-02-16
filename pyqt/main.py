@@ -21,7 +21,7 @@ from utils.alarm_control import *
 
 from utils.Types import *
 
-from screens import home
+from screens import home, robot
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -153,11 +153,9 @@ class RnRobotics_Gui:
         ####################################################################
         home.home_screen_func(self.ui, self.insert_code_dialog.show)
         home.home_btn_man_auto(self.ui)
+        robot.define_buttons(self.ui, self.altera_valor_dialog.show)
         ####################################################################
         # button to show pop up to change value
-        self.ui.btn_alt_vel_robo_screen.clicked.connect(
-            lambda: self.altera_valor_dialog.show("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
-        )
         set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
         set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
         self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
@@ -184,11 +182,11 @@ class RnRobotics_Gui:
         self.ui.btn_reset_prod_total_b.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1",
                                                                              "HMI.Production.PartsDoneB2"))
         ####################################################################
-        # button to hold robot
-        self.ui.btn_parar_robo.clicked.connect(lambda: self.hold_robot("HMI.HoldRobo"))
-        ####################################################################
         # enable pts logs
-        self.ui.btn_habilita_logs.clicked.connect(lambda: self.enable_logs("HMI.EnableLog"))
+        self.ui.btn_habilita_logs.clicked.connect(lambda: set_reset_button("HMI.EnableLog",
+                                                                           self.ui.btn_habilita_logs,
+                                                                           "Desab. Log\nde Pontos",
+                                                                           "Habilita Log\nde Pontos"))
         ####################################################################
         # set maintenance buttons
         # self.ui.btn_DoorSideA_abrir.clicked.connect(lambda: change_button("Cyl_DoorSideA.ManRet"))
@@ -250,32 +248,6 @@ class RnRobotics_Gui:
     #### others buttons functions (test)
     # ToDo => melhorar botões e estados
     # ToDo 2 => mover funções para outro arquivo
-    ####################################################################
-    def hold_robot(self, tag: str):
-        try:
-            value = read_tags(tag)
-            if value == 0:
-                write_tag(tag, 1)
-            elif value == 1:
-                write_tag(tag, 0)
-            else:
-                pass
-        except:
-            pass
-
-    def enable_logs(self, tag: str):
-        try:
-            value = read_tags(tag)
-            if value == 0:
-                self.ui.btn_habilita_logs.setText("Desab. log\nde pontos")
-                write_tag(tag, 1)
-            elif value == 1:
-                self.ui.btn_habilita_logs.setText("Habilita log\nde pontos")
-                write_tag(tag, 0)
-            else:
-                pass
-        except:
-            pass
     #######################################################################
     #### Updating Tags on the PLC
     #######################################################################
@@ -399,14 +371,13 @@ class RnRobotics_Gui:
     def update_RoboInput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
             try:
-                robot_input_status_update(tag, self.ui)
+                robot.input_update(tag, self.ui)
             except:
                 pass
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
             try:
-                self.ui.lbl_RobotSpeed.setText(str(tag["Speed"]))
-                robot_output_status_update(tag, self.ui)
+                robot.output_update(tag, self.ui)
             except:
                 pass
         if self.ui.stackedWidget.currentIndex() == 6:

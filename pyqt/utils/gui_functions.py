@@ -44,12 +44,17 @@ def sts_string(id_num: int, widget: QWidget):
     else:
         widget.setText('Erro')
 #############################################
-def change_button(tag: str):
-    value = read_tags(tag)
-    if value:
-        write_tag(tag, 0)
-    else:
-        write_tag(tag, 1)
+def change_state_button(tag: str):
+    try:
+        value = read_tags(tag)
+        if value == 1:
+            write_tag(tag, 0)
+        elif value == 0:
+            write_tag(tag, 1)
+        else:
+            raise Exception("Valor errado recebido - gui_function/change_state_button")
+    except Exception as e:
+        print(e)
 
 def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
     value = read_tags(tag)
@@ -61,7 +66,7 @@ def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
             write_tag(tag, 0)
             widget.setText(text_off)
         else:
-            print('Erro na lógica IF')
+            raise Exception("Valor errado recebido - gui_function/set_reset_button")
     except Exception as e:
         print(e)
 #############################################
@@ -124,28 +129,6 @@ def change_status(tag: str, stsWidget: QWidget):
         stsWidget.setEnabled(True)
     else:
         stsWidget.setEnabled(False)
-#############################################
-def robot_input_status_update(tag, ui: Ui_MainWindow):
-    change_status(tag["Cmd_enabled"], ui.sts_enable)
-    change_status(tag["System_ready"], ui.sts_ready)
-    change_status(tag["Prg_running"], ui.sts_running)
-    change_status(tag["Motion_held"], ui.sts_motion_held)
-    change_status(tag["Emergency"], ui.sts_emerg)
-    change_status(tag["TP_Enabled"], ui.sts_tp_enabled)
-    change_status(tag["Batt_alarm"], ui.sts_battery_alarm)
-    change_status(tag["HomePos"], ui.sts_home_pos)
-    change_status(tag["RSA"], ui.sts_robo_a)
-    change_status(tag["RSB"], ui.sts_robo_b)
-
-def robot_output_status_update(tag: dict, ui: Ui_MainWindow):
-    change_status(tag["IMSTP"], ui.sts_imstp)
-    change_status(tag["Hold"], ui.sts_hold)
-    change_status(tag["SFSPD"], ui.sts_sfspd)
-    change_status(tag["Start"], ui.sts_start)
-    change_status(tag["Enable"], ui.sts_enabled)
-    change_status(tag["FP"], ui.sts_finish_part)
-    change_status(tag["MSA"], ui.sts_macro_a)
-    change_status(tag["MSB"], ui.sts_macro_b)
 #############################################
 def reset_product(*tags: str):
     for tag in tags:
