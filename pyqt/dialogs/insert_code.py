@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QDialog
-from pyqt.ui_py.ui_cod_dialog_win import Ui_Dialog
+from ui_py.ui_cod_dialog_win import Ui_Dialog
 
-from pyqt.utils.gui_functions import write_QlineEdit
-from pyqt.utils.Types import TagTypes
+from utils.gui_functions import write_QlineEdit
+from utils.Types import TagTypes
+
 
 class InsertCodeDialog:
     def __init__(self):

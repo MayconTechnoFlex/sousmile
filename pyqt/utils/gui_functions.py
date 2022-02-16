@@ -5,9 +5,10 @@
 ## Line edit actions
 #############################################
 from PyQt5.QtWidgets import QWidget, QDialog
-from pyqt.utils.ctrl_plc import *
-from pyqt.main import Ui_MainWindow
-from pyqt.utils.Types import *
+from utils.ctrl_plc import *
+#from main import Ui_MainWindow
+from ui_py.ui_gui import Ui_MainWindow
+from utils.Types import *
 #############################################
 ## Edit PLC information with a QLineEdit
 #############################################
@@ -45,15 +46,19 @@ def sts_string(id_num: int, widget: QWidget):
         widget.setText('Erro')
 #############################################
 def change_button(tag: str):
-    value = read_tags(tag)
-    if value:
-        write_tag(tag, 0)
-    else:
-        write_tag(tag, 1)
+    try:
+        value = read_tags(tag)
+        if value:
+            write_tag(tag, 0)
+        else:
+            write_tag(tag, 1)
+    except Exception as e:
+        print(e)
 
 def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
-    value = read_tags(tag)
+
     try:
+        value = read_tags(tag)
         if value == 0:
             write_tag(tag, 1)
             widget.setText(text_on)

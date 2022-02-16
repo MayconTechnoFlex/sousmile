@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QDialog, QLabel
-from pyqt.ui_py.ui_login_dialog import Ui_LoginDialog
+from ui_py.ui_login_dialog import Ui_LoginDialog
 
-from pyqt.utils.db_users import users_accounts as users
-from pyqt.utils.db_users import set_connected_username
+from utils.db_users import users_accounts as users
+from utils.db_users import set_connected_username
 
 class LoginDialog:
     def __init__(self):

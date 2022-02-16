@@ -1,9 +1,9 @@
 ########################################################################################
 # Contorl of widgets home screen
 ########################################################################################
-from pyqt.main import *
-from pyqt.utils.gui_functions import set_reset_button, sts_string
-from pyqt.utils.Types import AltValShowDialog_WithoutText
+from main import *
+from utils.gui_functions import set_reset_button, sts_string
+from utils.Types import AltValShowDialog_WithoutText
 
 def home_screen_func(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText):
     ####################################################################

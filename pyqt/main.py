@@ -293,11 +293,11 @@ class RnRobotics_Gui:
             home.UpdateDataCtrl_B2(self.ui, tag)
     #######################################################################
     def update_hmi(self, tag):
-        prodTag = tag["Production"]
-        if self.ui.stackedWidget.currentIndex() == 0:
-            home.UpdateHMI(self.ui, tag)
-        if self.ui.stackedWidget.currentIndex() == 3:
-            try:
+        try:
+            prodTag = tag["Production"]
+            if self.ui.stackedWidget.currentIndex() == 0:
+                home.UpdateHMI(self.ui, tag)
+            if self.ui.stackedWidget.currentIndex() == 3:
                 ### updating tags
                 self.ui.lbl_PartsDoneA1.setText(str(prodTag["PartsDoneA1"]))
                 self.ui.lbl_PartsDoneA2.setText(str(prodTag["PartsDoneA2"]))
@@ -312,11 +312,12 @@ class RnRobotics_Gui:
                 self.ui.lbl_TimeCutB1.setText(str(round(prodTag["TimeCutB1"], 2)))
                 self.ui.lbl_TimeCutB2.setText(str(round(prodTag["TimeCutB2"], 2)))
                 self.ui.lbl_TimeCutSideB.setText(str(round(prodTag["TimeCutSideB"], 2)))
-            except:
-                pass
+        except Exception as e:
+            print(e)
         if self.ui.stackedWidget.currentIndex() == 6:
-            currentOffset = tag["CurrentOffset"]
+
             try:
+                currentOffset = tag["CurrentOffset"]
                 self.ui.lbl_PosX.setText(str(round(currentOffset["PosX"], 1)))
                 self.ui.lbl_PosY.setText(str(round(currentOffset["PosY"], 1)))
                 self.ui.lbl_PosZ.setText(str(round(currentOffset["PosZ"], 1)))
@@ -331,8 +332,8 @@ class RnRobotics_Gui:
                     self.ui.btn_habilita_logs.setText("Habilita log\nde pontos")
                 else:
                     pass
-            except:
-                pass
+            except Exception as e:
+                print(e)
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
@@ -446,18 +447,31 @@ class RnRobotics_Gui:
     ########################################################################
     def stop_threads(self):
         self.worker.stop()
+        self.threadpool_0.stop()
         self.worker_data_ctrl_a1.stop()
+        self.threadpool_1.stop()
         self.worker_data_ctrl_a2.stop()
+        self.threadpool_2.stop()
         self.worker_data_ctrl_b1.stop()
+        self.threadpool_3.stop()
         self.worker_data_ctrl_b2.stop()
+        self.threadpool_4.stop()
         self.worker_hmi.stop()
+        self.threadpool_5.stop()
         self.worker_config_pts.stop()
+        self.threadpool_6.stop()
         self.worker_cylDoorA.stop()
+        self.threadpool_7.stop()
         self.worker_cylDoorB.stop()
         self.worker_robotInputs.stop()
+        self.threadpool_8.stop()
         self.worker_robotOutputs.stop()
+        self.threadpool_9.stop()
         self.worker_cylSpindle.stop()
+        self.threadpool_10.stop()
         self.worker_indexRobotPos.stop()
+        self.threadpool_11.stop()
+        self.threadpool_12.stop()
     ########################################################################
     # Stop the threads when the window is closed
     ########################################################################

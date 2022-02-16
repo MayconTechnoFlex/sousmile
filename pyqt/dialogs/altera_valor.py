@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QDialog
-from pyqt.ui_py.ui_alt_val_dialog import Ui_Dialog2
+from ui_py.ui_alt_val_dialog import Ui_Dialog2
 
-from pyqt.utils.Types import TagTypes
-from pyqt.utils.gui_functions import write_QlineEdit
+from utils.Types import TagTypes
+from utils.gui_functions import write_QlineEdit
+
 
 class AlteraValorDialog:
     def __init__(self):

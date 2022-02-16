@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/1x/sharp_check_black_48dp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/1x/sharp_close_black_48dp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/2x/sharp_check_black_48dp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyqt/assets/icons/icons/2x/sharp_close_black_48dp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sousmile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sousmile.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/insert_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/insert_code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui/icons.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/icons.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/icons_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/icons_rc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/ui_gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v5.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v7.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/home.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_message_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/workers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/workers.py" afterDir="false" />
     </list>
@@ -33,6 +24,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pyqt/utils/gui_functions.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/dialogs/login.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/utils/workers.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,6 +45,34 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="sousmile" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyqt" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyqt/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -64,7 +90,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
