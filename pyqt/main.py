@@ -445,6 +445,7 @@ class RnRobotics_Gui:
     # Stop Threads
     ########################################################################
     def stop_threads(self):
+        print("Finalizando Threads")
         self.worker.stop()
         self.worker_data_ctrl_a1.stop()
         self.worker_data_ctrl_a2.stop()
@@ -458,6 +459,7 @@ class RnRobotics_Gui:
         self.worker_robotOutputs.stop()
         self.worker_cylSpindle.stop()
         self.worker_indexRobotPos.stop()
+        print("Threads finalizadas")
     ########################################################################
     # Stop the threads when the window is closed
     ########################################################################

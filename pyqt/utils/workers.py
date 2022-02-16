@@ -4,6 +4,7 @@ from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, QMutex
 from pyqt.utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
+stop_time = 0.2
 
 
 class WorkerSignals(QObject):
@@ -49,11 +50,13 @@ class Worker(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Data_Ctrl_A1(QRunnable):
     """
@@ -74,11 +77,13 @@ class Worker_Data_Ctrl_A1(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Data_Ctrl_A2(QRunnable):
     """
@@ -99,11 +104,13 @@ class Worker_Data_Ctrl_A2(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Data_Ctrl_B1(QRunnable):
     """
@@ -117,18 +124,20 @@ class Worker_Data_Ctrl_B1(QRunnable):
 
     @pyqtSlot()
     def run(self):
-        while True: #self.running:
+        while self.running:
             try:
                 data_ctrl_b1 = read_tags('DataCtrl_B1')
                 self.signal_b1.result.emit(data_ctrl_b1)
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Data_Ctrl_B2(QRunnable):
     """
@@ -149,11 +158,13 @@ class Worker_Data_Ctrl_B2(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_HMI(QRunnable):
     """
@@ -174,11 +185,13 @@ class Worker_HMI(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Config_Pts(QRunnable):
     """
@@ -199,11 +212,13 @@ class Worker_Config_Pts(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Cyl_Door_A(QRunnable):
     """
@@ -224,11 +239,13 @@ class Worker_Cyl_Door_A(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Cyl_Door_B(QRunnable):
     """
@@ -249,11 +266,13 @@ class Worker_Cyl_Door_B(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Cyl_Spindle(QRunnable):
     """
@@ -274,11 +293,13 @@ class Worker_Cyl_Spindle(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Robot_Inputs(QRunnable):
     """
@@ -299,11 +320,13 @@ class Worker_Robot_Inputs(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_Robot_Outputs(QRunnable):
     """
@@ -324,11 +347,13 @@ class Worker_Robot_Outputs(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)
 
 class Worker_IndexRobotPos(QRunnable):
     """
@@ -353,8 +378,10 @@ class Worker_IndexRobotPos(QRunnable):
             except Exception as e:
                 print(f'{e} - Error on the thread')
                 self.running = False
+                break
 
             time.sleep(sleep_time)
 
     def stop(self):
         self.running = False
+        time.sleep(stop_time)

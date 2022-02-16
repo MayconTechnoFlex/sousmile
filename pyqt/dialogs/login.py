@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QDialog, QLabel
 from pyqt.ui_py.ui_login_dialog import Ui_LoginDialog
 
 from pyqt.utils.db_users import users_accounts as users
-from pyqt.utils.db_users import set_connected_username
+from pyqt.utils.db_users import set_connected_username, disconnect_user
 
 class LoginDialog:
     def __init__(self):
@@ -45,4 +45,5 @@ class LoginDialog:
             self.ui.lbl_login_staus.setText('Usuário ou senha incorreto')
 
     def logout_user(self):
+        disconnect_user()
         self.lbl_username.setText('Nenhum usuário logado')
