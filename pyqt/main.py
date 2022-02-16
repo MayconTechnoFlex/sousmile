@@ -21,7 +21,7 @@ from utils.alarm_control import *
 
 from utils.Types import *
 
-from screens import home, robot
+from screens import home, robot, alarms
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -142,18 +142,19 @@ class RnRobotics_Gui:
         # adding alarms to list
         ####################################################################
         # ToDo => ver como receber os alarmes e os tempos
-        """
-        define_alarm_list(self.ui, "12:35:31", 0)
-        define_alarm_list(self.ui, "13:18:57", 11)
-        define_alarm_list(self.ui, "15:16:22", 34)
-        define_alarm_list(self.ui, "15:34:46", 64)
-        """
+        '''
+        alarms.define_new_alarm(self.ui, "12:35:31", 0)
+        alarms.define_new_alarm(self.ui, "13:18:57", 11)
+        alarms.define_new_alarm(self.ui, "15:16:22", 34)
+        alarms.define_new_alarm(self.ui, "15:34:46", 64)
+        '''
         ####################################################################
         # Widgets on home screen
         ####################################################################
         home.home_screen_func(self.ui, self.insert_code_dialog.show)
         home.home_btn_man_auto(self.ui)
         robot.define_buttons(self.ui, self.altera_valor_dialog.show)
+        alarms.define_buttons(self.ui)
         ####################################################################
         # button to show pop up to change value
         set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
@@ -201,10 +202,6 @@ class RnRobotics_Gui:
         # self.ui.btn_SpindleRobo_fechar.clicked.connect(lambda: change_button("Cyl_SpindleRobo.ManExt"))
         # self.ui.btn_SpindleRobo_manut.clicked.connect(lambda: change_button("Cyl_SpindleRobo.MaintTest"))
         ####################################################################
-        self.ui.btn_sobe_alarm.clicked.connect(lambda: row_up(self.ui.alarm_list_widget))
-        self.ui.btn_desce_alarm.clicked.connect(lambda: row_down(self.ui.alarm_list_widget))
-        self.ui.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(self.ui.hist_alarm_list_widget))
-        self.ui.btn_desce_alarm_hist.clicked.connect(lambda: row_down(self.ui.hist_alarm_list_widget))
 
     def show(self):
         self.main_win.show()
