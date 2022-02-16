@@ -22,7 +22,8 @@ from utils.alarm_control import *
 from utils.Types import *
 
 from screens import home, robot, alarms,\
-    production as prod, maintenance as maint, engineering as eng
+    production as prod, maintenance as maint,\
+    engineering as eng, in_out as inOut
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -125,9 +126,6 @@ class RnRobotics_Gui:
         self.tag_type: TagTypes = ""
         self.action_to_confirm: ActionsToConfirm = ""
         ###################################################################
-        # button to back screen ###########################################
-        self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
-        ###################################################################
         # adding alarms to list ###########################################
         # ToDo => ver como receber os alarmes e os tempos
         '''
@@ -145,6 +143,7 @@ class RnRobotics_Gui:
         prod.define_buttons(self.ui)
         maint.define_buttons(self.ui, self.altera_valor_dialog.show, self.confirm_dialog)
         eng.define_buttons(self.ui, self.altera_valor_dialog.show)
+        inOut.define_buttons(self.ui, self.show_maintenance)
         ####################################################################
 
     def show(self):
