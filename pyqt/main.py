@@ -51,8 +51,6 @@ class RnRobotics_Gui:
 
         self.main_win.setWindowTitle("HMI SouSmile")
         ##################################################################
-        # Login ##########################################################
-        ##################################################################
         self.userName = "Nenhum usuário logado"
         self.ui.lbl_username.setText(self.userName)
         ##################################################################
@@ -122,6 +120,16 @@ class RnRobotics_Gui:
         ###################################################################
         self.define_navigate_buttons()
         ###################################################################
+        # Widgets on Screen ################################################
+        ####################################################################
+        home.define_buttons(self.ui, self.insert_code_dialog.show)
+        robot.define_buttons(self.ui, self.altera_valor_dialog.show)
+        alarms.define_buttons(self.ui)
+        prod.define_buttons(self.ui)
+        maint.define_buttons(self.ui, self.altera_valor_dialog.show, self.confirm_dialog)
+        eng.define_buttons(self.ui, self.altera_valor_dialog.show)
+        inOut.define_buttons(self.ui, self.show_maintenance)
+        ###################################################################
         self.tag_index = ""
         self.tag_type: TagTypes = ""
         self.action_to_confirm: ActionsToConfirm = ""
@@ -134,16 +142,6 @@ class RnRobotics_Gui:
         alarms.define_new_alarm(self.ui, "15:16:22", 34)
         alarms.define_new_alarm(self.ui, "15:34:46", 64)
         '''
-        ####################################################################
-        # Widgets on Screen ################################################
-        ####################################################################
-        home.define_buttons(self.ui, self.insert_code_dialog.show)
-        robot.define_buttons(self.ui, self.altera_valor_dialog.show)
-        alarms.define_buttons(self.ui)
-        prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog.show, self.confirm_dialog)
-        eng.define_buttons(self.ui, self.altera_valor_dialog.show)
-        inOut.define_buttons(self.ui, self.show_maintenance)
         ####################################################################
 
     def show(self):
@@ -202,65 +200,65 @@ class RnRobotics_Gui:
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            home.UpdateDataCtrl_A1(self.ui, tag)
+            home.UpdateDataCtrl_A1(tag)
     #######################################################################
     def update_DataCtrl_A2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            home.UpdateDataCtrl_A2(self.ui, tag)
+            home.UpdateDataCtrl_A2(tag)
     #######################################################################
     def update_DataCtrl_B1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            home.UpdateDataCtrl_B1(self.ui, tag)
+            home.UpdateDataCtrl_B1(tag)
     #######################################################################
     def update_DataCtrl_B2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            home.UpdateDataCtrl_B2(self.ui, tag)
+            home.UpdateDataCtrl_B2(tag)
     #######################################################################
     def update_hmi(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
-            home.UpdateHMI(self.ui, tag)
+            home.UpdateHMI(tag)
         if self.ui.stackedWidget.currentIndex() == 3:
-            prod.UpdateHMI(self.ui, tag)
+            prod.UpdateHMI(tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            eng.UpdateHMI(self.ui, tag)
+            eng.UpdateHMI(tag)
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
-            eng.UpdateConfigPts(self.ui, tag)
+            eng.UpdateConfigPts(tag)
     ########################################################################
     def update_CylDoorSideA(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            maint.UpdateCylA(self.ui, tag)
+            maint.UpdateCylA(tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            eng.UpdateCylA(self.ui, tag)
+            eng.UpdateCylA(tag)
     ########################################################################
     def update_CylDoorSideB(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            maint.UpdateCylB(self.ui, tag)
+            maint.UpdateCylB(tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            eng.UpdateCylB(self.ui, tag)
+            eng.UpdateCylB(tag)
     ########################################################################
     def update_CylSpindle(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            maint.UpdateCylSpindle(self.ui, tag)
+            maint.UpdateCylSpindle(tag)
     ########################################################################
     def update_indexRobotPos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
-            eng.UpdateRobotPos(self.ui, tag)
+            eng.UpdateRobotPos(tag)
     ########################################################################
     def update_RoboInput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
-            robot.UpdateInput(self.ui, tag)
+            robot.UpdateInput(tag)
     ########################################################################
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
-            robot.UpdateOutput(self.ui, tag)
+            robot.UpdateOutput(tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            eng.UpdateRobotOutput(self.ui, tag)
+            eng.UpdateRobotOutput(tag)
     ########################################################################
     def update_BarCode(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            maint.UpdateBarCode(self.ui, tag)
+            maint.UpdateBarCode(tag)
 
     ########################################################################
     #### Start Threads

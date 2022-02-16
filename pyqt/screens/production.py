@@ -1,7 +1,11 @@
 from pyqt.ui_py.ui_gui import Ui_MainWindow
 from pyqt.utils.ctrl_plc import write_tag
 
-def define_buttons(ui: Ui_MainWindow):
+ui: Ui_MainWindow
+
+def define_buttons(receive_ui: Ui_MainWindow):
+    global ui
+    ui = receive_ui
     ui.btn_reset_prod_a1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1"))
     ui.btn_reset_prod_a2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA2"))
     ui.btn_reset_prod_b1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1"))
@@ -15,7 +19,8 @@ def reset_product(*tags: str):
     for tag in tags:
         write_tag(tag, 0)
 
-def UpdateHMI(ui: Ui_MainWindow, tag):
+def UpdateHMI(tag):
+    global ui
     try:
         prodTag = tag["Production"]
         ui.lbl_PartsDoneA1.setText(str(prodTag["PartsDoneA1"]))

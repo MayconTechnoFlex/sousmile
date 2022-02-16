@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QLabel
 from pyqt.utils.gui_functions import set_reset_button
 from pyqt.utils.Types import AltValShowDialog_WithoutText
 
+ui: Ui_MainWindow
 
 def sts_string(id_num: int, widget: QLabel):
     if id_num == 100:
@@ -25,7 +26,9 @@ def sts_string(id_num: int, widget: QLabel):
     else:
         widget.setText('Erro')
 
-def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText):
+def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText):
+    global ui
+    ui = receive_ui
     ui.btn_in_cod_man_a1.clicked.connect(lambda: show_dialog('DataCtrl_A1.ProdCode', "string"))
     ui.btn_in_cod_man_a2.clicked.connect(lambda: show_dialog('DataCtrl_A2.ProdCode', "string"))
     ui.btn_in_cod_man_b1.clicked.connect(lambda: show_dialog('DataCtrl_B1.ProdCode', "string"))
@@ -40,7 +43,8 @@ def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText)
                                                                     'Automático',
                                                                     'Manual'))
 
-def UpdateDataCtrl_A1(ui: Ui_MainWindow, tag):
+def UpdateDataCtrl_A1(tag):
+    global ui
     try:
         ui.lbl_ProdCode_A1.setText(tag['ProdCode'])
         ui.lbl_FileNumPos_A1.setText(str(tag['FileNumPos']))
@@ -49,7 +53,8 @@ def UpdateDataCtrl_A1(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateDataCtrl_A2(ui: Ui_MainWindow, tag):
+def UpdateDataCtrl_A2(tag):
+    global ui
     try:
         ui.lbl_ProdCode_A2.setText(tag['ProdCode'])
         ui.lbl_FileNumPos_A2.setText(str(tag['FileNumPos']))
@@ -58,7 +63,8 @@ def UpdateDataCtrl_A2(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateDataCtrl_B1(ui: Ui_MainWindow, tag):
+def UpdateDataCtrl_B1(tag):
+    global ui
     try:
         ui.lbl_ProdCode_B1.setText(tag['ProdCode'])
         ui.lbl_FileNumPos_B1.setText(str(tag['FileNumPos']))
@@ -67,7 +73,8 @@ def UpdateDataCtrl_B1(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateDataCtrl_B2(ui: Ui_MainWindow, tag):
+def UpdateDataCtrl_B2(tag):
+    global ui
     try:
         ui.lbl_ProdCode_B2.setText(tag['ProdCode'])
         ui.lbl_FileNumPos_B2.setText(str(tag['FileNumPos']))
@@ -76,7 +83,8 @@ def UpdateDataCtrl_B2(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateHMI(ui: Ui_MainWindow, tag):
+def UpdateHMI(tag):
+    global ui
     try:
         prodTag = tag["Production"]
         ui.lbl_production_TimeCutA1.setText(str(round(prodTag['TimeCutA1'], 2)))

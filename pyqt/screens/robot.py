@@ -3,7 +3,11 @@ from pyqt.dialogs.altera_valor import AlteraValorDialog
 from pyqt.utils.gui_functions import change_status, set_reset_button
 from pyqt.utils.Types import AltValShowDialog_WithText
 
-def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+ui: Ui_MainWindow
+
+def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+    global ui
+    ui = receive_ui
     ui.btn_parar_robo.clicked.connect(lambda: set_reset_button("HMI.HoldRobo",
                                                                ui.btn_parar_robo,
                                                                "Liberar Robô",
@@ -13,7 +17,8 @@ def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
         lambda: show_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
     )
 
-def UpdateInput(ui: Ui_MainWindow, tag: dict):
+def UpdateInput(tag: dict):
+    global ui
     try:
         change_status(tag["Cmd_enabled"], ui.sts_enable)
         change_status(tag["System_ready"], ui.sts_ready)
@@ -28,7 +33,8 @@ def UpdateInput(ui: Ui_MainWindow, tag: dict):
     except:
         pass
 
-def UpdateOutput(ui: Ui_MainWindow, tag: dict):
+def UpdateOutput(tag: dict):
+    global ui
     try:
         ui.lbl_RobotSpeed.setText(str(tag["Speed"]))
         change_status(tag["IMSTP"], ui.sts_imstp)

@@ -3,19 +3,26 @@ from pyqt.ui_py.ui_gui import Ui_MainWindow
 from pyqt.utils.gui_functions import set_reset_button
 from pyqt.utils.Types import AltValShowDialog_WithText
 
-def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+ui: Ui_MainWindow
+show_dialog: AltValShowDialog_WithText
+
+def define_buttons(receive_ui: Ui_MainWindow, receive_show_dialog: AltValShowDialog_WithText):
     # Todo => botão on/off
-    def_coordinate_buttons(ui, show_dialog)
-    def_prof_cort(ui, show_dialog)
-    def_pts(ui, show_dialog)
-    def_delayA(ui, show_dialog)
-    def_delayB(ui, show_dialog)
+    global ui, show_dialog
+    ui = receive_ui
+    show_dialog = receive_show_dialog
+    def_coordinate_buttons()
+    def_prof_cort()
+    def_pts()
+    def_delayA()
+    def_delayB()
     ui.btn_habilita_logs.clicked.connect(
         lambda: set_reset_button("HMI.EnableLog", ui.btn_habilita_logs,
                                  "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
 
 ### Defining Dialogs
-def def_coordinate_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def def_coordinate_buttons():
+    global ui, show_dialog
     ui.btn_md_val_dist_xyz.clicked.connect(
         lambda: show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
     ui.btn_md_val_dist_c.clicked.connect(
@@ -30,7 +37,8 @@ def def_coordinate_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_With
         lambda: show_dialog("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
                             "ConfigPontos.DistVar", "float"))
 
-def def_prof_cort(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def def_prof_cort():
+    global ui, show_dialog
     ui.btn_md_val_prof_corte_a1.clicked.connect(
         lambda: show_dialog("Alterar a profundidade de corte em A1:", "ConfigPontos.CutDepthA1", "float"))
     ui.btn_md_val_prof_corte_a2.clicked.connect(
@@ -40,13 +48,15 @@ def def_prof_cort(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
     ui.btn_md_val_prof_corte_b2.clicked.connect(
         lambda: show_dialog("Alterar a profundidade de corte em B2", "ConfigPontos.CutDepthB2", "float"))
 
-def def_pts(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def def_pts():
+    global ui, show_dialog
     ui.btn_md_val_max_pts.clicked.connect(
         lambda: show_dialog("Altera o número máximo de pontos:", "HMI.NumPosMax", "int"))
     ui.btn_md_val_vel_corte.clicked.connect(
         lambda: show_dialog("Altera a velocidade de corte:", "Robo.Output.CutSpeed", "int"))
 
-def def_delayA(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def def_delayA():
+    global ui, show_dialog
     ui.btn_md_val_delay_abre_porta_a.clicked.connect(
         lambda: show_dialog("Altera delay para abrir porta A:", "Cyl_DoorSideA.TimeDelayRet", "int"))
     ui.btn_md_val_delay_fecha_porta_a.clicked.connect(
@@ -56,7 +66,8 @@ def def_delayA(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
     ui.btn_md_val_temp_alarm_pos_port_a.clicked.connect(
         lambda: show_dialog("Altera tempo do alarme de posição da porta A:", "Cyl_DoorSideA.TimeOut", "int"))
 
-def def_delayB(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def def_delayB():
+    global ui, show_dialog
     ui.btn_md_val_delay_abre_porta_b.clicked.connect(
         lambda: show_dialog("Altera delay para abrir porta B:", "Cyl_DoorSideB.TimeDelayRet", "int"))
     ui.btn_md_val_delay_fecha_porta_b.clicked.connect(
@@ -67,7 +78,8 @@ def def_delayB(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
         lambda: show_dialog("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
 
 ### Updating widgets
-def UpdateHMI(ui: Ui_MainWindow, tag):
+def UpdateHMI(tag):
+    global ui
     try:
         currentOffset = tag["CurrentOffset"]
         ui.lbl_PosX.setText(str(round(currentOffset["PosX"], 1)))
@@ -87,7 +99,8 @@ def UpdateHMI(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateConfigPts(ui: Ui_MainWindow, tag):
+def UpdateConfigPts(tag):
+    global ui
     try:
         ui.lbl_dist_xyz.setText(str(round(tag["Dist_XYZ"], 2)))
         ui.lbl_diff_c.setText(str(round(tag["Diff_AngleC"], 2)))
@@ -102,7 +115,8 @@ def UpdateConfigPts(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateCylA(ui: Ui_MainWindow, tag):
+def UpdateCylA(tag):
+    global ui
     try:
         ui.lbl_delay_abre_port_a.setText(str(tag["TimeDelayRet"]))
         ui.lbl_delay_fecha_port_a.setText(str(tag["TimeDelayExt"]))
@@ -111,7 +125,8 @@ def UpdateCylA(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateCylB(ui: Ui_MainWindow, tag):
+def UpdateCylB(tag):
+    global ui
     try:
         ui.lbl_delay_abre_port_b.setText(str(tag["TimeDelayRet"]))
         ui.lbl_delay_fecha_port_b.setText(str(tag["TimeDelayExt"]))
@@ -120,13 +135,15 @@ def UpdateCylB(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateRobotPos(ui: Ui_MainWindow, tag):
+def UpdateRobotPos(tag):
+    global ui
     try:
         ui.lbl_RobotPos.setText(str(tag))
     except:
         pass
 
-def UpdateRobotOutput(ui: Ui_MainWindow, tag):
+def UpdateRobotOutput(tag):
+    global ui
     try:
         ui.lbl_CutSpeed.setText(str(tag["CutSpeed"]))
     except:

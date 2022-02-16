@@ -4,8 +4,14 @@ from pyqt.dialogs.confirmation import ConfirmationDialog
 from pyqt.utils.gui_functions import change_state_button, change_status
 from pyqt.utils.Types import AltValShowDialog_WithText
 
-def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText, confirmDialog: ConfirmationDialog):
-    btns_ConfirmDialogs(ui, confirmDialog)
+from pyqt.utils.db_users import get_connected_username
+
+ui: Ui_MainWindow
+
+def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText, confirmDialog: ConfirmationDialog):
+    global ui
+    ui = receive_ui
+    buttons_ConfirmDialogs(confirmDialog)
     ui.btn_DoorSideA_abrir.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManRet"))
     ui.btn_DoorSideA_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManExt"))
     ui.btn_DoorSideA_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.MaintTest"))
@@ -27,14 +33,16 @@ def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText, co
         lambda: show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
     )
 
-def btns_ConfirmDialogs(ui: Ui_MainWindow, dialog: ConfirmationDialog):
+def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
+    global ui
     ui.btn_move_home.clicked.connect(
         lambda: dialog.show(
             "MoveHome",
             "Cuidado, você vai movimentar o robô para aposição inicial, caso tenha risco de colisão, "
             "movimente o robô para a posição inicial manualmente!"))
 
-def UpdateCylA(ui: Ui_MainWindow, tag):
+def UpdateCylA(tag):
+    global ui
     try:
         ui.lbl_TimeMaint_A.setText(str(tag["TimeMaintTest"]))
         change_status(tag["InSenExt"], ui.sts_port_fech_a)
@@ -44,7 +52,8 @@ def UpdateCylA(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateCylB(ui: Ui_MainWindow, tag):
+def UpdateCylB(tag):
+    global ui
     try:
         ui.lbl_TimeMaint_B.setText(str(tag["TimeMaintTest"]))
         change_status(tag["InSenExt"], ui.sts_port_fech_b)
@@ -54,7 +63,8 @@ def UpdateCylB(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateCylSpindle(ui: Ui_MainWindow, tag):
+def UpdateCylSpindle(tag):
+    global ui
     try:
         ui.lbl_TimeMaint_Spindle.setText(str(tag["TimeMaintTest"]))
         change_status(tag["OutExtCyl"], ui.sts_plc_liga_spindle)
@@ -62,7 +72,8 @@ def UpdateCylSpindle(ui: Ui_MainWindow, tag):
     except:
         pass
 
-def UpdateBarCode(ui: Ui_MainWindow, tag):
+def UpdateBarCode(tag):
+    global ui
     try:
         ui.lbl_BarCodeReader_data.setText(str(tag["Data"]))
         WStatus = ui.sts_BarCodeReader_completed

@@ -4,13 +4,18 @@ from pyqt.ui_py.ui_gui import Ui_MainWindow
 
 from pyqt.utils.alarm_control import *
 
-def define_buttons(ui: Ui_MainWindow):
+ui: Ui_MainWindow
+CURRENT_ROW = 0
+
+def define_buttons(receive_ui: Ui_MainWindow):
+    global ui
+    ui = receive_ui
     ui.btn_sobe_alarm.clicked.connect(lambda: row_up(ui.alarm_list_widget))
     ui.btn_desce_alarm.clicked.connect(lambda: row_down(ui.alarm_list_widget))
     ui.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(ui.hist_alarm_list_widget))
     ui.btn_desce_alarm_hist.clicked.connect(lambda: row_down(ui.hist_alarm_list_widget))
 
-def define_new_alarm(ui: Ui_MainWindow, alarm_time: str, alarm_id: int):
+def define_new_alarm(alarm_time: str, alarm_id: int):
     listWidget = ui.alarm_list_widget
     histWidget = ui.hist_alarm_list_widget
     """
@@ -44,7 +49,7 @@ def define_new_alarm(ui: Ui_MainWindow, alarm_time: str, alarm_id: int):
     histWidget.setItem(hist_row_num, 0, hist_time)
     histWidget.setItem(hist_row_num, 1, hist_msg)
 
-def delete_alarm_row(ui: Ui_MainWindow, alarm_id: int):
+def delete_alarm_row(alarm_id: int):
     listWidget: QTableWidget = ui.alarm_list_widget
 
     itemFound = listWidget.findItems(f"Alarme {alarm_id}:", Qt.MatchContains)
@@ -55,7 +60,6 @@ def delete_alarm_row(ui: Ui_MainWindow, alarm_id: int):
     listWidget.removeRow(row_num)
     delete_alarm_from_list(alarm_id)
 
-CURRENT_ROW = 0
 def row_down(listWidget: QTableWidget):
     global CURRENT_ROW
 
