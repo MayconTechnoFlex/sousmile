@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QDialog
 from pyqt.ui_py.ui_alt_val_dialog import Ui_Dialog2
 
 from pyqt.utils.Types import TagTypes
-from pyqt.utils.gui_functions import write_QlineEdit
+from pyqt.utils.gui_functions import write_LineEdit
 
 class AlteraValorDialog:
     def __init__(self):
@@ -28,6 +28,6 @@ class AlteraValorDialog:
 
     def set_button(self):
         self.ui.btn_alt_val.clicked.connect(
-            lambda: write_QlineEdit(self.TAG_INDEX, self.dialog,
-                                    self.ui.new_value, self.TAG_TYPE)
+            lambda: write_LineEdit(self.TAG_INDEX, self.dialog,
+                                   self.ui.new_value, self.TAG_TYPE)
         )

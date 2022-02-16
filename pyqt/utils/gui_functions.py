@@ -1,18 +1,14 @@
-#############################################
-## Functions to use on the GUI
-## Buttons actions
-## Label actions
-## Line edit actions
+"""Functions to use in multiple screens and widgets"""
 #############################################
 from PyQt5.QtWidgets import QWidget, QDialog
 from pyqt.utils.ctrl_plc import *
 from pyqt.ui_py.ui_gui import Ui_MainWindow
 from pyqt.utils.Types import *
 #############################################
-## Edit PLC information with a QLineEdit
-#############################################
-def write_QlineEdit(tag_name: str, dialog: QDialog, widget: QWidget, dataType: TagTypes = "string"):
-
+def write_LineEdit(tag_name: str, dialog: QDialog, widget: QWidget, dataType: TagTypes = "string"):
+    """
+    This function takes the input from a dialog and writes it in a tag
+    """
     if dataType == "string":
         data = str(widget.text())
     elif dataType == "int":
@@ -27,6 +23,10 @@ def write_QlineEdit(tag_name: str, dialog: QDialog, widget: QWidget, dataType: T
     dialog.close()
 #############################################
 def change_state_button(tag: str):
+    """
+    This function reads the tag and change its value for the opposite
+    WARNING: the read tag needs to return a BOOL or INT
+    """
     try:
         value = read_tags(tag)
         if value == 1:
@@ -37,8 +37,13 @@ def change_state_button(tag: str):
             raise Exception("Valor errado recebido - gui_function/change_state_button")
     except Exception as e:
         print(e)
-
+#############################################
 def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
+    """
+    This function reads the tag and change its value for the opposite,
+    writing the texts on the button
+    WARNING: the read tag needs to return a BOOL or INT
+    """
     value = read_tags(tag)
     try:
         if value == 0:
@@ -53,7 +58,6 @@ def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
         print(e)
 #############################################
 def set_dialog_buttons_engineering(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
-    """Function for setting all the dialogs opened from all the buttons on engineering screen"""
     ui.btn_md_val_dist_xyz.clicked.connect(
         lambda: show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
     ui.btn_md_val_dist_c.clicked.connect(
@@ -93,38 +97,12 @@ def set_dialog_buttons_engineering(ui: Ui_MainWindow, show_dialog: AltValShowDia
     ui.btn_md_val_temp_alarm_pos_port_b.clicked.connect(
         lambda: show_dialog("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
 #############################################
-def set_dialog_buttons_maintenance(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
-    """Function for setting all the dialogs opened from all the buttons on maintenance screen"""
-    ui.btn_DoorSideA_TimeMaint.clicked.connect(
-        lambda: show_dialog("Alterar tempo de manutenção do lado A:","Cyl_DoorSideA.TimeMaintTest", "int")
-    )
-    ui.btn_DoorSideB_TimeMaint.clicked.connect(
-        lambda: show_dialog("Alterar tempo de manutenção do lado B:","Cyl_DoorSideB.TimeMaintTest", "int")
-    )
-    ui.btn_SpindleRobo_TimeMaint.clicked.connect(
-        lambda: show_dialog("Alterar tempo de manutenção do spindle:","Cyl_SpindleRobo.TimeMaintTest", "int")
-    )
-#############################################
-def change_status(tag: str, stsWidget: QWidget):
-    """Change the red/green circles of status"""
+def change_status(tag: Union[int, bool], stsWidget: QWidget):
+    """
+    This function change the red/green status circles based on the tag received
+    """
     if tag:
         stsWidget.setEnabled(True)
     else:
         stsWidget.setEnabled(False)
-#############################################
-def sideA_status_update(tag: dict, ui: Ui_MainWindow):
-    change_status(tag["InSenExt"], ui.sts_port_fech_a)
-    change_status(tag["InSenRet"], ui.sts_port_aber_a)
-    change_status(tag["OutExtCyl"], ui.sts_plc_port_fech_a)
-    change_status(tag["OutRetCyl"], ui.sts_plc_port_aber_a)
-
-def sideB_status_update(tag: dict, ui: Ui_MainWindow):
-    change_status(tag["InSenExt"], ui.sts_port_fech_b)
-    change_status(tag["InSenRet"], ui.sts_port_aber_b)
-    change_status(tag["OutExtCyl"], ui.sts_plc_port_fech_b)
-    change_status(tag["OutRetCyl"], ui.sts_plc_port_aber_b)
-
-def spindle_status_update(tag: dict, ui: Ui_MainWindow):
-    change_status(tag["OutExtCyl"], ui.sts_plc_liga_spindle)
-    change_status(tag["OutRetCyl"], ui.sts_plc_desl_spindle)
 #############################################

@@ -21,7 +21,7 @@ from utils.alarm_control import *
 
 from utils.Types import *
 
-from screens import home, robot, alarms, production
+from screens import home, robot, alarms, production as prod, maintenance as maint
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -49,7 +49,7 @@ class RnRobotics_Gui:
 
         self.main_win.setWindowTitle("HMI SouSmile")
         ##################################################################
-        # Login
+        # Login ##########################################################
         ##################################################################
         self.userName = "Nenhum usuario logado"
         self.ui.lbl_username.setText(self.userName)
@@ -114,21 +114,21 @@ class RnRobotics_Gui:
         self.threadpool_11.start(self.worker_cylSpindle)
         self.threadpool_12.start(self.worker_indexRobotPos)
         ###################################################################
-        # main screen of the application
+        # main screen of the application ##################################
         ###################################################################
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
         ###################################################################
         self.define_navigate_buttons()
-        ####################################################################
+        ###################################################################
         self.tag_index = ""
         self.tag_type: TagTypes = ""
         self.action_to_confirm: ActionsToConfirm = ""
-        ####################################################################
-        # button to back screen
+        ###################################################################
+        # button to back screen ###########################################
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
-        ####################################################################
-        # adding alarms to list
-        ####################################################################
+        ###################################################################
+        # adding alarms to list ###########################################
+        ###################################################################
         # ToDo => ver como receber os alarmes e os tempos
         '''
         alarms.define_new_alarm(self.ui, "12:35:31", 0)
@@ -137,37 +137,23 @@ class RnRobotics_Gui:
         alarms.define_new_alarm(self.ui, "15:34:46", 64)
         '''
         ####################################################################
-        # Widgets on home screen
+        # Widgets on home screen ###########################################
         ####################################################################
-        home.home_screen_func(self.ui, self.insert_code_dialog.show)
-        home.home_btn_man_auto(self.ui)
+        home.define_buttons(self.ui, self.insert_code_dialog.show)
         robot.define_buttons(self.ui, self.altera_valor_dialog.show)
         alarms.define_buttons(self.ui)
-        production.define_buttons(self.ui)
+        prod.define_buttons(self.ui)
+        maint.define_buttons(self.ui, self.altera_valor_dialog.show)
+        maint.btn_MoveHome(self.ui, self.confirm_dialog)
         ####################################################################
-        # button to show pop up to change value
-        set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
+        # button to show pop up to change value ############################
         set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
-        self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
         ####################################################################
-        # enable pts logs
+        # enable pts logs ##################################################
         self.ui.btn_habilita_logs.clicked.connect(lambda: set_reset_button("HMI.EnableLog",
                                                                            self.ui.btn_habilita_logs,
                                                                            "Desab. Log\nde Pontos",
                                                                            "Habilita Log\nde Pontos"))
-        ####################################################################
-        # set maintenance buttons
-        # self.ui.btn_DoorSideA_abrir.clicked.connect(lambda: change_button("Cyl_DoorSideA.ManRet"))
-        # self.ui.btn_DoorSideA_fechar.clicked.connect(lambda: change_button("Cyl_DoorSideA.ManExt"))
-        # self.ui.btn_DoorSideA_manut.clicked.connect(lambda: change_button("Cyl_DoorSideA.MaintTest"))
-
-        # self.ui.btn_DoorSideB_abrir.clicked.connect(lambda: change_button("Cyl_DoorSideB.ManRet"))
-        # self.ui.btn_DoorSideB_fechar.clicked.connect(lambda: change_button("Cyl_DoorSideB.ManExt"))
-        # self.ui.btn_DoorSideB_manut.clicked.connect(lambda: change_button("Cyl_DoorSideB.MaintTest"))
-
-        # self.ui.btn_SpindleRobo_abrir.clicked.connect(lambda: change_button("Cyl_SpindleRobo.ManRet"))
-        # self.ui.btn_SpindleRobo_fechar.clicked.connect(lambda: change_button("Cyl_SpindleRobo.ManExt"))
-        # self.ui.btn_SpindleRobo_manut.clicked.connect(lambda: change_button("Cyl_SpindleRobo.MaintTest"))
         ####################################################################
 
     def show(self):
@@ -238,7 +224,7 @@ class RnRobotics_Gui:
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 3:
-            production.UpdateHMI(self.ui, tag)
+            prod.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
             try:
                 currentOffset = tag["CurrentOffset"]
@@ -277,12 +263,7 @@ class RnRobotics_Gui:
     ########################################################################
     def update_CylDoorSideA(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            try:
-                self.ui.lbl_TimeMaint_A.setText(str(tag["TimeMaintTest"]))
-                sideA_status_update(tag, self.ui)
-            except:
-                pass
-
+            maint.UpdateCylA(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
             try:
                 self.ui.lbl_delay_abre_port_a.setText(str(tag["TimeDelayRet"]))
@@ -293,12 +274,7 @@ class RnRobotics_Gui:
                 pass
     def update_CylDoorSideB(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            try:
-                self.ui.lbl_TimeMaint_B.setText(str(tag["TimeMaintTest"]))
-                sideB_status_update(tag, self.ui)
-            except:
-                pass
-
+            maint.UpdateCylB(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
             try:
                 self.ui.lbl_delay_abre_port_b.setText(str(tag["TimeDelayRet"]))
@@ -309,11 +285,7 @@ class RnRobotics_Gui:
                 pass
     def update_CylSpindle(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            try:
-                self.ui.lbl_TimeMaint_Spindle.setText(str(tag["TimeMaintTest"]))
-                spindle_status_update(tag, self.ui)
-            except:
-                pass
+            maint.UpdateCylSpindle(self.ui, tag)
     ########################################################################
     def update_indexRobotPos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
@@ -342,12 +314,7 @@ class RnRobotics_Gui:
     ########################################################################
     def update_BarCode(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
-            try:
-                self.ui.lbl_BarCodeReader_data.setText(str(tag["Data"]))
-                WStatus = self.ui.sts_BarCodeReader_completed
-                change_status(tag["ReadCompete"], WStatus)
-            except:
-                pass
+            maint.UpdateBarCode(self.ui, tag)
     ########################################################################
     # Start Threads
     ########################################################################

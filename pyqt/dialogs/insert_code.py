@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QDialog
 from pyqt.ui_py.ui_cod_dialog_win import Ui_Dialog
 
-from pyqt.utils.gui_functions import write_QlineEdit
+from pyqt.utils.gui_functions import write_LineEdit
 from pyqt.utils.Types import TagTypes
 
 class InsertCodeDialog:
@@ -27,6 +27,6 @@ class InsertCodeDialog:
 
     def insert_button(self):
         self.ui.btn_insert_code_man.clicked.connect(
-            lambda: write_QlineEdit(self.TAG_INDEX, self.dialog,
-                                    self.ui.txt_code, self.TAG_TYPE)
+            lambda: write_LineEdit(self.TAG_INDEX, self.dialog,
+                                   self.ui.txt_code, self.TAG_TYPE)
         )

@@ -30,7 +30,7 @@ class ConfirmationDialog:
             if action == "MoveHome":
                 # escreve a tag referente para cada ação
                 # write_tag("", 1)
-                pass
+                print(f"{action} realized")
             elif action == "":
                 raise Exception("Nenhuma ação foi passada")
         except Exception as e:
@@ -41,6 +41,7 @@ class ConfirmationDialog:
     def cancel_action(self):
         self.ACTION_TO_CONFIRM = ""
         self.dialog.close()
+        print("Action canceled")
 
     def buttons_of_dialog(self):
         self.ui.btn_confirm.clicked.connect(self.confirm_action)
