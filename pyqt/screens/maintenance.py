@@ -36,10 +36,9 @@ def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_With
 def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
     global ui
     ui.btn_move_home.clicked.connect(
-        lambda: dialog.show(
-            "MoveHome",
-            "Cuidado, você vai movimentar o robô para aposição inicial, caso tenha risco de colisão, "
-            "movimente o robô para a posição inicial manualmente!"))
+        lambda: dialog.show_dialog("MoveHome",
+                                   "Cuidado, você vai movimentar o robô para aposição inicial, caso tenha risco de colisão, "
+                                   "movimente o robô para a posição inicial manualmente!"))
 
 def UpdateCylA(tag):
     global ui

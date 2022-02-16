@@ -1,28 +1,28 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog
 from pyqt.ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 
 from pyqt.utils.Types import *
 
-class ConfirmationDialog:
-    def __init__(self):
-        super(ConfirmationDialog, self).__init__()
-
-        self.dialog = QDialog()
+class ConfirmationDialog(QDialog):
+    def __init__(self, parents=None):
+        super(ConfirmationDialog, self).__init__(parents)
+        self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
         self.ui = Ui_ConfirmDialog()
-        self.ui.setupUi(self.dialog)
+        self.ui.setupUi(self)
 
         self.ACTION_TO_CONFIRM: ActionsToConfirm = ""
 
         self.buttons_of_dialog()
 
-    def setWindowIcon(self, Icon):
-        self.dialog.setWindowIcon(Icon)
-
-    def show(self, action_to_confirm: ActionsToConfirm, text: str = ""):
+    def show_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
         self.ACTION_TO_CONFIRM = action_to_confirm
         if text:
             self.ui.description_text.setText(text)
-        self.dialog.exec_()
+        self.exec_()
+
+    def closeEvent(self, event):
+        self.cancel_action()
 
     def confirm_action(self):
         action = self.ACTION_TO_CONFIRM
@@ -36,11 +36,11 @@ class ConfirmationDialog:
         except Exception as e:
             print(f"{e} - Erro na ação")
         finally:
-            self.dialog.close()
+            self.close()
 
     def cancel_action(self):
         self.ACTION_TO_CONFIRM = ""
-        self.dialog.close()
+        self.close()
         print("Action canceled")
 
     def buttons_of_dialog(self):

@@ -30,26 +30,21 @@ from dialogs.altera_valor import AlteraValorDialog
 from dialogs.login import LoginDialog
 ##############################################################
 
-class RnRobotics_Gui:
+class RnRobotics_Gui(QMainWindow):
     def __init__(self):
-        super(RnRobotics_Gui, self).__init__()
-        self.main_win = QMainWindow()
+        super().__init__()
         self.ui = Ui_MainWindow()
-        self.ui.setupUi(self.main_win)
+        self.ui.setupUi(self)
 
-        self.insert_code_dialog = InsertCodeDialog()
-        self.altera_valor_dialog = AlteraValorDialog()
-        self.login_dialog = LoginDialog()
-        self.confirm_dialog = ConfirmationDialog()
+        self.insert_code_dialog = InsertCodeDialog(self)
+        self.altera_valor_dialog = AlteraValorDialog(self)
+        self.login_dialog = LoginDialog(self)
+        self.confirm_dialog = ConfirmationDialog(self)
 
         win_icon = QIcon("./assets/images/RN_ico.png")
-        self.main_win.setWindowIcon(win_icon)
-        self.insert_code_dialog.setWindowIcon(win_icon)
-        self.altera_valor_dialog.setWindowIcon(win_icon)
-        self.login_dialog.setWindowIcon(win_icon)
-        self.confirm_dialog.setWindowIcon(win_icon)
+        self.setWindowIcon(win_icon)
 
-        self.main_win.setWindowTitle("HMI SouSmile")
+        self.setWindowTitle("HMI SouSmile")
         ##################################################################
         self.userName = "Nenhum usuário logado"
         self.ui.lbl_username.setText(self.userName)
@@ -122,12 +117,12 @@ class RnRobotics_Gui:
         ###################################################################
         # Widgets on Screen ################################################
         ####################################################################
-        home.define_buttons(self.ui, self.insert_code_dialog.show)
-        robot.define_buttons(self.ui, self.altera_valor_dialog.show)
+        home.define_buttons(self.ui, self.insert_code_dialog.show_dialog)
+        robot.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
         alarms.define_buttons(self.ui)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog.show, self.confirm_dialog)
-        eng.define_buttons(self.ui, self.altera_valor_dialog.show)
+        maint.define_buttons(self.ui, self.altera_valor_dialog.show_dialog, self.confirm_dialog)
+        eng.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
         self.tag_index = ""
@@ -144,12 +139,6 @@ class RnRobotics_Gui:
         '''
         ####################################################################
 
-    def show(self):
-        self.main_win.show()
-
-    def show_max(self):
-        self.main_win.showMaximized()
-
     ####################################################################
     #### functions to navigate between screens
     ####################################################################
@@ -163,7 +152,7 @@ class RnRobotics_Gui:
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
         ### login and logout
-        self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
+        self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show_dialog(self.ui.lbl_username))
         self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
         ### alarm
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
@@ -300,6 +289,6 @@ class RnRobotics_Gui:
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main_win = RnRobotics_Gui()
-    main_win.show_max()
+    main_win.showMaximized()
     app.aboutToQuit.connect(main_win.stop_threads)
     sys.exit(app.exec_())
