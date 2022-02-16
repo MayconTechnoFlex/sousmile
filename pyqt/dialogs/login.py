@@ -43,6 +43,7 @@ class LoginDialog:
                 break
         if not login_successful:
             self.ui.lbl_login_staus.setText('Usuário ou senha incorreto')
+            self.ui.user_login.setFocus()
 
     def logout_user(self):
         disconnect_user()

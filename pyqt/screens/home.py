@@ -2,13 +2,30 @@
 # Contorl of widgets home screen
 ########################################################################################
 from pyqt.ui_py.ui_gui import Ui_MainWindow
-from pyqt.utils.gui_functions import set_reset_button, sts_string
+from PyQt5.QtWidgets import QLabel
+from pyqt.utils.gui_functions import set_reset_button
 from pyqt.utils.Types import AltValShowDialog_WithoutText
 
+
+def sts_string(id_num: int, widget: QLabel):
+    if id_num == 100:
+        widget.setText('Transferencia do codigo da peca habilitado para o lado A1')
+    elif id_num == 110:
+        widget.setText('Transferencia do lado A1 aguardando python iniciar a transferencia')
+    elif id_num == 120:
+        widget.setText('Transferencia iniciou A1  python -> CLP')
+    elif id_num == 200:
+        widget.setText('Transferencia do codigo da peca habilitado para o lado A2')
+    elif id_num == 210:
+        widget.setText('Transferencia do lado A2 aguardando python iniciar a transferencia')
+    elif id_num == 220:
+        widget.setText('Transferencia iniciou lado A2  python -> CLP')
+    elif id_num == 0:
+        widget.setText('Aguardando leitura do código')
+    else:
+        widget.setText('Erro')
+
 def home_screen_func(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText):
-    ####################################################################
-    # button to show pop up to insert code manually
-    ####################################################################
     ui.btn_in_cod_man_a1.clicked.connect(lambda: show_dialog('DataCtrl_A1.ProdCode', "string"))
     ui.btn_in_cod_man_a2.clicked.connect(lambda: show_dialog('DataCtrl_A2.ProdCode', "string"))
     ui.btn_in_cod_man_b1.clicked.connect(lambda: show_dialog('DataCtrl_B1.ProdCode', "string"))
@@ -16,13 +33,13 @@ def home_screen_func(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutTex
 
 def home_btn_man_auto(ui: Ui_MainWindow):
     ui.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
-                                                                         ui.btn_man_auto_lado_a,
-                                                                         'Automático',
-                                                                         'Manual'))
+                                                                    ui.btn_man_auto_lado_a,
+                                                                    'Automático',
+                                                                    'Manual'))
     ui.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
-                                                                         ui.btn_man_auto_lado_b,
-                                                                         'Automático',
-                                                                         'Manual'))
+                                                                    ui.btn_man_auto_lado_b,
+                                                                    'Automático',
+                                                                    'Manual'))
 
 def UpdateDataCtrl_A1(ui: Ui_MainWindow, tag):
     try:

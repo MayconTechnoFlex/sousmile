@@ -26,24 +26,6 @@ def write_QlineEdit(tag_name: str, dialog: QDialog, widget: QWidget, dataType: T
     widget.clear()
     dialog.close()
 #############################################
-def sts_string(id_num: int, widget: QWidget):
-    if id_num == 100:
-        widget.setText('Transferencia do codigo da peca habilitado para o lado A1')
-    elif id_num == 110:
-        widget.setText('Transferencia do lado A1 aguardando python iniciar a transferencia')
-    elif id_num == 120:
-        widget.setText('Transferencia iniciou A1  python -> CLP')
-    elif id_num == 200:
-        widget.setText('Transferencia do codigo da peca habilitado para o lado A2')
-    elif id_num == 210:
-        widget.setText('Transferencia do lado A2 aguardando python iniciar a transferencia')
-    elif id_num == 220:
-        widget.setText('Transferencia iniciou lado A2  python -> CLP')
-    elif id_num == 0:
-        widget.setText('Aguardando leitura do código')
-    else:
-        widget.setText('Erro')
-#############################################
 def change_state_button(tag: str):
     try:
         value = read_tags(tag)
@@ -129,10 +111,6 @@ def change_status(tag: str, stsWidget: QWidget):
         stsWidget.setEnabled(True)
     else:
         stsWidget.setEnabled(False)
-#############################################
-def reset_product(*tags: str):
-    for tag in tags:
-        write_tag(tag, 0)
 #############################################
 def sideA_status_update(tag: dict, ui: Ui_MainWindow):
     change_status(tag["InSenExt"], ui.sts_port_fech_a)

@@ -21,7 +21,7 @@ from utils.alarm_control import *
 
 from utils.Types import *
 
-from screens import home, robot, alarms
+from screens import home, robot, alarms, production
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -118,19 +118,7 @@ class RnRobotics_Gui:
         ###################################################################
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
         ###################################################################
-        # buttons to navigate between screens
-        ###################################################################
-        self.ui.btnHomeScreen.clicked.connect(self.show_home)
-        self.ui.btnRobotScreen.clicked.connect(self.show_robot)
-        self.ui.btnAlarmScreen.clicked.connect(self.show_alarm)
-        self.ui.btnProductionScreen.clicked.connect(self.show_production)
-        self.ui.btnMaintenaceScreen.clicked.connect(self.show_maintenance)
-        self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
-        self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
-        self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
-        self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
-        self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
-        self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
+        self.define_navigate_buttons()
         ####################################################################
         self.tag_index = ""
         self.tag_type: TagTypes = ""
@@ -155,33 +143,12 @@ class RnRobotics_Gui:
         home.home_btn_man_auto(self.ui)
         robot.define_buttons(self.ui, self.altera_valor_dialog.show)
         alarms.define_buttons(self.ui)
+        production.define_buttons(self.ui)
         ####################################################################
         # button to show pop up to change value
         set_dialog_buttons_maintenance(self.ui, self.altera_valor_dialog.show)
         set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
         self.ui.btn_move_home.clicked.connect(lambda: self.confirm_dialog.show("MoveHome"))
-        ####################################################################
-        # Side A: man - auto button
-        ####################################################################
-        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
-                                                                             self.ui.btn_man_auto_lado_a,
-                                                                             'Automático',
-                                                                             'Manual'))
-        self.ui.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
-                                                                             self.ui.btn_man_auto_lado_b,
-                                                                             'Automático',
-                                                                             'Manual'))
-        ####################################################################
-        # Reset Production Count
-        ####################################################################
-        self.ui.btn_reset_prod_a1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1"))
-        self.ui.btn_reset_prod_a2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA2"))
-        self.ui.btn_reset_prod_b1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1"))
-        self.ui.btn_reset_prod_b2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB2"))
-        self.ui.btn_reset_prod_total_a.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1",
-                                                                             "HMI.Production.PartsDoneA2"))
-        self.ui.btn_reset_prod_total_b.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1",
-                                                                             "HMI.Production.PartsDoneB2"))
         ####################################################################
         # enable pts logs
         self.ui.btn_habilita_logs.clicked.connect(lambda: set_reset_button("HMI.EnableLog",
@@ -212,6 +179,19 @@ class RnRobotics_Gui:
     ####################################################################
     #### functions to navigate between screens
     ####################################################################
+    def define_navigate_buttons(self):
+        self.ui.btnHomeScreen.clicked.connect(self.show_home)
+        self.ui.btnRobotScreen.clicked.connect(self.show_robot)
+        self.ui.btnAlarmScreen.clicked.connect(self.show_alarm)
+        self.ui.btnProductionScreen.clicked.connect(self.show_production)
+        self.ui.btnMaintenaceScreen.clicked.connect(self.show_maintenance)
+        self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
+        self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
+        self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
+        self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
+        self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
+        self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
+
     def show_home(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
 
@@ -237,14 +217,7 @@ class RnRobotics_Gui:
     def show_alarm_history(self):
         self.ui.hist_alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarm_history_screen)
-    ####################################################################
-    #### function to show dialogs
-    ####################################################################
 
-    ####################################################################
-    #### others buttons functions (test)
-    # ToDo => melhorar botões e estados
-    # ToDo 2 => mover funções para outro arquivo
     #######################################################################
     #### Updating Tags on the PLC
     #######################################################################
@@ -265,23 +238,7 @@ class RnRobotics_Gui:
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 3:
-            try:
-                prodTag = tag["Production"]
-                self.ui.lbl_PartsDoneA1.setText(str(prodTag["PartsDoneA1"]))
-                self.ui.lbl_PartsDoneA2.setText(str(prodTag["PartsDoneA2"]))
-                self.ui.lbl_PartsDoneSideA.setText(str(prodTag["PartDoneSideA"]))
-                self.ui.lbl_PartsDoneB1.setText(str(prodTag["PartsDoneB1"]))
-                self.ui.lbl_PartsDoneB2.setText(str(prodTag["PartsDoneB2"]))
-                self.ui.lbl_PartsDoneSideB.setText(str(prodTag["PartDoneSideB"]))
-
-                self.ui.lbl_TimeCutA1.setText(str(round(prodTag["TimeCutA1"], 2)))
-                self.ui.lbl_TimeCutA2.setText(str(round(prodTag["TimeCutA2"], 2)))
-                self.ui.lbl_TimeCutSideA.setText(str(round(prodTag["TimeCutSideA"], 2)))
-                self.ui.lbl_TimeCutB1.setText(str(round(prodTag["TimeCutB1"], 2)))
-                self.ui.lbl_TimeCutB2.setText(str(round(prodTag["TimeCutB2"], 2)))
-                self.ui.lbl_TimeCutSideB.setText(str(round(prodTag["TimeCutSideB"], 2)))
-            except:
-                pass
+            production.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
             try:
                 currentOffset = tag["CurrentOffset"]
