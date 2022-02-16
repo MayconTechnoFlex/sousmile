@@ -4,7 +4,8 @@ from pyqt.dialogs.confirmation import ConfirmationDialog
 from pyqt.utils.gui_functions import change_state_button, change_status
 from pyqt.utils.Types import AltValShowDialog_WithText
 
-def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText, confirmDialog: ConfirmationDialog):
+    btns_ConfirmDialogs(ui, confirmDialog)
     ui.btn_DoorSideA_abrir.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManRet"))
     ui.btn_DoorSideA_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManExt"))
     ui.btn_DoorSideA_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.MaintTest"))
@@ -26,7 +27,7 @@ def define_buttons(ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
         lambda: show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
     )
 
-def btn_MoveHome(ui: Ui_MainWindow, dialog: ConfirmationDialog):
+def btns_ConfirmDialogs(ui: Ui_MainWindow, dialog: ConfirmationDialog):
     ui.btn_move_home.clicked.connect(
         lambda: dialog.show(
             "MoveHome",

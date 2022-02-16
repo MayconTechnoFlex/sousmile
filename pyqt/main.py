@@ -21,7 +21,8 @@ from utils.alarm_control import *
 
 from utils.Types import *
 
-from screens import home, robot, alarms, production as prod, maintenance as maint
+from screens import home, robot, alarms,\
+    production as prod, maintenance as maint, engineering as eng
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -51,7 +52,7 @@ class RnRobotics_Gui:
         ##################################################################
         # Login ##########################################################
         ##################################################################
-        self.userName = "Nenhum usuario logado"
+        self.userName = "Nenhum usuário logado"
         self.ui.lbl_username.setText(self.userName)
         ##################################################################
         # thread - to update PLC values ##################################
@@ -128,7 +129,6 @@ class RnRobotics_Gui:
         self.ui.btn_volta_manut_screen.clicked.connect(self.show_maintenance)
         ###################################################################
         # adding alarms to list ###########################################
-        ###################################################################
         # ToDo => ver como receber os alarmes e os tempos
         '''
         alarms.define_new_alarm(self.ui, "12:35:31", 0)
@@ -137,23 +137,14 @@ class RnRobotics_Gui:
         alarms.define_new_alarm(self.ui, "15:34:46", 64)
         '''
         ####################################################################
-        # Widgets on home screen ###########################################
+        # Widgets on Screen ################################################
         ####################################################################
         home.define_buttons(self.ui, self.insert_code_dialog.show)
         robot.define_buttons(self.ui, self.altera_valor_dialog.show)
         alarms.define_buttons(self.ui)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog.show)
-        maint.btn_MoveHome(self.ui, self.confirm_dialog)
-        ####################################################################
-        # button to show pop up to change value ############################
-        set_dialog_buttons_engineering(self.ui, self.altera_valor_dialog.show)
-        ####################################################################
-        # enable pts logs ##################################################
-        self.ui.btn_habilita_logs.clicked.connect(lambda: set_reset_button("HMI.EnableLog",
-                                                                           self.ui.btn_habilita_logs,
-                                                                           "Desab. Log\nde Pontos",
-                                                                           "Habilita Log\nde Pontos"))
+        maint.define_buttons(self.ui, self.altera_valor_dialog.show, self.confirm_dialog)
+        eng.define_buttons(self.ui, self.altera_valor_dialog.show)
         ####################################################################
 
     def show(self):
@@ -166,6 +157,7 @@ class RnRobotics_Gui:
     #### functions to navigate between screens
     ####################################################################
     def define_navigate_buttons(self):
+        ### control screen
         self.ui.btnHomeScreen.clicked.connect(self.show_home)
         self.ui.btnRobotScreen.clicked.connect(self.show_robot)
         self.ui.btnAlarmScreen.clicked.connect(self.show_alarm)
@@ -173,8 +165,10 @@ class RnRobotics_Gui:
         self.ui.btnMaintenaceScreen.clicked.connect(self.show_maintenance)
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
+        ### login and logout
         self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show(self.ui.lbl_username))
         self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
+        ### alarm
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
 
@@ -210,12 +204,15 @@ class RnRobotics_Gui:
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_A1(self.ui, tag)
+    #######################################################################
     def update_DataCtrl_A2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_A2(self.ui, tag)
+    #######################################################################
     def update_DataCtrl_B1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_B1(self.ui, tag)
+    #######################################################################
     def update_DataCtrl_B2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_B2(self.ui, tag)
@@ -226,98 +223,48 @@ class RnRobotics_Gui:
         if self.ui.stackedWidget.currentIndex() == 3:
             prod.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            try:
-                currentOffset = tag["CurrentOffset"]
-                self.ui.lbl_PosX.setText(str(round(currentOffset["PosX"], 1)))
-                self.ui.lbl_PosY.setText(str(round(currentOffset["PosY"], 1)))
-                self.ui.lbl_PosZ.setText(str(round(currentOffset["PosZ"], 1)))
-                self.ui.lbl_PosC.setText(str(round(currentOffset["PosC"], 1)))
-                self.ui.lbl_PosD.setText(str(round(currentOffset["PosD"], 1)))
-                self.ui.lbl_MaxPts.setText(str(tag["NumPosMax"]))
-
-                value = tag["EnableLog"]
-                if value == 0:
-                    self.ui.btn_habilita_logs.setText("Desab. log\nde pontos")
-                elif value == 1:
-                    self.ui.btn_habilita_logs.setText("Habilita log\nde pontos")
-                else:
-                    pass
-            except:
-                pass
+            eng.UpdateHMI(self.ui, tag)
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
-            try:
-                self.ui.lbl_dist_xyz.setText(str(round(tag["Dist_XYZ"], 2)))
-                self.ui.lbl_diff_c.setText(str(round(tag["Diff_AngleC"], 2)))
-                self.ui.lbl_diff_d.setText(str(round(tag["Diff_AngleD"], 2)))
-                self.ui.lbl_var_h.setText(str(round(tag["Dist_H"], 2)))
-                self.ui.lbl_d_menor_pts.setText(str(round(tag["DistVar"], 2)))
-
-                self.ui.lbl_CutDepth_A1.setText(str(round(tag["CutDepthA1"])))
-                self.ui.lbl_CutDepth_A2.setText(str(round(tag["CutDepthA2"])))
-                self.ui.lbl_CutDepth_B1.setText(str(round(tag["CutDepthB1"])))
-                self.ui.lbl_CutDepth_B2.setText(str(round(tag["CutDepthB2"])))
-            except:
-                pass
+            eng.UpdateConfigPts(self.ui, tag)
     ########################################################################
     def update_CylDoorSideA(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateCylA(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            try:
-                self.ui.lbl_delay_abre_port_a.setText(str(tag["TimeDelayRet"]))
-                self.ui.lbl_delay_fecha_port_a.setText(str(tag["TimeDelayExt"]))
-                self.ui.lbl_temp_alarm_sens_a.setText(str(tag["TimeBothSenOnOff"]))
-                self.ui.lbl_temp_alarm_pos_port_a.setText(str(tag["TimeOut"]))
-            except:
-                pass
+            eng.UpdateCylA(self.ui, tag)
+    ########################################################################
     def update_CylDoorSideB(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateCylB(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            try:
-                self.ui.lbl_delay_abre_port_b.setText(str(tag["TimeDelayRet"]))
-                self.ui.lbl_delay_fecha_port_b.setText(str(tag["TimeDelayExt"]))
-                self.ui.lbl_temp_alarm_sens_b.setText(str(tag["TimeBothSenOnOff"]))
-                self.ui.lbl_temp_alarm_pos_port_b.setText(str(tag["TimeOut"]))
-            except:
-                pass
+            eng.UpdateCylB(self.ui, tag)
+    ########################################################################
     def update_CylSpindle(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateCylSpindle(self.ui, tag)
     ########################################################################
     def update_indexRobotPos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
-            try:
-                self.ui.lbl_RobotPos.setText(str(tag))
-            except:
-                pass
+            eng.UpdateRobotPos(self.ui, tag)
     ########################################################################
     def update_RoboInput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
-            try:
-                robot.input_update(tag, self.ui)
-            except:
-                pass
+            robot.UpdateInput(self.ui, tag)
+    ########################################################################
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
-            try:
-                robot.output_update(tag, self.ui)
-            except:
-                pass
+            robot.UpdateOutput(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 6:
-            try:
-                self.ui.lbl_CutSpeed.setText(str(tag["CutSpeed"]))
-            except:
-                pass
+            eng.UpdateRobotOutput(self.ui, tag)
     ########################################################################
     def update_BarCode(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateBarCode(self.ui, tag)
+
     ########################################################################
-    # Start Threads
-    ########################################################################
+    #### Start Threads
     def start_threads(self):
         self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
@@ -333,8 +280,7 @@ class RnRobotics_Gui:
         self.threadpool_11.start(self.worker_cylSpindle)
         self.threadpool_12.start(self.worker_indexRobotPos)
     ########################################################################
-    # Stop Threads
-    ########################################################################
+    #### Stop Threads
     def stop_threads(self):
         print("Finalizando Threads")
         self.worker.stop()
@@ -351,8 +297,6 @@ class RnRobotics_Gui:
         self.worker_cylSpindle.stop()
         self.worker_indexRobotPos.stop()
         print("Threads finalizadas")
-    ########################################################################
-    # Stop the threads when the window is closed
     ########################################################################
 
 
