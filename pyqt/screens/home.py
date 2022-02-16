@@ -1,7 +1,7 @@
 ########################################################################################
 # Contorl of widgets home screen
 ########################################################################################
-from pyqt.main import *
+from pyqt.ui_py.ui_gui import Ui_MainWindow
 from pyqt.utils.gui_functions import set_reset_button, sts_string
 from pyqt.utils.Types import AltValShowDialog_WithoutText
 
@@ -61,8 +61,8 @@ def UpdateDataCtrl_B2(ui: Ui_MainWindow, tag):
         pass
 
 def UpdateHMI(ui: Ui_MainWindow, tag):
-    prodTag = tag["Production"]
     try:
+        prodTag = tag["Production"]
         ui.lbl_production_TimeCutA1.setText(str(round(prodTag['TimeCutA1'], 2)))
         ui.lbl_production_TimeCutA2.setText(str(round(prodTag['TimeCutA2'], 2)))
         ui.lbl_production_TimeCutB1.setText(str(round(prodTag['TimeCutB1'], 2)))

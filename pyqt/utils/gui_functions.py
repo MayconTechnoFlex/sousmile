@@ -6,7 +6,7 @@
 #############################################
 from PyQt5.QtWidgets import QWidget, QDialog
 from pyqt.utils.ctrl_plc import *
-from pyqt.main import Ui_MainWindow
+from pyqt.ui_py.ui_gui import Ui_MainWindow
 from pyqt.utils.Types import *
 #############################################
 ## Edit PLC information with a QLineEdit

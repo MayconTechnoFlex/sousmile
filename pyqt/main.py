@@ -293,12 +293,11 @@ class RnRobotics_Gui:
             home.UpdateDataCtrl_B2(self.ui, tag)
     #######################################################################
     def update_hmi(self, tag):
-        prodTag = tag["Production"]
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateHMI(self.ui, tag)
         if self.ui.stackedWidget.currentIndex() == 3:
             try:
-                ### updating tags
+                prodTag = tag["Production"]
                 self.ui.lbl_PartsDoneA1.setText(str(prodTag["PartsDoneA1"]))
                 self.ui.lbl_PartsDoneA2.setText(str(prodTag["PartsDoneA2"]))
                 self.ui.lbl_PartsDoneSideA.setText(str(prodTag["PartDoneSideA"]))
@@ -315,8 +314,8 @@ class RnRobotics_Gui:
             except:
                 pass
         if self.ui.stackedWidget.currentIndex() == 6:
-            currentOffset = tag["CurrentOffset"]
             try:
+                currentOffset = tag["CurrentOffset"]
                 self.ui.lbl_PosX.setText(str(round(currentOffset["PosX"], 1)))
                 self.ui.lbl_PosY.setText(str(round(currentOffset["PosY"], 1)))
                 self.ui.lbl_PosZ.setText(str(round(currentOffset["PosZ"], 1)))
