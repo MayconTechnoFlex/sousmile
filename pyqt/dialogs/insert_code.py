@@ -1,3 +1,5 @@
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog
 from pyqt.ui_py.ui_cod_dialog_win import Ui_Dialog
 
@@ -15,6 +17,9 @@ class InsertCodeDialog:
         self.TAG_INDEX: str = ""
         self.TAG_TYPE: TagTypes = ""
 
+        regex = QRegExp(r"[\w\S]*")
+        self.validator = QRegExpValidator(regex)
+
         self.insert_button()
 
     def setWindowIcon(self, Icon):
@@ -23,6 +28,7 @@ class InsertCodeDialog:
     def show(self, tag: str, tag_type: TagTypes):
         self.TAG_INDEX = tag
         self.TAG_TYPE = tag_type
+        self.ui.txt_code.setValidator(self.validator)
         self.dialog.exec_()
 
     def insert_button(self):
