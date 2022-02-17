@@ -2,11 +2,12 @@
 
 from pycomm3 import LogixDriver
 from typing import Union
+from utils.Types import PLCReturn
 
 IP = '192.168.1.10'
 
 
-def read_tags(tag_name: str) -> Union[str, int, float, list, dict, Exception]:
+def read_tags(tag_name: str) -> PLCReturn:
     """
     Read a tag from PLC and returns the value of it
     If it goes wrong, print's the error

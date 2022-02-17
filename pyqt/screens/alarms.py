@@ -1,23 +1,38 @@
+"""Module with all functions used on the AlarmScreen of the application"""
+
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
 
 from ui_py.ui_gui import Ui_MainWindow
 from utils.alarm_control import *
 
-ui: Ui_MainWindow
+UI: Ui_MainWindow
 CURRENT_ROW = 0
 
 def define_buttons(receive_ui: Ui_MainWindow):
-    global ui
-    ui = receive_ui
-    ui.btn_sobe_alarm.clicked.connect(lambda: row_up(ui.alarm_list_widget))
-    ui.btn_desce_alarm.clicked.connect(lambda: row_down(ui.alarm_list_widget))
-    ui.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(ui.hist_alarm_list_widget))
-    ui.btn_desce_alarm_hist.clicked.connect(lambda: row_down(ui.hist_alarm_list_widget))
+    """
+    Define the buttons of the screen
+
+    Params:
+        receive_ui = main ui of the application
+    """
+    global UI
+    UI = receive_ui
+    UI.btn_sobe_alarm.clicked.connect(lambda: row_up(UI.alarm_list_widget))
+    UI.btn_desce_alarm.clicked.connect(lambda: row_down(UI.alarm_list_widget))
+    UI.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(UI.hist_alarm_list_widget))
+    UI.btn_desce_alarm_hist.clicked.connect(lambda: row_down(UI.hist_alarm_list_widget))
 
 def define_new_alarm(alarm_time: str, alarm_id: int):
-    listWidget = ui.alarm_list_widget
-    histWidget = ui.hist_alarm_list_widget
+    """
+    Set up a new alarm in screen and in the alarm_control module
+
+    Params:
+        alarm_time = string of when the alarm appears
+        alarm_id = number of the alarm
+    """
+    listWidget = UI.alarm_list_widget
+    histWidget = UI.hist_alarm_list_widget
     """
     da pra adicionar de duas formas:
     1ª adicionar no final da lista
@@ -50,7 +65,13 @@ def define_new_alarm(alarm_time: str, alarm_id: int):
     histWidget.setItem(hist_row_num, 1, hist_msg)
 
 def delete_alarm_row(alarm_id: int):
-    listWidget: QTableWidget = ui.alarm_list_widget
+    """
+    Deletes an alarm from the Actual Alarms Screen, but keeps in the historic
+
+    Params:
+        alarm_id = number of the alarm
+    """
+    listWidget: QTableWidget = UI.alarm_list_widget
 
     itemFound = listWidget.findItems(f"Alarme {alarm_id}:", Qt.MatchContains)
     listWidget.setCurrentItem(itemFound[0])
@@ -61,6 +82,12 @@ def delete_alarm_row(alarm_id: int):
     delete_alarm_from_list(alarm_id)
 
 def row_down(listWidget: QTableWidget):
+    """
+    Called when the button down is pressed, show in the screen what row is selected
+
+    Params:
+        listWidget = list widget of alarms
+    """
     global CURRENT_ROW
 
     CURRENT_ROW = listWidget.currentRow()
@@ -69,6 +96,12 @@ def row_down(listWidget: QTableWidget):
     listWidget.setCurrentCell(CURRENT_ROW, 0)
 
 def row_up(listWidget: QTableWidget):
+    """
+    Called when the button up is pressed, show in the screen what row is selected
+
+    Params:
+        listWidget = list widget of alarms
+    """
     global CURRENT_ROW
 
     CURRENT_ROW = listWidget.currentRow()

@@ -12,7 +12,6 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
 from ui_py.ui_gui import Ui_MainWindow
-from ui_py.ui_login_dialog import Ui_LoginDialog
 
 from utils.gui_functions import *
 from utils.workers import *
@@ -30,9 +29,12 @@ from dialogs.altera_valor import AlteraValorDialog
 from dialogs.login import LoginDialog
 ##############################################################
 
+# todo => criar thread para não travar tela com a troca de estado de botões? (man-auto / hab/desab logs)
+# pode ser ruim para o usuário se clicar repetidas vezes no botão
+
 class RnRobotics_Gui(QMainWindow):
     def __init__(self):
-        super().__init__()
+        super(RnRobotics_Gui, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -113,10 +115,9 @@ class RnRobotics_Gui(QMainWindow):
         ###################################################################
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
         ###################################################################
-        self.define_navigate_buttons()
+        # Defining buttons of screens #####################################
         ###################################################################
-        # Widgets on Screen ################################################
-        ####################################################################
+        self.define_navigate_buttons()
         home.define_buttons(self.ui, self.insert_code_dialog.show_dialog)
         robot.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
         alarms.define_buttons(self.ui)
@@ -125,11 +126,14 @@ class RnRobotics_Gui(QMainWindow):
         eng.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
+        # Setting controll variabled ######################################
+        ###################################################################
         self.tag_index = ""
         self.tag_type: TagTypes = ""
         self.action_to_confirm: ActionsToConfirm = ""
         ###################################################################
         # adding alarms to list ###########################################
+        ###################################################################
         # ToDo => ver como receber os alarmes e os tempos
         '''
         alarms.define_new_alarm(self.ui, "12:35:31", 0)
@@ -250,23 +254,8 @@ class RnRobotics_Gui(QMainWindow):
             maint.UpdateBarCode(tag)
 
     ########################################################################
-    #### Start Threads
-    def start_threads(self):
-        self.threadpool_0.start(self.worker)
-        self.threadpool_1.start(self.worker_data_ctrl_a1)
-        self.threadpool_2.start(self.worker_data_ctrl_a2)
-        self.threadpool_3.start(self.worker_data_ctrl_b1)
-        self.threadpool_4.start(self.worker_data_ctrl_b2)
-        self.threadpool_5.start(self.worker_hmi)
-        self.threadpool_6.start(self.worker_config_pts)
-        self.threadpool_7.start(self.worker_cylDoorA)
-        self.threadpool_8.start(self.worker_cylDoorB)
-        self.threadpool_9.start(self.worker_robotInputs)
-        self.threadpool_10.start(self.worker_robotOutputs)
-        self.threadpool_11.start(self.worker_cylSpindle)
-        self.threadpool_12.start(self.worker_indexRobotPos)
+    #### Stop Threads ######################################################
     ########################################################################
-    #### Stop Threads
     def stop_threads(self):
         print("Finalizando Threads")
         try:

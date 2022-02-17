@@ -10,6 +10,9 @@ from utils.gui_functions import write_LineEdit
 
 
 class AlteraValorDialog(QDialog):
+    """
+    Dialog to change a value of some tag
+    """
     def __init__(self, parents=None):
         super(AlteraValorDialog, self).__init__(parents)
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)

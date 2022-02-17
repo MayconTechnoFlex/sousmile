@@ -1,10 +1,7 @@
 """Controlling the alarm list"""
 
-from typing import Literal, Union
-from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
-from PyQt5.QtCore import Qt
-from ui_py.ui_gui import Ui_MainWindow
 from utils.Types import AlarmDict
+
 
 alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
                       "Alarme 5:", "Alarme 6: Porta da Célula Aberta", "Alarme 7:", "Alarme 8:",
@@ -42,7 +39,7 @@ alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:"
 alarm_list: list[AlarmDict] = []
 alarm_history: list[AlarmDict] = []
 
-def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str):
+def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str) -> None:
     """
     Add the alarm {"id": int, "time": str, "message": str} to a list in the module
     """
@@ -50,7 +47,7 @@ def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str):
     alarm_list.append(actual_alarm)
     alarm_history.append(actual_alarm)
 
-def delete_alarm_from_list(alarm_id: int):
+def delete_alarm_from_list(alarm_id: int) -> None:
     """
     Find the alarm using its id in the modules alarm list
     """

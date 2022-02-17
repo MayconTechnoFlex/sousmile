@@ -1,8 +1,8 @@
 """Control of the user connected in the application"""
 
-from pyqt.utils.Types import UsersName
+from utils.Types import UsersName, UsersAccounts
 
-users_accounts: dict[UsersName, str] = {
+users_accounts: UsersAccounts = {
     'oper': '12345',
     'eng': 'engenharia',
     'rn': 'rnrobotics'
@@ -10,12 +10,12 @@ users_accounts: dict[UsersName, str] = {
 
 connected_username: UsersName = ""
 
-def set_connected_username(username: UsersName):
+def set_connected_username(username: UsersName) -> None:
     """Writes the username in a module variable"""
     global connected_username
     connected_username = username
 
-def disconnect_user():
+def disconnect_user() -> None:
     """Deletes the username in a module variable"""
     global connected_username
     connected_username = ""

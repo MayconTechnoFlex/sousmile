@@ -1,7 +1,7 @@
 """Dialog for log-in a user"""
 
 from PyQt5.QtCore import QRegExp, Qt
-from PyQt5.QtGui import QRegExpValidator, QCloseEvent
+from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog, QLabel
 
 from ui_py.ui_login_dialog import Ui_LoginDialog
@@ -10,6 +10,9 @@ from utils.db_users import users_accounts as users
 from utils.db_users import set_connected_username, disconnect_user
 
 class LoginDialog(QDialog):
+    """
+    Dialog for log in the application and enable some features depending of the user
+    """
     def __init__(self, parents=None):
         super(LoginDialog, self).__init__(parents)
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)

@@ -4,9 +4,12 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog
 
 from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
-from utils.Types import *
+from utils.Types import ActionsToConfirm
 
 class ConfirmationDialog(QDialog):
+    """
+    Dialog for confirme or cancel a determined action
+    """
     def __init__(self, parents=None):
         super(ConfirmationDialog, self).__init__(parents)
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)

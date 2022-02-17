@@ -1,9 +1,9 @@
 """Functions to use in multiple screens and widgets"""
 #############################################
+from typing import Union
 from PyQt5.QtWidgets import QLineEdit, QDialog, QWidget
-from utils.ctrl_plc import *
-from ui_py.ui_gui import Ui_MainWindow
-from utils.Types import *
+from utils.ctrl_plc import read_tags, write_tag
+from utils.Types import TagTypes
 #############################################
 def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type: TagTypes = "string"):
     """
@@ -53,7 +53,7 @@ def set_reset_button(tag: str, widget: QWidget, text_on: str, text_off: str):
     writing the texts on the button
     WARNING: the read tag needs to return a BOOL or INT
 
-    params:
+    Params:
         tag = the Tag of the PLC
         widget = the button or label that was interacted
         text_on = text if the value is True
@@ -76,7 +76,7 @@ def change_status(tag: Union[int, bool], stsWidget: QWidget):
     """
     Change the red/green status circles based on the tag received
 
-    params:
+    Params:
         tag = the result of a read Tag
         stsWidget = widget that will be activated/deactivated
     """

@@ -9,6 +9,9 @@ from utils.gui_functions import write_LineEdit
 from utils.Types import TagTypes
 
 class InsertCodeDialog(QDialog):
+    """
+    Dialog for insert code manually in the HomeScreen
+    """
     def __init__(self, parents=None):
         super(InsertCodeDialog, self).__init__(parents)
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
