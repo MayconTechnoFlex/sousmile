@@ -3,10 +3,10 @@
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
-from pyqt.ui_py.ui_alt_val_dialog import Ui_Dialog2
 
-from pyqt.utils.Types import TagTypes
-from pyqt.utils.gui_functions import write_LineEdit
+from ui_py.ui_alt_val_dialog import Ui_Dialog2
+from utils.Types import TagTypes
+from utils.gui_functions import write_QlineEdit
 
 
 class AlteraValorDialog(QDialog):

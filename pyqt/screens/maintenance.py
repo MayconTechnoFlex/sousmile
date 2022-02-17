@@ -1,10 +1,9 @@
-from pyqt.ui_py.ui_gui import Ui_MainWindow
-from pyqt.dialogs.confirmation import ConfirmationDialog
+from ui_py.ui_gui import Ui_MainWindow
+from dialogs.confirmation import ConfirmationDialog
 
-from pyqt.utils.gui_functions import change_state_button, change_status
-from pyqt.utils.Types import AltValShowDialog_WithText
-
-from pyqt.utils.db_users import get_connected_username
+from utils.gui_functions import change_state_button, change_status
+from utils.Types import AltValShowDialog_WithText
+from utils.db_users import get_connected_username
 
 ui: Ui_MainWindow
 

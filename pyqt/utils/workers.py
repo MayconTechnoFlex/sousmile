@@ -3,7 +3,7 @@
 import time
 
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, QMutex
-from pyqt.utils.ctrl_plc import read_tags
+from utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
 stop_time = 0.2
@@ -62,7 +62,6 @@ class Worker(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
@@ -85,7 +84,6 @@ class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
@@ -108,7 +106,6 @@ class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
@@ -131,7 +128,6 @@ class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
@@ -154,7 +150,6 @@ class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_HMI(QRunnable, WorkerParent):
@@ -177,7 +172,6 @@ class Worker_HMI(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Config_Pts(QRunnable, WorkerParent):
@@ -200,7 +194,6 @@ class Worker_Config_Pts(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Cyl_Door_A(QRunnable, WorkerParent):
@@ -223,7 +216,6 @@ class Worker_Cyl_Door_A(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Cyl_Door_B(QRunnable, WorkerParent):
@@ -246,7 +238,6 @@ class Worker_Cyl_Door_B(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Cyl_Spindle(QRunnable, WorkerParent):
@@ -269,7 +260,6 @@ class Worker_Cyl_Spindle(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Robot_Inputs(QRunnable, WorkerParent):
@@ -292,7 +282,6 @@ class Worker_Robot_Inputs(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_Robot_Outputs(QRunnable, WorkerParent):
@@ -315,7 +304,6 @@ class Worker_Robot_Outputs(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)
 
 class Worker_IndexRobotPos(QRunnable, WorkerParent):
@@ -342,5 +330,4 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
                 print(f'{e} - Error on the thread')
                 self.running = False
                 break
-
             time.sleep(sleep_time)

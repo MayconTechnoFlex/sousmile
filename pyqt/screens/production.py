@@ -1,5 +1,6 @@
-from pyqt.ui_py.ui_gui import Ui_MainWindow
-from pyqt.utils.ctrl_plc import write_tag
+from ui_py.ui_gui import Ui_MainWindow
+
+from utils.ctrl_plc import write_tag
 
 ui: Ui_MainWindow
 

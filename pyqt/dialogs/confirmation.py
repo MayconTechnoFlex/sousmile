@@ -2,9 +2,9 @@
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog
-from pyqt.ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 
-from pyqt.utils.Types import *
+from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
+from utils.Types import *
 
 class ConfirmationDialog(QDialog):
     def __init__(self, parents=None):

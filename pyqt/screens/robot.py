@@ -1,7 +1,8 @@
-from pyqt.ui_py.ui_gui import Ui_MainWindow
-from pyqt.dialogs.altera_valor import AlteraValorDialog
-from pyqt.utils.gui_functions import change_status, set_reset_button
-from pyqt.utils.Types import AltValShowDialog_WithText
+from ui_py.ui_gui import Ui_MainWindow
+from dialogs.altera_valor import AlteraValorDialog
+
+from utils.gui_functions import change_status, set_reset_button
+from utils.Types import AltValShowDialog_WithText
 
 ui: Ui_MainWindow
 

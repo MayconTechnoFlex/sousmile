@@ -1,10 +1,8 @@
-########################################################################################
-# Contorl of widgets home screen
-########################################################################################
 from pyqt.ui_py.ui_gui import Ui_MainWindow
 from PyQt5.QtWidgets import QLabel
-from pyqt.utils.gui_functions import set_reset_button
-from pyqt.utils.Types import AltValShowDialog_WithoutText
+
+from utils.gui_functions import set_reset_button
+from utils.Types import AltValShowDialog_WithoutText
 
 ui: Ui_MainWindow
 

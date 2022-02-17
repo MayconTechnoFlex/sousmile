@@ -1,7 +1,7 @@
 from typing import Callable
-from pyqt.ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui import Ui_MainWindow
 
-from pyqt.utils.gui_functions import change_status
+from utils.gui_functions import change_status
 
 ui: Ui_MainWindow
 

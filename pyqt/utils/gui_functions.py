@@ -1,9 +1,9 @@
 """Functions to use in multiple screens and widgets"""
 #############################################
 from PyQt5.QtWidgets import QLineEdit, QDialog, QWidget
-from pyqt.utils.ctrl_plc import *
-from pyqt.ui_py.ui_gui import Ui_MainWindow
-from pyqt.utils.Types import *
+from utils.ctrl_plc import *
+from ui_py.ui_gui import Ui_MainWindow
+from utils.Types import *
 #############################################
 def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type: TagTypes = "string"):
     """

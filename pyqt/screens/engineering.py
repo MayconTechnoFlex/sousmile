@@ -1,7 +1,7 @@
-from pyqt.ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui import Ui_MainWindow
 
-from pyqt.utils.gui_functions import set_reset_button
-from pyqt.utils.Types import AltValShowDialog_WithText
+from utils.gui_functions import set_reset_button
+from utils.Types import AltValShowDialog_WithText
 
 ui: Ui_MainWindow
 show_dialog: AltValShowDialog_WithText
