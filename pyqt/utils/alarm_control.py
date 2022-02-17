@@ -1,3 +1,6 @@
+"""Controlling the alarm list"""
+
+from typing import Literal, Union
 from pyqt.ui_py.ui_gui import Ui_MainWindow
 
 alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
@@ -33,15 +36,21 @@ alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:"
                       "Alarme 72: Proteção da porta do lado B foi acionada",
                       "Alarme 73: Robô no lado B e sensor de segurança da porta lado B não esta acionado", "Alarme 74:"]
 
-alarm_list = []
+alarm_list: list[dict[Literal["id", "time", "message"], Union[int, str]]] = []
 alarm_history = []
 
 def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str):
+    """
+    Add the alarm {"id": int, "time": str, "message": str} to a list in the module
+    """
     actual_alarm = {"id": alarm_id, "time": alarm_time, "message": alarm_msg}
     alarm_list.append(actual_alarm)
     alarm_history.append(actual_alarm)
 
 def delete_alarm_from_list(alarm_id: int):
+    """
+    Find the alarm using its id in the modules alarm list
+    """
     count_index = 0
     for item in alarm_list:
         if item["id"] == alarm_id:
@@ -49,9 +58,11 @@ def delete_alarm_from_list(alarm_id: int):
         count_index += 1
 
 def get_alarm_message(alarm_id: int) -> str:
+    """Returns the message from an alarm"""
     return alarm_message_list[alarm_id]
 
 def get_alarm_history() -> list:
+    """Returns all the alarm historic from the list control in the module"""
     return alarm_history
 
 

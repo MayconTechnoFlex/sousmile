@@ -1,3 +1,5 @@
+"""Workers for actualize GUI with PLC Information"""
+
 import time
 
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, QMutex
@@ -6,6 +8,16 @@ from pyqt.utils.ctrl_plc import read_tags
 sleep_time = 0.75
 stop_time = 0.2
 
+class WorkerParent:
+    """Class for shared functions of the workers"""
+    def __init__(self):
+        super(WorkerParent, self).__init__()
+        self.running = True
+
+    def stop(self):
+        """Stops thread"""
+        self.running = False
+        time.sleep(stop_time)
 
 class WorkerSignals(QObject):
     """
@@ -20,7 +32,7 @@ class WorkerSignals(QObject):
     error = pyqtSignal(tuple)
     result = pyqtSignal(object)
 
-class Worker(QRunnable):
+class Worker(QRunnable, WorkerParent):
     """
     Worker thread for multiple signals
     """
@@ -31,7 +43,6 @@ class Worker(QRunnable):
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
         self.signal_local2In = WorkerSignals()
-        self.running = True
 
     @pyqtSlot()
     def run(self):
@@ -54,11 +65,7 @@ class Worker(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Data_Ctrl_A1(QRunnable):
+class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -81,11 +88,7 @@ class Worker_Data_Ctrl_A1(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Data_Ctrl_A2(QRunnable):
+class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -108,11 +111,7 @@ class Worker_Data_Ctrl_A2(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Data_Ctrl_B1(QRunnable):
+class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -135,11 +134,7 @@ class Worker_Data_Ctrl_B1(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Data_Ctrl_B2(QRunnable):
+class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -162,11 +157,7 @@ class Worker_Data_Ctrl_B2(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_HMI(QRunnable):
+class Worker_HMI(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -189,11 +180,7 @@ class Worker_HMI(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Config_Pts(QRunnable):
+class Worker_Config_Pts(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -216,11 +203,7 @@ class Worker_Config_Pts(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Cyl_Door_A(QRunnable):
+class Worker_Cyl_Door_A(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -243,11 +226,7 @@ class Worker_Cyl_Door_A(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Cyl_Door_B(QRunnable):
+class Worker_Cyl_Door_B(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -270,11 +249,7 @@ class Worker_Cyl_Door_B(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Cyl_Spindle(QRunnable):
+class Worker_Cyl_Spindle(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -297,11 +272,7 @@ class Worker_Cyl_Spindle(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Robot_Inputs(QRunnable):
+class Worker_Robot_Inputs(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -324,11 +295,7 @@ class Worker_Robot_Inputs(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_Robot_Outputs(QRunnable):
+class Worker_Robot_Outputs(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -351,11 +318,7 @@ class Worker_Robot_Outputs(QRunnable):
 
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)
-
-class Worker_IndexRobotPos(QRunnable):
+class Worker_IndexRobotPos(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -381,7 +344,3 @@ class Worker_IndexRobotPos(QRunnable):
                 break
 
             time.sleep(sleep_time)
-
-    def stop(self):
-        self.running = False
-        time.sleep(stop_time)

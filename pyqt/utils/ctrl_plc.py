@@ -1,3 +1,5 @@
+"""Control of the PLC Read and Write functions"""
+
 from pycomm3 import LogixDriver
 from typing import Union
 

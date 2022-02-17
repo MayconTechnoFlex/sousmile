@@ -1,3 +1,5 @@
+"""Dialog for insert code manually in the HomeScreen"""
+
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog
@@ -19,18 +21,27 @@ class InsertCodeDialog(QDialog):
         regex = QRegExp(r"[\w\S]*")
         self.validator = QRegExpValidator(regex)
 
-        self.insert_button()
+        self.set_button()
 
     def closeEvent(self, event) -> None:
+        """Activated when the Dialog is closed"""
         self.ui.txt_code.clear()
 
     def show_dialog(self, tag: str, tag_type: TagTypes):
+        """
+        Pop up the dialog in the screen
+
+        Params:
+            tag: the PLC tag that the value of LineEdit will change
+            tag_type = the value's type that will be sent to the PLC
+        """
         self.TAG_INDEX = tag
         self.TAG_TYPE = tag_type
         self.ui.txt_code.setValidator(self.validator)
         self.exec_()
 
-    def insert_button(self):
+    def set_button(self):
+        """Set the button of the dialog"""
         self.ui.btn_insert_code_man.clicked.connect(
             lambda: write_LineEdit(self.TAG_INDEX, self,
                                    self.ui.txt_code, self.TAG_TYPE)

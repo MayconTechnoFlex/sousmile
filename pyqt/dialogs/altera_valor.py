@@ -1,3 +1,5 @@
+"""Dialog for change the value of some tags"""
+
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
@@ -20,9 +22,18 @@ class AlteraValorDialog(QDialog):
         self.set_button()
 
     def closeEvent(self, event):
+        """Activated when the Dialog is closed"""
         self.ui.new_value.clear()
 
     def show_dialog(self, text: str, tag: str, tag_type: TagTypes = "string"):
+        """
+        Pop up the dialog in the screen
+
+        Params:
+            text = what will be showed in the dialog
+            tag = the PLC tag that the value of LineEdit will change
+            tag_type = the value's type that will be sent to the PLC
+        """
         self.TAG_INDEX = tag
         self.TAG_TYPE = tag_type
         validator: QValidator
@@ -48,6 +59,7 @@ class AlteraValorDialog(QDialog):
         self.exec_()
 
     def set_button(self):
+        """Set the button of the dialog"""
         self.ui.btn_alt_val.clicked.connect(
             lambda: write_LineEdit(self.TAG_INDEX, self,
                                    self.ui.new_value, self.TAG_TYPE)
