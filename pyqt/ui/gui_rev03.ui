@@ -85,7 +85,13 @@ background-color: white;
          <property name="minimumSize">
           <size>
            <width>60</width>
-           <height>0</height>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
           </size>
          </property>
          <property name="frameShape">
@@ -100,10 +106,16 @@ background-color: white;
             <x>0</x>
             <y>0</y>
             <width>60</width>
-            <height>80</height>
+            <height>60</height>
            </rect>
           </property>
           <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
            <size>
             <width>60</width>
             <height>60</height>
@@ -116,7 +128,10 @@ background-color: white;
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="images.qrc">:/newPrefix/assets/images/RN_ico.png</pixmap>
+           <pixmap resource="images.qrc">:/newPrefix/assets/images/RN_Logo.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
