@@ -8,8 +8,6 @@ from ui_py.ui_login_dialog import Ui_LoginDialog
 
 from utils.db_users import users_accounts as users
 from utils.db_users import set_connected_username, disconnect_user
-from utils.db_users import users_accounts as users
-from utils.db_users import set_connected_username
 
 class LoginDialog(QDialog):
     def __init__(self, parents=None):
