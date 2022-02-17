@@ -269,19 +269,22 @@ class RnRobotics_Gui(QMainWindow):
     #### Stop Threads
     def stop_threads(self):
         print("Finalizando Threads")
-        self.worker.stop()
-        self.worker_data_ctrl_a1.stop()
-        self.worker_data_ctrl_a2.stop()
-        self.worker_data_ctrl_b1.stop()
-        self.worker_data_ctrl_b2.stop()
-        self.worker_hmi.stop()
-        self.worker_config_pts.stop()
-        self.worker_cylDoorA.stop()
-        self.worker_cylDoorB.stop()
-        self.worker_robotInputs.stop()
-        self.worker_robotOutputs.stop()
-        self.worker_cylSpindle.stop()
-        self.worker_indexRobotPos.stop()
+        try:
+            self.worker.stop()
+            self.worker_data_ctrl_a1.stop()
+            self.worker_data_ctrl_a2.stop()
+            self.worker_data_ctrl_b1.stop()
+            self.worker_data_ctrl_b2.stop()
+            self.worker_hmi.stop()
+            self.worker_config_pts.stop()
+            self.worker_cylDoorA.stop()
+            self.worker_cylDoorB.stop()
+            self.worker_robotInputs.stop()
+            self.worker_robotOutputs.stop()
+            self.worker_cylSpindle.stop()
+            self.worker_indexRobotPos.stop()
+        except Exception as e:
+            print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
     ########################################################################
 

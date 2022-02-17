@@ -5,7 +5,7 @@ from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog
 
 from ui_py.ui_cod_dialog_win import Ui_Dialog
-from utils.gui_functions import write_QlineEdit
+from utils.gui_functions import write_LineEdit
 from utils.Types import TagTypes
 
 class InsertCodeDialog(QDialog):
