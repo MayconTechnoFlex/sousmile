@@ -1,10 +1,24 @@
-import time
+"""Workers for actualize GUI with PLC Information"""
 
-from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, QMutex
+import time, traceback, sys
+
+from pycomm3.exceptions import CommError
+from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from utils.ctrl_plc import read_tags
 
 sleep_time = 0.75
+stop_time = 0.2
 
+class WorkerParent:
+    """Class for shared functions of the workers"""
+    def __init__(self):
+        super(WorkerParent, self).__init__()
+        self.running = True
+
+    def stop(self):
+        """Stops thread"""
+        self.running = False
+        time.sleep(stop_time)
 
 class WorkerSignals(QObject):
     """
@@ -19,7 +33,7 @@ class WorkerSignals(QObject):
     error = pyqtSignal(tuple)
     result = pyqtSignal(object)
 
-class Worker(QRunnable):
+class Worker(QRunnable, WorkerParent):
     """
     Worker thread for multiple signals
     """
@@ -41,20 +55,27 @@ class Worker(QRunnable):
                 local_1_out = read_tags("Local:1:O.Data")
                 local_2_in = read_tags("Local:2:I.Data")
 
-                self.signal_barCodeReader.result.emit(bar_code_reader)
-                self.signal_local1In.result.emit(local_1_in)
-                self.signal_local1Out.result.emit(local_1_out)
-                self.signal_local2In.result.emit(local_2_in)
+                if type(bar_code_reader) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_barCodeReader.error.emit((exctype, value, traceback.format_exc()))
+                    self.signal_local1In.error.emit((exctype, value, traceback.format_exc()))
+                    self.signal_local1Out.error.emit((exctype, value, traceback.format_exc()))
+                    self.signal_local2In.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_barCodeReader.result.emit(bar_code_reader)
+                    self.signal_local1In.result.emit(local_1_in)
+                    self.signal_local1Out.result.emit(local_1_out)
+                    self.signal_local2In.result.emit(local_2_in)
 
             except Exception as e:
-                print(f'{e} - Error on the thread')
-
+                print(f'{e} - workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Data_Ctrl_A1(QRunnable):
+class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -69,16 +90,21 @@ class Worker_Data_Ctrl_A1(QRunnable):
         while self.running:
             try:
                 data_ctrl_a1 = read_tags('DataCtrl_A1')
-                self.signal_a1.result.emit(data_ctrl_a1)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(data_ctrl_a1) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_a1.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_a1.result.emit(data_ctrl_a1)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Data_Ctrl_A2(QRunnable):
+class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -93,16 +119,21 @@ class Worker_Data_Ctrl_A2(QRunnable):
         while self.running:
             try:
                 data_ctrl_a2 = read_tags('DataCtrl_A2')
-                self.signal_a2.result.emit(data_ctrl_a2)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(data_ctrl_a2) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_a2.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_a2.result.emit(data_ctrl_a2)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Data_Ctrl_B1(QRunnable):
+class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -114,19 +145,24 @@ class Worker_Data_Ctrl_B1(QRunnable):
 
     @pyqtSlot()
     def run(self):
-        while True: #self.running:
+        while self.running:
             try:
                 data_ctrl_b1 = read_tags('DataCtrl_B1')
-                self.signal_b1.result.emit(data_ctrl_b1)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(data_ctrl_b1) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_b1.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_b1.result.emit(data_ctrl_b1)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Data_Ctrl_B2(QRunnable):
+class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -141,16 +177,21 @@ class Worker_Data_Ctrl_B2(QRunnable):
         while self.running:
             try:
                 data_ctrl_b2 = read_tags('DataCtrl_B2')
-                self.signal_b2.result.emit(data_ctrl_b2)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(data_ctrl_b2) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_b2.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_b2.result.emit(data_ctrl_b2)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_HMI(QRunnable):
+class Worker_HMI(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -165,16 +206,21 @@ class Worker_HMI(QRunnable):
         while self.running:
             try:
                 hmi = read_tags('HMI')
-                self.signal_hmi.result.emit(hmi)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(hmi) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_hmi.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_hmi.result.emit(hmi)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Config_Pts(QRunnable):
+class Worker_Config_Pts(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -189,16 +235,21 @@ class Worker_Config_Pts(QRunnable):
         while self.running:
             try:
                 config_pts = read_tags("ConfigPontos")
-                self.signal_configPts.result.emit(config_pts)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(config_pts) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_configPts.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_configPts.result.emit(config_pts)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Cyl_Door_A(QRunnable):
+class Worker_Cyl_Door_A(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -213,16 +264,21 @@ class Worker_Cyl_Door_A(QRunnable):
         while self.running:
             try:
                 cyl_door_a = read_tags("Cyl_DoorSideA")
-                self.signal_cylDoorA.result.emit(cyl_door_a)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(cyl_door_a) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_cylDoorA.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_cylDoorA.result.emit(cyl_door_a)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Cyl_Door_B(QRunnable):
+class Worker_Cyl_Door_B(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -237,16 +293,21 @@ class Worker_Cyl_Door_B(QRunnable):
         while self.running:
             try:
                 cyl_door_b = read_tags("Cyl_DoorSideB")
-                self.signal_cylDoorB.result.emit(cyl_door_b)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(cyl_door_b) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_cylDoorB.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_cylDoorB.result.emit(cyl_door_b)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Cyl_Spindle(QRunnable):
+class Worker_Cyl_Spindle(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -261,16 +322,21 @@ class Worker_Cyl_Spindle(QRunnable):
         while self.running:
             try:
                 cyl_spindle = read_tags("Cyl_SpindleRobo")
-                self.signal_cylSpindle.result.emit(cyl_spindle)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(cyl_spindle) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_cylSpindle.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_cylSpindle.result.emit(cyl_spindle)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Robot_Inputs(QRunnable):
+class Worker_Robot_Inputs(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -285,16 +351,21 @@ class Worker_Robot_Inputs(QRunnable):
         while self.running:
             try:
                 robo_input = read_tags("Robo.Input")
-                self.signal_roboInput.result.emit(robo_input)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(robo_input) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_roboInput.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_roboInput.result.emit(robo_input)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_Robot_Outputs(QRunnable):
+class Worker_Robot_Outputs(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -309,16 +380,21 @@ class Worker_Robot_Outputs(QRunnable):
         while self.running:
             try:
                 robo_output = read_tags("Robo.Output")
-                self.signal_robotOutput.result.emit(robo_output)
-            except Exception as e:
-                print(f'{e} - Error on the thread')
 
+                if type(robo_output) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_robotOutput.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_robotOutput.result.emit(robo_output)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
 
-    def stop(self):
-        self.running = False
-
-class Worker_IndexRobotPos(QRunnable):
+class Worker_IndexRobotPos(QRunnable, WorkerParent):
     """
     Worker thread
     """
@@ -337,11 +413,16 @@ class Worker_IndexRobotPos(QRunnable):
         while self.running:
             try:
                 index_robot_pos = read_tags("IndexRobotPos")
-                self.signal_indexRobotPos.result.emit(index_robot_pos)
+
+                if type(index_robot_pos) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_indexRobotPos.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_indexRobotPos.result.emit(index_robot_pos)
             except Exception as e:
-                print(f'{e} - Error on the thread')
-
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
             time.sleep(sleep_time)
-
-    def stop(self):
-        self.running = False

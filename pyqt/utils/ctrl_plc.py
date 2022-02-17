@@ -1,10 +1,13 @@
+"""Control of the PLC Read and Write functions"""
+
 from pycomm3 import LogixDriver
 from typing import Union
+from utils.Types import PLCReturn
 
 IP = '192.168.1.10'
 
 
-def read_tags(tag_name: str) -> Union[str, int, float, list, dict]:
+def read_tags(tag_name: str) -> PLCReturn:
     """
     Read a tag from PLC and returns the value of it
     If it goes wrong, print's the error
@@ -14,6 +17,7 @@ def read_tags(tag_name: str) -> Union[str, int, float, list, dict]:
             return plc.read(tag_name).value
     except Exception as e:
         print(f"{e} - Error on plc communication")
+        return e
 
 def write_tag(tag_name: str, value: Union[str, int, float]):
     """

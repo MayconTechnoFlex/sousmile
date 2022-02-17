@@ -830,7 +830,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>6</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -9520,7 +9520,13 @@ background-color: #f00000;
                      <item>
                       <widget class="QLabel" name="label_186">
                        <property name="text">
-                        <string>robot_image</string>
+                        <string/>
+                       </property>
+                       <property name="pixmap">
+                        <pixmap resource="images.qrc">:/newPrefix/assets/images/robo_fanuc-removebg-preview.png</pixmap>
+                       </property>
+                       <property name="scaledContents">
+                        <bool>false</bool>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
@@ -13755,6 +13761,12 @@ border-radius: 15; padding: 0 10;
                            </property>
                            <item row="0" column="2">
                             <widget class="QFrame" name="frame_194">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>107</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -13827,6 +13839,18 @@ background-color: #f00000;
                            </item>
                            <item row="2" column="2">
                             <widget class="QFrame" name="frame_195">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>109</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>109</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -13899,6 +13923,18 @@ background-color: #f00000;
                            </item>
                            <item row="2" column="0">
                             <widget class="QFrame" name="frame_193">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>109</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>109</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -13971,6 +14007,12 @@ background-color: #f00000;
                            </item>
                            <item row="0" column="0">
                             <widget class="QFrame" name="frame_192">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>107</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -14141,6 +14183,12 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_191">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -15247,6 +15295,12 @@ DE MANUTENÇÃO</string>
                                     </property>
                                     <item>
                                      <widget class="QLabel" name="lbl_TimeMaint_B">
+                                      <property name="sizePolicy">
+                                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                       </sizepolicy>
+                                      </property>
                                       <property name="minimumSize">
                                        <size>
                                         <width>168</width>
@@ -15256,7 +15310,7 @@ DE MANUTENÇÃO</string>
                                       <property name="maximumSize">
                                        <size>
                                         <width>16777215</width>
-                                        <height>168</height>
+                                        <height>10000</height>
                                        </size>
                                       </property>
                                       <property name="font">
@@ -15562,13 +15616,13 @@ DE MANUTENÇÃO</string>
                              <property name="minimumSize">
                               <size>
                                <width>625</width>
-                               <height>0</height>
+                               <height>397</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
                                <width>625</width>
-                               <height>1000000</height>
+                               <height>397</height>
                               </size>
                              </property>
                              <property name="frameShape">
@@ -15622,6 +15676,18 @@ DE MANUTENÇÃO</string>
                                  </property>
                                  <item>
                                   <widget class="QFrame" name="frame_236">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>107</height>
+                                    </size>
+                                   </property>
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>16777215</width>
+                                     <height>107</height>
+                                    </size>
+                                   </property>
                                    <property name="frameShape">
                                     <enum>QFrame::StyledPanel</enum>
                                    </property>
@@ -15715,13 +15781,13 @@ background-color: #f00000;
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
-                                     <height>0</height>
+                                     <height>107</height>
                                     </size>
                                    </property>
                                    <property name="maximumSize">
                                     <size>
                                      <width>16777215</width>
-                                     <height>1000000</height>
+                                     <height>107</height>
                                     </size>
                                    </property>
                                    <property name="frameShape">
@@ -16163,13 +16229,13 @@ DE MANUTENÇÃO</string>
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
-                            <height>282</height>
+                            <height>0</height>
                            </size>
                           </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
-                            <height>282</height>
+                            <height>100000</height>
                            </size>
                           </property>
                           <property name="frameShape">
@@ -16641,6 +16707,18 @@ background-color: #f00000;
                            </property>
                            <item>
                             <widget class="QFrame" name="frame_207">
+                             <property name="minimumSize">
+                              <size>
+                               <width>516</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>516</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -16674,7 +16752,7 @@ background-color: #f00000;
                                 <property name="maximumSize">
                                  <size>
                                   <width>16777215</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="frameShape">
@@ -16736,12 +16814,51 @@ background-color: #f00000;
                               </item>
                               <item>
                                <widget class="QFrame" name="frame_212">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>210</height>
+                                 </size>
+                                </property>
                                 <property name="frameShape">
                                  <enum>QFrame::StyledPanel</enum>
                                 </property>
                                 <property name="frameShadow">
                                  <enum>QFrame::Raised</enum>
                                 </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_178">
+                                 <property name="spacing">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="leftMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="topMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="bottomMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <item>
+                                  <widget class="QLabel" name="label_5">
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                   <property name="pixmap">
+                                    <pixmap resource="images.qrc">:/newPrefix/assets/images/Mesa-removebg-preview.png</pixmap>
+                                   </property>
+                                   <property name="scaledContents">
+                                    <bool>true</bool>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
                                </widget>
                               </item>
                              </layout>
@@ -16768,6 +16885,18 @@ background-color: #f00000;
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_210">
+                             <property name="minimumSize">
+                              <size>
+                               <width>516</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>516</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -16801,7 +16930,7 @@ background-color: #f00000;
                                 <property name="maximumSize">
                                  <size>
                                   <width>16777215</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="frameShape">
@@ -16863,12 +16992,51 @@ background-color: #f00000;
                               </item>
                               <item>
                                <widget class="QFrame" name="frame_214">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>210</height>
+                                 </size>
+                                </property>
                                 <property name="frameShape">
                                  <enum>QFrame::StyledPanel</enum>
                                 </property>
                                 <property name="frameShadow">
                                  <enum>QFrame::Raised</enum>
                                 </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_177">
+                                 <property name="spacing">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="leftMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="topMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="bottomMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <item>
+                                  <widget class="QLabel" name="label_50">
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                   <property name="pixmap">
+                                    <pixmap resource="images.qrc">:/newPrefix/assets/images/Mesa-removebg-preview.png</pixmap>
+                                   </property>
+                                   <property name="scaledContents">
+                                    <bool>true</bool>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
                                </widget>
                               </item>
                              </layout>
