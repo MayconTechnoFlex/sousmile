@@ -1,5 +1,7 @@
 """Module with all functions used on the AlarmScreen of the application"""
 
+from datetime import datetime
+
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
 
@@ -8,6 +10,11 @@ from utils.alarm_control import *
 
 UI: Ui_MainWindow
 CURRENT_ROW = 0
+hasAlarm: list[bool] = []
+
+for i in range(0, 97):
+    hasAlarm.append(False)
+
 
 def define_buttons(receive_ui: Ui_MainWindow):
     """
@@ -23,6 +30,22 @@ def define_buttons(receive_ui: Ui_MainWindow):
     UI.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(UI.hist_alarm_list_widget))
     UI.btn_desce_alarm_hist.clicked.connect(lambda: row_down(UI.hist_alarm_list_widget))
 
+def verify_alarms(alarm_time: str, alarm_id: int, alarm_active: bool):
+    """
+    Verify if the alarm is active and enable/disable it on screen
+
+    Params:
+        alarm_time = string of when the alarm appears
+        alarm_id = number of the alarm
+        alarm_active = the signal that comes from PLC
+    """
+    if alarm_active and not hasAlarm[alarm_id]:
+        hasAlarm[alarm_id] = True
+        define_new_alarm(alarm_time, alarm_id)
+    elif not alarm_active and hasAlarm[alarm_id]:
+        hasAlarm[alarm_id] = False
+        delete_alarm_row(alarm_id)
+
 def define_new_alarm(alarm_time: str, alarm_id: int):
     """
     Set up a new alarm in screen and in the alarm_control module
@@ -33,13 +56,7 @@ def define_new_alarm(alarm_time: str, alarm_id: int):
     """
     listWidget = UI.alarm_list_widget
     histWidget = UI.hist_alarm_list_widget
-    """
-    da pra adicionar de duas formas:
-    1ª adicionar no final da lista
-    row_num = listWidget.rowCount()
-    hist_row_num = histWidget.rowCount()
-    ToDo => 2ª adicionar ao início da lista
-    """
+
     row_num = 0
     hist_row_num = 0
     alarm_msg: str = get_alarm_message(alarm_id)
@@ -110,4 +127,11 @@ def row_up(listWidget: QTableWidget):
     listWidget.setCurrentCell(CURRENT_ROW, 0)
 
 def UpdateAlarms(tag):
-    print(tag)
+    try:
+        alarms_count = 0
+        for alarm in tag:
+            now = str(datetime.now())
+            verify_alarms(now[0:19], alarms_count, alarm[1])
+            alarms_count += 1
+    except Exception as e:
+        print(f"{e} - dialogs/alarms.py - UpdateAlarms")

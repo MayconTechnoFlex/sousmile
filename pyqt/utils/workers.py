@@ -408,10 +408,6 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while self.running:
             try:
                 index_robot_pos = read_tags("IndexRobotPos")
@@ -430,16 +426,15 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
             time.sleep(sleep_time)
 
 class Worker_Alarms(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
     def __init__(self):
         super(Worker_Alarms, self).__init__()
         self.signal_alarm = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while self.running:
             try:
                 alarm_list = read_multiples(alarm_tag_list)
@@ -458,16 +453,15 @@ class Worker_Alarms(QRunnable, WorkerParent):
             time.sleep(sleep_time)
 
 class Worker_InOut(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
     def __init__(self):
         super(Worker_InOut, self).__init__()
         self.signal_inOut = WorkerSignals()
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while self.running:
             try:
                 inOut_list = read_multiples(tags_inOut)
