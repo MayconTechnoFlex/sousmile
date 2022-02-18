@@ -4,7 +4,9 @@ import time, traceback, sys
 
 from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
-from utils.ctrl_plc import read_tags
+from utils.ctrl_plc import read_tags, read_multiples
+from utils.alarm_control import alarm_tag_list
+from screens.in_out import tags_inOut
 
 sleep_time = 0.75
 stop_time = 0.2
@@ -406,10 +408,6 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
 
     @pyqtSlot()
     def run(self):
-        """
-        Code for this function
-        :return:
-        """
         while self.running:
             try:
                 index_robot_pos = read_tags("IndexRobotPos")
@@ -421,6 +419,60 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
                     raise Exception("connection failed")
                 else:
                     self.signal_indexRobotPos.result.emit(index_robot_pos)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
+            time.sleep(sleep_time)
+
+class Worker_Alarms(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+    def __init__(self):
+        super(Worker_Alarms, self).__init__()
+        self.signal_alarm = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        while self.running:
+            try:
+                alarm_list = read_multiples(alarm_tag_list)
+
+                if type(alarm_list) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_alarm.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_alarm.result.emit(alarm_list)
+            except Exception as e:
+                print(f'{e} - in workers.py')
+                self.stop()
+                break
+            time.sleep(sleep_time)
+
+class Worker_InOut(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+    def __init__(self):
+        super(Worker_InOut, self).__init__()
+        self.signal_inOut = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        while self.running:
+            try:
+                inOut_list = read_multiples(tags_inOut)
+
+                if type(inOut_list) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_inOut.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_inOut.result.emit(inOut_list)
             except Exception as e:
                 print(f'{e} - in workers.py')
                 self.stop()
