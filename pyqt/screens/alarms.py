@@ -108,3 +108,6 @@ def row_up(listWidget: QTableWidget):
     CURRENT_ROW -= 1
 
     listWidget.setCurrentCell(CURRENT_ROW, 0)
+
+def UpdateAlarms(tag):
+    print(tag)

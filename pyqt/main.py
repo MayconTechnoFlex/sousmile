@@ -66,6 +66,8 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_10 = QThreadPool()
         self.threadpool_11 = QThreadPool()
         self.threadpool_12 = QThreadPool()
+        self.threadpool_13 = QThreadPool()
+        self.threadpool_14 = QThreadPool()
         ###################################################################
         # Workers #########################################################
         ###################################################################
@@ -82,6 +84,8 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_robotInputs = Worker_Robot_Inputs()
         self.worker_robotOutputs = Worker_Robot_Outputs()
         self.worker_indexRobotPos = Worker_IndexRobotPos()
+        self.worker_alarm = Worker_Alarms()
+        self.worker_inOut = Worker_InOut()
 
         self.worker_data_ctrl_a1.signal_a1.result.connect(self.update_DataCtrl_A1)
         self.worker_data_ctrl_a2.signal_a2.result.connect(self.update_DataCtrl_A2)
@@ -96,6 +100,8 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_robotInputs.signal_roboInput.result.connect(self.update_RoboInput)
         self.worker_robotOutputs.signal_robotOutput.result.connect(self.update_RoboOutput)
         self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
+        self.worker_alarm.signal_alarm.result.connect(self.update_Alarms)
+        self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
 
         self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
@@ -110,6 +116,8 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_10.start(self.worker_robotOutputs)
         self.threadpool_11.start(self.worker_cylSpindle)
         self.threadpool_12.start(self.worker_indexRobotPos)
+        self.threadpool_13.start(self.worker_alarm)
+        self.threadpool_14.start(self.worker_inOut)
         ###################################################################
         # main screen of the application ##################################
         ###################################################################
@@ -252,7 +260,14 @@ class RnRobotics_Gui(QMainWindow):
     def update_BarCode(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateBarCode(tag)
-
+    ########################################################################
+    def update_Alarms(self, tag):
+        if self.ui.stackedWidget.currentIndex() == 2:
+            alarms.UpdateAlarms(tag)
+    ########################################################################
+    def update_InOut(self, tag):
+        if self.ui.stackedWidget.currentIndex() == 5:
+            inOut.UpdateInOut(tag)
     ########################################################################
     #### Stop Threads ######################################################
     ########################################################################
@@ -272,6 +287,8 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_robotOutputs.stop()
             self.worker_cylSpindle.stop()
             self.worker_indexRobotPos.stop()
+            self.worker_alarm.stop()
+            self.worker_inOut.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
