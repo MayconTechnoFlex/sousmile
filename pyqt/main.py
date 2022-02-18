@@ -43,8 +43,8 @@ class RnRobotics_Gui(QMainWindow):
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
 
-        win_icon = QIcon("./assets/images/RN_ico.png")
-        self.setWindowIcon(win_icon)
+        #win_icon = QIcon("./assets/images/RN_ico.png")
+        #self.setWindowIcon(win_icon)
 
         self.setWindowTitle("HMI SouSmile")
         ##################################################################
@@ -282,5 +282,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     main_win = RnRobotics_Gui()
     main_win.showMaximized()
+    main_win.setWindowIcon(QIcon("./assets/images/RN_Logo.png"))
     app.aboutToQuit.connect(main_win.stop_threads)
     sys.exit(app.exec_())

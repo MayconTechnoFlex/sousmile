@@ -1,7 +1,14 @@
 """Controlling the alarm list"""
+from typing import List
 
 from utils.Types import AlarmDict
 
+
+alarm_tag_list: List[str] = []
+
+for i in range(0, 3):
+    for j in range(0, 32):
+        alarm_tag_list.append(f"AlarmProcess[{i}].{j}")
 
 alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
                       "Alarme 5:", "Alarme 6: Porta da Célula Aberta", "Alarme 7:", "Alarme 8:",
@@ -36,8 +43,8 @@ alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:"
                       "Alarme 72: Proteção da porta do lado B foi acionada",
                       "Alarme 73: Robô no lado B e sensor de segurança da porta lado B não esta acionado", "Alarme 74:"]
 
-alarm_list: list[AlarmDict] = []
-alarm_history: list[AlarmDict] = []
+alarm_list: List[AlarmDict] = []
+alarm_history: List[AlarmDict] = []
 
 def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str) -> None:
     """
