@@ -496,5 +496,3 @@ class Worker_User(QRunnable, WorkerParent):
                 time.sleep(sleep_time)
             except Exception as e:
                 print(f'{e} - User worker')
-
-
