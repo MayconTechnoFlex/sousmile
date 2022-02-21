@@ -26,9 +26,10 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_show_dialog: AltValShowDia
     def_pts()
     def_delayA()
     def_delayB()
-    '''UI.btn_habilita_logs.clicked.connect(
+    # buttons
+    UI.btn_habilita_logs.clicked.connect(
         lambda: set_reset_button("HMI.EnableLog", UI.btn_habilita_logs,
-                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))'''
+                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
 
 
 ### Defining Dialogs
@@ -126,17 +127,13 @@ def UpdateHMI(tag):
         UI.lbl_PosD.setText(str(round(currentOffset["PosD"], 1)))
         UI.lbl_MaxPts.setText(str(tag["NumPosMax"]))
 
-        if tag["EnableLog"] == 0:
+        if tag["EnableLog"] == 1:
             UI.btn_habilita_logs.setText("Desab. log\nde pontos")
-        elif tag["EnableLog"] == 1:
+        elif tag["EnableLog"] == 0:
             UI.btn_habilita_logs.setText("Habilita log\nde pontos")
         else:
             pass
 
-        # buttons
-        UI.btn_habilita_logs.clicked.connect(
-            lambda: set_reset_button(tag["EnableLog"], tag["EnableLog"], UI.btn_habilita_logs,
-                                     "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
     except Exception as e:
         UI.btn_habilita_logs.setStyleSheet("background-color : #dc1f1f; color : black")
         UI.btn_habilita_logs.setText('Erro')

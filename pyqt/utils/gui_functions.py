@@ -24,11 +24,14 @@ def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type:
     else:
         data = None
 
-    write_tag(tag_name, data)
+    try:
+        write_tag(tag_name, data)
+    except Exception as e:
+        print(f"{e} - write_LineEdit")
     widget.clear()
     dialog.close()
 #############################################
-def change_state_button(tag: str, tag_indicator: int = 0):
+def change_state_button(tag: str, tag_indicator: int = None):
     """
     Reads the tag and change its value for the opposite
     WARNING: the read tag needs to return a BOOL or INT
@@ -36,8 +39,12 @@ def change_state_button(tag: str, tag_indicator: int = 0):
     Params:
         tag = the Tag of the PLC
     """
-    value = read_tags(tag)
     try:
+        if not tag_indicator:
+            value = read_tags(tag)
+        else:
+            value = tag_indicator
+
         if value == 1:
             write_tag(tag, 0)
         elif value == 0:
@@ -45,9 +52,9 @@ def change_state_button(tag: str, tag_indicator: int = 0):
         else:
             raise Exception("Valor errado recebido - gui_function/change_state_button")
     except Exception as e:
-        print(e)
+        print(f"{e} - gui_function.py - change_state_button")
 #############################################
-def set_reset_button(tag_to_write: str, tag_indicator: bool, widget: QWidget, text_on: str, text_off: str):
+def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off: str, tag_indicator: bool = None):
     """
     Reads the tag and change its value for the opposite,
     writing the texts on the button
@@ -60,17 +67,23 @@ def set_reset_button(tag_to_write: str, tag_indicator: bool, widget: QWidget, te
         text_on = text if the value is True
         text_off = text if the value is False
     """
+
     try:
-        if tag_indicator == 0:
+        if not tag_indicator:
+            value = read_tags(tag_to_write)
+        else:
+            value = tag_indicator
+
+        if value == 0:
             write_tag(tag_to_write, 1)
             widget.setText(text_on)
-        elif tag_indicator == 1:
+        elif value == 1:
             write_tag(tag_to_write, 0)
             widget.setText(text_off)
         else:
             raise Exception("Valor errado recebido - gui_function/set_reset_button")
     except Exception as e:
-        print(e)
+        print(f"{e} - gui_function.py - set_reset_button")
 #############################################
 def change_status(tag: Union[int, bool], stsWidget: QWidget):
     """
