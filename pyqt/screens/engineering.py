@@ -8,6 +8,7 @@ from utils.Types import AltValShowDialog_WithText
 UI: Ui_MainWindow
 SHOW_DIALOG: AltValShowDialog_WithText
 
+
 def define_buttons(receive_ui: Ui_MainWindow, receive_show_dialog: AltValShowDialog_WithText):
     """
     Define the buttons of the screen
@@ -25,9 +26,10 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_show_dialog: AltValShowDia
     def_pts()
     def_delayA()
     def_delayB()
-    UI.btn_habilita_logs.clicked.connect(
+    '''UI.btn_habilita_logs.clicked.connect(
         lambda: set_reset_button("HMI.EnableLog", UI.btn_habilita_logs,
-                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
+                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))'''
+
 
 ### Defining Dialogs
 def def_coordinate_buttons():
@@ -49,6 +51,7 @@ def def_coordinate_buttons():
         lambda: SHOW_DIALOG("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
                             "ConfigPontos.DistVar", "float"))
 
+
 def def_prof_cort():
     """
     Define the depth cut buttons of the screen
@@ -63,6 +66,7 @@ def def_prof_cort():
     UI.btn_md_val_prof_corte_b2.clicked.connect(
         lambda: SHOW_DIALOG("Alterar a profundidade de corte em B2", "ConfigPontos.CutDepthB2", "float"))
 
+
 def def_pts():
     """
     Define the point buttons of the screen
@@ -72,6 +76,7 @@ def def_pts():
         lambda: SHOW_DIALOG("Altera o número máximo de pontos:", "HMI.NumPosMax", "int"))
     UI.btn_md_val_vel_corte.clicked.connect(
         lambda: SHOW_DIALOG("Altera a velocidade de corte:", "Robo.Output.CutSpeed", "int"))
+
 
 def def_delayA():
     """
@@ -87,6 +92,7 @@ def def_delayA():
     UI.btn_md_val_temp_alarm_pos_port_a.clicked.connect(
         lambda: SHOW_DIALOG("Altera tempo do alarme de posição da porta A:", "Cyl_DoorSideA.TimeOut", "int"))
 
+
 def def_delayB():
     """
     Define the Side B buttons of the screen
@@ -100,6 +106,7 @@ def def_delayB():
         lambda: SHOW_DIALOG("Altera tempo do alarme de sensores B:", "Cyl_DoorSideB.TimeBothSenOnOff", "int"))
     UI.btn_md_val_temp_alarm_pos_port_b.clicked.connect(
         lambda: SHOW_DIALOG("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
+
 
 ### Updating widgets
 def UpdateHMI(tag):
@@ -119,15 +126,22 @@ def UpdateHMI(tag):
         UI.lbl_PosD.setText(str(round(currentOffset["PosD"], 1)))
         UI.lbl_MaxPts.setText(str(tag["NumPosMax"]))
 
-        value = tag["EnableLog"]
-        if value == 0:
+        if tag["EnableLog"] == 0:
             UI.btn_habilita_logs.setText("Desab. log\nde pontos")
-        elif value == 1:
+        elif tag["EnableLog"] == 1:
             UI.btn_habilita_logs.setText("Habilita log\nde pontos")
         else:
             pass
-    except:
-        pass
+
+        # buttons
+        UI.btn_habilita_logs.clicked.connect(
+            lambda: set_reset_button(tag["EnableLog"], tag["EnableLog"], UI.btn_habilita_logs,
+                                     "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
+    except Exception as e:
+        UI.btn_habilita_logs.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_habilita_logs.setText('Erro')
+        print(f'{e} - engineering.UpdateHMI')
+
 
 def UpdateConfigPts(tag):
     """
@@ -151,6 +165,7 @@ def UpdateConfigPts(tag):
     except:
         pass
 
+
 def UpdateCylA(tag):
     """
     Updates the screen's labels with the readed tag values
@@ -166,6 +181,7 @@ def UpdateCylA(tag):
         UI.lbl_temp_alarm_pos_port_a.setText(str(tag["TimeOut"]))
     except:
         pass
+
 
 def UpdateCylB(tag):
     """
@@ -183,6 +199,7 @@ def UpdateCylB(tag):
     except:
         pass
 
+
 def UpdateRobotPos(tag):
     """
     Updates the screen's labels with the readed tag values
@@ -195,6 +212,7 @@ def UpdateRobotPos(tag):
         UI.lbl_RobotPos.setText(str(tag))
     except:
         pass
+
 
 def UpdateRobotOutput(tag):
     """

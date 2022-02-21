@@ -1,13 +1,13 @@
 """Module with all functions used on the InOutScreen of the application"""
 
-from typing import Callable
+from typing import Callable, List
 from ui_py.ui_gui import Ui_MainWindow
 
 from utils.gui_functions import change_status
 
 UI: Ui_MainWindow
 
-tags_inOut: list[str] = []
+tags_inOut: List[str] = []
 
 for i in range(0, 3):
     for j in range(0, 16):

@@ -11,12 +11,13 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_v1 import Ui_MainWindow
 
 from utils.gui_functions import *
 from utils.workers import *
 from utils.ctrl_plc import *
 from utils.alarm_control import *
+from utils.db_users import users_accounts, key_list, get_connected_username
 
 from utils.Types import *
 
@@ -30,6 +31,8 @@ from dialogs.login import LoginDialog
 ##############################################################
 
 # todo => criar thread para não travar tela com a troca de estado de botões? (man-auto / hab/desab logs)
+# todo => Foi modificado os botões para dentro das funções que rodam como as threads - falta testar para ver se melhora
+#  o tempo de resposta
 # pode ser ruim para o usuário se clicar repetidas vezes no botão
 
 class RnRobotics_Gui(QMainWindow):
@@ -51,7 +54,7 @@ class RnRobotics_Gui(QMainWindow):
         self.userName = "Nenhum usuário logado"
         self.ui.lbl_username.setText(self.userName)
         ##################################################################
-        # thread - to update PLC values ##################################
+        # Thread - to update PLC values ##################################
         ##################################################################
         self.threadpool_0 = QThreadPool()
         self.threadpool_1 = QThreadPool()
@@ -68,6 +71,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_12 = QThreadPool()
         self.threadpool_13 = QThreadPool()
         self.threadpool_14 = QThreadPool()
+        self.threadpool_15 = QThreadPool()
         ###################################################################
         # Workers #########################################################
         ###################################################################
@@ -86,12 +90,21 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_indexRobotPos = Worker_IndexRobotPos()
         self.worker_alarm = Worker_Alarms()
         self.worker_inOut = Worker_InOut()
-
+        self.worker_user = Worker_User()
+        ###########################################################################################
+        # Connect results of the workers ##########################################################
+        ###########################################################################################
         self.worker_data_ctrl_a1.signal_a1.result.connect(self.update_DataCtrl_A1)
         self.worker_data_ctrl_a2.signal_a2.result.connect(self.update_DataCtrl_A2)
         self.worker_data_ctrl_b1.signal_b1.result.connect(self.update_DataCtrl_B1)
         self.worker_data_ctrl_b2.signal_b2.result.connect(self.update_DataCtrl_B2)
+        ###########################################################################################
+        # !!! Update tag HMI --> Quando um erro acontece o sinal de erro também chama a função para
+        # que mude os status dos botões e outros widgets
+        ###########################################################################################
         self.worker_hmi.signal_hmi.result.connect(self.update_hmi)
+        self.worker_hmi.signal_hmi.error.connect(self.update_hmi)
+        ###########################################################################################
         self.worker_config_pts.signal_configPts.result.connect(self.update_ConfigPontos)
         self.worker_cylDoorA.signal_cylDoorA.result.connect(self.update_CylDoorSideA)
         self.worker_cylDoorB.signal_cylDoorB.result.connect(self.update_CylDoorSideB)
@@ -102,7 +115,10 @@ class RnRobotics_Gui(QMainWindow):
         self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
         self.worker_alarm.signal_alarm.result.connect(self.update_Alarms)
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
-
+        self.worker_user.signal_user.result.connect(self.update_user_access)
+        ###################################################################
+        # Start the threads ###############################################
+        ###################################################################
         self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
         self.threadpool_2.start(self.worker_data_ctrl_a2)
@@ -118,6 +134,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_12.start(self.worker_indexRobotPos)
         self.threadpool_13.start(self.worker_alarm)
         self.threadpool_14.start(self.worker_inOut)
+        self.threadpool_15.start(self.worker_user)
         ###################################################################
         # main screen of the application ##################################
         ###################################################################
@@ -218,9 +235,11 @@ class RnRobotics_Gui(QMainWindow):
     def update_hmi(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateHMI(tag)
-        if self.ui.stackedWidget.currentIndex() == 3:
+        elif self.ui.stackedWidget.currentIndex() == 1:
+            robot.UpdateHMI(tag)
+        elif self.ui.stackedWidget.currentIndex() == 3:
             prod.UpdateHMI(tag)
-        if self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateHMI(tag)
     ########################################################################
     def update_ConfigPontos(self, tag):
@@ -230,13 +249,13 @@ class RnRobotics_Gui(QMainWindow):
     def update_CylDoorSideA(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateCylA(tag)
-        if self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateCylA(tag)
     ########################################################################
     def update_CylDoorSideB(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateCylB(tag)
-        if self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateCylB(tag)
     ########################################################################
     def update_CylSpindle(self, tag):
@@ -254,7 +273,7 @@ class RnRobotics_Gui(QMainWindow):
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateOutput(tag)
-        if self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateRobotOutput(tag)
     ########################################################################
     def update_BarCode(self, tag):
@@ -268,6 +287,20 @@ class RnRobotics_Gui(QMainWindow):
     def update_InOut(self, tag):
         if self.ui.stackedWidget.currentIndex() == 5:
             inOut.UpdateInOut(tag)
+    ########################################################################
+    def update_user_access(self, signal):
+        if self.ui.stackedWidget.currentIndex() == 0:
+            try:
+                if get_connected_username() not in key_list:
+                    self.ui.btnRobotScreen.setEnabled(False)
+                elif get_connected_username() == key_list[0]:
+                    self.ui.btnRobotScreen.setEnabled(True)
+                elif get_connected_username() == key_list[1]:
+                    self.ui.btnRobotScreen.setEnabled(True)
+                elif get_connected_username() == key_list[2]:
+                    self.ui.btnRobotScreen.setEnabled(True)
+            except Exception as e:
+                print(e)
     ########################################################################
     #### Stop Threads ######################################################
     ########################################################################
@@ -289,6 +322,7 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_indexRobotPos.stop()
             self.worker_alarm.stop()
             self.worker_inOut.stop()
+            self.worker_user.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")

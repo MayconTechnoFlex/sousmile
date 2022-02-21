@@ -1,6 +1,6 @@
 """Dialog for log-in a user"""
 
-from PyQt5.QtCore import QRegExp, Qt
+from PyQt5.QtCore import QRegExp, Qt, QThread
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog, QLabel
 
@@ -75,3 +75,5 @@ class LoginDialog(QDialog):
         """Log-out the user when the button is pressed"""
         disconnect_user()
         self.lbl_username.setText('Nenhum usuário logado')
+
+

@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>../../../../../../../Biblioteca Eplan/Fanuc/Collaborative robot CR-7iAL-Gray.jpg</file>
+    <file>../../../../../../../Biblioteca Eplan/Fanuc/Collaborative robot CR-7iAL.jpg</file>
+    <file>../../../../../../../Biblioteca Eplan/Fanuc/Collaborative robot CR-7iAL.jpg</file>
     <file>../assets/images/SouSmile 60x60.png</file>
     <file>../assets/images/SouSmile 40x40.png</file>
     <file>../assets/images/RN ico.jpg</file>

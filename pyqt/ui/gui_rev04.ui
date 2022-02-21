@@ -845,7 +845,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">

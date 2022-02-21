@@ -72,7 +72,7 @@ class Worker(QRunnable, WorkerParent):
                     self.signal_local2In.result.emit(local_2_in)
 
             except Exception as e:
-                print(f'{e} - workers.py')
+                print(f'{e} Worker - workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -101,7 +101,7 @@ class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
                 else:
                     self.signal_a1.result.emit(data_ctrl_a1)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Data_Ctrl_A1 - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -130,7 +130,7 @@ class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
                 else:
                     self.signal_a2.result.emit(data_ctrl_a2)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Data_Ctrl_A2 - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -159,7 +159,7 @@ class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
                 else:
                     self.signal_b1.result.emit(data_ctrl_b1)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Data_Ctrl_B1 - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -188,7 +188,7 @@ class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
                 else:
                     self.signal_b2.result.emit(data_ctrl_b2)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Data_Ctrl_B2 - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -217,9 +217,9 @@ class Worker_HMI(QRunnable, WorkerParent):
                 else:
                     self.signal_hmi.result.emit(hmi)
             except Exception as e:
-                print(f'{e} - in workers.py')
-                self.stop()
-                break
+                print(f'{e} Worker_HMI - in workers.py')
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 
 class Worker_Config_Pts(QRunnable, WorkerParent):
@@ -246,7 +246,7 @@ class Worker_Config_Pts(QRunnable, WorkerParent):
                 else:
                     self.signal_configPts.result.emit(config_pts)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Config_Pts - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -275,7 +275,7 @@ class Worker_Cyl_Door_A(QRunnable, WorkerParent):
                 else:
                     self.signal_cylDoorA.result.emit(cyl_door_a)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Cyl_Door_A - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -304,7 +304,7 @@ class Worker_Cyl_Door_B(QRunnable, WorkerParent):
                 else:
                     self.signal_cylDoorB.result.emit(cyl_door_b)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Cyl_Door_B - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -333,7 +333,7 @@ class Worker_Cyl_Spindle(QRunnable, WorkerParent):
                 else:
                     self.signal_cylSpindle.result.emit(cyl_spindle)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Cyl_Spindle - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -362,7 +362,7 @@ class Worker_Robot_Inputs(QRunnable, WorkerParent):
                 else:
                     self.signal_roboInput.result.emit(robo_input)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Robot_Inputs - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -391,7 +391,7 @@ class Worker_Robot_Outputs(QRunnable, WorkerParent):
                 else:
                     self.signal_robotOutput.result.emit(robo_output)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Robot_Outputs - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -420,7 +420,7 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
                 else:
                     self.signal_indexRobotPos.result.emit(index_robot_pos)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_IndexRobotPos - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -447,7 +447,7 @@ class Worker_Alarms(QRunnable, WorkerParent):
                 else:
                     self.signal_alarm.result.emit(alarm_list)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_Alarms - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
@@ -474,7 +474,27 @@ class Worker_InOut(QRunnable, WorkerParent):
                 else:
                     self.signal_inOut.result.emit(inOut_list)
             except Exception as e:
-                print(f'{e} - in workers.py')
+                print(f'{e} Worker_InOut - in workers.py')
                 self.stop()
                 break
             time.sleep(sleep_time)
+
+class Worker_User(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+    def __init__(self):
+        super(Worker_User, self).__init__()
+        self.signal_user = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        while self.running:
+            signal = True
+            try:
+                self.signal_user.result.emit(signal)
+                time.sleep(sleep_time)
+            except Exception as e:
+                print(f'{e} - User worker')
+
+

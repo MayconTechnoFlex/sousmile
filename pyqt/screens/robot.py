@@ -8,6 +8,7 @@ from utils.Types import AltValShowDialog_WithText
 
 UI: Ui_MainWindow
 
+
 def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
     """
     Define the buttons of the screen
@@ -18,14 +19,37 @@ def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_With
     """
     global UI
     UI = receive_ui
-    UI.btn_parar_robo.clicked.connect(lambda: set_reset_button("HMI.HoldRobo",
+    '''UI.btn_parar_robo.clicked.connect(lambda: set_reset_button("HMI.HoldRobo",
                                                                UI.btn_parar_robo,
                                                                "Liberar Robô",
-                                                               "Parar Robô"))
+                                                               "Parar Robô"))'''
 
     UI.btn_alt_vel_robo_screen.clicked.connect(
         lambda: show_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
     )
+
+
+def UpdateHMI(tag):
+    global UI
+    try:
+        if tag["HoldRobo"] == 0:
+            UI.btn_parar_robo.setText("Parar Robô")
+        elif tag["HoldRobo"] == 1:
+            UI.btn_parar_robo.setText("Liberar Robô")
+        else:
+            pass
+
+        # buttons
+        UI.btn_parar_robo.clicked.connect(lambda: set_reset_button(tag["HoldRobo"],
+                                                                   tag["HoldRobo"],
+                                                                   UI.btn_parar_robo,
+                                                                   "Liberar Robô",
+                                                                   "Parar Robô"))
+    except Exception as e:
+        UI.btn_parar_robo.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_parar_robo.setText('Erro')
+        print(f'{e} - robot.UpdateHMI')
+
 
 def UpdateInput(tag: dict):
     """

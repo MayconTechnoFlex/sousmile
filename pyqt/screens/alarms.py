@@ -1,6 +1,7 @@
 """Module with all functions used on the AlarmScreen of the application"""
 
 from datetime import datetime
+from typing import List
 
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
@@ -10,7 +11,7 @@ from utils.alarm_control import *
 
 UI: Ui_MainWindow
 CURRENT_ROW = 0
-hasAlarm: list[bool] = []
+hasAlarm: List[bool] = []
 
 for i in range(0, 97):
     hasAlarm.append(False)

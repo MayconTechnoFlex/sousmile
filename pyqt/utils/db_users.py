@@ -8,17 +8,22 @@ users_accounts: UsersAccounts = {
     'rn': 'rnrobotics'
 }
 
+key_list = list(users_accounts.keys())
+
 connected_username: UsersName = ""
+
 
 def set_connected_username(username: UsersName) -> None:
     """Writes the username in a module variable"""
     global connected_username
     connected_username = username
 
+
 def disconnect_user() -> None:
     """Deletes the username in a module variable"""
     global connected_username
     connected_username = ""
+
 
 def get_connected_username() -> str:
     """Returns the username from the modules variable"""
