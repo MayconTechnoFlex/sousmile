@@ -3,6 +3,7 @@ import PyInstaller.__main__
 PyInstaller.__main__.run([
     './pyqt/main.py',
     '--name=HMI Sousmile',
+    '--onefile',
     '--noconsole',
     '--noconfirm',
     '--specpath=dist',

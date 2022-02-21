@@ -40,16 +40,19 @@ def def_coordinate_buttons():
     UI.btn_md_val_dist_xyz.clicked.connect(
         lambda: DIALOG.show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
     UI.btn_md_val_dist_c.clicked.connect(
-        lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo C (horizontal):", "ConfigPontos.Diff_AngleC",
-                            "float"))
+        lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo C (horizontal):",
+                                   "ConfigPontos.Diff_AngleC",
+                                   "float"))
     UI.btn_md_val_dist_d.clicked.connect(
-        lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo D (de ataque):", "ConfigPontos.Diff_AngleD",
-                            "float"))
+        lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo D (de ataque):",
+                                   "ConfigPontos.Diff_AngleD",
+                                   "float"))
     UI.btn_md_val_var_h.clicked.connect(
         lambda: DIALOG.show_dialog("Alterar a variação entre pontos:", "ConfigPontos.Dist_H", "float"))
     UI.btn_md_val_d0_mnr_pts.clicked.connect(
         lambda: DIALOG.show_dialog("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
-                            "ConfigPontos.DistVar", "float"))
+                                   "ConfigPontos.DistVar",
+                                   "float"))
 
 
 def def_prof_cort():
