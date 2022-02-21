@@ -142,26 +142,26 @@ def UpdateHMI(tag):
         ### buttons manual <-> auto
         if tag['SideA']['ModeValue'] == 0:
             hmi_side_a_mode_value = 0
-            UI.btn_man_auto_lado_a.setStyleSheet("background-color : #ffdf00; color : #565656")
+            # UI.btn_man_auto_lado_a.setStyleSheet("background-color : #ffdf00; color : #565656")
             UI.btn_man_auto_lado_a.setChecked(True)
             UI.sts_auto_man_a.setEnabled(True)
             UI.btn_man_auto_lado_a.setText('Manual')
         elif tag['SideA']['ModeValue'] == 1:
             hmi_side_a_mode_value = 1
-            UI.btn_man_auto_lado_a.setStyleSheet("background-color : #565656; color : #ffdf00")
+            # UI.btn_man_auto_lado_a.setStyleSheet("background-color : #565656; color : #ffdf00")
             UI.btn_man_auto_lado_a.setChecked(False)
             UI.sts_auto_man_a.setEnabled(False)
             UI.btn_man_auto_lado_a.setText('Automático')
 
         if tag['SideB']['ModeValue'] == 0:
             hmi_side_b_mode_value = 0
-            UI.btn_man_auto_lado_b.setStyleSheet("background-color : #ffdf00; color : #565656")
+            # UI.btn_man_auto_lado_b.setStyleSheet("background-color : #ffdf00; color : #565656")
             UI.btn_man_auto_lado_b.setChecked(True)
             UI.sts_auto_man_b.setEnabled(True)
             UI.btn_man_auto_lado_b.setText('Manual')
         elif tag['SideB']['ModeValue'] == 1:
             hmi_side_b_mode_value = 1
-            UI.btn_man_auto_lado_b.setStyleSheet("background-color : #565656; color : #ffdf00")
+            # UI.btn_man_auto_lado_b.setStyleSheet("background-color : #565656; color : #ffdf00")
             UI.btn_man_auto_lado_b.setChecked(False)
             UI.sts_auto_man_b.setEnabled(False)
             UI.btn_man_auto_lado_b.setText('Automático')
@@ -178,19 +178,19 @@ def UpdateHMI(tag):
             UI.sts_sem_alarm_b.setEnabled(True)
 
         # buttons
-        UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button(tag['SideA']['ModeValue'],
+        UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
                                                                         tag['SideA']['ModeValue'],
                                                                         UI.btn_man_auto_lado_a,
                                                                         'Automático',
                                                                         'Manual'))
-        UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button(tag['SideB']['ModeValue'],
+        UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
                                                                         tag['SideB']['ModeValue'],
                                                                         UI.btn_man_auto_lado_b,
                                                                         'Automático',
                                                                         'Manual'))
     except Exception as e:
-        hmi_side_a_mode_value = 10
-        hmi_side_b_mode_value = 10
+        hmi_side_a_mode_value = None
+        hmi_side_b_mode_value = None
         UI.btn_man_auto_lado_a.setStyleSheet("background-color : #dc1f1f; color : black")
         UI.btn_man_auto_lado_b.setStyleSheet("background-color : #dc1f1f; color : black")
         UI.btn_man_auto_lado_a.setText('Erro')

@@ -64,7 +64,7 @@ def set_reset_button(tag_to_write: str, tag_indicator: bool, widget: QWidget, te
             write_tag(tag_to_write, 1)
             widget.setText(text_on)
         elif tag_indicator == 1:
-            write_tag(tag, 0)
+            write_tag(tag_to_write, 0)
             widget.setText(text_off)
         else:
             raise Exception("Valor errado recebido - gui_function/set_reset_button")
