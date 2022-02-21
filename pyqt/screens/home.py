@@ -2,9 +2,9 @@
 
 from PyQt5.QtWidgets import QLabel
 from ui_py.ui_gui import Ui_MainWindow
+from dialogs.insert_code import InsertCodeDialog
 
 from utils.gui_functions import set_reset_button
-from utils.Types import AltValShowDialog_WithoutText
 
 UI: Ui_MainWindow
 
@@ -33,29 +33,29 @@ def sts_string(id_num: int, widget: QLabel):
     else:
         widget.setText('Erro')
 
-def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithoutText):
+def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     """
     Define the buttons of the screen
 
     Params:
         receive_ui = main ui of the application
-        show_dialog = function for pop-up buttons
+        dialog = function for pop-up buttons
     """
     global UI
     UI = receive_ui
-    UI.btn_in_cod_man_a1.clicked.connect(lambda: show_dialog('DataCtrl_A1.ProdCode', "string"))
-    UI.btn_in_cod_man_a2.clicked.connect(lambda: show_dialog('DataCtrl_A2.ProdCode', "string"))
-    UI.btn_in_cod_man_b1.clicked.connect(lambda: show_dialog('DataCtrl_B1.ProdCode', "string"))
-    UI.btn_in_cod_man_b2.clicked.connect(lambda: show_dialog('DataCtrl_B2.ProdCode', "string"))
+    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string"))
+    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string"))
+    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
+    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
 
-    '''UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
+    UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
                                                                     UI.btn_man_auto_lado_a,
                                                                     'Automático',
                                                                     'Manual'))
     UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
                                                                     UI.btn_man_auto_lado_b,
                                                                     'Automático',
-                                                                    'Manual'))'''
+                                                                    'Manual'))
 
 def UpdateDataCtrl_A1(tag):
     """
@@ -177,17 +177,6 @@ def UpdateHMI(tag):
         else:
             UI.sts_sem_alarm_b.setEnabled(True)
 
-        # buttons
-        UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
-                                                                        tag['SideA']['ModeValue'],
-                                                                        UI.btn_man_auto_lado_a,
-                                                                        'Automático',
-                                                                        'Manual'))
-        UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
-                                                                        tag['SideB']['ModeValue'],
-                                                                        UI.btn_man_auto_lado_b,
-                                                                        'Automático',
-                                                                        'Manual'))
     except Exception as e:
         hmi_side_a_mode_value = None
         hmi_side_b_mode_value = None

@@ -146,12 +146,12 @@ class RnRobotics_Gui(QMainWindow):
         # Defining buttons of screens #####################################
         ###################################################################
         self.define_navigate_buttons()
-        home.define_buttons(self.ui, self.insert_code_dialog.show_dialog)
-        robot.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
+        home.define_buttons(self.ui, self.insert_code_dialog)
+        robot.define_buttons(self.ui, self.altera_valor_dialog)
         alarms.define_buttons(self.ui)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog.show_dialog, self.confirm_dialog, self.check_uf)
-        eng.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
+        maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
+        eng.define_buttons(self.ui, self.altera_valor_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
         # Setting controll variabled ######################################

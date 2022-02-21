@@ -2,22 +2,22 @@
 
 from ui_py.ui_gui import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
+from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
 from utils.gui_functions import change_state_button, change_status
-from utils.Types import AltValShowDialog_WithText
 from utils.db_users import get_connected_username
 
 UI: Ui_MainWindow
 
-def define_buttons(receive_UI: Ui_MainWindow, show_dialog: AltValShowDialog_WithText,
+def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
                    confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
     """
     Define the buttons of the screen
 
     Params:
         receive_ui = main ui of the application
-        show_dialog = function for pop-up buttons
+        altValDialog = function for pop-up buttons
         confirm_dialog = confirmation dialog object
     """
     global UI
@@ -32,21 +32,21 @@ def define_buttons(receive_UI: Ui_MainWindow, show_dialog: AltValShowDialog_With
     UI.btn_DoorSideA_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManExt"))
     UI.btn_DoorSideA_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.MaintTest"))
     UI.btn_DoorSideA_TimeMaint.clicked.connect(
-        lambda: show_dialog("Alterar tempo de manutenção do lado A:", "Cyl_DoorSideA.TimeMaintTest", "int")
+        lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado A:", "Cyl_DoorSideA.TimeMaintTest", "int")
     )
 
     UI.btn_DoorSideB_abrir.clicked.connect(lambda: change_state_button("Cyl_DoorSideB.ManRet"))
     UI.btn_DoorSideB_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideB.ManExt"))
     UI.btn_DoorSideB_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideB.MaintTest"))
     UI.btn_DoorSideB_TimeMaint.clicked.connect(
-        lambda: show_dialog("Alterar tempo de manutenção do lado B:", "Cyl_DoorSideB.TimeMaintTest", "int")
+        lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado B:", "Cyl_DoorSideB.TimeMaintTest", "int")
     )
 
     UI.btn_SpindleRobo_abrir.clicked.connect(lambda: change_state_button("Cyl_SpindleRobo.ManRet"))
     UI.btn_SpindleRobo_fechar.clicked.connect(lambda: change_state_button("Cyl_SpindleRobo.ManExt"))
     UI.btn_SpindleRobo_manut.clicked.connect(lambda: change_state_button("Cyl_SpindleRobo.MaintTest"))
     UI.btn_SpindleRobo_TimeMaint.clicked.connect(
-        lambda: show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
+        lambda: altValDialog.show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
     )
 
 def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
@@ -59,8 +59,8 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
     global UI
     UI.btn_move_home.clicked.connect(
         lambda: dialog.show_dialog("MoveHome",
-                                   "Cuidado, você vai movimentar o robô para aposição inicial, caso tenha risco de colisão, "
-                                   "movimente o robô para a posição inicial manualmente!"))
+                                   "Cuidado, você vai movimentar o robô para aposição inicial, "
+                                   "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
 
 def UpdateCylA(tag):
     """
