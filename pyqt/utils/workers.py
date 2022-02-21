@@ -493,6 +493,6 @@ class Worker_User(QRunnable, WorkerParent):
             signal = True
             try:
                 self.signal_user.result.emit(signal)
-                time.sleep(sleep_time)
+                time.sleep(0.2)
             except Exception as e:
                 print(f'{e} - User worker')

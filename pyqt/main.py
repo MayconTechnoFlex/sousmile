@@ -289,18 +289,19 @@ class RnRobotics_Gui(QMainWindow):
             inOut.UpdateInOut(tag)
     ########################################################################
     def update_user_access(self, signal):
-        if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                if get_connected_username() not in key_list:
-                    self.ui.btnRobotScreen.setEnabled(False)
-                elif get_connected_username() == key_list[0]:
-                    self.ui.btnRobotScreen.setEnabled(True)
-                elif get_connected_username() == key_list[1]:
-                    self.ui.btnRobotScreen.setEnabled(True)
-                elif get_connected_username() == key_list[2]:
-                    self.ui.btnRobotScreen.setEnabled(True)
-            except Exception as e:
-                print(e)
+        try:
+            if get_connected_username() not in key_list:
+                if self.ui.stackedWidget.currentIndex() == 1:
+                    self.ui.stackedWidget.setCurrentIndex(0)
+                self.ui.btnRobotScreen.setEnabled(False)
+            elif get_connected_username() == key_list[0]:
+                self.ui.btnRobotScreen.setEnabled(True)
+            elif get_connected_username() == key_list[1]:
+                self.ui.btnRobotScreen.setEnabled(True)
+            elif get_connected_username() == key_list[2]:
+                self.ui.btnRobotScreen.setEnabled(True)
+        except Exception as e:
+            print(e)
     ########################################################################
     #### Stop Threads ######################################################
     ########################################################################
