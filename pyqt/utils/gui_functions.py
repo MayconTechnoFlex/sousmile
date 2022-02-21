@@ -28,7 +28,7 @@ def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type:
     widget.clear()
     dialog.close()
 #############################################
-def change_state_button(tag: str, tag_indicator: int):
+def change_state_button(tag: str, tag_indicator: int = 0):
     """
     Reads the tag and change its value for the opposite
     WARNING: the read tag needs to return a BOOL or INT
@@ -36,10 +36,11 @@ def change_state_button(tag: str, tag_indicator: int):
     Params:
         tag = the Tag of the PLC
     """
+    value = read_tags(tag)
     try:
-        if tag_indicator == 1:
+        if value == 1:
             write_tag(tag, 0)
-        elif tag_indicator == 0:
+        elif value == 0:
             write_tag(tag, 1)
         else:
             raise Exception("Valor errado recebido - gui_function/change_state_button")

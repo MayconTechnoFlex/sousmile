@@ -28,6 +28,7 @@ from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.login import LoginDialog
+from dialogs.checkUF import CheckUserFrame
 ##############################################################
 
 # todo => criar thread para não travar tela com a troca de estado de botões? (man-auto / hab/desab logs)
@@ -45,6 +46,8 @@ class RnRobotics_Gui(QMainWindow):
         self.altera_valor_dialog = AlteraValorDialog(self)
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
+        self.check_uf = CheckUserFrame(self)
+        # todo => adicionar dialog de check user frame
 
         #win_icon = QIcon("./assets/images/RN_ico.png")
         #self.setWindowIcon(win_icon)
@@ -147,7 +150,7 @@ class RnRobotics_Gui(QMainWindow):
         robot.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
         alarms.define_buttons(self.ui)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog.show_dialog, self.confirm_dialog)
+        maint.define_buttons(self.ui, self.altera_valor_dialog.show_dialog, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################

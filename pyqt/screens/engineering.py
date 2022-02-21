@@ -158,10 +158,10 @@ def UpdateConfigPts(tag):
         UI.lbl_var_h.setText(str(round(tag["Dist_H"], 2)))
         UI.lbl_d_menor_pts.setText(str(round(tag["DistVar"], 2)))
 
-        UI.lbl_CutDepth_A1.setText(str(round(tag["CutDepthA1"])))
-        UI.lbl_CutDepth_A2.setText(str(round(tag["CutDepthA2"])))
-        UI.lbl_CutDepth_B1.setText(str(round(tag["CutDepthB1"])))
-        UI.lbl_CutDepth_B2.setText(str(round(tag["CutDepthB2"])))
+        UI.lbl_CutDepth_A1.setText(str(round(tag["CutDepthA1"], 1)))
+        UI.lbl_CutDepth_A2.setText(str(round(tag["CutDepthA2"], 1)))
+        UI.lbl_CutDepth_B1.setText(str(round(tag["CutDepthB1"], 1)))
+        UI.lbl_CutDepth_B2.setText(str(round(tag["CutDepthB2"], 1)))
     except:
         pass
 

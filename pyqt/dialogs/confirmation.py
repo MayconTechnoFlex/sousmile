@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog
 
 from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 from utils.Types import ActionsToConfirm
+from utils.ctrl_plc import write_tag
 
 class ConfirmationDialog(QDialog):
     """
@@ -42,8 +43,7 @@ class ConfirmationDialog(QDialog):
         action = self.ACTION_TO_CONFIRM
         try:
             if action == "MoveHome":
-                # escreve a tag referente para cada ação
-                # write_tag("", 1)
+                write_tag("HMI.btnGoHome", 1)
                 print(f"{action} realized")
             elif action == "":
                 raise Exception("Nenhuma ação foi passada")

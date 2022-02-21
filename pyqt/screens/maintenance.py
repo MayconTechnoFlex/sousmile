@@ -2,6 +2,7 @@
 
 from ui_py.ui_gui import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
+from dialogs.checkUF import CheckUserFrame
 
 from utils.gui_functions import change_state_button, change_status
 from utils.Types import AltValShowDialog_WithText
@@ -9,7 +10,8 @@ from utils.db_users import get_connected_username
 
 UI: Ui_MainWindow
 
-def define_buttons(receive_UI: Ui_MainWindow, show_dialog: AltValShowDialog_WithText, confirmDialog: ConfirmationDialog):
+def define_buttons(receive_UI: Ui_MainWindow, show_dialog: AltValShowDialog_WithText,
+                   confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
     """
     Define the buttons of the screen
 
@@ -21,6 +23,11 @@ def define_buttons(receive_UI: Ui_MainWindow, show_dialog: AltValShowDialog_With
     global UI
     UI = receive_UI
     buttons_ConfirmDialogs(confirmDialog)
+    UI.btn_check_uf.clicked.connect(checkUF.show_dialog)
+
+    UI.btn_menos_1_mm.clicked.connect(lambda: change_state_button("HMI.btn_Sub1mm"))
+    UI.btn_termina_check_uf.clicked.connect(lambda: change_state_button("HMI.btn_EndCheckUF"))
+
     UI.btn_DoorSideA_abrir.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManRet"))
     UI.btn_DoorSideA_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManExt"))
     UI.btn_DoorSideA_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.MaintTest"))

@@ -10,8 +10,8 @@
 - Home:
   - [ ] Transferir Dados Manualmente
 - Manutenção:
-  - [ ] Abrir, Fechar e Manutenção do lado A, B e Spindle
-  - [ ] Mover para Home, Check User Frame, -1mm e Terminar Check Usar Frame
+  - [X] Abrir, Fechar e Manutenção do lado A, B e Spindle
+  - [X] Mover para Home, Check User Frame, -1mm e Terminar Check Usar Frame
 - Engenharia:
   - [ ] Remover botão de On/Off
 ### Ideias:
