@@ -75,15 +75,17 @@ def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off:
             value = tag_indicator
 
         if value == 0:
-            write_tag(tag_to_write, 1)
             widget.setText(text_on)
+            ret = write_tag(tag_to_write, 1)
         elif value == 1:
-            write_tag(tag_to_write, 0)
             widget.setText(text_off)
+            ret = write_tag(tag_to_write, 0)
         else:
             raise Exception("Valor errado recebido - gui_function/set_reset_button")
     except Exception as e:
         print(f"{e} - gui_function.py - set_reset_button")
+    finally:
+        return ret
 #############################################
 def change_status(tag: Union[int, bool], stsWidget: QWidget):
     """

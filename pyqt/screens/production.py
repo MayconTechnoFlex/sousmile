@@ -1,10 +1,37 @@
 """Module with all functions used on the ProductionScreen of the application"""
+from PyQt5.QtCore import QThread, Qt
+from PyQt5.QtWidgets import QApplication
 
 from ui_py.ui_gui import Ui_MainWindow
 
 from utils.ctrl_plc import write_tag
 
 UI: Ui_MainWindow
+
+class ThreadResetProduct(QThread):
+    def __init__(self, button, *tags: str):
+        super(ThreadResetProduct, self).__init__()
+        self.button = button
+        self.tags = tags
+
+    def run(self):
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        self.button.setEnabled(False)
+        try:
+            for tag in self.tags:
+                write_tag(tag, 0)
+        except Exception as e:
+            print(e)
+        QApplication.restoreOverrideCursor()
+        self.button.setEnabled(True)
+
+
+resetA1: ThreadResetProduct
+resetA2: ThreadResetProduct
+resetA: ThreadResetProduct
+resetB1: ThreadResetProduct
+resetB2: ThreadResetProduct
+resetB: ThreadResetProduct
 
 def define_buttons(receive_ui: Ui_MainWindow):
     """
@@ -13,26 +40,22 @@ def define_buttons(receive_ui: Ui_MainWindow):
     Params:
         receive_ui = main ui of the application
     """
-    global UI
+    global UI, resetA1, resetA2, resetA, resetB1, resetB2, resetB
     UI = receive_ui
-    UI.btn_reset_prod_a1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1"))
-    UI.btn_reset_prod_a2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA2"))
-    UI.btn_reset_prod_b1.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1"))
-    UI.btn_reset_prod_b2.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB2"))
-    UI.btn_reset_prod_total_a.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneA1",
-                                                                    "HMI.Production.PartsDoneA2"))
-    UI.btn_reset_prod_total_b.clicked.connect(lambda: reset_product("HMI.Production.PartsDoneB1",
-                                                                    "HMI.Production.PartsDoneB2"))
 
-def reset_product(*tags: str):
-    """
-    Set 0 for all the tags passed
+    resetA1 = ThreadResetProduct(UI.btn_reset_prod_a1, "HMI.Production.PartsDoneA1")
+    resetA2 = ThreadResetProduct(UI.btn_reset_prod_a2, "HMI.Production.PartsDoneA2")
+    resetA = ThreadResetProduct(UI.btn_reset_prod_total_a, "HMI.Production.PartsDoneA1", "HMI.Production.PartsDoneA2")
+    resetB1 = ThreadResetProduct(UI.btn_reset_prod_b1, "HMI.Production.PartsDoneB1")
+    resetB2 = ThreadResetProduct(UI.btn_reset_prod_b2, "HMI.Production.PartsDoneB2")
+    resetB = ThreadResetProduct(UI.btn_reset_prod_total_b, "HMI.Production.PartsDoneB1", "HMI.Production.PartsDoneB2")
 
-    Params:
-        tags = one or more tags to be write with 0
-    """
-    for tag in tags:
-        write_tag(tag, 0)
+    UI.btn_reset_prod_a1.clicked.connect(resetA1.start)
+    UI.btn_reset_prod_a2.clicked.connect(resetA2.start)
+    UI.btn_reset_prod_b1.clicked.connect(resetB1.start)
+    UI.btn_reset_prod_b2.clicked.connect(resetB2.start)
+    UI.btn_reset_prod_total_a.clicked.connect(resetA.start)
+    UI.btn_reset_prod_total_b.clicked.connect(resetB.start)
 
 def UpdateHMI(tag):
     """

@@ -5,8 +5,10 @@ from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog
 
 from ui_py.ui_cod_dialog_win import Ui_Dialog
+from utils.write_thread import Thread_LineEdit
 from utils.gui_functions import write_LineEdit
 from utils.Types import TagTypes
+
 
 class InsertCodeDialog(QDialog):
     """
@@ -24,7 +26,7 @@ class InsertCodeDialog(QDialog):
         regex = QRegExp(r"[\w\S]*")
         self.validator = QRegExpValidator(regex)
 
-        self.set_button()
+        self.thread: Thread_LineEdit
 
     def closeEvent(self, event) -> None:
         """Activated when the Dialog is closed"""
@@ -41,11 +43,11 @@ class InsertCodeDialog(QDialog):
         self.TAG_INDEX = tag
         self.TAG_TYPE = tag_type
         self.ui.txt_code.setValidator(self.validator)
+        self.thread = Thread_LineEdit(self.TAG_INDEX, self, self.ui.txt_code, self.TAG_TYPE)
+        self.thread.finished.connect(lambda: print("Thread finalizada"))
+        self.set_button()
         self.exec_()
 
     def set_button(self):
         """Set the button of the dialog"""
-        self.ui.btn_insert_code_man.clicked.connect(
-            lambda: write_LineEdit(self.TAG_INDEX, self,
-                                   self.ui.txt_code, self.TAG_TYPE)
-        )
+        self.ui.btn_insert_code_man.clicked.connect(self.thread.start)

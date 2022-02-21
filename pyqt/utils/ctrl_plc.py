@@ -35,7 +35,7 @@ def write_tag(tag_name: str, value: Union[str, int, float]):
     """
     try:
         with LogixDriver(IP) as plc:
-            plc.write((tag_name, value))
+            return plc.write((tag_name, value))
     except Exception as e:
         print(f"{e} - Error on plc communication")
 

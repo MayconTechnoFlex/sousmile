@@ -1,12 +1,39 @@
 """Module with all functions used on the HomeScreen of the application"""
 
 from PyQt5.QtWidgets import QLabel
+from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from ui_py.ui_gui import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
+from utils.ctrl_plc import write_tag, read_tags
+from utils.write_thread import ThreadSetResetButton
 from utils.gui_functions import set_reset_button
 
 UI: Ui_MainWindow
+
+threadA: ThreadSetResetButton
+threadB: ThreadSetResetButton
+
+def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
+    """
+    Define the buttons of the screen
+
+    Params:
+        receive_ui = main ui of the application
+        dialog = function for pop-up buttons
+    """
+    global UI, threadA, threadB
+    UI = receive_ui
+    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string"))
+    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string"))
+    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
+    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
+
+    threadA = ThreadSetResetButton(UI.btn_man_auto_lado_a, "HMI.SideA.ModeValue")
+    threadB = ThreadSetResetButton(UI.btn_man_auto_lado_b, "HMI.SideB.ModeValue")
+
+    UI.btn_man_auto_lado_a.clicked.connect(threadA.start)
+    UI.btn_man_auto_lado_b.clicked.connect(threadB.start)
 
 def sts_string(id_num: int, widget: QLabel):
     """
@@ -32,30 +59,6 @@ def sts_string(id_num: int, widget: QLabel):
         widget.setText('Aguardando leitura do código')
     else:
         widget.setText('Erro')
-
-def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
-    """
-    Define the buttons of the screen
-
-    Params:
-        receive_ui = main ui of the application
-        dialog = function for pop-up buttons
-    """
-    global UI
-    UI = receive_ui
-    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string"))
-    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string"))
-    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
-    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
-
-    UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
-                                                                    UI.btn_man_auto_lado_a,
-                                                                    'Automático',
-                                                                    'Manual'))
-    UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
-                                                                    UI.btn_man_auto_lado_b,
-                                                                    'Automático',
-                                                                    'Manual'))
 
 def UpdateDataCtrl_A1(tag):
     """

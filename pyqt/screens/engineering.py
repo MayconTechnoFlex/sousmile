@@ -4,10 +4,12 @@ from ui_py.ui_gui import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 
 from utils.gui_functions import set_reset_button
+from utils.write_thread import ThreadSetResetButton
 
 UI: Ui_MainWindow
 DIALOG: AlteraValorDialog
 
+thread: ThreadSetResetButton
 
 def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog):
     """
@@ -17,7 +19,7 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog)
         receive_ui = main ui of the application
         receive_show_dialog = function for pop-up buttons
     """
-    global UI, DIALOG
+    global UI, DIALOG, thread
     UI = receive_ui
     DIALOG = receive_dialog
     def_coordinate_buttons()
@@ -25,10 +27,10 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog)
     def_pts()
     def_delayA()
     def_delayB()
+
+    thread = ThreadSetResetButton(UI.btn_habilita_logs, "HMI.EnableLog")
     # buttons
-    UI.btn_habilita_logs.clicked.connect(
-        lambda: set_reset_button("HMI.EnableLog", UI.btn_habilita_logs,
-                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
+    UI.btn_habilita_logs.clicked.connect(thread.start)
 
 
 ### Defining Dialogs
