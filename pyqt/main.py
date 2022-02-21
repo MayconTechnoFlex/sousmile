@@ -29,6 +29,7 @@ from dialogs.confirmation import ConfirmationDialog
 from dialogs.insert_code import InsertCodeDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.login import LoginDialog
+from dialogs.checkUF import CheckUserFrame
 ##############################################################
 
 # todo => criar thread para não travar tela com a troca de estado de botões? (man-auto / hab/desab logs)
@@ -46,6 +47,8 @@ class RnRobotics_Gui(QMainWindow):
         self.altera_valor_dialog = AlteraValorDialog(self)
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
+        self.check_uf = CheckUserFrame(self)
+        # todo => adicionar dialog de check user frame
 
         #win_icon = QIcon("./assets/images/RN_ico.png")
         #self.setWindowIcon(win_icon)
@@ -148,12 +151,12 @@ class RnRobotics_Gui(QMainWindow):
         # Defining buttons of screens #####################################
         ###################################################################
         self.define_navigate_buttons()
-        home.define_buttons(self.ui, self.insert_code_dialog.show_dialog)
-        robot.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
+        home.define_buttons(self.ui, self.insert_code_dialog)
+        robot.define_buttons(self.ui, self.altera_valor_dialog)
         alarms.define_buttons(self.ui)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog.show_dialog, self.confirm_dialog)
-        eng.define_buttons(self.ui, self.altera_valor_dialog.show_dialog)
+        maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
+        eng.define_buttons(self.ui, self.altera_valor_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
         # Setting controll variabled ######################################
@@ -295,18 +298,19 @@ class RnRobotics_Gui(QMainWindow):
             inOut.UpdateInOut(tag)
     ########################################################################
     def update_user_access(self, signal):
-        if self.ui.stackedWidget.currentIndex() == 0:
-            try:
-                if get_connected_username() not in key_list:
-                    self.ui.btnRobotScreen.setEnabled(False)
-                elif get_connected_username() == key_list[0]:
-                    self.ui.btnRobotScreen.setEnabled(True)
-                elif get_connected_username() == key_list[1]:
-                    self.ui.btnRobotScreen.setEnabled(True)
-                elif get_connected_username() == key_list[2]:
-                    self.ui.btnRobotScreen.setEnabled(True)
-            except Exception as e:
-                print(e)
+        try:
+            if get_connected_username() not in key_list:
+                if self.ui.stackedWidget.currentIndex() == 1:
+                    self.ui.stackedWidget.setCurrentIndex(0)
+                self.ui.btnRobotScreen.setEnabled(False)
+            elif get_connected_username() == key_list[0]:
+                self.ui.btnRobotScreen.setEnabled(True)
+            elif get_connected_username() == key_list[1]:
+                self.ui.btnRobotScreen.setEnabled(True)
+            elif get_connected_username() == key_list[2]:
+                self.ui.btnRobotScreen.setEnabled(True)
+        except Exception as e:
+            print(e)
     ########################################################################
     def update_tag_list(self, tags):
         home.UpdateTagsList(tags)

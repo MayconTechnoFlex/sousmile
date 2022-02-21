@@ -28,11 +28,14 @@ def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type:
     else:
         data = None
 
-    write_tag(tag_name, data)
+    try:
+        write_tag(tag_name, data)
+    except Exception as e:
+        print(f"{e} - write_LineEdit")
     widget.clear()
     dialog.close()
 #############################################
-def change_state_button(tag: str, tag_indicator: int):
+def change_state_button(tag: str, tag_indicator: int = None):
     """
     Reads the tag and change its value for the opposite
     WARNING: the read tag needs to return a BOOL or INT
@@ -41,16 +44,22 @@ def change_state_button(tag: str, tag_indicator: int):
         tag = the Tag of the PLC
     """
     try:
-        if tag_indicator == 1:
+        if not tag_indicator:
+            value = read_tags(tag)
+        else:
+            value = tag_indicator
+
+        if value == 1:
             write_tag(tag, 0)
-        elif tag_indicator == 0:
+        elif value == 0:
             write_tag(tag, 1)
         else:
             raise Exception("Valor errado recebido - gui_function/change_state_button")
     except Exception as e:
-        print(e)
+        print(f"{e} - gui_function.py - change_state_button")
 #############################################
-def set_reset_button(tag_to_write: str, tag_indicator: str, widget: QWidget, text_on: str, text_off: str):
+def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off: str, tag_indicator: bool = None):
+
     """
     Reads the tag and change its value for the opposite,
     writing the texts on the button
@@ -63,11 +72,13 @@ def set_reset_button(tag_to_write: str, tag_indicator: str, widget: QWidget, tex
         text_on = text if the value is True
         text_off = text if the value is False
     """
+
     try:
         widget.setStyleSheet(":disabled{background-color:#cbcbcb; color: #cbcccc}")
         widget.setEnabled(False)
 
         value = read_tags(tag_indicator)
+
         if value == 0:
             write_tag(tag_to_write, 1)
             widget.setText(text_on)
@@ -79,6 +90,8 @@ def set_reset_button(tag_to_write: str, tag_indicator: str, widget: QWidget, tex
         time.sleep(0.5)
         widget.setEnabled(True)
     except Exception as e:
+        print(f"{e} - gui_function.py - set_reset_button")
+=======
         print(e)
         widget.setEnabled(True)
 
@@ -93,6 +106,7 @@ def set_reset_btn_int(i: int, tag_list):
             write_tag(tag_name, 0)
     except Exception as e:
         print(e)
+
 
 
 

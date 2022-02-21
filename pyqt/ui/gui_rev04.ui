@@ -348,6 +348,8 @@ QPushButton:hover{ background-color: #f1d100}
 QPushButton:pressed{background-color:#dfc200 }
 QPushButton:disabled{background-color:#cbcbcb }
 
+QPushButton::disabled{background-color:#cbcbcb}
+
 
 #frame_3 {
 background-color: white;
@@ -9564,19 +9566,58 @@ background-color: #f00000;
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QLabel" name="label_186">
-                       <property name="text">
-                        <string/>
+                      <widget class="QFrame" name="frame_169">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
                        </property>
-                       <property name="pixmap">
-                        <pixmap resource="images.qrc">:/newPrefix/Biblioteca Eplan/Fanuc/Collaborative robot CR-7iAL-Gray.jpg</pixmap>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
                        </property>
-                       <property name="scaledContents">
-                        <bool>false</bool>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_38">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_186">
+                          <property name="minimumSize">
+                           <size>
+                            <width>450</width>
+                            <height>471</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>450</width>
+                            <height>471</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap resource="images.qrc">:/newPrefix/assets/images/robot1.png</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
                       </widget>
                      </item>
                      <item>
@@ -28334,6 +28375,7 @@ QPushButton:pressed{background-color:#dfc200 }</string>
   </widget>
  </widget>
  <resources>
+  <include location="icons.qrc"/>
   <include location="images.qrc"/>
   <include location="icons.qrc"/>
  </resources>

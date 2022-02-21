@@ -4,28 +4,27 @@ from ui_py.ui_gui import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 
 from utils.gui_functions import change_status, set_reset_button
-from utils.Types import AltValShowDialog_WithText
 
 UI: Ui_MainWindow
 
 
-def define_buttons(receive_ui: Ui_MainWindow, show_dialog: AltValShowDialog_WithText):
+def define_buttons(receive_ui: Ui_MainWindow, dialog: AlteraValorDialog):
     """
     Define the buttons of the screen
 
     Params:
         receive_ui = main ui of the application
-        show_dialog = function for pop-up buttons
+        dialog = function for pop-up buttons
     """
     global UI
     UI = receive_ui
-    '''UI.btn_parar_robo.clicked.connect(lambda: set_reset_button("HMI.HoldRobo",
+    UI.btn_parar_robo.clicked.connect(lambda: set_reset_button("HMI.HoldRobo",
                                                                UI.btn_parar_robo,
                                                                "Liberar Robô",
-                                                               "Parar Robô"))'''
+                                                               "Parar Robô"))
 
     UI.btn_alt_vel_robo_screen.clicked.connect(
-        lambda: show_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
+        lambda: dialog.show_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
     )
 
 
@@ -39,12 +38,6 @@ def UpdateHMI(tag):
         else:
             pass
 
-        # buttons
-        UI.btn_parar_robo.clicked.connect(lambda: set_reset_button(tag["HoldRobo"],
-                                                                   tag["HoldRobo"],
-                                                                   UI.btn_parar_robo,
-                                                                   "Liberar Robô",
-                                                                   "Parar Robô"))
     except Exception as e:
         UI.btn_parar_robo.setStyleSheet("background-color : #dc1f1f; color : black")
         UI.btn_parar_robo.setText('Erro')

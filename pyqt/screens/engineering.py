@@ -1,15 +1,15 @@
 """Module with all functions used on the EngineeringScreen of the application"""
 
 from ui_py.ui_gui import Ui_MainWindow
+from dialogs.altera_valor import AlteraValorDialog
 
 from utils.gui_functions import set_reset_button
-from utils.Types import AltValShowDialog_WithText
 
 UI: Ui_MainWindow
-SHOW_DIALOG: AltValShowDialog_WithText
+DIALOG: AlteraValorDialog
 
 
-def define_buttons(receive_ui: Ui_MainWindow, receive_show_dialog: AltValShowDialog_WithText):
+def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog):
     """
     Define the buttons of the screen
 
@@ -17,18 +17,18 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_show_dialog: AltValShowDia
         receive_ui = main ui of the application
         receive_show_dialog = function for pop-up buttons
     """
-    # Todo => botão on/off
-    global UI, SHOW_DIALOG
+    global UI, DIALOG
     UI = receive_ui
-    SHOW_DIALOG = receive_show_dialog
+    DIALOG = receive_dialog
     def_coordinate_buttons()
     def_prof_cort()
     def_pts()
     def_delayA()
     def_delayB()
-    '''UI.btn_habilita_logs.clicked.connect(
+    # buttons
+    UI.btn_habilita_logs.clicked.connect(
         lambda: set_reset_button("HMI.EnableLog", UI.btn_habilita_logs,
-                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))'''
+                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
 
 
 ### Defining Dialogs
@@ -36,76 +36,79 @@ def def_coordinate_buttons():
     """
     Define the coordinate buttons of the screen
     """
-    global UI, SHOW_DIALOG
+    global UI, DIALOG
     UI.btn_md_val_dist_xyz.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
+        lambda: DIALOG.show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
     UI.btn_md_val_dist_c.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a distância entre pontos no ângulo C (horizontal):", "ConfigPontos.Diff_AngleC",
-                            "float"))
+        lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo C (horizontal):",
+                                   "ConfigPontos.Diff_AngleC",
+                                   "float"))
     UI.btn_md_val_dist_d.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a distância entre pontos no ângulo D (de ataque):", "ConfigPontos.Diff_AngleD",
-                            "float"))
+        lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo D (de ataque):",
+                                   "ConfigPontos.Diff_AngleD",
+                                   "float"))
     UI.btn_md_val_var_h.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a variação entre pontos:", "ConfigPontos.Dist_H", "float"))
+        lambda: DIALOG.show_dialog("Alterar a variação entre pontos:", "ConfigPontos.Dist_H", "float"))
     UI.btn_md_val_d0_mnr_pts.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
-                            "ConfigPontos.DistVar", "float"))
+        lambda: DIALOG.show_dialog("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
+                                   "ConfigPontos.DistVar",
+                                   "float"))
 
 
 def def_prof_cort():
     """
     Define the depth cut buttons of the screen
     """
-    global UI, SHOW_DIALOG
+    global UI, DIALOG
     UI.btn_md_val_prof_corte_a1.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a profundidade de corte em A1:", "ConfigPontos.CutDepthA1", "float"))
+        lambda: DIALOG.show_dialog("Alterar a profundidade de corte em A1:", "ConfigPontos.CutDepthA1", "float"))
     UI.btn_md_val_prof_corte_a2.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a profundidade de corte em A2:", "ConfigPontos.CutDepthA2", "float"))
+        lambda: DIALOG.show_dialog("Alterar a profundidade de corte em A2:", "ConfigPontos.CutDepthA2", "float"))
     UI.btn_md_val_prof_corte_b1.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a profundidade de corte em B1:", "ConfigPontos.CutDepthB1", "float"))
+        lambda: DIALOG.show_dialog("Alterar a profundidade de corte em B1:", "ConfigPontos.CutDepthB1", "float"))
     UI.btn_md_val_prof_corte_b2.clicked.connect(
-        lambda: SHOW_DIALOG("Alterar a profundidade de corte em B2", "ConfigPontos.CutDepthB2", "float"))
+        lambda: DIALOG.show_dialog("Alterar a profundidade de corte em B2", "ConfigPontos.CutDepthB2", "float"))
 
 
 def def_pts():
     """
     Define the point buttons of the screen
     """
-    global UI, SHOW_DIALOG
+    global UI, DIALOG
     UI.btn_md_val_max_pts.clicked.connect(
-        lambda: SHOW_DIALOG("Altera o número máximo de pontos:", "HMI.NumPosMax", "int"))
+        lambda: DIALOG.show_dialog("Altera o número máximo de pontos:", "HMI.NumPosMax", "int"))
     UI.btn_md_val_vel_corte.clicked.connect(
-        lambda: SHOW_DIALOG("Altera a velocidade de corte:", "Robo.Output.CutSpeed", "int"))
+        lambda: DIALOG.show_dialog("Altera a velocidade de corte:", "Robo.Output.CutSpeed", "int"))
 
 
 def def_delayA():
     """
     Define the Side A buttons of the screen
     """
-    global UI, SHOW_DIALOG
+    global UI, DIALOG
     UI.btn_md_val_delay_abre_porta_a.clicked.connect(
-        lambda: SHOW_DIALOG("Altera delay para abrir porta A:", "Cyl_DoorSideA.TimeDelayRet", "int"))
+        lambda: DIALOG.show_dialog("Altera delay para abrir porta A:", "Cyl_DoorSideA.TimeDelayRet", "int"))
     UI.btn_md_val_delay_fecha_porta_a.clicked.connect(
-        lambda: SHOW_DIALOG("Altera delay para fechar porta A:", "Cyl_DoorSideA.TimeDelayExt", "int"))
+        lambda: DIALOG.show_dialog("Altera delay para fechar porta A:", "Cyl_DoorSideA.TimeDelayExt", "int"))
     UI.btn_md_val_temp_alarm_sens_a.clicked.connect(
-        lambda: SHOW_DIALOG("Altera tempo do alarme de sensores A:", "Cyl_DoorSideA.TimeBothSenOnOff", "int"))
+        lambda: DIALOG.show_dialog("Altera tempo do alarme de sensores A:", "Cyl_DoorSideA.TimeBothSenOnOff", "int"))
     UI.btn_md_val_temp_alarm_pos_port_a.clicked.connect(
-        lambda: SHOW_DIALOG("Altera tempo do alarme de posição da porta A:", "Cyl_DoorSideA.TimeOut", "int"))
+        lambda: DIALOG.show_dialog("Altera tempo do alarme de posição da porta A:", "Cyl_DoorSideA.TimeOut", "int"))
 
 
 def def_delayB():
     """
     Define the Side B buttons of the screen
     """
-    global UI, SHOW_DIALOG
+    global UI, DIALOG
     UI.btn_md_val_delay_abre_porta_b.clicked.connect(
-        lambda: SHOW_DIALOG("Altera delay para abrir porta B:", "Cyl_DoorSideB.TimeDelayRet", "int"))
+        lambda: DIALOG.show_dialog("Altera delay para abrir porta B:", "Cyl_DoorSideB.TimeDelayRet", "int"))
     UI.btn_md_val_delay_fecha_porta_b.clicked.connect(
-        lambda: SHOW_DIALOG("Altera delay para fechar porta B:", "Cyl_DoorSideB.TimeDelayExt", "int"))
+        lambda: DIALOG.show_dialog("Altera delay para fechar porta B:", "Cyl_DoorSideB.TimeDelayExt", "int"))
     UI.btn_md_val_temp_alarm_sens_b.clicked.connect(
-        lambda: SHOW_DIALOG("Altera tempo do alarme de sensores B:", "Cyl_DoorSideB.TimeBothSenOnOff", "int"))
+        lambda: DIALOG.show_dialog("Altera tempo do alarme de sensores B:", "Cyl_DoorSideB.TimeBothSenOnOff", "int"))
     UI.btn_md_val_temp_alarm_pos_port_b.clicked.connect(
-        lambda: SHOW_DIALOG("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
+        lambda: DIALOG.show_dialog("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
 
 
 ### Updating widgets
@@ -126,17 +129,13 @@ def UpdateHMI(tag):
         UI.lbl_PosD.setText(str(round(currentOffset["PosD"], 1)))
         UI.lbl_MaxPts.setText(str(tag["NumPosMax"]))
 
-        if tag["EnableLog"] == 0:
+        if tag["EnableLog"] == 1:
             UI.btn_habilita_logs.setText("Desab. log\nde pontos")
-        elif tag["EnableLog"] == 1:
+        elif tag["EnableLog"] == 0:
             UI.btn_habilita_logs.setText("Habilita log\nde pontos")
         else:
             pass
 
-        # buttons
-        UI.btn_habilita_logs.clicked.connect(
-            lambda: set_reset_button(tag["EnableLog"], tag["EnableLog"], UI.btn_habilita_logs,
-                                     "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
     except Exception as e:
         UI.btn_habilita_logs.setStyleSheet("background-color : #dc1f1f; color : black")
         UI.btn_habilita_logs.setText('Erro')
@@ -158,10 +157,10 @@ def UpdateConfigPts(tag):
         UI.lbl_var_h.setText(str(round(tag["Dist_H"], 2)))
         UI.lbl_d_menor_pts.setText(str(round(tag["DistVar"], 2)))
 
-        UI.lbl_CutDepth_A1.setText(str(round(tag["CutDepthA1"])))
-        UI.lbl_CutDepth_A2.setText(str(round(tag["CutDepthA2"])))
-        UI.lbl_CutDepth_B1.setText(str(round(tag["CutDepthB1"])))
-        UI.lbl_CutDepth_B2.setText(str(round(tag["CutDepthB2"])))
+        UI.lbl_CutDepth_A1.setText(str(round(tag["CutDepthA1"], 1)))
+        UI.lbl_CutDepth_A2.setText(str(round(tag["CutDepthA2"], 1)))
+        UI.lbl_CutDepth_B1.setText(str(round(tag["CutDepthB1"], 1)))
+        UI.lbl_CutDepth_B2.setText(str(round(tag["CutDepthB2"], 1)))
     except:
         pass
 

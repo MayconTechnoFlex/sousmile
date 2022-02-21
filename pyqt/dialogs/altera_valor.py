@@ -46,15 +46,13 @@ class AlteraValorDialog(QDialog):
                     regex = QRegExp(r"^[0-9][0-9]?$|^100$")
                 else:
                     regex = QRegExp(r"\d{5}")
-                validator = QRegExpValidator(regex)
             elif tag_type == "float":
                 regex = QRegExp(r"[0-9][0-9]?[0-9]?[0-9]?\.?[0-9][0-9]?")
-                validator = QRegExpValidator(regex)
             elif tag_type == "string":
                 regex = QRegExp(r"[\w\S]*")
-                validator = QRegExpValidator(regex)
             else:
                 raise Exception("Nenhum tipo definido - dialogs/altera_valor.py show()")
+            validator = QRegExpValidator(regex)
             self.ui.new_value.setValidator(validator)
         except Exception as e:
             print(e)
