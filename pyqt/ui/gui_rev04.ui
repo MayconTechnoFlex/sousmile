@@ -346,6 +346,7 @@ background-color: white;
 }
 QPushButton:hover{ background-color: #f1d100}
 QPushButton:pressed{background-color:#dfc200 }
+QPushButton:disabled{background-color:#cbcbcb }
 
 
 #frame_3 {
@@ -396,7 +397,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_home_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_home_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -409,6 +410,9 @@ background-color: white;
           </item>
           <item>
            <widget class="QPushButton" name="btnRobotScreen">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -425,7 +429,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_precision_manufacturing_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_precision_manufacturing_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -454,7 +458,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_warning_amber_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_warning_amber_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -483,7 +487,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_poll_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_poll_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -512,7 +516,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_build_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_build_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -541,7 +545,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_engineering_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_engineering_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -570,7 +574,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_login_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_login_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -599,7 +603,7 @@ background-color: white;
              <string/>
             </property>
             <property name="icon">
-             <iconset>
+             <iconset resource="icons.qrc">
               <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_logout_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_logout_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
@@ -710,7 +714,7 @@ background-color: white;
                    <enum>Qt::AutoText</enum>
                   </property>
                   <property name="pixmap">
-                   <pixmap>:/newPrefix/assets/icons/icons/2x/sharp_account_circle_black_48dp.png</pixmap>
+                   <pixmap resource="icons.qrc">:/newPrefix/assets/icons/icons/2x/sharp_account_circle_black_48dp.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
@@ -845,7 +849,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -4541,24 +4545,51 @@ background-color: #f00000;
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
                     </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_43">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <property name="leftMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="topMargin">
-                      <number>0</number>
-                     </property>
-                     <property name="rightMargin">
-                      <number>15</number>
-                     </property>
-                     <property name="bottomMargin">
-                      <number>0</number>
-                     </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_38">
                      <item>
                       <widget class="QPushButton" name="btn_man_auto_lado_a">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>55</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>150</width>
+                         <height>55</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Equinox Bold</family>
+                         <pointsize>12</pointsize>
+                        </font>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">*{width: 150; height: 65}
+
+QPushButton::checked {background-color:#a48f00; color:black; border: 4px solid #ffdf00 }</string>
+                       </property>
+                       <property name="text">
+                        <string>Automático</string>
+                       </property>
+                       <property name="checkable">
+                        <bool>true</bool>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_man_auto_lado_a_2">
                        <property name="enabled">
                         <bool>true</bool>
                        </property>
@@ -11534,7 +11565,7 @@ DE ALARMES</string>
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset>
+                        <iconset resource="icons.qrc">
                          <normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -11557,7 +11588,7 @@ DE ALARMES</string>
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset>
+                        <iconset resource="icons.qrc">
                          <normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_up_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_up_black_48dp.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -17461,7 +17492,7 @@ background-color: white;
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset>
+                  <iconset resource="icons.qrc">
                    <normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_back_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_back_black_48dp.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -27701,7 +27732,7 @@ VALOR</string>
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset>
+                     <iconset resource="icons.qrc">
                       <normaloff>:/newPrefix/assets/icons/icons/2x/outline_power_settings_new_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_power_settings_new_black_48dp.png</iconset>
                     </property>
                     <property name="iconSize">
@@ -28242,7 +28273,7 @@ QPushButton:pressed{background-color:#dfc200 }</string>
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset>
+                        <iconset resource="icons.qrc">
                          <normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -28265,7 +28296,7 @@ QPushButton:pressed{background-color:#dfc200 }</string>
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset>
+                        <iconset resource="icons.qrc">
                          <normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_up_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_up_black_48dp.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -28304,6 +28335,7 @@ QPushButton:pressed{background-color:#dfc200 }</string>
  </widget>
  <resources>
   <include location="images.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>

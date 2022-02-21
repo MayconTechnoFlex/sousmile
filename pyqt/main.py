@@ -20,6 +20,7 @@ from utils.alarm_control import *
 from utils.db_users import users_accounts, key_list, get_connected_username
 
 from utils.Types import *
+from utils.Tags import *
 
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
@@ -51,8 +52,8 @@ class RnRobotics_Gui(QMainWindow):
 
         self.setWindowTitle("HMI SouSmile")
         ##################################################################
-        self.userName = "Nenhum usuário logado"
-        self.ui.lbl_username.setText(self.userName)
+        self.ui.lbl_username.setText("Nenhum usuário logado")
+        self.tag_list = list()
         ##################################################################
         # Thread - to update PLC values ##################################
         ##################################################################
@@ -72,6 +73,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_13 = QThreadPool()
         self.threadpool_14 = QThreadPool()
         self.threadpool_15 = QThreadPool()
+        self.thread_read_tags = QThreadPool()
         ###################################################################
         # Workers #########################################################
         ###################################################################
@@ -91,6 +93,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_alarm = Worker_Alarms()
         self.worker_inOut = Worker_InOut()
         self.worker_user = Worker_User()
+        self.worker_read_tags = Worker_ReadTags()
         ###########################################################################################
         # Connect results of the workers ##########################################################
         ###########################################################################################
@@ -116,6 +119,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_alarm.signal_alarm.result.connect(self.update_Alarms)
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
         self.worker_user.signal_user.result.connect(self.update_user_access)
+        self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
         ###################################################################
         # Start the threads ###############################################
         ###################################################################
@@ -135,6 +139,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_13.start(self.worker_alarm)
         self.threadpool_14.start(self.worker_inOut)
         self.threadpool_15.start(self.worker_user)
+        self.thread_read_tags.start(self.worker_read_tags)
         ###################################################################
         # main screen of the application ##################################
         ###################################################################
@@ -167,6 +172,7 @@ class RnRobotics_Gui(QMainWindow):
         alarms.define_new_alarm(self.ui, "15:34:46", 64)
         '''
         ####################################################################
+        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_btn_int(0, self.tag_list))
 
     ####################################################################
     #### functions to navigate between screens
@@ -302,6 +308,9 @@ class RnRobotics_Gui(QMainWindow):
             except Exception as e:
                 print(e)
     ########################################################################
+    def update_tag_list(self, tags):
+        home.UpdateTagsList(tags)
+    ########################################################################
     #### Stop Threads ######################################################
     ########################################################################
     def stop_threads(self):
@@ -323,11 +332,12 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_alarm.stop()
             self.worker_inOut.stop()
             self.worker_user.stop()
+            self.worker_read_tags.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
     ########################################################################
-
+############################################################################
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
