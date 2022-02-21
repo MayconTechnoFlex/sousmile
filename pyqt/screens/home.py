@@ -1,12 +1,16 @@
 """Module with all functions used on the HomeScreen of the application"""
+from utils.Types import PLCReturn
 
 from PyQt5.QtWidgets import QLabel
 from ui_py.ui_gui import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
-from utils.gui_functions import set_reset_button
+from utils.gui_functions import set_reset_button, set_reset_btn_int
+from utils.Types import AltValShowDialog_WithoutText
 
 UI: Ui_MainWindow
+
+tag_list = PLCReturn
 
 def sts_string(id_num: int, widget: QLabel):
     """
@@ -48,14 +52,8 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
     UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
 
-    UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_button('HMI.SideA.ModeValue',
-                                                                    UI.btn_man_auto_lado_a,
-                                                                    'Automático',
-                                                                    'Manual'))
-    UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_button('HMI.SideB.ModeValue',
-                                                                    UI.btn_man_auto_lado_b,
-                                                                    'Automático',
-                                                                    'Manual'))
+    UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_btn_int(0, tag_list))
+    UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_btn_int(1, tag_list))
 
 def UpdateDataCtrl_A1(tag):
     """
@@ -187,3 +185,7 @@ def UpdateHMI(tag):
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value
+
+def UpdateTagsList(tags):
+    global tag_list
+    tag_list = tags
