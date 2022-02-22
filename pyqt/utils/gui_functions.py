@@ -3,11 +3,16 @@
 import time
 import ctypes
 from typing import Union
-from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QObject, QThreadPool, QThread, pyqtSignal, pyqtSlot
 from PyQt5.QtWidgets import QLineEdit, QDialog, QWidget
 from utils.ctrl_plc import read_tags, write_tag
 from utils.Types import TagTypes
 from utils.Tags import *
+from utils.workers import Worker_WriteTags
+#############################################
+# Workers and trheads
+#############################################
+write_thread = QThreadPool()
 #############################################
 def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type: TagTypes = "string"):
     """
@@ -103,16 +108,24 @@ def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off:
         widget.setEnabled(True)
 
 
-def set_reset_btn_int(i: int, tag_list):
+def set_reset_btn_int(i: int, tag_list, widget):
+    global write_thread
+    #widget.setEnabled(False)
     try:
         tag_name = tag_list[i][0]
         value = tag_list[i][1]
         if value == 0:
-            write_tag(tag_name, 1)
+            write_value = 1
+            worker_write_tags = Worker_WriteTags(tag_name, write_value)
+            write_thread.start(worker_write_tags, priority=0)
         elif value == 1:
-            write_tag(tag_name, 0)
+            write_value = 0
+            worker_write_tags = Worker_WriteTags(tag_name, write_value)
+            write_thread.start(worker_write_tags, priority=0)
     except Exception as e:
         print(e)
+    #time.sleep(4)
+    #widget.setEnabled(True)
 
 #############################################
 def change_status(tag: Union[int, bool], stsWidget: QWidget):

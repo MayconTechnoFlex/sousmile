@@ -2,12 +2,13 @@
 
 from typing import Callable, List
 from ui_py.ui_gui import Ui_MainWindow
+from utils.Tags import tags_inOut
 
 from utils.gui_functions import change_status
 
 UI: Ui_MainWindow
 
-tags_inOut: List[str] = []
+'''tags_inOut: List[str] = []
 
 for i in range(0, 3):
     for j in range(0, 16):
@@ -17,7 +18,8 @@ for i in range(0, 3):
             tags_inOut.append(f"Local:1:O.Data.{j}")
         elif i == 2:
             if j <= 7:
-                tags_inOut.append(f"Local:2:I.Data.{j}")
+                tags_inOut.append(f"Local:2:I.Data.{j}")'''
+
 
 def define_buttons(receive_ui: Ui_MainWindow, change_screen_func: Callable[[], None]):
     """
