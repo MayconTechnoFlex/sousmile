@@ -35,12 +35,12 @@ def UpdateHMI(tag):
     global UI
     try:
         if tag["HoldRobo"] == 0:
-            UI.btn_parar_robo.setStyleSheet(base_button_style)
+            UI.btn_parar_robo.setStyleSheet(base_button_style + "*{border-radius: 35}")
             UI.btn_parar_robo.setText("Parar Robô")
             QApplication.restoreOverrideCursor()
 
         elif tag["HoldRobo"] == 1:
-            UI.btn_parar_robo.setStyleSheet(checked_button_style)
+            UI.btn_parar_robo.setStyleSheet(checked_button_style + "*{border-radius: 35}")
             UI.btn_parar_robo.setText("Liberar Robô")
             QApplication.restoreOverrideCursor()
         else:

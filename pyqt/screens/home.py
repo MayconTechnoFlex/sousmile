@@ -169,6 +169,23 @@ def UpdateHMI(tag):
         else:
             UI.sts_sem_alarm_b.setEnabled(True)
 
+        if tag["Sts"]["TransDataSideA"] == 0:
+            UI.btn_trans_dados_man_a1.setEnabled(True)
+            UI.btn_trans_dados_man_a2.setEnabled(True)
+        else:
+            UI.btn_trans_dados_man_a1.setEnabled(False)
+            UI.btn_trans_dados_man_a2.setEnabled(False)
+
+        if tag["Sts"]["TransDataSideB"] == 0:
+            UI.btn_trans_dados_man_b1.setEnabled(True)
+            UI.btn_trans_dados_man_b2.setEnabled(True)
+        else:
+            UI.btn_trans_dados_man_b1.setEnabled(False)
+            UI.btn_trans_dados_man_b2.setEnabled(False)
+
+        QApplication.restoreOverrideCursor()
+
+
     except Exception as e:
         hmi_side_a_mode_value = None
         hmi_side_b_mode_value = None
@@ -181,6 +198,25 @@ def UpdateHMI(tag):
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value
+
+def UpdateRobotInput(tag):
+    """
+    Updates the screen's labels and status widgets with the readed tag values
+
+    Params:
+        tag = readed tag from HMI
+    """
+    global UI
+
+    try:
+        if tag["Prg_running"] and tag["RSA"]:
+            UI.btn_man_auto_lado_a.setEnabled(True)
+            UI.btn_man_auto_lado_b.setEnabled(True)
+        else:
+            UI.btn_man_auto_lado_a.setEnabled(False)
+            UI.btn_man_auto_lado_b.setEnabled(False)
+    except Exception as e:
+        print(f"{e} - UpdateRobotInput - home")
 
 def UpdateTagsList(tags):
     global tag_list

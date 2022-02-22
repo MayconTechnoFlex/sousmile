@@ -933,9 +933,6 @@ background-color: white;
                </property>
                <item>
                 <widget class="QLabel" name="label_4">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1011,6 +1008,7 @@ border-radius: 25;
 }
 QPushButton:hover{ background-color: #f1d100}
 QPushButton:pressed {background-color:#dfc200 }
+QPushButton:disabled{ background-color: #cbcbcb}
 
 #frame_34, #frame_65,
 #frame_27, #frame_81,
@@ -2395,6 +2393,9 @@ manualmente A1</string>
                            </item>
                            <item>
                             <widget class="QPushButton" name="btn_trans_dados_man_a1">
+                             <property name="enabled">
+                              <bool>true</bool>
+                             </property>
                              <property name="minimumSize">
                               <size>
                                <width>0</width>

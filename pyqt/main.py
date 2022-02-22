@@ -236,6 +236,8 @@ class RnRobotics_Gui(QMainWindow):
             robot.UpdateHMI(tag)
         elif self.ui.stackedWidget.currentIndex() == 3:
             prod.UpdateHMI(tag)
+        elif self.ui.stackedWidget.currentIndex() == 4:
+            maint.UpdateHMI(tag)
         elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateHMI(tag)
     ########################################################################
@@ -264,8 +266,12 @@ class RnRobotics_Gui(QMainWindow):
             eng.UpdateRobotPos(tag)
     ########################################################################
     def update_RoboInput(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 1:
+        if self.ui.stackedWidget.currentIndex() == 0:
+            home.UpdateRobotInput(tag)
+        elif self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateInput(tag)
+        elif self.ui.stackedWidget.currentIndex() == 4:
+            maint.UpdateRobotInput(tag)
     ########################################################################
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
@@ -303,6 +309,7 @@ class RnRobotics_Gui(QMainWindow):
     def update_tag_list(self, tags):
         home.UpdateTagsList(tags)
         robot.UpdateTagsList(tags)
+        maint.UpdateTagsList(tags)
         eng.UpdateTagsList(tags)
     ########################################################################
     #### Stop Threads ######################################################

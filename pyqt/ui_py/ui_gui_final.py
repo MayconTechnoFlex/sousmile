@@ -351,7 +351,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setSpacing(0)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
         self.label_4 = QtWidgets.QLabel(self.frame_8)
-        self.label_4.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -390,6 +389,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:hover{ background-color: #f1d100}\n"
 "QPushButton:pressed {background-color:#dfc200 }\n"
+"QPushButton:disabled{ background-color: #cbcbcb}\n"
 "\n"
 "#frame_34, #frame_65,\n"
 "#frame_27, #frame_81,\n"
@@ -950,6 +950,7 @@ class Ui_MainWindow(object):
         self.btn_in_cod_man_a1.setObjectName("btn_in_cod_man_a1")
         self.horizontalLayout_22.addWidget(self.btn_in_cod_man_a1)
         self.btn_trans_dados_man_a1 = QtWidgets.QPushButton(self.frame_20)
+        self.btn_trans_dados_man_a1.setEnabled(True)
         self.btn_trans_dados_man_a1.setMinimumSize(QtCore.QSize(0, 60))
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")

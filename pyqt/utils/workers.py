@@ -550,3 +550,4 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
             print(f'{e} - Write Tags Worker')
         finally:
             self.widget.setEnabled(True)
+        QApplication.restoreOverrideCursor()
