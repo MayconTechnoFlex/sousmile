@@ -50,7 +50,7 @@ class InsertCodeDialog(QDialog):
     def insert_code(self):
         try:
             if self.ui.txt_code.text():
-                write_LineEdit(self.TAG_INDEX, self, self.ui.txt_code, self.TAG_TYPE)
+                self.thread.start()
             else:
                 raise Exception("Campo vazio")
         except Exception as e:
