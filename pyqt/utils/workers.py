@@ -8,8 +8,10 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from utils.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.alarm_control import alarm_tag_list
 from utils.Types import PLCReturn
-# from screens.in_out import tags_inOut
 from utils.Tags import *
+
+import serial
+import serial.tools.list_ports_windows
 
 sleep_time = 0.8
 stop_time = 0.2
@@ -500,7 +502,6 @@ class Worker_User(QRunnable, WorkerParent):
             except Exception as e:
                 print(f'{e} - User worker')
 
-
 class Worker_ReadTags(QRunnable, WorkerParent):
     """
     Worker thread
@@ -551,3 +552,32 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
         finally:
             self.widget.setEnabled(True)
         QApplication.restoreOverrideCursor()
+
+class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
+    """
+    Worker thread
+    """
+    def __init__(self):
+        super(Worker_BarCodeScanner, self).__init__()
+        self.device = serial.Serial('COM3', timeout=0.5)
+        self.info: str
+        self.code: int
+        self.running = True
+
+    @pyqtSlot()
+    def run(self):
+        while self.running:
+            try:
+                if not self.device.isOpen():
+                    self.device.open()
+                else:
+                    self.info = str(self.device.readline())
+                    self.code_size = len(self.info)
+                    if self.code_size > 4:
+                        write_tag("BarCodeReader.Data", self.info[2:(self.code_size-3)])
+            except Exception as e:
+                print(f"{e} - Erro de comunicação leitor de código de barras")
+                self.device.close()
+                time.sleep(3)
+            time.sleep(sleep_time)
+

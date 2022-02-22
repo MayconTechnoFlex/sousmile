@@ -26,6 +26,7 @@ class Thread_Dialogs_NoLineEdit(QThread):
         self.dialog.setEnabled(True)
         self.dialog.cancel_action()
 
+
 class Thread_LineEdit(QThread):
     def __init__(self, tag_name: str, dialog: QDialog, widget: QLineEdit, data_type: TagTypes = "string"):
         super(Thread_LineEdit, self).__init__()

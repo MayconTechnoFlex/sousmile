@@ -1,9 +1,9 @@
 """Control of the user connected in the application"""
 
-from typing import Union, List
+from typing import Union, List, Dict
 from security.types import UsersName
 
-users_accounts: dict[UsersName, str] = {
+users_accounts: Dict[UsersName, str] = {
     'oper': '12345',
     'eng': 'engenharia',
     'rn': 'rnrobotics'

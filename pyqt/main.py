@@ -63,6 +63,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14 = QThreadPool()
         self.threadpool_15 = QThreadPool()
         self.thread_read_tags = QThreadPool()
+        self.thread_barcode_scanner = QThreadPool()
         ###################################################################
         # Workers #########################################################
         ###################################################################
@@ -83,6 +84,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut = Worker_InOut()
         self.worker_user = Worker_User()
         self.worker_read_tags = Worker_ReadTags()
+        self.worker_barcode_scanner = Worker_BarCodeScanner()
         ###########################################################################################
         # Connect results of the workers ##########################################################
         ###########################################################################################
@@ -129,6 +131,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14.start(self.worker_inOut)
         self.threadpool_15.start(self.worker_user)
         self.thread_read_tags.start(self.worker_read_tags)
+        self.thread_barcode_scanner.start(self.worker_barcode_scanner)
         ###################################################################
         # main screen of the application ##################################
         ###################################################################
@@ -320,7 +323,7 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_alarm.stop()
             self.worker_inOut.stop()
             self.worker_user.stop()
-            self.worker_read_tags.stop()
+            self.worker_barcode_scanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
