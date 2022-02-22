@@ -1,6 +1,6 @@
 """Permission functions of security module"""
 
-from ui_py.ui_gui_v1 import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 
 def noneUserConnected(ui: Ui_MainWindow):
     if ui.stackedWidget.currentIndex() == 1:

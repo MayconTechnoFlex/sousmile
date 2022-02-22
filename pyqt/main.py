@@ -9,7 +9,7 @@
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow
 
-from ui_py.ui_gui_v1 import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.gui_functions import *
 from utils.workers import *

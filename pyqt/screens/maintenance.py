@@ -1,6 +1,6 @@
 """Module with all functions used on the MaintenanceScreen of the application"""
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame

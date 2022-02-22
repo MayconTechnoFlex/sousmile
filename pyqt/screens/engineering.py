@@ -1,6 +1,6 @@
 """Module with all functions used on the EngineeringScreen of the application"""
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 
 from PyQt5.QtWidgets import QApplication

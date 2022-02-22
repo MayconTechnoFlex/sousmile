@@ -6,7 +6,7 @@ from typing import List
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from utils.alarm_control import *
 
 UI: Ui_MainWindow

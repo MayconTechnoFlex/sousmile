@@ -2,7 +2,7 @@
 from utils.Types import PLCReturn
 
 from PyQt5.QtWidgets import QLabel, QApplication
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
 from utils.gui_functions import set_reset_btn_int
@@ -176,6 +176,8 @@ def UpdateHMI(tag):
         UI.btn_man_auto_lado_b.setStyleSheet(btn_error_style)
         UI.btn_man_auto_lado_a.setText('Erro')
         UI.btn_man_auto_lado_b.setText('Erro')
+        UI.btn_man_auto_lado_a.setEnabled(False)
+        UI.btn_man_auto_lado_b.setEnabled(False)
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value

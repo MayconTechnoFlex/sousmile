@@ -2,7 +2,7 @@
 from PyQt5.QtCore import QThread, Qt
 from PyQt5.QtWidgets import QApplication
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.ctrl_plc import write_tag
 

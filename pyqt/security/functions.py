@@ -1,6 +1,6 @@
 """Main functions of the security moduel"""
 
-from ui_py.ui_gui_v1 import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from security.db_users import users_list, get_connected_username
 
 from security.permissions import *

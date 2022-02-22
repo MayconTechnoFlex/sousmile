@@ -1,7 +1,7 @@
 """Module with all functions used on the InOutScreen of the application"""
 
 from typing import Callable, List
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from utils.Tags import tags_inOut
 
 from utils.gui_functions import change_status

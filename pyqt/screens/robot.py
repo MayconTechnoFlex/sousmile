@@ -1,6 +1,6 @@
 """Module with all functions used on the RobotScreen of the application"""
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 
 from PyQt5.QtWidgets import QApplication
@@ -49,6 +49,7 @@ def UpdateHMI(tag):
     except Exception as e:
         UI.btn_parar_robo.setStyleSheet(btn_error_style)
         UI.btn_parar_robo.setText('Erro')
+        UI.btn_parar_robo.setEnabled(False)
         print(f'{e} - robot.UpdateHMI')
 
 
