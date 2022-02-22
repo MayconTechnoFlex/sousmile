@@ -59,9 +59,15 @@ class AlteraValorDialog(QDialog):
         self.ui.description_text.setText(text)
         self.exec_()
 
+    def change_value(self):
+        try:
+            if self.ui.new_value.text():
+                write_LineEdit(self.TAG_INDEX, self, self.ui.new_value, self.TAG_TYPE)
+            else:
+                raise Exception("Campo vazio")
+        except Exception as e:
+            print(f"{e} - change_value - AlteraValorDialog")
+
     def set_button(self):
         """Set the button of the dialog"""
-        self.ui.btn_alt_val.clicked.connect(
-            lambda: write_LineEdit(self.TAG_INDEX, self,
-                                   self.ui.new_value, self.TAG_TYPE)
-        )
+        self.ui.btn_alt_val.clicked.connect(self.change_value)

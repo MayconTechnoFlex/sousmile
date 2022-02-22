@@ -37,10 +37,13 @@ class CheckUserFrame(QDialog):
     def confirm_action(self):
         """Called when the "Confirmar" button is pressed"""
         try:
-            write_tag("HMI.btnCheckUF", 1)
-            write_LineEdit("Robo.Output.UFCheck", self, self.ui.lineEdit, "int")
+            if self.ui.lineEdit.text():
+                write_tag("HMI.btnCheckUF", 1)
+                write_LineEdit("Robo.Output.UFCheck", self, self.ui.lineEdit, "int")
+            else:
+                raise Exception("Campo vazio")
         except Exception as e:
-            print(e)
+            print(f"{e} - confirm_action - CheckUF")
 
     def cancel_action(self):
         """Called when the "Cancelar" button is pressed"""

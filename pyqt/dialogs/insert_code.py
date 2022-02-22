@@ -43,9 +43,16 @@ class InsertCodeDialog(QDialog):
         self.ui.txt_code.setValidator(self.validator)
         self.exec_()
 
+    def insert_code(self):
+        try:
+            if self.ui.txt_code.text():
+                write_LineEdit(self.TAG_INDEX, self, self.ui.txt_code, self.TAG_TYPE)
+            else:
+                raise Exception("Campo vazio")
+        except Exception as e:
+            print(f"{e} - insert_code - InsertCodeDialog")
+
+
     def set_button(self):
         """Set the button of the dialog"""
-        self.ui.btn_insert_code_man.clicked.connect(
-            lambda: write_LineEdit(self.TAG_INDEX, self,
-                                   self.ui.txt_code, self.TAG_TYPE)
-        )
+        self.ui.btn_insert_code_man.clicked.connect(self.insert_code)

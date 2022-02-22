@@ -108,24 +108,21 @@ def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off:
         widget.setEnabled(True)
 
 
-def set_reset_btn_int(i: int, tag_list, widget):
+def set_reset_btn_int(i: int, tag_list, widget: QWidget):
     global write_thread
-    #widget.setEnabled(False)
     try:
         tag_name = tag_list[i][0]
         value = tag_list[i][1]
         if value == 0:
             write_value = 1
-            worker_write_tags = Worker_WriteTags(tag_name, write_value)
-            write_thread.start(worker_write_tags, priority=0)
+            worker_write_tags = Worker_WriteTags(tag_name, write_value, widget)
+            write_thread.start(worker_write_tags, priority=1)
         elif value == 1:
             write_value = 0
-            worker_write_tags = Worker_WriteTags(tag_name, write_value)
-            write_thread.start(worker_write_tags, priority=0)
+            worker_write_tags = Worker_WriteTags(tag_name, write_value, widget)
+            write_thread.start(worker_write_tags, priority=1)
     except Exception as e:
         print(e)
-    #time.sleep(4)
-    #widget.setEnabled(True)
 
 #############################################
 def change_status(tag: Union[int, bool], stsWidget: QWidget):

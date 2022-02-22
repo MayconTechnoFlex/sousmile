@@ -3,7 +3,8 @@
 import time, traceback, sys
 
 from pycomm3.exceptions import CommError
-from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
+from PyQt5.QtWidgets import QWidget, QApplication
 from utils.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.alarm_control import alarm_tag_list
 from utils.Tags import tags_inOut
@@ -528,18 +529,25 @@ class Worker_ReadTags(QRunnable, WorkerParent):
                 break
             time.sleep(sleep_time)
 
-class Worker_WriteTags(QRunnable, WorkerParent):
+class Worker_WriteTags(QRunnable, WorkerParent, QObject):
     """
     Worker thread
     """
-    def __init__(self, tag: str, value):
+
+    def __init__(self, tag: str, value, widget: QWidget):
         super(Worker_WriteTags, self).__init__()
+        self.finished = pyqtSignal()
         self.tag = tag
         self.value = value
+        self.widget = widget
 
     @pyqtSlot()
     def run(self):
+        QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
+            self.widget.setEnabled(False)
             write_tag(self.tag, self.value)
         except Exception as e:
             print(f'{e} - Write Tags Worker')
+        finally:
+            self.widget.setEnabled(True)
