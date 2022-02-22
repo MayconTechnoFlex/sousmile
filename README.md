@@ -2,18 +2,12 @@
 ### Graphical User Interface with PyQt
 
 ---
+
 ### ToDo:
-- [X] Criar função para atualizar tela de entradas e saídas
-- [X] Verificar como receber os alarmes do CLP
+- [ ] Adicionar leitor de código de barras  
 
 ### Botões a serem conectados:
 - Home:
   - [ ] Transferir Dados Manualmente
-- Manutenção:
-  - [X] Abrir, Fechar e Manutenção do lado A, B e Spindle
-  - [X] Mover para Home, Check User Frame, -1mm e Terminar Check Usar Frame
-- Engenharia:
-  - [ ] Remover botão de On/Off
 ### Ideias:
-- Criar tipagem para as informações recebidas do CLP?
-- Criar widget de status para conexão com o CLP, talvez colocar no header ou na tab bar
+- Criar tipagem para as informações recebidas do CLP
