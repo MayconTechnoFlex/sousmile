@@ -7,6 +7,7 @@ from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from utils.ctrl_plc import read_tags, read_multiples
 from utils.alarm_control import alarm_tag_list
 from screens.in_out import tags_inOut
+from utils.Tags import *
 
 sleep_time = 0.75
 stop_time = 0.2
@@ -218,8 +219,8 @@ class Worker_HMI(QRunnable, WorkerParent):
                     self.signal_hmi.result.emit(hmi)
             except Exception as e:
                 print(f'{e} Worker_HMI - in workers.py')
-                # self.stop()
-                # break
+                self.stop()
+                break
             time.sleep(sleep_time)
 
 class Worker_Config_Pts(QRunnable, WorkerParent):
@@ -496,3 +497,33 @@ class Worker_User(QRunnable, WorkerParent):
                 time.sleep(0.2)
             except Exception as e:
                 print(f'{e} - User worker')
+
+
+class Worker_ReadTags(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+    def __init__(self):
+        super(Worker_ReadTags, self).__init__()
+        self.signal_ReadTags = WorkerSignals()
+        self.running = True
+
+    @pyqtSlot()
+    def run(self):
+        while self.running:
+            try:
+                tag = read_multiples(Tag_List)
+
+                if type(tag) == CommError:
+                    traceback.print_exc()
+                    exctype, value = sys.exc_info()[:2]
+                    self.signal_ReadTags.error.emit((exctype, value, traceback.format_exc()))
+                    raise Exception("connection failed")
+                else:
+                    self.signal_ReadTags.result.emit(tag)
+            except Exception as e:
+                print(f'{e} - Read Tags Worker')
+                self.stop()
+                break
+            time.sleep(sleep_time)
+

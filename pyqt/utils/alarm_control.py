@@ -71,6 +71,3 @@ def get_alarm_message(alarm_id: int) -> str:
 def get_alarm_history() -> list:
     """Returns all the alarm historic from the list control in the module"""
     return alarm_history
-
-
-

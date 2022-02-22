@@ -1,4 +1,5 @@
 """Module with all functions used on the HomeScreen of the application"""
+from utils.Types import PLCReturn
 
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
@@ -190,3 +191,7 @@ def UpdateHMI(tag):
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value
+
+def UpdateTagsList(tags):
+    global tag_list
+    tag_list = tags
