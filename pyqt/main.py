@@ -39,9 +39,6 @@ class RnRobotics_Gui(QMainWindow):
         self.confirm_dialog = ConfirmationDialog(self)
         self.check_uf = CheckUserFrame(self)
 
-        #win_icon = QIcon("./assets/images/RN_ico.png")
-        #self.setWindowIcon(win_icon)
-
         self.setWindowTitle("HMI SouSmile")
         ##################################################################
         self.ui.lbl_username.setText("Nenhum usuário logado")
@@ -154,16 +151,6 @@ class RnRobotics_Gui(QMainWindow):
         self.tag_type: TagTypes = ""
         self.action_to_confirm: ActionsToConfirm = ""
         ###################################################################
-        # adding alarms to list ###########################################
-        ###################################################################
-        # ToDo => ver como receber os alarmes e os tempos
-        '''
-        alarms.define_new_alarm(self.ui, "12:35:31", 0)
-        alarms.define_new_alarm(self.ui, "13:18:57", 11)
-        alarms.define_new_alarm(self.ui, "15:16:22", 34)
-        alarms.define_new_alarm(self.ui, "15:34:46", 64)
-        '''
-        ####################################################################
 
     ####################################################################
     #### functions to navigate between screens
