@@ -8,7 +8,6 @@ from utils.gui_functions import set_reset_button
 UI: Ui_MainWindow
 DIALOG: AlteraValorDialog
 
-
 def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog):
     """
     Define the buttons of the screen
@@ -25,6 +24,7 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog)
     def_pts()
     def_delayA()
     def_delayB()
+
     # buttons
     UI.btn_habilita_logs.clicked.connect(
         lambda: set_reset_button("HMI.EnableLog", UI.btn_habilita_logs,

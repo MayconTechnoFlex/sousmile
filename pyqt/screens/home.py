@@ -11,7 +11,7 @@ from utils.btn_style import *
 
 UI: Ui_MainWindow
 
-tag_list = PLCReturn
+tag_list: PLCReturn
 
 def sts_string(id_num: int, widget: QLabel):
     """
@@ -142,23 +142,19 @@ def UpdateHMI(tag):
         if tag['SideA']['ModeValue'] == 0:
             hmi_side_a_mode_value = 0
             UI.btn_man_auto_lado_a.setStyleSheet(base_button_style)
-            UI.sts_auto_man_a.setEnabled(True)
             UI.btn_man_auto_lado_a.setText('Manual')
         elif tag['SideA']['ModeValue'] == 1:
             hmi_side_a_mode_value = 1
             UI.btn_man_auto_lado_a.setStyleSheet(checked_button_style)
-            UI.sts_auto_man_a.setEnabled(False)
             UI.btn_man_auto_lado_a.setText('Automático')
 
         if tag['SideB']['ModeValue'] == 0:
             hmi_side_b_mode_value = 0
             UI.btn_man_auto_lado_b.setStyleSheet(base_button_style)
-            UI.sts_auto_man_b.setEnabled(True)
             UI.btn_man_auto_lado_b.setText('Manual')
         elif tag['SideB']['ModeValue'] == 1:
             hmi_side_b_mode_value = 1
             UI.btn_man_auto_lado_b.setStyleSheet(checked_button_style)
-            UI.sts_auto_man_b.setEnabled(False)
             UI.btn_man_auto_lado_b.setText('Automático')
 
         QApplication.restoreOverrideCursor()

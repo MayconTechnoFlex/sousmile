@@ -106,7 +106,7 @@ class Ui_Dialog(object):
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/assets/icons/icons/2x/sharp_check_black_48dp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_confirm.setIcon(icon)
         self.btn_confirm.setIconSize(QtCore.QSize(25, 25))
-        self.btn_confirm.setAutoDefault(False)
+        self.btn_confirm.setAutoDefault(True)
         self.btn_confirm.setDefault(True)
         self.btn_confirm.setObjectName("btn_confirm")
         self.horizontalLayout.addWidget(self.btn_confirm)

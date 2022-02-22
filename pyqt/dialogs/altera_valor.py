@@ -7,6 +7,7 @@ from PyQt5.QtGui import QRegExpValidator
 from ui_py.ui_alt_val_dialog import Ui_Dialog2
 from utils.Types import TagTypes
 from utils.gui_functions import write_LineEdit
+from utils.write_thread import Thread_LineEdit
 
 
 class AlteraValorDialog(QDialog):
@@ -22,7 +23,7 @@ class AlteraValorDialog(QDialog):
         self.TAG_INDEX: str = ""
         self.TAG_TYPE: TagTypes = ""
 
-        self.set_button()
+        self.thread: Thread_LineEdit
 
     def closeEvent(self, event):
         """Activated when the Dialog is closed"""
@@ -57,12 +58,15 @@ class AlteraValorDialog(QDialog):
         except Exception as e:
             print(e)
         self.ui.description_text.setText(text)
+
+        self.thread = Thread_LineEdit(self.TAG_INDEX, self, self.ui.new_value, self.TAG_TYPE)
+        self.set_button()
         self.exec_()
 
     def change_value(self):
         try:
             if self.ui.new_value.text():
-                write_LineEdit(self.TAG_INDEX, self, self.ui.new_value, self.TAG_TYPE)
+                self.thread.start()
             else:
                 raise Exception("Campo vazio")
         except Exception as e:

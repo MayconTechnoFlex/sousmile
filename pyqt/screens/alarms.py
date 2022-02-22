@@ -99,7 +99,6 @@ def delete_alarm_row(alarm_id: int):
     listWidget.removeRow(row_num)
     delete_alarm_from_list(alarm_id)
 
-
 def row_down(listWidget: QTableWidget):
     """
     Called when the button down is pressed, show in the screen what row is selected
@@ -114,7 +113,6 @@ def row_down(listWidget: QTableWidget):
 
     listWidget.setCurrentCell(CURRENT_ROW, 0)
 
-
 def row_up(listWidget: QTableWidget):
     """
     Called when the button up is pressed, show in the screen what row is selected
@@ -128,7 +126,6 @@ def row_up(listWidget: QTableWidget):
     CURRENT_ROW -= 1
 
     listWidget.setCurrentCell(CURRENT_ROW, 0)
-
 
 def UpdateAlarms(tag):
     try:

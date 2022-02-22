@@ -5,6 +5,7 @@ from PyQt5.QtGui import QRegExpValidator
 from ui_py.ui_check_uf import Ui_Dialog
 from utils.Types import TagTypes
 from utils.gui_functions import write_LineEdit
+from utils.write_thread import Thread_LineEdit
 from utils.ctrl_plc import write_tag
 
 class CheckUserFrame(QDialog):
@@ -14,7 +15,7 @@ class CheckUserFrame(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.set_button()
+        self.thread: Thread_LineEdit
 
     def closeEvent(self, event):
         """Activated when the Dialog is closed"""
@@ -32,6 +33,9 @@ class CheckUserFrame(QDialog):
             self.ui.lineEdit.setValidator(validator)
         except Exception as e:
             print(e)
+
+        self.thread = Thread_LineEdit("Robo.Output.UFCheck", self, self.ui.lineEdit, "int")
+        self.set_button()
         self.exec_()
 
     def confirm_action(self):
@@ -39,7 +43,7 @@ class CheckUserFrame(QDialog):
         try:
             if self.ui.lineEdit.text():
                 write_tag("HMI.btnCheckUF", 1)
-                write_LineEdit("Robo.Output.UFCheck", self, self.ui.lineEdit, "int")
+                self.thread.start()
             else:
                 raise Exception("Campo vazio")
         except Exception as e:
@@ -48,7 +52,6 @@ class CheckUserFrame(QDialog):
     def cancel_action(self):
         """Called when the "Cancelar" button is pressed"""
         self.close()
-        print("Action canceled")
 
     def set_button(self):
         """Set the button of the dialog"""
