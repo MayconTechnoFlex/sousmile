@@ -6,7 +6,6 @@ from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
 from utils.gui_functions import change_state_button, change_status
-from utils.db_users import get_connected_username
 
 UI: Ui_MainWindow
 

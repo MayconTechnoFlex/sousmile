@@ -1,16 +1,17 @@
 """Control of the user connected in the application"""
 
-from utils.Types import UsersName, UsersAccounts
+from typing import Union, List
+from security.types import UsersName
 
-users_accounts: UsersAccounts = {
+users_accounts: dict[UsersName, str] = {
     'oper': '12345',
     'eng': 'engenharia',
     'rn': 'rnrobotics'
 }
 
-key_list = list(users_accounts.keys())
+users_list = list(users_accounts.keys())
 
-connected_username: UsersName = ""
+connected_username: UsersName = "Nenhum usuário logado"
 
 
 def set_connected_username(username: UsersName) -> None:
@@ -22,9 +23,13 @@ def set_connected_username(username: UsersName) -> None:
 def disconnect_user() -> None:
     """Deletes the username in the module variable"""
     global connected_username
-    connected_username = ""
+    connected_username = "Nenhum usuário logado"
 
 
-def get_connected_username() -> str:
+def get_connected_username() -> UsersName:
     """Returns the username from the modules variable"""
-    return connected_username
+    global connected_username
+    if connected_username:
+        return connected_username
+    else:
+        return "Nenhum usuário logado"

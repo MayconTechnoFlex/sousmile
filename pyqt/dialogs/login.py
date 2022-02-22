@@ -1,13 +1,13 @@
 """Dialog for log-in a user"""
 
-from PyQt5.QtCore import QRegExp, Qt, QThread
+from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog, QLabel
 
 from ui_py.ui_login_dialog import Ui_LoginDialog
 
-from utils.db_users import users_accounts as users
-from utils.db_users import set_connected_username, disconnect_user
+from security.db_users import users_accounts as users
+from security.db_users import set_connected_username, disconnect_user
 
 class LoginDialog(QDialog):
     """

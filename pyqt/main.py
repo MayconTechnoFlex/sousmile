@@ -5,22 +5,17 @@
 ##############################################################
 ### IMPORTS
 ##############################################################
-import sys
 
-from PyQt5.QtCore import *
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
+from PyQt5.QtWidgets import QMainWindow
 
 from ui_py.ui_gui_v1 import Ui_MainWindow
 
 from utils.gui_functions import *
 from utils.workers import *
-from utils.ctrl_plc import *
-from utils.alarm_control import *
-from utils.db_users import users_accounts, key_list, get_connected_username
+from security.functions import UpdateUserAccess
 
 from utils.Types import *
-from utils.Tags import *
 
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
@@ -115,7 +110,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
         self.worker_alarm.signal_alarm.result.connect(self.update_Alarms)
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
-        self.worker_user.signal_user.result.connect(self.update_user_access)
+        self.worker_user.signal_user.result.connect(lambda signal: UpdateUserAccess(signal, self.ui))
         self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
         ###################################################################
         # Start the threads ###############################################
@@ -290,7 +285,7 @@ class RnRobotics_Gui(QMainWindow):
         if self.ui.stackedWidget.currentIndex() == 5:
             inOut.UpdateInOut(tag)
     ########################################################################
-    def update_user_access(self, signal):
+    """def update_user_access(self, signal):
         try:
             if get_connected_username() not in key_list:
                 if self.ui.stackedWidget.currentIndex() == 1:
@@ -303,7 +298,7 @@ class RnRobotics_Gui(QMainWindow):
             elif get_connected_username() == key_list[2]:
                 self.ui.btnRobotScreen.setEnabled(True)
         except Exception as e:
-            print(e)
+            print(e)"""
     ########################################################################
     def update_tag_list(self, tags):
         home.UpdateTagsList(tags)
