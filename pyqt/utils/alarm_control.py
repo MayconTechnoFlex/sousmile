@@ -46,7 +46,6 @@ alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:"
 alarm_list: List[AlarmDict] = []
 alarm_history: List[AlarmDict] = []
 
-
 def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str) -> None:
     """
     Add the alarm {"id": int, "time": str, "message": str} to a list in the module
@@ -54,7 +53,6 @@ def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str) -> None:
     actual_alarm: AlarmDict = {"id": alarm_id, "time": alarm_time, "message": alarm_msg}
     alarm_list.append(actual_alarm)
     alarm_history.append(actual_alarm)
-
 
 def delete_alarm_from_list(alarm_id: int) -> None:
     """
@@ -66,15 +64,10 @@ def delete_alarm_from_list(alarm_id: int) -> None:
             alarm_list.pop(count_index)
         count_index += 1
 
-
 def get_alarm_message(alarm_id: int) -> str:
     """Returns the message from an alarm"""
     return alarm_message_list[alarm_id]
 
-
 def get_alarm_history() -> list:
     """Returns all the alarm historic from the list control in the module"""
     return alarm_history
-
-
-

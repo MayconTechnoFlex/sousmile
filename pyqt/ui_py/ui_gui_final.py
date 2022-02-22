@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\pyqt\ui\gui_rev04.ui'
+# Form implementation generated from reading ui file '.\pyqt\ui\gui_final.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -351,7 +351,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setSpacing(0)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
         self.label_4 = QtWidgets.QLabel(self.frame_8)
-        self.label_4.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -390,6 +389,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:hover{ background-color: #f1d100}\n"
 "QPushButton:pressed {background-color:#dfc200 }\n"
+"QPushButton:disabled{ background-color: #cbcbcb}\n"
 "\n"
 "#frame_34, #frame_65,\n"
 "#frame_27, #frame_81,\n"
@@ -950,6 +950,7 @@ class Ui_MainWindow(object):
         self.btn_in_cod_man_a1.setObjectName("btn_in_cod_man_a1")
         self.horizontalLayout_22.addWidget(self.btn_in_cod_man_a1)
         self.btn_trans_dados_man_a1 = QtWidgets.QPushButton(self.frame_20)
+        self.btn_trans_dados_man_a1.setEnabled(True)
         self.btn_trans_dados_man_a1.setMinimumSize(QtCore.QSize(0, 60))
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")
@@ -1755,7 +1756,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_145.setSpacing(0)
         self.verticalLayout_145.setObjectName("verticalLayout_145")
         self.sts_sem_alarm_a = QtWidgets.QWidget(self.frame_122)
-        self.sts_sem_alarm_a.setEnabled(True)
+        self.sts_sem_alarm_a.setEnabled(False)
         self.sts_sem_alarm_a.setMinimumSize(QtCore.QSize(40, 40))
         self.sts_sem_alarm_a.setMaximumSize(QtCore.QSize(40, 40))
         self.sts_sem_alarm_a.setStyleSheet("\n"
@@ -3127,7 +3128,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_144.setSpacing(0)
         self.verticalLayout_144.setObjectName("verticalLayout_144")
         self.sts_sem_alarm_b = QtWidgets.QWidget(self.frame_125)
-        self.sts_sem_alarm_b.setEnabled(True)
+        self.sts_sem_alarm_b.setEnabled(False)
         self.sts_sem_alarm_b.setMinimumSize(QtCore.QSize(40, 40))
         self.sts_sem_alarm_b.setMaximumSize(QtCore.QSize(40, 40))
         self.sts_sem_alarm_b.setStyleSheet("\n"
@@ -3365,6 +3366,7 @@ class Ui_MainWindow(object):
         self.label_142.setObjectName("label_142")
         self.horizontalLayout_129.addWidget(self.label_142)
         self.sts_ready = QtWidgets.QWidget(self.frame_285)
+        self.sts_ready.setEnabled(False)
         self.sts_ready.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_ready.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_ready.setStyleSheet("\n"
@@ -3574,6 +3576,7 @@ class Ui_MainWindow(object):
         self.label_147.setObjectName("label_147")
         self.horizontalLayout_134.addWidget(self.label_147)
         self.sts_battery_alarm = QtWidgets.QWidget(self.frame_290)
+        self.sts_battery_alarm.setEnabled(False)
         self.sts_battery_alarm.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_battery_alarm.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_battery_alarm.setStyleSheet("\n"
@@ -3615,6 +3618,7 @@ class Ui_MainWindow(object):
         self.label_148.setObjectName("label_148")
         self.horizontalLayout_135.addWidget(self.label_148)
         self.sts_home_pos = QtWidgets.QWidget(self.frame_291)
+        self.sts_home_pos.setEnabled(False)
         self.sts_home_pos.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_home_pos.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_home_pos.setStyleSheet("\n"
@@ -3968,6 +3972,7 @@ class Ui_MainWindow(object):
         self.label_176.setObjectName("label_176")
         self.horizontalLayout_106.addWidget(self.label_176)
         self.sts_imstp = QtWidgets.QWidget(self.frame_294)
+        self.sts_imstp.setEnabled(False)
         self.sts_imstp.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_imstp.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_imstp.setStyleSheet("\n"
@@ -4009,6 +4014,7 @@ class Ui_MainWindow(object):
         self.label_177.setObjectName("label_177")
         self.horizontalLayout_107.addWidget(self.label_177)
         self.sts_hold = QtWidgets.QWidget(self.frame_295)
+        self.sts_hold.setEnabled(False)
         self.sts_hold.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_hold.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_hold.setStyleSheet("\n"
@@ -4050,6 +4056,7 @@ class Ui_MainWindow(object):
         self.label_178.setObjectName("label_178")
         self.horizontalLayout_108.addWidget(self.label_178)
         self.sts_sfspd = QtWidgets.QWidget(self.frame_296)
+        self.sts_sfspd.setEnabled(False)
         self.sts_sfspd.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_sfspd.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_sfspd.setStyleSheet("\n"
@@ -4133,6 +4140,7 @@ class Ui_MainWindow(object):
         self.label_180.setObjectName("label_180")
         self.horizontalLayout_124.addWidget(self.label_180)
         self.sts_enabled = QtWidgets.QWidget(self.frame_298)
+        self.sts_enabled.setEnabled(False)
         self.sts_enabled.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_enabled.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_enabled.setStyleSheet("\n"
@@ -5435,7 +5443,7 @@ class Ui_MainWindow(object):
         self.label_91.setObjectName("label_91")
         self.horizontalLayout_68.addWidget(self.label_91)
         self.sts_port_aber_a = QtWidgets.QWidget(self.frame_194)
-        self.sts_port_aber_a.setEnabled(True)
+        self.sts_port_aber_a.setEnabled(False)
         self.sts_port_aber_a.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_port_aber_a.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_port_aber_a.setStyleSheet("\n"
@@ -5814,6 +5822,7 @@ class Ui_MainWindow(object):
         self.label_101.setObjectName("label_101")
         self.horizontalLayout_80.addWidget(self.label_101)
         self.sts_port_aber_b = QtWidgets.QWidget(self.frame_222)
+        self.sts_port_aber_b.setEnabled(False)
         self.sts_port_aber_b.setMinimumSize(QtCore.QSize(60, 60))
         self.sts_port_aber_b.setMaximumSize(QtCore.QSize(60, 60))
         self.sts_port_aber_b.setStyleSheet("\n"
@@ -6429,7 +6438,7 @@ class Ui_MainWindow(object):
         self.lbl_BarCodeReader_data.setMinimumSize(QtCore.QSize(0, 61))
         self.lbl_BarCodeReader_data.setMaximumSize(QtCore.QSize(16777215, 61))
         font = QtGui.QFont()
-        font.setFamily("Arial")
+        font.setFamily("Equinox Bold")
         font.setPointSize(14)
         self.lbl_BarCodeReader_data.setFont(font)
         self.lbl_BarCodeReader_data.setStyleSheet("")
@@ -7118,7 +7127,7 @@ class Ui_MainWindow(object):
         self.label_210.setObjectName("label_210")
         self.horizontalLayout_182.addWidget(self.label_210)
         self.sts_sinal_emerg = QtWidgets.QWidget(self.frame_325)
-        self.sts_sinal_emerg.setEnabled(True)
+        self.sts_sinal_emerg.setEnabled(False)
         self.sts_sinal_emerg.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_sinal_emerg.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_sinal_emerg.setStyleSheet("* {\n"
@@ -7169,7 +7178,7 @@ class Ui_MainWindow(object):
         self.label_211.setObjectName("label_211")
         self.horizontalLayout_183.addWidget(self.label_211)
         self.sts_sinal_port = QtWidgets.QWidget(self.frame_326)
-        self.sts_sinal_port.setEnabled(True)
+        self.sts_sinal_port.setEnabled(False)
         self.sts_sinal_port.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_sinal_port.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_sinal_port.setStyleSheet("* {\n"
@@ -7433,7 +7442,7 @@ class Ui_MainWindow(object):
         self.label_219.setObjectName("label_219")
         self.horizontalLayout_188.addWidget(self.label_219)
         self.sts_sens_port_abr_a = QtWidgets.QWidget(self.frame_332)
-        self.sts_sens_port_abr_a.setEnabled(True)
+        self.sts_sens_port_abr_a.setEnabled(False)
         self.sts_sens_port_abr_a.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_sens_port_abr_a.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_sens_port_abr_a.setStyleSheet("* {\n"
@@ -7535,7 +7544,7 @@ class Ui_MainWindow(object):
         self.label_217.setObjectName("label_217")
         self.horizontalLayout_190.addWidget(self.label_217)
         self.sts_sens_port_abr_b = QtWidgets.QWidget(self.frame_335)
-        self.sts_sens_port_abr_b.setEnabled(True)
+        self.sts_sens_port_abr_b.setEnabled(False)
         self.sts_sens_port_abr_b.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_sens_port_abr_b.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_sens_port_abr_b.setStyleSheet("* {\n"
@@ -7688,7 +7697,7 @@ class Ui_MainWindow(object):
         self.label_214.setObjectName("label_214")
         self.horizontalLayout_193.addWidget(self.label_214)
         self.sts_pressostato = QtWidgets.QWidget(self.frame_329)
-        self.sts_pressostato.setEnabled(True)
+        self.sts_pressostato.setEnabled(False)
         self.sts_pressostato.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_pressostato.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_pressostato.setStyleSheet("* {\n"
@@ -7785,7 +7794,7 @@ class Ui_MainWindow(object):
         self.label_238.setObjectName("label_238")
         self.horizontalLayout_161.addWidget(self.label_238)
         self.sts_seg_port_a = QtWidgets.QWidget(self.frame_358)
-        self.sts_seg_port_a.setEnabled(True)
+        self.sts_seg_port_a.setEnabled(False)
         self.sts_seg_port_a.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_seg_port_a.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_seg_port_a.setStyleSheet("* {\n"
@@ -7836,7 +7845,7 @@ class Ui_MainWindow(object):
         self.label_239.setObjectName("label_239")
         self.horizontalLayout_160.addWidget(self.label_239)
         self.sts_seg_port_b = QtWidgets.QWidget(self.frame_354)
-        self.sts_seg_port_b.setEnabled(True)
+        self.sts_seg_port_b.setEnabled(False)
         self.sts_seg_port_b.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_seg_port_b.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_seg_port_b.setStyleSheet("* {\n"
@@ -8915,7 +8924,7 @@ class Ui_MainWindow(object):
         self.label_235.setObjectName("label_235")
         self.horizontalLayout_167.addWidget(self.label_235)
         self.sts_lamp_btn_solic_ent = QtWidgets.QWidget(self.frame_347)
-        self.sts_lamp_btn_solic_ent.setEnabled(True)
+        self.sts_lamp_btn_solic_ent.setEnabled(False)
         self.sts_lamp_btn_solic_ent.setMinimumSize(QtCore.QSize(50, 50))
         self.sts_lamp_btn_solic_ent.setMaximumSize(QtCore.QSize(50, 50))
         self.sts_lamp_btn_solic_ent.setStyleSheet("* {\n"
@@ -11057,23 +11066,23 @@ class Ui_MainWindow(object):
         self.btnEngineeringScreen.setToolTip(_translate("MainWindow", "Engenharia"))
         self.btnLogin.setToolTip(_translate("MainWindow", "LogIn"))
         self.btnLogout.setToolTip(_translate("MainWindow", "LogOut"))
-        self.lbl_username.setText(_translate("MainWindow", "USER_NAME"))
+        self.lbl_username.setText(_translate("MainWindow", "Nenhum usuário logado"))
         self.label_4.setText(_translate("MainWindow", "HOME"))
         self.label_12.setText(_translate("MainWindow", "LADO A"))
         self.label_11.setText(_translate("MainWindow", "A1"))
         self.label_13.setText(_translate("MainWindow", "Transferência de dados\n"
 "A1 completa:"))
         self.label_14.setText(_translate("MainWindow", "Código peça A1:"))
-        self.lbl_ProdCode_A1.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_ProdCode_A1.setText(_translate("MainWindow", "Aguarndado conexão"))
         self.label_15.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original A1:"))
-        self.lbl_FileNumPos_A1.setText(_translate("MainWindow", "0000"))
+        self.lbl_FileNumPos_A1.setText(_translate("MainWindow", "----"))
         self.label_16.setText(_translate("MainWindow", "Número de posições A1:"))
-        self.lbl_NumPos_A1.setText(_translate("MainWindow", "0000"))
+        self.lbl_NumPos_A1.setText(_translate("MainWindow", "----"))
         self.label_18.setText(_translate("MainWindow", "Posição atual A1:"))
-        self.lbl_IndexPos_A1.setText(_translate("MainWindow", "0000"))
+        self.lbl_IndexPos_A1.setText(_translate("MainWindow", "----"))
         self.label_38.setText(_translate("MainWindow", "Tempo de corte lado A1:"))
-        self.lbl_production_TimeCutA1.setText(_translate("MainWindow", "0000"))
+        self.lbl_production_TimeCutA1.setText(_translate("MainWindow", "----"))
         self.label_94.setText(_translate("MainWindow", "ms"))
         self.btn_in_cod_man_a1.setText(_translate("MainWindow", "Inserir código\n"
 "manualmente A1"))
@@ -11083,43 +11092,43 @@ class Ui_MainWindow(object):
         self.label_29.setText(_translate("MainWindow", "Transferência de dados\n"
 "A2 completa:"))
         self.label_28.setText(_translate("MainWindow", "Código peça A2:"))
-        self.lbl_ProdCode_A2.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_ProdCode_A2.setText(_translate("MainWindow", "Aguarndado conexão"))
         self.label_27.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original A2:"))
-        self.lbl_FileNumPos_A2.setText(_translate("MainWindow", "0000"))
+        self.lbl_FileNumPos_A2.setText(_translate("MainWindow", "----"))
         self.label_26.setText(_translate("MainWindow", "Número de posições A2:"))
-        self.lbl_NumPos_A2.setText(_translate("MainWindow", "0000"))
+        self.lbl_NumPos_A2.setText(_translate("MainWindow", "----"))
         self.label_31.setText(_translate("MainWindow", "Posição atual A2:"))
-        self.lbl_IndexPos_A2.setText(_translate("MainWindow", "0000"))
+        self.lbl_IndexPos_A2.setText(_translate("MainWindow", "----"))
         self.label_39.setText(_translate("MainWindow", "Tempo de corte lado A2:"))
-        self.lbl_production_TimeCutA2.setText(_translate("MainWindow", "0000"))
+        self.lbl_production_TimeCutA2.setText(_translate("MainWindow", "----"))
         self.label_188.setText(_translate("MainWindow", "ms"))
         self.btn_in_cod_man_a2.setText(_translate("MainWindow", "Inserir código\n"
 "manualmente A2"))
         self.btn_trans_dados_man_a2.setText(_translate("MainWindow", "Transferir dados\n"
 " manualmente A2"))
         self.label_42.setText(_translate("MainWindow", "Status lado A:"))
-        self.lbl_sts_TransDataSideA.setText(_translate("MainWindow", "xxxxxxxxxx"))
+        self.lbl_sts_TransDataSideA.setText(_translate("MainWindow", "Aguardando conexão"))
         self.lbl_man_auto_lado_a.setText(_translate("MainWindow", "Lado A em Manual:"))
         self.label_44.setText(_translate("MainWindow", "Robô cortando no lado A:"))
         self.label_45.setText(_translate("MainWindow", "Segurança para corte lado A:"))
         self.label_46.setText(_translate("MainWindow", "Lado A sem alarme:"))
-        self.btn_man_auto_lado_a.setText(_translate("MainWindow", "Automático"))
+        self.btn_man_auto_lado_a.setText(_translate("MainWindow", "Manual"))
         self.label_25.setText(_translate("MainWindow", "LADO B"))
         self.label_19.setText(_translate("MainWindow", "B1"))
         self.label_20.setText(_translate("MainWindow", "Transferência de dados\n"
 "B1 completa:"))
         self.label_21.setText(_translate("MainWindow", "Código peça B1:"))
-        self.lbl_ProdCode_B1.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_ProdCode_B1.setText(_translate("MainWindow", "Aguarndado conexão"))
         self.label_22.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original B1:"))
-        self.lbl_FileNumPos_B1.setText(_translate("MainWindow", "0000"))
+        self.lbl_FileNumPos_B1.setText(_translate("MainWindow", "----"))
         self.label_23.setText(_translate("MainWindow", "Número de posições B1:"))
-        self.lbl_NumPos_B1.setText(_translate("MainWindow", "0000"))
+        self.lbl_NumPos_B1.setText(_translate("MainWindow", "----"))
         self.label_24.setText(_translate("MainWindow", "Posição atual B1:"))
-        self.lbl_IndexPos_B1.setText(_translate("MainWindow", "0000"))
+        self.lbl_IndexPos_B1.setText(_translate("MainWindow", "----"))
         self.label_40.setText(_translate("MainWindow", "Tempo de corte lado B1:"))
-        self.lbl_production_TimeCutB1.setText(_translate("MainWindow", "0000"))
+        self.lbl_production_TimeCutB1.setText(_translate("MainWindow", "----"))
         self.label_189.setText(_translate("MainWindow", "ms"))
         self.btn_in_cod_man_b1.setText(_translate("MainWindow", "Inserir código\n"
 "manualmente B1"))
@@ -11129,28 +11138,28 @@ class Ui_MainWindow(object):
         self.label_36.setText(_translate("MainWindow", "Transferência de dados\n"
 "B2 completa:"))
         self.label_32.setText(_translate("MainWindow", "Código peça B2:"))
-        self.lbl_ProdCode_B2.setText(_translate("MainWindow", "TextLabel"))
+        self.lbl_ProdCode_B2.setText(_translate("MainWindow", "Aguarndado conexão"))
         self.label_37.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original B2:"))
-        self.lbl_FileNumPos_B2.setText(_translate("MainWindow", "0000"))
+        self.lbl_FileNumPos_B2.setText(_translate("MainWindow", "----"))
         self.label_34.setText(_translate("MainWindow", "Número de posições B2:"))
-        self.lbl_NumPos_B2.setText(_translate("MainWindow", "0000"))
+        self.lbl_NumPos_B2.setText(_translate("MainWindow", "----"))
         self.label_33.setText(_translate("MainWindow", "Posição atual B2:"))
-        self.lbl_IndexPos_B2.setText(_translate("MainWindow", "0000"))
+        self.lbl_IndexPos_B2.setText(_translate("MainWindow", "----"))
         self.label_41.setText(_translate("MainWindow", "Tempo de corte lado B2:"))
-        self.lbl_production_TimeCutB2.setText(_translate("MainWindow", "0000"))
+        self.lbl_production_TimeCutB2.setText(_translate("MainWindow", "----"))
         self.label_191.setText(_translate("MainWindow", "ms"))
         self.btn_in_cod_man_b2.setText(_translate("MainWindow", "Inserir código\n"
 "manualmente B2"))
         self.btn_trans_dados_man_b2.setText(_translate("MainWindow", "Transferir dados\n"
 " manualmente B2"))
         self.label_43.setText(_translate("MainWindow", "Status Lado B:"))
-        self.lbl_sts_TransDataSideB.setText(_translate("MainWindow", "xxxxxxxxxx"))
+        self.lbl_sts_TransDataSideB.setText(_translate("MainWindow", "Aguardando conexão"))
         self.lbl_man_auto_lado_b.setText(_translate("MainWindow", "Lado B em Manual:"))
         self.label_48.setText(_translate("MainWindow", "Robô cortando no lado B:"))
         self.label_49.setText(_translate("MainWindow", "Segurança para corte lado B:"))
         self.label_201.setText(_translate("MainWindow", "Lado B sem alarme:"))
-        self.btn_man_auto_lado_b.setText(_translate("MainWindow", "AUTOMÁTICO"))
+        self.btn_man_auto_lado_b.setText(_translate("MainWindow", "Manual"))
         self.label_6.setText(_translate("MainWindow", "ROBÔ"))
         self.label_139.setText(_translate("MainWindow", "Sinais do Robô para o CLP"))
         self.label_141.setText(_translate("MainWindow", "Enabled:"))
@@ -11183,7 +11192,7 @@ class Ui_MainWindow(object):
         self.label_183.setText(_translate("MainWindow", "Macro B:"))
         self.label_185.setText(_translate("MainWindow", "Velocidade\n"
 "do Robô:"))
-        self.lbl_RobotSpeed.setText(_translate("MainWindow", "100"))
+        self.lbl_RobotSpeed.setText(_translate("MainWindow", "---"))
         self.label_184.setText(_translate("MainWindow", "%"))
         self.btn_alt_vel_robo_screen.setText(_translate("MainWindow", "ALTERAR\n"
 "VELOCIDADE"))
@@ -11198,51 +11207,51 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "PRODUÇÃO"))
         self.label_51.setText(_translate("MainWindow", "LADO A"))
         self.label_53.setText(_translate("MainWindow", "Peças produzidas pelo lado A1:"))
-        self.lbl_PartsDoneA1.setText(_translate("MainWindow", "10"))
+        self.lbl_PartsDoneA1.setText(_translate("MainWindow", "---"))
         self.label_55.setText(_translate("MainWindow", "UNID."))
         self.btn_reset_prod_a1.setText(_translate("MainWindow", "RESET"))
         self.label_54.setText(_translate("MainWindow", "Peças produzidas pelo lado A2:"))
-        self.lbl_PartsDoneA2.setText(_translate("MainWindow", "15"))
+        self.lbl_PartsDoneA2.setText(_translate("MainWindow", "---"))
         self.label_56.setText(_translate("MainWindow", "UNID."))
         self.btn_reset_prod_a2.setText(_translate("MainWindow", "RESET"))
         self.label_58.setText(_translate("MainWindow", "Total de peças do lado A:\n"
 "(A1+A2)"))
-        self.lbl_PartsDoneSideA.setText(_translate("MainWindow", "25"))
+        self.lbl_PartsDoneSideA.setText(_translate("MainWindow", "---"))
         self.label_57.setText(_translate("MainWindow", "UNID."))
         self.btn_reset_prod_total_a.setText(_translate("MainWindow", "RESET"))
         self.label_60.setText(_translate("MainWindow", "Tempo de corte do lado A1:"))
-        self.lbl_TimeCutA1.setText(_translate("MainWindow", "42.5"))
+        self.lbl_TimeCutA1.setText(_translate("MainWindow", "---"))
         self.label_59.setText(_translate("MainWindow", "SEG."))
         self.label_62.setText(_translate("MainWindow", "Tempo de corte do lado A2:"))
-        self.lbl_TimeCutA2.setText(_translate("MainWindow", "45"))
+        self.lbl_TimeCutA2.setText(_translate("MainWindow", "---"))
         self.label_61.setText(_translate("MainWindow", "SEG."))
         self.label_64.setText(_translate("MainWindow", "Tempo total de corte do lado A:\n"
 "(A1+A2)"))
-        self.lbl_TimeCutSideA.setText(_translate("MainWindow", "87.5"))
+        self.lbl_TimeCutSideA.setText(_translate("MainWindow", "---"))
         self.label_63.setText(_translate("MainWindow", "SEG."))
         self.label_52.setText(_translate("MainWindow", "LADO B"))
         self.label_73.setText(_translate("MainWindow", "Peças produzidas pelo lado B1:"))
-        self.lbl_PartsDoneB1.setText(_translate("MainWindow", "10"))
+        self.lbl_PartsDoneB1.setText(_translate("MainWindow", "---"))
         self.label_74.setText(_translate("MainWindow", "UNID."))
         self.btn_reset_prod_b1.setText(_translate("MainWindow", "RESET"))
         self.label_67.setText(_translate("MainWindow", "Peças produzidas pelo lado B2:"))
-        self.lbl_PartsDoneB2.setText(_translate("MainWindow", "15"))
+        self.lbl_PartsDoneB2.setText(_translate("MainWindow", "---"))
         self.label_68.setText(_translate("MainWindow", "UNID."))
         self.btn_reset_prod_b2.setText(_translate("MainWindow", "RESET"))
         self.label_69.setText(_translate("MainWindow", "Total de peças do lado B:\n"
 "(B1+B2)"))
-        self.lbl_PartsDoneSideB.setText(_translate("MainWindow", "25"))
+        self.lbl_PartsDoneSideB.setText(_translate("MainWindow", "---"))
         self.label_70.setText(_translate("MainWindow", "UNID."))
         self.btn_reset_prod_total_b.setText(_translate("MainWindow", "RESET"))
         self.label_71.setText(_translate("MainWindow", "Tempo de corte do lado B1:"))
-        self.lbl_TimeCutB1.setText(_translate("MainWindow", "42.5"))
+        self.lbl_TimeCutB1.setText(_translate("MainWindow", "---"))
         self.label_72.setText(_translate("MainWindow", "SEG."))
         self.label_75.setText(_translate("MainWindow", "Tempo de corte do lado B2:"))
-        self.lbl_TimeCutB2.setText(_translate("MainWindow", "45"))
+        self.lbl_TimeCutB2.setText(_translate("MainWindow", "---"))
         self.label_76.setText(_translate("MainWindow", "SEG."))
         self.label_65.setText(_translate("MainWindow", "Tempo de corte do lado B:\n"
 "(B1+B2)"))
-        self.lbl_TimeCutSideB.setText(_translate("MainWindow", "87.5"))
+        self.lbl_TimeCutSideB.setText(_translate("MainWindow", "---"))
         self.label_66.setText(_translate("MainWindow", "SEG."))
         self.label_9.setText(_translate("MainWindow", "MANUTENÇÃO"))
         self.label_83.setText(_translate("MainWindow", "Porta lado A"))
@@ -11260,7 +11269,7 @@ class Ui_MainWindow(object):
         self.btn_DoorSideA_TimeMaint.setText(_translate("MainWindow", "ALTERAR TEMPO\n"
 "DE MANUTENÇÃO"))
         self.label_87.setText(_translate("MainWindow", "Tempo de manutenção:"))
-        self.lbl_TimeMaint_A.setText(_translate("MainWindow", "0"))
+        self.lbl_TimeMaint_A.setText(_translate("MainWindow", "---"))
         self.label_88.setText(_translate("MainWindow", "ms"))
         self.label_82.setText(_translate("MainWindow", "Porta lado B"))
         self.label_102.setText(_translate("MainWindow", "Saída CLP\n"
@@ -11277,7 +11286,7 @@ class Ui_MainWindow(object):
         self.btn_DoorSideB_TimeMaint.setText(_translate("MainWindow", "ALTERAR TEMPO\n"
 "DE MANUTENÇÃO"))
         self.label_99.setText(_translate("MainWindow", "Tempo de manutenção:"))
-        self.lbl_TimeMaint_B.setText(_translate("MainWindow", "0"))
+        self.lbl_TimeMaint_B.setText(_translate("MainWindow", "---"))
         self.label_100.setText(_translate("MainWindow", "ms"))
         self.label_85.setText(_translate("MainWindow", "Spindle"))
         self.label_107.setText(_translate("MainWindow", "Saída CLP liga Spindle"))
@@ -11288,11 +11297,11 @@ class Ui_MainWindow(object):
         self.btn_SpindleRobo_TimeMaint.setText(_translate("MainWindow", "ALTERAR TEMPO\n"
 "DE MANUTENÇÃO"))
         self.label_105.setText(_translate("MainWindow", "Tempo de manutenção:"))
-        self.lbl_TimeMaint_Spindle.setText(_translate("MainWindow", "0"))
+        self.lbl_TimeMaint_Spindle.setText(_translate("MainWindow", "---"))
         self.label_106.setText(_translate("MainWindow", "ms"))
         self.label_84.setText(_translate("MainWindow", "Leitor de código de barras"))
         self.label_93.setText(_translate("MainWindow", "Código de barras:"))
-        self.lbl_BarCodeReader_data.setText(_translate("MainWindow", "14K_52D6_35BC"))
+        self.lbl_BarCodeReader_data.setText(_translate("MainWindow", "aguardando leitura"))
         self.label_109.setText(_translate("MainWindow", "Leitura completa:"))
         self.label_86.setText(_translate("MainWindow", "Coordenada Mesa"))
         self.label_95.setText(_translate("MainWindow", "A1"))
@@ -11422,137 +11431,137 @@ class Ui_MainWindow(object):
         self.label_110.setText(_translate("MainWindow", "Ajuste para seleção de pontos"))
         self.label_150.setText(_translate("MainWindow", "Distância entre\n"
 "pontos (X, Y, Z):"))
-        self.lbl_dist_xyz.setText(_translate("MainWindow", "0"))
+        self.lbl_dist_xyz.setText(_translate("MainWindow", "---"))
         self.label_149.setText(_translate("MainWindow", "mm"))
         self.btn_md_val_dist_xyz.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_152.setText(_translate("MainWindow", "Distância no ângulo\n"
 "\"C\" (horizontal)\n"
 "entre os pontos:"))
-        self.lbl_diff_c.setText(_translate("MainWindow", "0"))
+        self.lbl_diff_c.setText(_translate("MainWindow", "---"))
         self.label_151.setText(_translate("MainWindow", "graus"))
         self.btn_md_val_dist_c.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_154.setText(_translate("MainWindow", "Distância no ângulo\n"
 "\"D\"(de ataque)\n"
 "entre os pontos:"))
-        self.lbl_diff_d.setText(_translate("MainWindow", "0"))
+        self.lbl_diff_d.setText(_translate("MainWindow", "---"))
         self.label_153.setText(_translate("MainWindow", "graus"))
         self.btn_md_val_dist_d.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_156.setText(_translate("MainWindow", "Variação entre\n"
 "pontos (h):"))
-        self.lbl_var_h.setText(_translate("MainWindow", "0"))
+        self.lbl_var_h.setText(_translate("MainWindow", "---"))
         self.label_155.setText(_translate("MainWindow", "mm"))
         self.btn_md_val_var_h.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_158.setText(_translate("MainWindow", "Vezes que \"d[0]\" tem\n"
 "que ser menor que\n"
 "os outros pontos:"))
-        self.lbl_d_menor_pts.setText(_translate("MainWindow", "0"))
+        self.lbl_d_menor_pts.setText(_translate("MainWindow", "---"))
         self.btn_md_val_d0_mnr_pts.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_112.setText(_translate("MainWindow", "Offsets atuais do robô"))
         self.label_159.setText(_translate("MainWindow", "X:"))
-        self.lbl_PosX.setText(_translate("MainWindow", "0"))
+        self.lbl_PosX.setText(_translate("MainWindow", "---"))
         self.label_165.setText(_translate("MainWindow", "mm"))
         self.label_162.setText(_translate("MainWindow", "C:"))
-        self.lbl_PosC.setText(_translate("MainWindow", "0"))
+        self.lbl_PosC.setText(_translate("MainWindow", "---"))
         self.label_168.setText(_translate("MainWindow", "°"))
         self.label_160.setText(_translate("MainWindow", "Y:"))
-        self.lbl_PosY.setText(_translate("MainWindow", "0"))
+        self.lbl_PosY.setText(_translate("MainWindow", "---"))
         self.label_166.setText(_translate("MainWindow", "mm"))
         self.label_163.setText(_translate("MainWindow", "d:"))
-        self.lbl_PosD.setText(_translate("MainWindow", "0"))
+        self.lbl_PosD.setText(_translate("MainWindow", "---"))
         self.label_169.setText(_translate("MainWindow", "°"))
         self.label_161.setText(_translate("MainWindow", "Z:"))
-        self.lbl_PosZ.setText(_translate("MainWindow", "0"))
+        self.lbl_PosZ.setText(_translate("MainWindow", "---"))
         self.label_167.setText(_translate("MainWindow", "mm"))
         self.label_164.setText(_translate("MainWindow", "Posição atual:"))
-        self.lbl_RobotPos.setText(_translate("MainWindow", "0"))
+        self.lbl_RobotPos.setText(_translate("MainWindow", "---"))
         self.label_170.setText(_translate("MainWindow", "Número Máximo\n"
 "de Pontos"))
-        self.lbl_MaxPts.setText(_translate("MainWindow", "0"))
+        self.lbl_MaxPts.setText(_translate("MainWindow", "---"))
         self.btn_md_val_max_pts.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_173.setText(_translate("MainWindow", "Velocidade\n"
 "de corte:"))
-        self.lbl_CutSpeed.setText(_translate("MainWindow", "0"))
+        self.lbl_CutSpeed.setText(_translate("MainWindow", "---"))
         self.label_172.setText(_translate("MainWindow", "mm/s"))
         self.btn_md_val_vel_corte.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_111.setText(_translate("MainWindow", "Profundidade de corte"))
         self.label_115.setText(_translate("MainWindow", "A1:"))
-        self.lbl_CutDepth_A1.setText(_translate("MainWindow", "0"))
+        self.lbl_CutDepth_A1.setText(_translate("MainWindow", "---"))
         self.label_119.setText(_translate("MainWindow", "mm"))
         self.btn_md_val_prof_corte_a1.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_116.setText(_translate("MainWindow", "A2:"))
-        self.lbl_CutDepth_A2.setText(_translate("MainWindow", "0"))
+        self.lbl_CutDepth_A2.setText(_translate("MainWindow", "---"))
         self.label_120.setText(_translate("MainWindow", "mm"))
         self.btn_md_val_prof_corte_a2.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_117.setText(_translate("MainWindow", "B1:"))
-        self.lbl_CutDepth_B1.setText(_translate("MainWindow", "0"))
+        self.lbl_CutDepth_B1.setText(_translate("MainWindow", "---"))
         self.label_121.setText(_translate("MainWindow", "mm"))
         self.btn_md_val_prof_corte_b1.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_118.setText(_translate("MainWindow", "B2:"))
-        self.lbl_CutDepth_B2.setText(_translate("MainWindow", "0"))
+        self.lbl_CutDepth_B2.setText(_translate("MainWindow", "---"))
         self.label_122.setText(_translate("MainWindow", "mm"))
         self.btn_md_val_prof_corte_b2.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_113.setText(_translate("MainWindow", "Ajuste de tempo do Lado A"))
         self.label_124.setText(_translate("MainWindow", "Delay para\n"
 "fechar porta:"))
-        self.lbl_delay_fecha_port_a.setText(_translate("MainWindow", "0"))
+        self.lbl_delay_fecha_port_a.setText(_translate("MainWindow", "---"))
         self.label_123.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_delay_fecha_porta_a.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_126.setText(_translate("MainWindow", "Delay para\n"
 "abrir porta:"))
-        self.lbl_delay_abre_port_a.setText(_translate("MainWindow", "0"))
+        self.lbl_delay_abre_port_a.setText(_translate("MainWindow", "---"))
         self.label_125.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_delay_abre_porta_a.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_128.setText(_translate("MainWindow", "Tempo para alarme\n"
 "de sensores\n"
 "ligado e desligado:"))
-        self.lbl_temp_alarm_sens_a.setText(_translate("MainWindow", "0"))
+        self.lbl_temp_alarm_sens_a.setText(_translate("MainWindow", "---"))
         self.label_127.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_temp_alarm_sens_a.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_130.setText(_translate("MainWindow", "Tempo para\n"
 "alarme de posição\n"
 "da porta:"))
-        self.lbl_temp_alarm_pos_port_a.setText(_translate("MainWindow", "0"))
+        self.lbl_temp_alarm_pos_port_a.setText(_translate("MainWindow", "---"))
         self.label_129.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_temp_alarm_pos_port_a.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_114.setText(_translate("MainWindow", "Ajuste de tempo do Lado B"))
         self.label_131.setText(_translate("MainWindow", "Delay para\n"
 "fechar porta:"))
-        self.lbl_delay_fecha_port_b.setText(_translate("MainWindow", "0"))
+        self.lbl_delay_fecha_port_b.setText(_translate("MainWindow", "---"))
         self.label_132.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_delay_fecha_porta_b.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_137.setText(_translate("MainWindow", "Delay para\n"
 "abrir porta:"))
-        self.lbl_delay_abre_port_b.setText(_translate("MainWindow", "0"))
+        self.lbl_delay_abre_port_b.setText(_translate("MainWindow", "---"))
         self.label_138.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_delay_abre_porta_b.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_135.setText(_translate("MainWindow", "Tempo para alarme\n"
 "de sensores\n"
 "ligado e desligado:"))
-        self.lbl_temp_alarm_sens_b.setText(_translate("MainWindow", "0"))
+        self.lbl_temp_alarm_sens_b.setText(_translate("MainWindow", "---"))
         self.label_136.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_temp_alarm_sens_b.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))
         self.label_133.setText(_translate("MainWindow", "Tempo para\n"
 "alarme de posição\n"
 "da porta:"))
-        self.lbl_temp_alarm_pos_port_b.setText(_translate("MainWindow", "0"))
+        self.lbl_temp_alarm_pos_port_b.setText(_translate("MainWindow", "---"))
         self.label_134.setText(_translate("MainWindow", "ms"))
         self.btn_md_val_temp_alarm_pos_port_b.setText(_translate("MainWindow", "ALTERAR\n"
 "VALOR"))

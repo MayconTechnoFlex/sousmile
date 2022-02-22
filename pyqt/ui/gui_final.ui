@@ -754,7 +754,7 @@ background-color: white;
                 </font>
                </property>
                <property name="text">
-                <string>USER_NAME</string>
+                <string>Nenhum usuário logado</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -933,9 +933,6 @@ background-color: white;
                </property>
                <item>
                 <widget class="QLabel" name="label_4">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1011,6 +1008,7 @@ border-radius: 25;
 }
 QPushButton:hover{ background-color: #f1d100}
 QPushButton:pressed {background-color:#dfc200 }
+QPushButton:disabled{ background-color: #cbcbcb}
 
 #frame_34, #frame_65,
 #frame_27, #frame_81,
@@ -1652,7 +1650,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>TextLabel</string>
+                                 <string>Aguarndado conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1812,7 +1810,7 @@ arquivo original A1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1971,7 +1969,7 @@ arquivo original A1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2130,7 +2128,7 @@ arquivo original A1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2289,7 +2287,7 @@ arquivo original A1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2395,6 +2393,9 @@ manualmente A1</string>
                            </item>
                            <item>
                             <widget class="QPushButton" name="btn_trans_dados_man_a1">
+                             <property name="enabled">
+                              <bool>true</bool>
+                             </property>
                              <property name="minimumSize">
                               <size>
                                <width>0</width>
@@ -2846,7 +2847,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>TextLabel</string>
+                                 <string>Aguarndado conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3012,7 +3013,7 @@ arquivo original A2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3177,7 +3178,7 @@ arquivo original A2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3336,7 +3337,7 @@ arquivo original A2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3495,7 +3496,7 @@ arquivo original A2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3840,7 +3841,7 @@ manualmente A2</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>xxxxxxxxxx</string>
+                              <string>Aguardando conexão</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignCenter</set>
@@ -4464,7 +4465,7 @@ background-color: #f00000;
                            <item>
                             <widget class="QWidget" name="sts_sem_alarm_a" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -4579,7 +4580,7 @@ QPushButton::checked {background-color:#a48f00; color:black; border: 4px solid #
 QPushButton::disabled {background-color:#cbcbcb; color:black; border: 4px solid #cbcbcb }</string>
                        </property>
                        <property name="text">
-                        <string>Automático</string>
+                        <string>Manual</string>
                        </property>
                        <property name="checkable">
                         <bool>true</bool>
@@ -5208,7 +5209,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>TextLabel</string>
+                                 <string>Aguarndado conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5374,7 +5375,7 @@ arquivo original B1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5539,7 +5540,7 @@ arquivo original B1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5704,7 +5705,7 @@ arquivo original B1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5869,7 +5870,7 @@ arquivo original B1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6408,7 +6409,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>TextLabel</string>
+                                 <string>Aguarndado conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6544,7 +6545,7 @@ arquivo original B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6679,7 +6680,7 @@ arquivo original B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6814,7 +6815,7 @@ arquivo original B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6949,7 +6950,7 @@ arquivo original B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0000</string>
+                                 <string>----</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -7294,7 +7295,7 @@ manualmente B2</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>xxxxxxxxxx</string>
+                              <string>Aguardando conexão</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignCenter</set>
@@ -7966,7 +7967,7 @@ background-color: #f00000;
                            <item>
                             <widget class="QWidget" name="sts_sem_alarm_b" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -8089,7 +8090,7 @@ background-color: #f00000;
 QPushButton::checked {background-color:#a48f00; color:black; border: 4px solid #ffdf00 }</string>
                        </property>
                        <property name="text">
-                        <string>AUTOMÁTICO</string>
+                        <string>Manual</string>
                        </property>
                        <property name="checkable">
                         <bool>true</bool>
@@ -8575,6 +8576,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_ready" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -9097,6 +9101,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_battery_alarm" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -9199,6 +9206,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_home_pos" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -10145,6 +10155,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_imstp" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -10247,6 +10260,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_hold" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -10349,6 +10365,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_sfspd" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -10556,6 +10575,9 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QWidget" name="sts_enabled" native="true">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="minimumSize">
                            <size>
                             <width>60</width>
@@ -11014,7 +11036,7 @@ do Robô:</string>
                            </font>
                           </property>
                           <property name="text">
-                           <string>100</string>
+                           <string>---</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -12014,7 +12036,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>10</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12131,7 +12153,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>15</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12249,7 +12271,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>25</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12366,7 +12388,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>42.5</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12467,7 +12489,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>45</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12569,7 +12591,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>87.5</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12837,7 +12859,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>10</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -12954,7 +12976,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>15</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -13072,7 +13094,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>25</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -13189,7 +13211,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>42.5</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -13290,7 +13312,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>45</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -13392,7 +13414,7 @@ QPushButton:disabled{background-color:#ababab; color: #676767 }
                               </font>
                              </property>
                              <property name="text">
-                              <string>87.5</string>
+                              <string>---</string>
                              </property>
                             </widget>
                            </item>
@@ -13852,7 +13874,7 @@ aberta:</string>
                               <item>
                                <widget class="QWidget" name="sts_port_aber_a" native="true">
                                 <property name="enabled">
-                                 <bool>true</bool>
+                                 <bool>false</bool>
                                 </property>
                                 <property name="minimumSize">
                                  <size>
@@ -14482,7 +14504,7 @@ DE MANUTENÇÃO</string>
                                        </font>
                                       </property>
                                       <property name="text">
-                                       <string>0</string>
+                                       <string>---</string>
                                       </property>
                                       <property name="alignment">
                                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -14840,6 +14862,9 @@ aberta:</string>
                               </item>
                               <item>
                                <widget class="QWidget" name="sts_port_aber_b" native="true">
+                                <property name="enabled">
+                                 <bool>false</bool>
+                                </property>
                                 <property name="minimumSize">
                                  <size>
                                   <width>60</width>
@@ -15366,7 +15391,7 @@ DE MANUTENÇÃO</string>
                                        </font>
                                       </property>
                                       <property name="text">
-                                       <string>0</string>
+                                       <string>---</string>
                                       </property>
                                       <property name="alignment">
                                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -16182,7 +16207,7 @@ DE MANUTENÇÃO</string>
                                              </font>
                                             </property>
                                             <property name="text">
-                                             <string>0</string>
+                                             <string>---</string>
                                             </property>
                                             <property name="alignment">
                                              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -16478,7 +16503,7 @@ DE MANUTENÇÃO</string>
                                    </property>
                                    <property name="font">
                                     <font>
-                                     <family>Arial</family>
+                                     <family>Equinox Bold</family>
                                      <pointsize>14</pointsize>
                                     </font>
                                    </property>
@@ -16486,7 +16511,7 @@ DE MANUTENÇÃO</string>
                                     <string notr="true"/>
                                    </property>
                                    <property name="text">
-                                    <string>14K_52D6_35BC</string>
+                                    <string>aguardando leitura</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -18254,7 +18279,7 @@ background-color: #f00000;
                            <item>
                             <widget class="QWidget" name="sts_sinal_emerg" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -18367,7 +18392,7 @@ background-color: #f00000;
                            <item>
                             <widget class="QWidget" name="sts_sinal_port" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -18964,7 +18989,7 @@ Aberta Lado A:</string>
                            <item>
                             <widget class="QWidget" name="sts_sens_port_abr_a" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -19192,7 +19217,7 @@ Aberta Lado B:</string>
                            <item>
                             <widget class="QWidget" name="sts_sens_port_abr_b" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -19533,7 +19558,7 @@ background-color: #f00000;
                            <item>
                             <widget class="QWidget" name="sts_pressostato" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -19787,7 +19812,7 @@ Lado A:</string>
                         <item>
                          <widget class="QWidget" name="sts_seg_port_a" native="true">
                           <property name="enabled">
-                           <bool>true</bool>
+                           <bool>false</bool>
                           </property>
                           <property name="minimumSize">
                            <size>
@@ -19901,7 +19926,7 @@ Lado B:</string>
                         <item>
                          <widget class="QWidget" name="sts_seg_port_b" native="true">
                           <property name="enabled">
-                           <bool>true</bool>
+                           <bool>false</bool>
                           </property>
                           <property name="minimumSize">
                            <size>
@@ -22353,7 +22378,7 @@ Solicita Entrada:</string>
                            <item>
                             <widget class="QWidget" name="sts_lamp_btn_solic_ent" native="true">
                              <property name="enabled">
-                              <bool>true</bool>
+                              <bool>false</bool>
                              </property>
                              <property name="minimumSize">
                               <size>
@@ -23078,7 +23103,7 @@ pontos (X, Y, Z):</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -23249,7 +23274,7 @@ entre os pontos:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -23414,7 +23439,7 @@ entre os pontos:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -23578,7 +23603,7 @@ pontos (h):</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -23749,7 +23774,7 @@ os outros pontos:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -24108,7 +24133,7 @@ VALOR</string>
                                           </font>
                                          </property>
                                          <property name="text">
-                                          <string>0</string>
+                                          <string>---</string>
                                          </property>
                                          <property name="alignment">
                                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -24277,7 +24302,7 @@ VALOR</string>
                                           </font>
                                          </property>
                                          <property name="text">
-                                          <string>0</string>
+                                          <string>---</string>
                                          </property>
                                          <property name="alignment">
                                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -24473,7 +24498,7 @@ VALOR</string>
                                           </font>
                                          </property>
                                          <property name="text">
-                                          <string>0</string>
+                                          <string>---</string>
                                          </property>
                                          <property name="alignment">
                                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -24642,7 +24667,7 @@ VALOR</string>
                                           </font>
                                          </property>
                                          <property name="text">
-                                          <string>0</string>
+                                          <string>---</string>
                                          </property>
                                          <property name="alignment">
                                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -24838,7 +24863,7 @@ VALOR</string>
                                           </font>
                                          </property>
                                          <property name="text">
-                                          <string>0</string>
+                                          <string>---</string>
                                          </property>
                                          <property name="alignment">
                                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -25007,7 +25032,7 @@ VALOR</string>
                                           </font>
                                          </property>
                                          <property name="text">
-                                          <string>0</string>
+                                          <string>---</string>
                                          </property>
                                          <property name="alignment">
                                           <set>Qt::AlignCenter</set>
@@ -25143,7 +25168,7 @@ de Pontos</string>
                                     </font>
                                    </property>
                                    <property name="text">
-                                    <string>0</string>
+                                    <string>---</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -25300,7 +25325,7 @@ de corte:</string>
                                     </font>
                                    </property>
                                    <property name="text">
-                                    <string>0</string>
+                                    <string>---</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -25611,7 +25636,7 @@ VALOR</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -25773,7 +25798,7 @@ VALOR</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -25971,7 +25996,7 @@ VALOR</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -26133,7 +26158,7 @@ VALOR</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>0</string>
+                                 <string>---</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -26430,7 +26455,7 @@ fechar porta:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -26581,7 +26606,7 @@ abrir porta:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -26733,7 +26758,7 @@ ligado e desligado:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -26885,7 +26910,7 @@ da porta:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -27137,7 +27162,7 @@ fechar porta:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -27288,7 +27313,7 @@ abrir porta:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -27440,7 +27465,7 @@ ligado e desligado:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -27592,7 +27617,7 @@ da porta:</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>0</string>
+                              <string>---</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

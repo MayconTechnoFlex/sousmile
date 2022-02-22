@@ -1,14 +1,15 @@
 """Module with all functions used on the MaintenanceScreen of the application"""
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
-from utils.gui_functions import change_state_button, change_status
-from utils.db_users import get_connected_username
+from utils.gui_functions import change_state_button, change_status, set_reset_btn_int
+from utils.Types import PLCReturn
 
 UI: Ui_MainWindow
+tag_list: PLCReturn
 
 def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
                    confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
@@ -22,29 +23,29 @@ def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
     """
     global UI
     UI = receive_UI
+
     buttons_ConfirmDialogs(confirmDialog)
     UI.btn_check_uf.clicked.connect(checkUF.show_dialog)
+    UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_btn_int(4, tag_list, UI.btn_menos_1_mm))
+    UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_btn_int(5, tag_list, UI.btn_termina_check_uf))
 
-    UI.btn_menos_1_mm.clicked.connect(lambda: change_state_button("HMI.btn_Sub1mm"))
-    UI.btn_termina_check_uf.clicked.connect(lambda: change_state_button("HMI.btn_EndCheckUF"))
-
-    UI.btn_DoorSideA_abrir.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManRet"))
-    UI.btn_DoorSideA_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.ManExt"))
-    UI.btn_DoorSideA_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideA.MaintTest"))
+    UI.btn_DoorSideA_abrir.clicked.connect(lambda: set_reset_btn_int(6, tag_list, UI.btn_DoorSideA_abrir))
+    UI.btn_DoorSideA_fechar.clicked.connect(lambda: set_reset_btn_int(7, tag_list, UI.btn_DoorSideA_fechar))
+    UI.btn_DoorSideA_manut.clicked.connect(lambda: set_reset_btn_int(8, tag_list, UI.btn_DoorSideA_manut))
     UI.btn_DoorSideA_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado A:", "Cyl_DoorSideA.TimeMaintTest", "int")
     )
 
-    UI.btn_DoorSideB_abrir.clicked.connect(lambda: change_state_button("Cyl_DoorSideB.ManRet"))
-    UI.btn_DoorSideB_fechar.clicked.connect(lambda: change_state_button("Cyl_DoorSideB.ManExt"))
-    UI.btn_DoorSideB_manut.clicked.connect(lambda: change_state_button("Cyl_DoorSideB.MaintTest"))
+    UI.btn_DoorSideB_abrir.clicked.connect(lambda: set_reset_btn_int(9, tag_list, UI.btn_DoorSideB_abrir))
+    UI.btn_DoorSideB_fechar.clicked.connect(lambda: set_reset_btn_int(10, tag_list, UI.btn_DoorSideB_fechar))
+    UI.btn_DoorSideB_manut.clicked.connect(lambda: set_reset_btn_int(11, tag_list, UI.btn_DoorSideB_manut))
     UI.btn_DoorSideB_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado B:", "Cyl_DoorSideB.TimeMaintTest", "int")
     )
 
-    UI.btn_SpindleRobo_abrir.clicked.connect(lambda: change_state_button("Cyl_SpindleRobo.ManRet"))
-    UI.btn_SpindleRobo_fechar.clicked.connect(lambda: change_state_button("Cyl_SpindleRobo.ManExt"))
-    UI.btn_SpindleRobo_manut.clicked.connect(lambda: change_state_button("Cyl_SpindleRobo.MaintTest"))
+    UI.btn_SpindleRobo_abrir.clicked.connect(lambda: set_reset_btn_int(12, tag_list, UI.btn_SpindleRobo_abrir))
+    UI.btn_SpindleRobo_fechar.clicked.connect(lambda: set_reset_btn_int(13, tag_list, UI.btn_SpindleRobo_fechar))
+    UI.btn_SpindleRobo_manut.clicked.connect(lambda: set_reset_btn_int(14, tag_list, UI.btn_SpindleRobo_manut))
     UI.btn_SpindleRobo_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
     )
@@ -125,3 +126,37 @@ def UpdateBarCode(tag):
         change_status(tag["ReadCompete"], WStatus)
     except:
         pass
+
+def UpdateHMI(tag):
+    """
+    Updates the screen's buttons with the readed tag values
+
+    Params:
+        tag = readed tag from BarCodeReader
+    """
+    global UI
+    if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
+        UI.btn_move_home.setEnabled(True)
+        UI.btn_check_uf.setEnabled(True)
+    else:
+        UI.btn_move_home.setEnabled(False)
+        UI.btn_check_uf.setEnabled(False)
+
+def UpdateRobotInput(tag):
+    """
+    Updates the screen's buttons with the readed tag values
+
+    Params:
+        tag = readed tag from BarCodeReader
+    """
+    global UI
+    if tag["CUFOn"] and tag["Prg_running"]:
+        UI.btn_menos_1_mm.setEnabled(True)
+        UI.btn_termina_check_uf.setEnabled(True)
+    else:
+        UI.btn_menos_1_mm.setEnabled(False)
+        UI.btn_termina_check_uf.setEnabled(False)
+
+def UpdateTagsList(tags):
+    global tag_list
+    tag_list = tags

@@ -1,16 +1,16 @@
 """Module with all functions used on the HomeScreen of the application"""
 from utils.Types import PLCReturn
 
-from PyQt5.QtWidgets import QLabel
-from ui_py.ui_gui import Ui_MainWindow
+from PyQt5.QtWidgets import QLabel, QApplication
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
-from utils.gui_functions import set_reset_button, set_reset_btn_int
-from utils.Types import AltValShowDialog_WithoutText
+from utils.gui_functions import set_reset_btn_int
+from utils.btn_style import *
 
 UI: Ui_MainWindow
 
-tag_list = PLCReturn
+tag_list: PLCReturn
 
 def sts_string(id_num: int, widget: QLabel):
     """
@@ -140,27 +140,23 @@ def UpdateHMI(tag):
         ### buttons manual <-> auto
         if tag['SideA']['ModeValue'] == 0:
             hmi_side_a_mode_value = 0
-            UI.btn_man_auto_lado_a.setStyleSheet("background-color : #ffdf00; color : #565656")
-            UI.sts_auto_man_a.setEnabled(True)
+            UI.btn_man_auto_lado_a.setStyleSheet(base_button_style)
             UI.btn_man_auto_lado_a.setText('Manual')
         elif tag['SideA']['ModeValue'] == 1:
             hmi_side_a_mode_value = 1
-            UI.btn_man_auto_lado_a.setStyleSheet("background-color : #565656; color : #ffdf00")
-            UI.sts_auto_man_a.setEnabled(False)
+            UI.btn_man_auto_lado_a.setStyleSheet(checked_button_style)
             UI.btn_man_auto_lado_a.setText('Automático')
 
         if tag['SideB']['ModeValue'] == 0:
             hmi_side_b_mode_value = 0
-            UI.btn_man_auto_lado_b.setStyleSheet("background-color : #ffdf00; color : #565656")
-            UI.btn_man_auto_lado_b.setChecked(True)
-            UI.sts_auto_man_b.setEnabled(True)
+            UI.btn_man_auto_lado_b.setStyleSheet(base_button_style)
             UI.btn_man_auto_lado_b.setText('Manual')
         elif tag['SideB']['ModeValue'] == 1:
             hmi_side_b_mode_value = 1
-            UI.btn_man_auto_lado_b.setStyleSheet("background-color : #565656; color : #ffdf00")
-            UI.btn_man_auto_lado_b.setChecked(False)
-            UI.sts_auto_man_b.setEnabled(False)
+            UI.btn_man_auto_lado_b.setStyleSheet(checked_button_style)
             UI.btn_man_auto_lado_b.setText('Automático')
+
+        QApplication.restoreOverrideCursor()
 
         #### setting alarm status
         if tag["AlarmSideA"]:
@@ -173,16 +169,54 @@ def UpdateHMI(tag):
         else:
             UI.sts_sem_alarm_b.setEnabled(True)
 
+        if tag["Sts"]["TransDataSideA"] == 0:
+            UI.btn_trans_dados_man_a1.setEnabled(True)
+            UI.btn_trans_dados_man_a2.setEnabled(True)
+        else:
+            UI.btn_trans_dados_man_a1.setEnabled(False)
+            UI.btn_trans_dados_man_a2.setEnabled(False)
+
+        if tag["Sts"]["TransDataSideB"] == 0:
+            UI.btn_trans_dados_man_b1.setEnabled(True)
+            UI.btn_trans_dados_man_b2.setEnabled(True)
+        else:
+            UI.btn_trans_dados_man_b1.setEnabled(False)
+            UI.btn_trans_dados_man_b2.setEnabled(False)
+
+        QApplication.restoreOverrideCursor()
+
+
     except Exception as e:
         hmi_side_a_mode_value = None
         hmi_side_b_mode_value = None
-        UI.btn_man_auto_lado_a.setStyleSheet("background-color : #dc1f1f; color : black")
-        UI.btn_man_auto_lado_b.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_man_auto_lado_a.setStyleSheet(btn_error_style)
+        UI.btn_man_auto_lado_b.setStyleSheet(btn_error_style)
         UI.btn_man_auto_lado_a.setText('Erro')
         UI.btn_man_auto_lado_b.setText('Erro')
+        UI.btn_man_auto_lado_a.setEnabled(False)
+        UI.btn_man_auto_lado_b.setEnabled(False)
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value
+
+def UpdateRobotInput(tag):
+    """
+    Updates the screen's labels and status widgets with the readed tag values
+
+    Params:
+        tag = readed tag from HMI
+    """
+    global UI
+
+    try:
+        if tag["Prg_running"] and tag["RSA"]:
+            UI.btn_man_auto_lado_a.setEnabled(True)
+            UI.btn_man_auto_lado_b.setEnabled(True)
+        else:
+            UI.btn_man_auto_lado_a.setEnabled(False)
+            UI.btn_man_auto_lado_b.setEnabled(False)
+    except Exception as e:
+        print(f"{e} - UpdateRobotInput - home")
 
 def UpdateTagsList(tags):
     global tag_list

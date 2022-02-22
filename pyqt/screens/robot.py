@@ -1,12 +1,17 @@
 """Module with all functions used on the RobotScreen of the application"""
 
-from ui_py.ui_gui import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 
-from utils.gui_functions import change_status, set_reset_button
+from PyQt5.QtWidgets import QApplication
+
+from utils.gui_functions import change_status, set_reset_btn_int
+from utils.Types import PLCReturn
+from utils.btn_style import *
 
 UI: Ui_MainWindow
 
+tag_list: PLCReturn
 
 def define_buttons(receive_ui: Ui_MainWindow, dialog: AlteraValorDialog):
     """
@@ -18,10 +23,8 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: AlteraValorDialog):
     """
     global UI
     UI = receive_ui
-    UI.btn_parar_robo.clicked.connect(lambda: set_reset_button("HMI.HoldRobo",
-                                                               UI.btn_parar_robo,
-                                                               "Liberar Robô",
-                                                               "Parar Robô"))
+
+    UI.btn_parar_robo.clicked.connect(lambda: set_reset_btn_int(2, tag_list, UI.btn_parar_robo))
 
     UI.btn_alt_vel_robo_screen.clicked.connect(
         lambda: dialog.show_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
@@ -32,15 +35,21 @@ def UpdateHMI(tag):
     global UI
     try:
         if tag["HoldRobo"] == 0:
+            UI.btn_parar_robo.setStyleSheet(base_button_style + "*{border-radius: 35}")
             UI.btn_parar_robo.setText("Parar Robô")
+            QApplication.restoreOverrideCursor()
+
         elif tag["HoldRobo"] == 1:
+            UI.btn_parar_robo.setStyleSheet(checked_button_style + "*{border-radius: 35}")
             UI.btn_parar_robo.setText("Liberar Robô")
+            QApplication.restoreOverrideCursor()
         else:
             pass
 
     except Exception as e:
-        UI.btn_parar_robo.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_parar_robo.setStyleSheet(btn_error_style)
         UI.btn_parar_robo.setText('Erro')
+        UI.btn_parar_robo.setEnabled(False)
         print(f'{e} - robot.UpdateHMI')
 
 
@@ -86,3 +95,7 @@ def UpdateOutput(tag: dict):
         change_status(tag["MSB"], UI.sts_macro_b)
     except:
         pass
+
+def UpdateTagsList(tags):
+    global tag_list
+    tag_list = tags

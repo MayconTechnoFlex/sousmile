@@ -7,7 +7,20 @@ from typing import List
 #########################################################
 Tag_List = [
     "HMI.SideA.ModeValue",
-    "HMI.SideB.ModeValue"
+    "HMI.SideB.ModeValue",
+    "HMI.HoldRobo",
+    "HMI.EnableLog",
+    "HMI.btn_Sub1mm",
+    "HMI.btn_EndCheckUF",
+    "Cyl_DoorSideA.ManRet",
+    "Cyl_DoorSideA.ManExt",
+    "Cyl_DoorSideA.MaintTest",
+    "Cyl_DoorSideB.ManRet",
+    "Cyl_DoorSideB.ManExt",
+    "Cyl_DoorSideB.MaintTest",
+    "Cyl_SpindleRobo.ManRet",
+    "Cyl_SpindleRobo.ManExt",
+    "Cyl_SpindleRobo.MaintTest",
 ]
 #########################################################
 # Tags Local - In/Out

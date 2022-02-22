@@ -5,22 +5,17 @@
 ##############################################################
 ### IMPORTS
 ##############################################################
-import sys
 
-from PyQt5.QtCore import *
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLineEdit
+from PyQt5.QtWidgets import QMainWindow
 
-from ui_py.ui_gui_v1 import Ui_MainWindow
+from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.gui_functions import *
 from utils.workers import *
-from utils.ctrl_plc import *
-from utils.alarm_control import *
-from utils.db_users import users_accounts, key_list, get_connected_username
+from security.functions import UpdateUserAccess
 
 from utils.Types import *
-from utils.Tags import *
 
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
@@ -31,11 +26,6 @@ from dialogs.altera_valor import AlteraValorDialog
 from dialogs.login import LoginDialog
 from dialogs.checkUF import CheckUserFrame
 ##############################################################
-
-# todo => criar thread para não travar tela com a troca de estado de botões? (man-auto / hab/desab logs)
-# todo => Foi modificado os botões para dentro das funções que rodam como as threads - falta testar para ver se melhora
-#  o tempo de resposta
-# pode ser ruim para o usuário se clicar repetidas vezes no botão
 
 class RnRobotics_Gui(QMainWindow):
     def __init__(self):
@@ -48,10 +38,6 @@ class RnRobotics_Gui(QMainWindow):
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
         self.check_uf = CheckUserFrame(self)
-        # todo => adicionar dialog de check user frame
-
-        #win_icon = QIcon("./assets/images/RN_ico.png")
-        #self.setWindowIcon(win_icon)
 
         self.setWindowTitle("HMI SouSmile")
         ##################################################################
@@ -121,7 +107,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
         self.worker_alarm.signal_alarm.result.connect(self.update_Alarms)
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
-        self.worker_user.signal_user.result.connect(self.update_user_access)
+        self.worker_user.signal_user.result.connect(lambda signal: UpdateUserAccess(signal, self.ui))
         self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
         ###################################################################
         # Start the threads ###############################################
@@ -165,16 +151,6 @@ class RnRobotics_Gui(QMainWindow):
         self.tag_type: TagTypes = ""
         self.action_to_confirm: ActionsToConfirm = ""
         ###################################################################
-        # adding alarms to list ###########################################
-        ###################################################################
-        # ToDo => ver como receber os alarmes e os tempos
-        '''
-        alarms.define_new_alarm(self.ui, "12:35:31", 0)
-        alarms.define_new_alarm(self.ui, "13:18:57", 11)
-        alarms.define_new_alarm(self.ui, "15:16:22", 34)
-        alarms.define_new_alarm(self.ui, "15:34:46", 64)
-        '''
-        ####################################################################
 
     ####################################################################
     #### functions to navigate between screens
@@ -247,6 +223,8 @@ class RnRobotics_Gui(QMainWindow):
             robot.UpdateHMI(tag)
         elif self.ui.stackedWidget.currentIndex() == 3:
             prod.UpdateHMI(tag)
+        elif self.ui.stackedWidget.currentIndex() == 4:
+            maint.UpdateHMI(tag)
         elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateHMI(tag)
     ########################################################################
@@ -275,8 +253,12 @@ class RnRobotics_Gui(QMainWindow):
             eng.UpdateRobotPos(tag)
     ########################################################################
     def update_RoboInput(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 1:
+        if self.ui.stackedWidget.currentIndex() == 0:
+            home.UpdateRobotInput(tag)
+        elif self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateInput(tag)
+        elif self.ui.stackedWidget.currentIndex() == 4:
+            maint.UpdateRobotInput(tag)
     ########################################################################
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
@@ -296,7 +278,7 @@ class RnRobotics_Gui(QMainWindow):
         if self.ui.stackedWidget.currentIndex() == 5:
             inOut.UpdateInOut(tag)
     ########################################################################
-    def update_user_access(self, signal):
+    """def update_user_access(self, signal):
         try:
             if get_connected_username() not in key_list:
                 if self.ui.stackedWidget.currentIndex() == 1:
@@ -309,10 +291,13 @@ class RnRobotics_Gui(QMainWindow):
             elif get_connected_username() == key_list[2]:
                 self.ui.btnRobotScreen.setEnabled(True)
         except Exception as e:
-            print(e)
+            print(e)"""
     ########################################################################
     def update_tag_list(self, tags):
         home.UpdateTagsList(tags)
+        robot.UpdateTagsList(tags)
+        maint.UpdateTagsList(tags)
+        eng.UpdateTagsList(tags)
     ########################################################################
     #### Stop Threads ######################################################
     ########################################################################
