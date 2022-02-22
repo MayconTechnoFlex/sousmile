@@ -175,7 +175,6 @@ class RnRobotics_Gui(QMainWindow):
         alarms.define_new_alarm(self.ui, "15:34:46", 64)
         '''
         ####################################################################
-        self.ui.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_btn_int(0, self.tag_list))
 
     ####################################################################
     #### functions to navigate between screens

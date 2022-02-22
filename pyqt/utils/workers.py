@@ -4,12 +4,13 @@ import time, traceback, sys
 
 from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
-from utils.ctrl_plc import read_tags, read_multiples
+from utils.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.alarm_control import alarm_tag_list
-from screens.in_out import tags_inOut
+from utils.Tags import tags_inOut
+# from screens.in_out import tags_inOut
 from utils.Tags import *
 
-sleep_time = 0.75
+sleep_time = 0.8
 stop_time = 0.2
 
 class WorkerParent:
@@ -526,4 +527,20 @@ class Worker_ReadTags(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
+
+class Worker_WriteTags(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+    def __init__(self, tag: str, value):
+        super(Worker_WriteTags, self).__init__()
+        self.tag = tag
+        self.value = value
+
+    @pyqtSlot()
+    def run(self):
+        try:
+            write_tag(self.tag, self.value)
+        except Exception as e:
+            print(f'{e} - Write Tags Worker')
 
