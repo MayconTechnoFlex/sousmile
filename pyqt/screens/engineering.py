@@ -3,10 +3,16 @@
 from ui_py.ui_gui import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 
-from utils.gui_functions import set_reset_button
+from PyQt5.QtWidgets import QApplication
+
+from utils.gui_functions import set_reset_btn_int
+from utils.Types import PLCReturn
+from utils.btn_style import *
 
 UI: Ui_MainWindow
 DIALOG: AlteraValorDialog
+
+tag_list: PLCReturn
 
 def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog):
     """
@@ -26,9 +32,7 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog)
     def_delayB()
 
     # buttons
-    UI.btn_habilita_logs.clicked.connect(
-        lambda: set_reset_button("HMI.EnableLog", UI.btn_habilita_logs,
-                                 "Desab. Log\nde Pontos", "Habilita Log\nde Pontos"))
+    UI.btn_habilita_logs.clicked.connect(lambda: set_reset_btn_int(3, tag_list, UI.btn_habilita_logs))
 
 
 ### Defining Dialogs
@@ -130,11 +134,15 @@ def UpdateHMI(tag):
         UI.lbl_MaxPts.setText(str(tag["NumPosMax"]))
 
         if tag["EnableLog"] == 1:
+            UI.btn_habilita_logs.setStyleSheet(checked_button_style)
             UI.btn_habilita_logs.setText("Desab. log\nde pontos")
         elif tag["EnableLog"] == 0:
-            UI.btn_habilita_logs.setText("Habilita log\nde pontos")
+            UI.btn_habilita_logs.setStyleSheet(base_button_style)
+            UI.btn_habilita_logs.setText("Habilitar log\nde pontos")
         else:
             pass
+
+        QApplication.restoreOverrideCursor()
 
     except Exception as e:
         UI.btn_habilita_logs.setStyleSheet("background-color : #dc1f1f; color : black")
@@ -225,3 +233,7 @@ def UpdateRobotOutput(tag):
         UI.lbl_CutSpeed.setText(str(tag["CutSpeed"]))
     except:
         pass
+
+def UpdateTagsList(tags):
+    global tag_list
+    tag_list = tags

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pyqt/ui/confirm_dialog.ui'
+# Form implementation generated from reading ui file '.\pyqt\ui\confirm_dialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -105,7 +105,8 @@ class Ui_ConfirmDialog(object):
 "\n"
 "QPushButton:pressed {\n"
 "background-color: #ccac00\n"
-"}")
+"}\n"
+"QPushButton::disabled{background-color:#cbcbcb}")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/newPrefix/assets/icons/icons/2x/sharp_close_black_48dp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_cancel.setIcon(icon1)

@@ -22,7 +22,6 @@ class ThreadResetProduct(QThread):
                 write_tag(tag, 0)
         except Exception as e:
             print(e)
-        QApplication.restoreOverrideCursor()
         self.button.setEnabled(True)
 
 
@@ -80,6 +79,8 @@ def UpdateHMI(tag):
         UI.lbl_TimeCutB1.setText(str(round(prodTag["TimeCutB1"], 2)))
         UI.lbl_TimeCutB2.setText(str(round(prodTag["TimeCutB2"], 2)))
         UI.lbl_TimeCutSideB.setText(str(round(prodTag["TimeCutSideB"], 2)))
+
+        QApplication.restoreOverrideCursor()
     except:
         pass
 

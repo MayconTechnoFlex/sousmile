@@ -7,7 +7,7 @@ from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
 from utils.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.alarm_control import alarm_tag_list
-from utils.Tags import tags_inOut
+from utils.Types import PLCReturn
 # from screens.in_out import tags_inOut
 from utils.Tags import *
 
@@ -536,7 +536,6 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
 
     def __init__(self, tag: str, value, widget: QWidget):
         super(Worker_WriteTags, self).__init__()
-        self.finished = pyqtSignal()
         self.tag = tag
         self.value = value
         self.widget = widget

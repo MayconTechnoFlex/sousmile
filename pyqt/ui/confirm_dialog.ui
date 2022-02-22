@@ -227,7 +227,8 @@ background-color: #ddbd00
 
 QPushButton:pressed {
 background-color: #ccac00
-}</string>
+}
+QPushButton::disabled{background-color:#cbcbcb}</string>
         </property>
         <property name="text">
          <string>Cancelar</string>

@@ -5,8 +5,7 @@ from PyQt5.QtWidgets import QLabel, QApplication
 from ui_py.ui_gui import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
-from utils.gui_functions import set_reset_button, set_reset_btn_int
-from utils.Types import AltValShowDialog_WithoutText
+from utils.gui_functions import set_reset_btn_int
 from utils.btn_style import *
 
 UI: Ui_MainWindow
@@ -173,8 +172,8 @@ def UpdateHMI(tag):
     except Exception as e:
         hmi_side_a_mode_value = None
         hmi_side_b_mode_value = None
-        UI.btn_man_auto_lado_a.setStyleSheet("background-color : #dc1f1f; color : black")
-        UI.btn_man_auto_lado_b.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_man_auto_lado_a.setStyleSheet(btn_error_style)
+        UI.btn_man_auto_lado_b.setStyleSheet(btn_error_style)
         UI.btn_man_auto_lado_a.setText('Erro')
         UI.btn_man_auto_lado_b.setText('Erro')
         print(f'{e} - home.UpdateHMI')

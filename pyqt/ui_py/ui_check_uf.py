@@ -129,7 +129,8 @@ class Ui_Dialog(object):
 "\n"
 "QPushButton:pressed {\n"
 "background-color: #ccac00\n"
-"}")
+"}\n"
+"QPushButton::disabled{background-color:#cbcbcb}")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/newPrefix/assets/icons/icons/2x/sharp_close_black_48dp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_cancel.setIcon(icon1)

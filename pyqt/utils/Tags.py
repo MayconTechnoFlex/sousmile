@@ -7,7 +7,9 @@ from typing import List
 #########################################################
 Tag_List = [
     "HMI.SideA.ModeValue",
-    "HMI.SideB.ModeValue"
+    "HMI.SideB.ModeValue",
+    "HMI.HoldRobo",
+    "HMI.EnableLog",
 ]
 #########################################################
 # Tags Local - In/Out

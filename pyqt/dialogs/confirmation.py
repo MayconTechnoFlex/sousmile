@@ -34,6 +34,10 @@ class ConfirmationDialog(QDialog):
         if text:
             self.ui.description_text.setText(text)
         self.buttons_of_dialog()
+        if action_to_confirm == "MoveHome":
+            self.thread = Thread_Dialogs_NoLineEdit(self, "HMI.btnGoHome")
+        elif action_to_confirm == "":
+            raise Exception("Nenhuma ação foi passada para confirmação")
         self.exec_()
 
     def closeEvent(self, event):
@@ -45,13 +49,11 @@ class ConfirmationDialog(QDialog):
         action = self.ACTION_TO_CONFIRM
         try:
             if action == "MoveHome":
-                self.thread = Thread_Dialogs_NoLineEdit(self, "HMI.btnGoHome")
                 self.thread.start()
             elif action == "":
                 raise Exception("Nenhuma ação foi passada")
         except Exception as e:
             print(f"{e} - Erro na ação")
-            self.dialog.cancel_action()
 
     def cancel_action(self):
         """Called when the "Cancelar" button is pressed"""
