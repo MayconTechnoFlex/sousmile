@@ -7,13 +7,11 @@ from ui_py.ui_gui import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
 from utils.ctrl_plc import write_tag, read_tags
-from utils.write_thread import ThreadSetResetButton
-from utils.gui_functions import set_reset_button
+from utils.gui_functions import set_reset_btn_int
 
 UI: Ui_MainWindow
 
-threadA: ThreadSetResetButton
-threadB: ThreadSetResetButton
+tag_list: PLCReturn
 
 def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     """
@@ -23,18 +21,15 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
         receive_ui = main ui of the application
         dialog = function for pop-up buttons
     """
-    global UI, threadA, threadB
+    global UI, tag_list
     UI = receive_ui
     UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string"))
     UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string"))
     UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
     UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
 
-    threadA = ThreadSetResetButton(UI.btn_man_auto_lado_a, "HMI.SideA.ModeValue")
-    threadB = ThreadSetResetButton(UI.btn_man_auto_lado_b, "HMI.SideB.ModeValue")
-
-    UI.btn_man_auto_lado_a.clicked.connect(threadA.start)
-    UI.btn_man_auto_lado_b.clicked.connect(threadB.start)
+    UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_btn_int(0, tag_list))
+    UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_btn_int(1, tag_list))
 
 def sts_string(id_num: int, widget: QLabel):
     """
@@ -146,26 +141,26 @@ def UpdateHMI(tag):
         ### buttons manual <-> auto
         if tag['SideA']['ModeValue'] == 0:
             hmi_side_a_mode_value = 0
-            # UI.btn_man_auto_lado_a.setStyleSheet("background-color : #ffdf00; color : #565656")
+            UI.btn_man_auto_lado_a.setStyleSheet("background-color : #ffdf00; color : #565656")
             UI.btn_man_auto_lado_a.setChecked(True)
             UI.sts_auto_man_a.setEnabled(True)
             UI.btn_man_auto_lado_a.setText('Manual')
         elif tag['SideA']['ModeValue'] == 1:
             hmi_side_a_mode_value = 1
-            # UI.btn_man_auto_lado_a.setStyleSheet("background-color : #565656; color : #ffdf00")
+            UI.btn_man_auto_lado_a.setStyleSheet("background-color : #565656; color : #ffdf00")
             UI.btn_man_auto_lado_a.setChecked(False)
             UI.sts_auto_man_a.setEnabled(False)
             UI.btn_man_auto_lado_a.setText('Automático')
 
         if tag['SideB']['ModeValue'] == 0:
             hmi_side_b_mode_value = 0
-            # UI.btn_man_auto_lado_b.setStyleSheet("background-color : #ffdf00; color : #565656")
+            UI.btn_man_auto_lado_b.setStyleSheet("background-color : #ffdf00; color : #565656")
             UI.btn_man_auto_lado_b.setChecked(True)
             UI.sts_auto_man_b.setEnabled(True)
             UI.btn_man_auto_lado_b.setText('Manual')
         elif tag['SideB']['ModeValue'] == 1:
             hmi_side_b_mode_value = 1
-            # UI.btn_man_auto_lado_b.setStyleSheet("background-color : #565656; color : #ffdf00")
+            UI.btn_man_auto_lado_b.setStyleSheet("background-color : #565656; color : #ffdf00")
             UI.btn_man_auto_lado_b.setChecked(False)
             UI.sts_auto_man_b.setEnabled(False)
             UI.btn_man_auto_lado_b.setText('Automático')

@@ -77,22 +77,23 @@ def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off:
         widget.setStyleSheet(":disabled{background-color:#cbcbcb; color: #cbcccc}")
         widget.setEnabled(False)
 
-        value = read_tags(tag_indicator)
+        if not tag_indicator:
+            value = read_tags(tag_to_write)
 
-        if value == 0:
+        if tag_indicator == 0 or value == 0:
+            write_tag(tag_to_write, 1)
             widget.setText(text_on)
-            ret = write_tag(tag_to_write, 1)
-        elif value == 1:
+        elif tag_indicator == 1 or value == 1:
+            write_tag(tag_to_write, 0)
             widget.setText(text_off)
-            ret = write_tag(tag_to_write, 0)
         else:
             raise Exception("Valor errado recebido - gui_function/set_reset_button")
         time.sleep(0.5)
+        widget.setEnabled(True)
     except Exception as e:
         print(f"{e} - gui_function.py - set_reset_button")
     finally:
         widget.setEnabled(True)
-        return ret
 
 def set_reset_btn_int(i: int, tag_list):
     try:

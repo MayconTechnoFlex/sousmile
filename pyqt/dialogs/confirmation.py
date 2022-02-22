@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog
 
 from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 from utils.Types import ActionsToConfirm
+from utils.write_thread import Thread_Dialogs_NoLineEdit
 from utils.ctrl_plc import write_tag
 
 class ConfirmationDialog(QDialog):
@@ -19,7 +20,7 @@ class ConfirmationDialog(QDialog):
 
         self.ACTION_TO_CONFIRM: ActionsToConfirm = ""
 
-        self.buttons_of_dialog()
+        self.thread: Thread_Dialogs_NoLineEdit
 
     def show_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
         """
@@ -32,6 +33,7 @@ class ConfirmationDialog(QDialog):
         self.ACTION_TO_CONFIRM = action_to_confirm
         if text:
             self.ui.description_text.setText(text)
+        self.buttons_of_dialog()
         self.exec_()
 
     def closeEvent(self, event):
@@ -43,20 +45,18 @@ class ConfirmationDialog(QDialog):
         action = self.ACTION_TO_CONFIRM
         try:
             if action == "MoveHome":
-                write_tag("HMI.btnGoHome", 1)
-                print(f"{action} realized")
+                self.thread = Thread_Dialogs_NoLineEdit(self, "HMI.btnGoHome")
+                self.thread.start()
             elif action == "":
                 raise Exception("Nenhuma ação foi passada")
         except Exception as e:
             print(f"{e} - Erro na ação")
-        finally:
-            self.close()
+            self.dialog.cancel_action()
 
     def cancel_action(self):
         """Called when the "Cancelar" button is pressed"""
         self.ACTION_TO_CONFIRM = ""
         self.close()
-        print("Action canceled")
 
     def buttons_of_dialog(self):
         """Set the buttons of the dialog"""

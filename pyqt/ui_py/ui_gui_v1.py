@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pyqt/ui/gui_rev04.ui'
+# Form implementation generated from reading ui file '.\pyqt\ui\gui_rev04.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -145,6 +145,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:hover{ background-color: #f1d100}\n"
 "QPushButton:pressed{background-color:#dfc200 }\n"
+"QPushButton:disabled{background-color:#cbcbcb }\n"
 "\n"
 "QPushButton::disabled{background-color:#cbcbcb}\n"
 "\n"
@@ -1791,10 +1792,8 @@ class Ui_MainWindow(object):
         self.frame_24.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_24.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_24.setObjectName("frame_24")
-        self.horizontalLayout_43 = QtWidgets.QHBoxLayout(self.frame_24)
-        self.horizontalLayout_43.setContentsMargins(15, 0, 15, 0)
-        self.horizontalLayout_43.setSpacing(0)
-        self.horizontalLayout_43.setObjectName("horizontalLayout_43")
+        self.horizontalLayout_38 = QtWidgets.QHBoxLayout(self.frame_24)
+        self.horizontalLayout_38.setObjectName("horizontalLayout_38")
         self.btn_man_auto_lado_a = QtWidgets.QPushButton(self.frame_24)
         self.btn_man_auto_lado_a.setEnabled(True)
         self.btn_man_auto_lado_a.setMinimumSize(QtCore.QSize(150, 55))
@@ -1810,9 +1809,25 @@ class Ui_MainWindow(object):
         self.btn_man_auto_lado_a.setCheckable(True)
         self.btn_man_auto_lado_a.setChecked(False)
         self.btn_man_auto_lado_a.setObjectName("btn_man_auto_lado_a")
-        self.horizontalLayout_43.addWidget(self.btn_man_auto_lado_a)
+        self.horizontalLayout_38.addWidget(self.btn_man_auto_lado_a)
+        self.btn_man_auto_lado_a_2 = QtWidgets.QPushButton(self.frame_24)
+        self.btn_man_auto_lado_a_2.setEnabled(True)
+        self.btn_man_auto_lado_a_2.setMinimumSize(QtCore.QSize(150, 55))
+        self.btn_man_auto_lado_a_2.setMaximumSize(QtCore.QSize(150, 55))
+        font = QtGui.QFont()
+        font.setFamily("Equinox Bold")
+        font.setPointSize(12)
+        self.btn_man_auto_lado_a_2.setFont(font)
+        self.btn_man_auto_lado_a_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_man_auto_lado_a_2.setStyleSheet("*{width: 150; height: 65}\n"
+"\n"
+"QPushButton::checked {background-color:#a48f00; color:black; border: 4px solid #ffdf00 }")
+        self.btn_man_auto_lado_a_2.setCheckable(True)
+        self.btn_man_auto_lado_a_2.setChecked(False)
+        self.btn_man_auto_lado_a_2.setObjectName("btn_man_auto_lado_a_2")
+        self.horizontalLayout_38.addWidget(self.btn_man_auto_lado_a_2)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_43.addItem(spacerItem1)
+        self.horizontalLayout_38.addItem(spacerItem1)
         self.verticalLayout_9.addWidget(self.frame_24)
         self.horizontalLayout_3.addWidget(self.frm_lado_A)
         self.line = QtWidgets.QFrame(self.frame_9)
@@ -3746,10 +3761,10 @@ class Ui_MainWindow(object):
         self.frame_169.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_169.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_169.setObjectName("frame_169")
-        self.horizontalLayout_38 = QtWidgets.QHBoxLayout(self.frame_169)
-        self.horizontalLayout_38.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_38.setSpacing(0)
-        self.horizontalLayout_38.setObjectName("horizontalLayout_38")
+        self.horizontalLayout_381 = QtWidgets.QHBoxLayout(self.frame_169)
+        self.horizontalLayout_381.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_381.setSpacing(0)
+        self.horizontalLayout_381.setObjectName("horizontalLayout_381")
         self.label_186 = QtWidgets.QLabel(self.frame_169)
         self.label_186.setMinimumSize(QtCore.QSize(450, 471))
         self.label_186.setMaximumSize(QtCore.QSize(450, 471))
@@ -3758,7 +3773,7 @@ class Ui_MainWindow(object):
         self.label_186.setScaledContents(True)
         self.label_186.setAlignment(QtCore.Qt.AlignCenter)
         self.label_186.setObjectName("label_186")
-        self.horizontalLayout_38.addWidget(self.label_186)
+        self.horizontalLayout_381.addWidget(self.label_186)
         self.verticalLayout_118.addWidget(self.frame_169)
         self.frame_305 = QtWidgets.QFrame(self.frame_303)
         self.frame_305.setMinimumSize(QtCore.QSize(0, 100))
@@ -11057,7 +11072,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -11120,6 +11135,7 @@ class Ui_MainWindow(object):
         self.label_45.setText(_translate("MainWindow", "Segurança para corte lado A:"))
         self.label_46.setText(_translate("MainWindow", "Lado A sem alarme:"))
         self.btn_man_auto_lado_a.setText(_translate("MainWindow", "Automático"))
+        self.btn_man_auto_lado_a_2.setText(_translate("MainWindow", "Automático"))
         self.label_25.setText(_translate("MainWindow", "LADO B"))
         self.label_19.setText(_translate("MainWindow", "B1"))
         self.label_20.setText(_translate("MainWindow", "Transferência de dados\n"

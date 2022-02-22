@@ -5,15 +5,15 @@ from utils.ctrl_plc import write_tag, read_tags
 from utils.Types import TagTypes
 
 
-class ThreadSetResetButton(QThread):
-    def __init__(self, button: QPushButton, tag_name: str):
-        super(ThreadSetResetButton, self).__init__()
-        self.button = button
+class Thread_Dialogs_NoLineEdit(QThread):
+    def __init__(self, dialog: QDialog, tag_name: str):
+        super(Thread_Dialogs_NoLineEdit, self).__init__()
+        self.dialog = dialog
         self.tag_name = tag_name
 
     def run(self):
         QApplication.setOverrideCursor(Qt.WaitCursor)
-        self.button.setEnabled(False)
+        self.dialog.setEnabled(False)
         try:
             value = read_tags(self.tag_name)
             if value:
@@ -23,7 +23,8 @@ class ThreadSetResetButton(QThread):
         except Exception as e:
             print(e)
         QApplication.restoreOverrideCursor()
-        self.button.setEnabled(True)
+        self.dialog.setEnabled(True)
+        self.dialog.cancel_action()
 
 class Thread_LineEdit(QThread):
     def __init__(self, tag_name: str, dialog: QDialog, widget: QLineEdit, data_type: TagTypes = "string"):
@@ -37,19 +38,26 @@ class Thread_LineEdit(QThread):
         QApplication.setOverrideCursor(Qt.WaitCursor)
         self.dialog.setEnabled(False)
 
-        if self.data_type == "string":
-            data = str(self.widget.text())
-        elif self.data_type == "int":
-            data = int(self.widget.text())
-        elif self.data_type == "float":
-            data = float(self.widget.text())
-        else:
+        try:
+            if self.data_type == "string":
+                data = str(self.widget.text())
+            elif self.data_type == "int":
+                data = int(self.widget.text())
+            elif self.data_type == "float":
+                data = float(self.widget.text())
+            else:
+                raise Exception("Tipo incorreto foi passado")
+        except Exception as e:
+            print(f"{e} - Thread_LineEdit")
             data = None
 
         try:
-            write_tag(self.tag_name, data)
+            if not data or data == '':
+                raise Exception("Campo vazio")
+            else:
+                write_tag(self.tag_name, data)
         except Exception as e:
-            print(f"{e} - write_LineEdit")
+            print(f"{e} - Thread_LineEdit")
         self.widget.clear()
         self.dialog.close()
 

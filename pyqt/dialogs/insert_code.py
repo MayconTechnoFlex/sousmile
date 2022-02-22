@@ -44,7 +44,6 @@ class InsertCodeDialog(QDialog):
         self.TAG_TYPE = tag_type
         self.ui.txt_code.setValidator(self.validator)
         self.thread = Thread_LineEdit(self.TAG_INDEX, self, self.ui.txt_code, self.TAG_TYPE)
-        self.thread.finished.connect(lambda: print("Thread finalizada"))
         self.set_button()
         self.exec_()
 
