@@ -20,7 +20,7 @@ def set_connected_username(username: UsersName) -> None:
 
 
 def disconnect_user() -> None:
-    """Deletes the username in a module variable"""
+    """Deletes the username in the module variable"""
     global connected_username
     connected_username = ""
 

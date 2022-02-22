@@ -32,11 +32,6 @@ from dialogs.login import LoginDialog
 from dialogs.checkUF import CheckUserFrame
 ##############################################################
 
-# todo => criar thread para não travar tela com a troca de estado de botões? (man-auto / hab/desab logs)
-# todo => Foi modificado os botões para dentro das funções que rodam como as threads - falta testar para ver se melhora
-#  o tempo de resposta
-# pode ser ruim para o usuário se clicar repetidas vezes no botão
-
 class RnRobotics_Gui(QMainWindow):
     def __init__(self):
         super(RnRobotics_Gui, self).__init__()
@@ -48,7 +43,6 @@ class RnRobotics_Gui(QMainWindow):
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
         self.check_uf = CheckUserFrame(self)
-        # todo => adicionar dialog de check user frame
 
         #win_icon = QIcon("./assets/images/RN_ico.png")
         #self.setWindowIcon(win_icon)

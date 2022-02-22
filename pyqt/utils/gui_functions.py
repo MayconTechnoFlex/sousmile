@@ -19,21 +19,26 @@ def write_LineEdit(tag_name: str, dialog: QDialog, widget: QLineEdit, data_type:
         widget = the QLineEdit widget
         data_type = the value's type that will be sent to the PLC
     """
-    if data_type == "string":
-        data = str(widget.text())
-    elif data_type == "int":
-        data = int(widget.text())
-    elif data_type == "float":
-        data = float(widget.text())
-    else:
-        data = None
 
     try:
+        if widget.text():
+            if data_type == "string":
+                data = str(widget.text())
+            elif data_type == "int":
+                data = int(widget.text())
+            elif data_type == "float":
+                data = float(widget.text())
+            else:
+                raise Exception("data_type não é válido")
+        else:
+            raise Exception("Campo estava vazio")
+
         write_tag(tag_name, data)
     except Exception as e:
         print(f"{e} - write_LineEdit")
-    widget.clear()
-    dialog.close()
+    finally:
+        widget.clear()
+        dialog.close()
 #############################################
 def change_state_button(tag: str, tag_indicator: int = None):
     """
@@ -42,6 +47,7 @@ def change_state_button(tag: str, tag_indicator: int = None):
 
     Params:
         tag = the Tag of the PLC
+        tag_indicator = the actual value of the tag
     """
     try:
         if not tag_indicator:
@@ -54,7 +60,7 @@ def change_state_button(tag: str, tag_indicator: int = None):
         elif value == 0:
             write_tag(tag, 1)
         else:
-            raise Exception("Valor errado recebido - gui_function/change_state_button")
+            raise Exception("Valor errado recebido")
     except Exception as e:
         print(f"{e} - gui_function.py - change_state_button")
 #############################################
@@ -67,17 +73,20 @@ def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off:
 
     Params:
         tag_to_write = the Tag of the PLC that we write the value
-        tag_indicator = the Tag of the PLC used to show the status of the button
         widget = the button or label that was interacted
         text_on = text if the value is True
         text_off = text if the value is False
+        tag_indicator = the Tag of the PLC used to show the status of the button
     """
 
     try:
         widget.setStyleSheet(":disabled{background-color:#cbcbcb; color: #cbcccc}")
         widget.setEnabled(False)
 
-        value = read_tags(tag_indicator)
+        if not tag_indicator:
+            value = read_tags(tag_to_write)
+        else:
+            value = tag_indicator
 
         if value == 0:
             write_tag(tag_to_write, 1)
@@ -86,13 +95,11 @@ def set_reset_button(tag_to_write: str, widget: QWidget, text_on: str, text_off:
             write_tag(tag_to_write, 0)
             widget.setText(text_off)
         else:
-            raise Exception("Valor errado recebido - gui_function/set_reset_button")
+            raise Exception("Valor errado recebido")
         time.sleep(0.5)
-        widget.setEnabled(True)
     except Exception as e:
         print(f"{e} - gui_function.py - set_reset_button")
-=======
-        print(e)
+    finally:
         widget.setEnabled(True)
 
 
@@ -107,10 +114,6 @@ def set_reset_btn_int(i: int, tag_list):
     except Exception as e:
         print(e)
 
-
-
-
-
 #############################################
 def change_status(tag: Union[int, bool], stsWidget: QWidget):
     """
@@ -124,13 +127,3 @@ def change_status(tag: Union[int, bool], stsWidget: QWidget):
         stsWidget.setEnabled(True)
     else:
         stsWidget.setEnabled(False)
-
-
-
-
-
-
-
-
-
-
