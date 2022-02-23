@@ -6,9 +6,9 @@ from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
 from utils.ctrl_plc import read_tags, read_multiples, write_tag
-from utils.alarm_control import alarm_tag_list
-from utils.Types import PLCReturn
 from utils.Tags import *
+
+from utils.serial_ports import get_serial_ports
 
 import serial
 import serial.tools.list_ports_windows
@@ -47,7 +47,6 @@ class Worker(QRunnable, WorkerParent):
 
     def __init__(self, *args):
         super(Worker, self).__init__()
-        self.signal_barCodeReader = WorkerSignals()
         self.signal_local1In = WorkerSignals()
         self.signal_local1Out = WorkerSignals()
         self.signal_local2In = WorkerSignals()
@@ -57,21 +56,18 @@ class Worker(QRunnable, WorkerParent):
     def run(self):
         while self.running:
             try:
-                bar_code_reader = read_tags("BarCodeReader")
                 local_1_in = read_tags("Local:1:I.Data")
                 local_1_out = read_tags("Local:1:O.Data")
                 local_2_in = read_tags("Local:2:I.Data")
 
-                if type(bar_code_reader) == CommError:
+                if type(local_1_in) == CommError:
                     traceback.print_exc()
                     exctype, value = sys.exc_info()[:2]
-                    self.signal_barCodeReader.error.emit((exctype, value, traceback.format_exc()))
                     self.signal_local1In.error.emit((exctype, value, traceback.format_exc()))
                     self.signal_local1Out.error.emit((exctype, value, traceback.format_exc()))
                     self.signal_local2In.error.emit((exctype, value, traceback.format_exc()))
                     raise Exception("connection failed")
                 else:
-                    self.signal_barCodeReader.result.emit(bar_code_reader)
                     self.signal_local1In.result.emit(local_1_in)
                     self.signal_local1Out.result.emit(local_1_out)
                     self.signal_local2In.result.emit(local_2_in)
@@ -559,10 +555,27 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
     """
     def __init__(self):
         super(Worker_BarCodeScanner, self).__init__()
-        self.device = serial.Serial('COM3', timeout=0.5)
+        self.signal = WorkerSignals()
         self.info: str
         self.code: int
         self.running = True
+        self.device: serial.Serial = None
+        self.device_connected = False
+        self.create_device()
+
+    def create_device(self):
+        try:
+            self.serial_ports = get_serial_ports()
+            if len(self.serial_ports) == 1:
+                self.device = serial.Serial(self.serial_ports[0], timeout=0.5)
+                self.device_connected = True
+                print("Dispositivo conectado")
+            else:
+                raise Exception("Mais de uma porta serial")
+        except Exception as e:
+            pass
+            #print(e)
+            #time.sleep(3)
 
     @pyqtSlot()
     def run(self):
@@ -574,10 +587,13 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                     self.info = str(self.device.readline())
                     self.code_size = len(self.info)
                     if self.code_size > 4:
-                        write_tag("BarCodeReader.Data", self.info[2:(self.code_size-3)])
+                        readed_code = self.info[2:(self.code_size - 3)]
+                        self.signal.result.emit({"Data": readed_code, "ReadCompete": True})
+                        write_tag("BarCodeReader.Data", readed_code)
+                        write_tag("BarCodeReader.ReadCompete", True)
+                        time.sleep(3)
+                        self.signal.result.emit({"Data": readed_code, "ReadCompete": False})
+                        write_tag("BarCodeReader.ReadCompete", False)
             except Exception as e:
-                print(f"{e} - Erro de comunicação leitor de código de barras")
-                self.device.close()
-                time.sleep(3)
-            time.sleep(sleep_time)
+                print(e)
 

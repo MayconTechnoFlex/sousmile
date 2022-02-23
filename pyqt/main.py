@@ -5,13 +5,12 @@
 ##############################################################
 ### IMPORTS
 ##############################################################
-
+from PyQt5.QtCore import QThreadPool
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow
 
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.gui_functions import *
 from utils.workers import *
 from security.functions import UpdateUserAccess
 
@@ -32,17 +31,20 @@ class RnRobotics_Gui(QMainWindow):
         super(RnRobotics_Gui, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        ##################################################################
+        # IDefining dialogs ##############################################
+        ##################################################################
         self.insert_code_dialog = InsertCodeDialog(self)
         self.altera_valor_dialog = AlteraValorDialog(self)
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
         self.check_uf = CheckUserFrame(self)
-
-        self.setWindowTitle("HMI SouSmile")
         ##################################################################
+        # Initial configuration ##########################################
+        ##################################################################
+        self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
+        self.setWindowTitle("HMI SouSmile")
         self.ui.lbl_username.setText("Nenhum usuário logado")
-        self.tag_list = list()
         ##################################################################
         # Thread - to update PLC values ##################################
         ##################################################################
@@ -106,11 +108,11 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_indexRobotPos.signal_indexRobotPos.result.connect(self.update_indexRobotPos)
         self.worker_robotInputs.signal_roboInput.result.connect(self.update_RoboInput)
         self.worker_robotOutputs.signal_robotOutput.result.connect(self.update_RoboOutput)
-        self.worker.signal_barCodeReader.result.connect(self.update_BarCode)
         self.worker_alarm.signal_alarm.result.connect(self.update_Alarms)
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
         self.worker_user.signal_user.result.connect(lambda signal: UpdateUserAccess(signal, self.ui))
         self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
+        self.worker_barcode_scanner.signal.result.connect(self.update_BarCode)
         ###################################################################
         # Start the threads ###############################################
         ###################################################################
@@ -133,10 +135,6 @@ class RnRobotics_Gui(QMainWindow):
         self.thread_read_tags.start(self.worker_read_tags)
         self.thread_barcode_scanner.start(self.worker_barcode_scanner)
         ###################################################################
-        # main screen of the application ##################################
-        ###################################################################
-        self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
-        ###################################################################
         # Defining buttons of screens #####################################
         ###################################################################
         self.define_navigate_buttons()
@@ -147,12 +145,6 @@ class RnRobotics_Gui(QMainWindow):
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.altera_valor_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
-        ###################################################################
-        # Setting controll variabled ######################################
-        ###################################################################
-        self.tag_index = ""
-        self.tag_type: TagTypes = ""
-        self.action_to_confirm: ActionsToConfirm = ""
         ###################################################################
 
     ####################################################################
@@ -281,21 +273,6 @@ class RnRobotics_Gui(QMainWindow):
         if self.ui.stackedWidget.currentIndex() == 5:
             inOut.UpdateInOut(tag)
     ########################################################################
-    """def update_user_access(self, signal):
-        try:
-            if get_connected_username() not in key_list:
-                if self.ui.stackedWidget.currentIndex() == 1:
-                    self.ui.stackedWidget.setCurrentIndex(0)
-                self.ui.btnRobotScreen.setEnabled(False)
-            elif get_connected_username() == key_list[0]:
-                self.ui.btnRobotScreen.setEnabled(True)
-            elif get_connected_username() == key_list[1]:
-                self.ui.btnRobotScreen.setEnabled(True)
-            elif get_connected_username() == key_list[2]:
-                self.ui.btnRobotScreen.setEnabled(True)
-        except Exception as e:
-            print(e)"""
-    ########################################################################
     def update_tag_list(self, tags):
         home.UpdateTagsList(tags)
         robot.UpdateTagsList(tags)
@@ -328,7 +305,6 @@ class RnRobotics_Gui(QMainWindow):
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
     ########################################################################
-############################################################################
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

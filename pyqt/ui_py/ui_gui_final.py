@@ -10811,8 +10811,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_119.setSpacing(20)
         self.verticalLayout_119.setObjectName("verticalLayout_119")
         self.btn_habilita_logs = QtWidgets.QPushButton(self.frame_225)
-        self.btn_habilita_logs.setMinimumSize(QtCore.QSize(0, 75))
-        self.btn_habilita_logs.setMaximumSize(QtCore.QSize(16777215, 75))
+        self.btn_habilita_logs.setMinimumSize(QtCore.QSize(156, 80))
+        self.btn_habilita_logs.setMaximumSize(QtCore.QSize(156, 80))
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")
         font.setPointSize(14)
@@ -10820,6 +10820,16 @@ class Ui_MainWindow(object):
         self.btn_habilita_logs.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_habilita_logs.setObjectName("btn_habilita_logs")
         self.verticalLayout_119.addWidget(self.btn_habilita_logs)
+        self.pushButton = QtWidgets.QPushButton(self.frame_225)
+        self.pushButton.setMinimumSize(QtCore.QSize(156, 100))
+        self.pushButton.setMaximumSize(QtCore.QSize(156, 100))
+        font = QtGui.QFont()
+        font.setFamily("Equinox Bold")
+        font.setPointSize(14)
+        self.pushButton.setFont(font)
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout_119.addWidget(self.pushButton)
         spacerItem27 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_119.addItem(spacerItem27)
         self.horizontalLayout_76.addWidget(self.frame_225)
@@ -11051,7 +11061,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(6)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -11567,6 +11577,9 @@ class Ui_MainWindow(object):
 "VALOR"))
         self.btn_habilita_logs.setText(_translate("MainWindow", "Habilitar Log\n"
 "de pontos"))
+        self.pushButton.setText(_translate("MainWindow", "Config. Porta\n"
+"Leitor Cod.\n"
+"Barras"))
         self.label_17.setText(_translate("MainWindow", "HISTÓRICO DE ALARMES"))
         self.hist_alarm_list_widget.setSortingEnabled(True)
         item = self.hist_alarm_list_widget.horizontalHeaderItem(0)
@@ -11574,5 +11587,5 @@ class Ui_MainWindow(object):
         item = self.hist_alarm_list_widget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "MESSAGE"))
         self.btn_atual_alarm.setText(_translate("MainWindow", "ALARMES ATUAIS"))
-import ui_py.icons_rc
-import ui_py.images_rc
+import icons_rc
+import images_rc

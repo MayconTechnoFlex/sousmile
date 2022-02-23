@@ -1,8 +1,7 @@
-###########################################################################
 """Module with all functions used on the InOutScreen of the application"""
-###########################################################################
+
 from typing import List
-################################################
+#########################################################
 # Tag lists - used on buttons
 #########################################################
 Tag_List = [
@@ -23,7 +22,7 @@ Tag_List = [
     "Cyl_SpindleRobo.MaintTest",
 ]
 #########################################################
-# Tags Local - In/Out
+# Tags Local
 #########################################################
 tags_inOut: List[str] = []
 
@@ -37,3 +36,8 @@ for i in range(0, 3):
             if j <= 7:
                 tags_inOut.append(f"Local:2:I.Data.{j}")
 #########################################################
+alarm_tag_list: List[str] = []
+
+for i in range(0, 3):
+    for j in range(0, 32):
+        alarm_tag_list.append(f"AlarmProcess[{i}].{j}")

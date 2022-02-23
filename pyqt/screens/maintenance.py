@@ -5,7 +5,7 @@ from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
-from utils.gui_functions import change_state_button, change_status, set_reset_btn_int
+from utils.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 
 UI: Ui_MainWindow

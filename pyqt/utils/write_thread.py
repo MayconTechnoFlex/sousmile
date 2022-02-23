@@ -1,9 +1,10 @@
-from PyQt5.QtCore import QObject, pyqtSignal, QThread, Qt
-from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit, QPushButton
+"""Threads for write on PLC from Dialogs"""
+
+from PyQt5.QtCore import QThread, Qt
+from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit
 
 from utils.ctrl_plc import write_tag, read_tags
 from utils.Types import TagTypes
-
 
 class Thread_Dialogs_NoLineEdit(QThread):
     def __init__(self, dialog: QDialog, tag_name: str):

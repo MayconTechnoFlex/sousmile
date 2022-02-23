@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QDialog
 
 from ui_py.ui_cod_dialog_win import Ui_Dialog
 from utils.write_thread import Thread_LineEdit
-from utils.gui_functions import write_LineEdit
 from utils.Types import TagTypes
 
 

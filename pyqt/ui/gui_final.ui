@@ -849,7 +849,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>6</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -27731,14 +27731,14 @@ VALOR</string>
                    <widget class="QPushButton" name="btn_habilita_logs">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
-                      <height>75</height>
+                      <width>156</width>
+                      <height>80</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
-                      <height>75</height>
+                      <width>156</width>
+                      <height>80</height>
                      </size>
                     </property>
                     <property name="font">
@@ -27753,6 +27753,36 @@ VALOR</string>
                     <property name="text">
                      <string>Habilitar Log
 de pontos</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>156</width>
+                      <height>100</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>156</width>
+                      <height>100</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Equinox Bold</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>Config. Porta
+Leitor Cod.
+Barras</string>
                     </property>
                    </widget>
                   </item>
