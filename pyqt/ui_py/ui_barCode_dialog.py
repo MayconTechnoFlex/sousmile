@@ -179,4 +179,4 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "Selecione a porta onde está o leitor de código de barras!"))
         self.btn_confirm.setText(_translate("Dialog", "Confirmar"))
         self.btn_cancel.setText(_translate("Dialog", "Cancelar"))
-import icons_rc
+import ui_py.icons_rc

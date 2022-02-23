@@ -19,11 +19,13 @@ from utils.Types import *
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
     engineering as eng, in_out as inOut
-from dialogs.confirmation import ConfirmationDialog
-from dialogs.insert_code import InsertCodeDialog
+
+from dialogs.alarm import AlarmDialog
 from dialogs.altera_valor import AlteraValorDialog
-from dialogs.login import LoginDialog
 from dialogs.checkUF import CheckUserFrame
+from dialogs.confirmation import ConfirmationDialog
+from dialogs.login import LoginDialog
+from dialogs.insert_code import InsertCodeDialog
 ##############################################################
 
 class RnRobotics_Gui(QMainWindow):
@@ -39,6 +41,7 @@ class RnRobotics_Gui(QMainWindow):
         self.login_dialog = LoginDialog(self)
         self.confirm_dialog = ConfirmationDialog(self)
         self.check_uf = CheckUserFrame(self)
+        self.alarm_dialog = AlarmDialog(self)
         ##################################################################
         # Initial configuration ##########################################
         ##################################################################
@@ -140,7 +143,7 @@ class RnRobotics_Gui(QMainWindow):
         self.define_navigate_buttons()
         home.define_buttons(self.ui, self.insert_code_dialog)
         robot.define_buttons(self.ui, self.altera_valor_dialog)
-        alarms.define_buttons(self.ui)
+        alarms.define_buttons(self.ui, self.alarm_dialog, self.show_alarm)
         prod.define_buttons(self.ui)
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.altera_valor_dialog)
@@ -266,8 +269,7 @@ class RnRobotics_Gui(QMainWindow):
             maint.UpdateBarCode(tag)
     ########################################################################
     def update_Alarms(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 2:
-            alarms.UpdateAlarms(tag)
+        alarms.UpdateAlarms(tag)
     ########################################################################
     def update_InOut(self, tag):
         if self.ui.stackedWidget.currentIndex() == 5:

@@ -190,27 +190,27 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem = QtWidgets.QSpacerItem(224, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
-        self.pushButton = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton.setMinimumSize(QtCore.QSize(225, 65))
-        self.pushButton.setMaximumSize(QtCore.QSize(225, 65))
+        self.btn_go_alarm_screen = QtWidgets.QPushButton(self.frame_3)
+        self.btn_go_alarm_screen.setMinimumSize(QtCore.QSize(225, 65))
+        self.btn_go_alarm_screen.setMaximumSize(QtCore.QSize(225, 65))
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")
         font.setPointSize(14)
-        self.pushButton.setFont(font)
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_2.addWidget(self.pushButton)
+        self.btn_go_alarm_screen.setFont(font)
+        self.btn_go_alarm_screen.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_go_alarm_screen.setObjectName("btn_go_alarm_screen")
+        self.horizontalLayout_2.addWidget(self.btn_go_alarm_screen)
         spacerItem1 = QtWidgets.QSpacerItem(225, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(225, 65))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(225, 65))
+        self.btn_cancel = QtWidgets.QPushButton(self.frame_3)
+        self.btn_cancel.setMinimumSize(QtCore.QSize(225, 65))
+        self.btn_cancel.setMaximumSize(QtCore.QSize(225, 65))
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")
         font.setPointSize(14)
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_2.setStyleSheet("* {\n"
+        self.btn_cancel.setFont(font)
+        self.btn_cancel.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_cancel.setStyleSheet("* {\n"
 "background-color: #eece00\n"
 "}\n"
 "\n"
@@ -222,8 +222,8 @@ class Ui_Dialog(object):
 "background-color: #ccac00\n"
 "}\n"
 "QPushButton::disabled{background-color:#cbcbcb}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_2.addWidget(self.pushButton_2)
+        self.btn_cancel.setObjectName("btn_cancel")
+        self.horizontalLayout_2.addWidget(self.btn_cancel)
         spacerItem2 = QtWidgets.QSpacerItem(224, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
         self.verticalLayout.addWidget(self.frame_3)
@@ -240,7 +240,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "TIME MESSAGE"))
         item = self.alarm_list_widget.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "MESSAGE"))
-        self.pushButton.setText(_translate("Dialog", "Ir para tela\n"
+        self.btn_go_alarm_screen.setText(_translate("Dialog", "Ir para tela\n"
 "de alarmes"))
-        self.pushButton_2.setText(_translate("Dialog", "Fechar"))
-import icons_rc
+        self.btn_cancel.setText(_translate("Dialog", "Fechar"))
+import ui_py.icons_rc

@@ -430,7 +430,7 @@ QTableWidget::item:selected{
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btn_go_alarm_screen">
         <property name="minimumSize">
          <size>
           <width>225</width>
@@ -472,7 +472,7 @@ de alarmes</string>
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn_cancel">
         <property name="minimumSize">
          <size>
           <width>225</width>
