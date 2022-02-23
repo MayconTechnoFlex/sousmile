@@ -2,12 +2,13 @@
 #############################################
 from typing import Union
 from PyQt5.QtCore import QThreadPool
-from PyQt5.QtWidgets import QWidget
-from utils.workers import Worker_WriteTags
+from PyQt5.QtWidgets import QWidget, QLabel
+from utils.workers import Worker_WriteTags, Worker_ReadTags
 #############################################
 # Workers and trheads
 #############################################
 write_thread = QThreadPool()
+read_thread = QThreadPool()
 #############################################
 def set_reset_btn_int(i: int, tag_list, widget: QWidget) -> None:
     """

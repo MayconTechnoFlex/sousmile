@@ -20,6 +20,7 @@ Tag_List = [
     "Cyl_SpindleRobo.ManRet",
     "Cyl_SpindleRobo.ManExt",
     "Cyl_SpindleRobo.MaintTest",
+    "BarCodeReader.Data"
 ]
 #########################################################
 # Tags Local

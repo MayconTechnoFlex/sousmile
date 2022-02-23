@@ -1,6 +1,8 @@
 import serial
 
-def get_serial_ports():
+PORT = ""
+
+def get_serial_ports() -> list[str]:
     """ Lists serial port names
 
         :raises EnvironmentError:
@@ -18,5 +20,29 @@ def get_serial_ports():
             result.append(port)
         except Exception:
             pass
-    print(result)
     return result
+
+def set_my_port(port: str):
+    """
+    Set's the port in the module variable
+
+    Params:
+        port = the port string
+    """
+    global PORT
+    PORT = port
+
+def get_my_port() -> str:
+    """
+    Returns the port from the module variable
+
+    Return:
+        the port string
+    """
+    global PORT
+    return PORT
+
+
+if len(get_serial_ports()) == 1:
+    set_my_port(get_serial_ports()[0])
+

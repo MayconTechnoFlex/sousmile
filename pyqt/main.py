@@ -16,12 +16,15 @@ from security.functions import UpdateUserAccess
 
 from utils.Types import *
 
+from utils.serial_ports import get_serial_ports, set_my_port
+
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
     engineering as eng, in_out as inOut
 
 from dialogs.alarm import AlarmDialog
 from dialogs.altera_valor import AlteraValorDialog
+from dialogs.barcode_config import BarCodeDialog
 from dialogs.checkUF import CheckUserFrame
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.login import LoginDialog
@@ -36,12 +39,13 @@ class RnRobotics_Gui(QMainWindow):
         ##################################################################
         # IDefining dialogs ##############################################
         ##################################################################
-        self.insert_code_dialog = InsertCodeDialog(self)
-        self.altera_valor_dialog = AlteraValorDialog(self)
-        self.login_dialog = LoginDialog(self)
-        self.confirm_dialog = ConfirmationDialog(self)
-        self.check_uf = CheckUserFrame(self)
         self.alarm_dialog = AlarmDialog(self)
+        self.altera_valor_dialog = AlteraValorDialog(self)
+        self.config_barcode_dialog = BarCodeDialog(self)
+        self.check_uf = CheckUserFrame(self)
+        self.confirm_dialog = ConfirmationDialog(self)
+        self.login_dialog = LoginDialog(self)
+        self.insert_code_dialog = InsertCodeDialog(self)
         ##################################################################
         # Initial configuration ##########################################
         ##################################################################
@@ -146,8 +150,13 @@ class RnRobotics_Gui(QMainWindow):
         alarms.define_buttons(self.ui, self.alarm_dialog, self.show_alarm)
         prod.define_buttons(self.ui)
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
-        eng.define_buttons(self.ui, self.altera_valor_dialog)
+        eng.define_buttons(self.ui, self.altera_valor_dialog, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
+        ###################################################################
+        if self.worker_barcode_scanner.device_connected:
+            self.ui.btn_config_barcode.setEnabled(False)
+        else:
+            self.ui.btn_config_barcode.setEnabled(True)
         ###################################################################
 
     ####################################################################
@@ -267,6 +276,15 @@ class RnRobotics_Gui(QMainWindow):
     def update_BarCode(self, tag):
         if self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateBarCode(tag)
+
+        if tag["Connected"]:
+            self.ui.btn_config_barcode.setEnabled(False)
+        else:
+            self.ui.btn_config_barcode.setEnabled(True)
+
+        serial_ports = get_serial_ports()
+        if len(serial_ports) == 1:
+            set_my_port(serial_ports[0])
     ########################################################################
     def update_Alarms(self, tag):
         alarms.UpdateAlarms(tag)
@@ -276,10 +294,14 @@ class RnRobotics_Gui(QMainWindow):
             inOut.UpdateInOut(tag)
     ########################################################################
     def update_tag_list(self, tags):
-        home.UpdateTagsList(tags)
-        robot.UpdateTagsList(tags)
-        maint.UpdateTagsList(tags)
-        eng.UpdateTagsList(tags)
+        if self.ui.stackedWidget.currentIndex() == 0:
+            home.UpdateTagsList(tags)
+        elif self.ui.stackedWidget.currentIndex() == 1:
+            robot.UpdateTagsList(tags)
+        elif self.ui.stackedWidget.currentIndex() == 4:
+            maint.UpdateTagsList(tags)
+        elif self.ui.stackedWidget.currentIndex() == 6:
+            eng.UpdateTagsList(tags)
     ########################################################################
     #### Stop Threads ######################################################
     ########################################################################

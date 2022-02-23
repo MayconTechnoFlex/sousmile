@@ -121,9 +121,9 @@ def UpdateBarCode(tag):
     """
     global UI
     try:
-        UI.lbl_BarCodeReader_data.setText(str(tag["Data"]))
+        UI.lbl_BarCodeReader_data.setText(str(tag["DataPy"]))
         WStatus = UI.sts_BarCodeReader_completed
-        change_status(tag["ReadCompete"], WStatus)
+        change_status(tag["ReadComplete"], WStatus)
     except:
         pass
 
@@ -158,5 +158,6 @@ def UpdateRobotInput(tag):
         UI.btn_termina_check_uf.setEnabled(False)
 
 def UpdateTagsList(tags):
-    global tag_list
+    global UI, tag_list
     tag_list = tags
+    UI.lbl_return_plc_barcode.setText(tags[15][1])

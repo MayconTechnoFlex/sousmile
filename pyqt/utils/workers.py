@@ -8,10 +8,10 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from utils.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.Tags import *
 
-from utils.serial_ports import get_serial_ports
+from utils.serial_ports import get_my_port, set_my_port
 
 import serial
-import serial.tools.list_ports_windows
+from serial import SerialException
 
 sleep_time = 0.8
 stop_time = 0.2
@@ -562,38 +562,52 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
         self.device: serial.Serial = None
         self.device_connected = False
         self.create_device()
+        self.port = get_my_port()
 
     def create_device(self):
+        self.port = get_my_port()
+        time.sleep(1)
         try:
-            self.serial_ports = get_serial_ports()
-            if len(self.serial_ports) == 1:
-                self.device = serial.Serial(self.serial_ports[0], timeout=0.5)
+            if self.port:
+                self.device = serial.Serial(self.port, timeout=0.5)
                 self.device_connected = True
                 print("Dispositivo conectado")
             else:
-                raise Exception("Mais de uma porta serial")
+                raise Exception("Nenhuma ou mais de uma porta serial encontrada")
         except Exception as e:
-            pass
-            #print(e)
-            #time.sleep(3)
+            print(e)
+            time.sleep(2)
 
     @pyqtSlot()
     def run(self):
         while self.running:
-            try:
-                if not self.device.isOpen():
-                    self.device.open()
-                else:
-                    self.info = str(self.device.readline())
-                    self.code_size = len(self.info)
-                    if self.code_size > 4:
-                        readed_code = self.info[2:(self.code_size - 3)]
-                        self.signal.result.emit({"Data": readed_code, "ReadCompete": True})
-                        write_tag("BarCodeReader.Data", readed_code)
-                        write_tag("BarCodeReader.ReadCompete", True)
-                        time.sleep(3)
-                        self.signal.result.emit({"Data": readed_code, "ReadCompete": False})
-                        write_tag("BarCodeReader.ReadCompete", False)
-            except Exception as e:
-                print(e)
+            if self.device_connected:
+                try:
+                    if not self.device.isOpen():
+                        self.device.open()
+                    else:
+                        self.info = str(self.device.readline())
+                        self.code_size = len(self.info)
+                        if self.code_size > 4:
+                            readed_code = self.info[2:(self.code_size - 3)]
+                            self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
+                                                     "Connected": self.device_connected})
+                            write_tag("BarCodeReader.Data", readed_code)
+                            write_tag("BarCodeReader.ReadCompete", True)
+                            time.sleep(3)
+                            self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
+                                                     "Connected": self.device_connected})
+                            write_tag("BarCodeReader.ReadCompete", False)
+                except SerialException:
+                    print(f"Dispotivo desconectado da porta {self.port}")
+                    self.device.close()
+                    self.device_connected = False
+                    set_my_port("")
+                except Exception as e:
+                    print(f"{e} - Worker_BarCodeScanner")
+                    self.device.close()
+                    self.device_connected = False
+            else:
+                self.create_device()
+            self.signal.result.emit({"Connected": self.device_connected})
 
