@@ -16692,7 +16692,7 @@ background-color: #f00000;
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QLabel" name="label_79">
+                                  <widget class="QLabel" name="lbl_return_plc_barcode">
                                    <property name="font">
                                     <font>
                                      <family>Equinox Bold</family>

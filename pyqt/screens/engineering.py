@@ -150,8 +150,9 @@ def UpdateHMI(tag):
         QApplication.restoreOverrideCursor()
 
     except Exception as e:
-        UI.btn_habilita_logs.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_habilita_logs.setStyleSheet(btn_error_style)
         UI.btn_habilita_logs.setText('Erro')
+        UI.btn_habilita_logs.setEnabled(False)
         print(f'{e} - engineering.UpdateHMI')
 
 

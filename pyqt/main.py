@@ -224,16 +224,25 @@ class RnRobotics_Gui(QMainWindow):
             home.UpdateDataCtrl_B2(tag)
     #######################################################################
     def update_hmi(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 0:
+        if type(tag) is tuple:
             home.UpdateHMI(tag)
-        elif self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateHMI(tag)
-        elif self.ui.stackedWidget.currentIndex() == 3:
             prod.UpdateHMI(tag)
-        elif self.ui.stackedWidget.currentIndex() == 4:
             maint.UpdateHMI(tag)
-        elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateHMI(tag)
+        else:
+            if self.ui.stackedWidget.currentIndex() == 0:
+                home.UpdateHMI(tag)
+            elif self.ui.stackedWidget.currentIndex() == 1:
+                robot.UpdateHMI(tag)
+            elif self.ui.stackedWidget.currentIndex() == 3:
+                prod.UpdateHMI(tag)
+            elif self.ui.stackedWidget.currentIndex() == 4:
+                maint.UpdateHMI(tag)
+            elif self.ui.stackedWidget.currentIndex() == 6:
+                eng.UpdateHMI(tag)
+
+
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
