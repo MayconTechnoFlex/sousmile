@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" afterDir="false" />
@@ -27,6 +26,7 @@
       <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/Types.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/Types.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/db_users.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyqt/utils/workers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/workers.py" afterDir="false" />
@@ -147,7 +147,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="NathanTrain-main" />
                       </list>
                     </value>
                   </entry>
