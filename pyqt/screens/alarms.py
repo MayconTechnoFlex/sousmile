@@ -7,9 +7,12 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
 
 from ui_py.ui_gui_final import Ui_MainWindow
+from dialogs.alarm import AlarmDialog
 from utils.alarm_control import *
 
 UI: Ui_MainWindow
+DIALOG: AlarmDialog
+SHOW_ALARM_SCREEN = None
 CURRENT_ROW = 0
 hasAlarm: List[bool] = []
 
@@ -17,15 +20,17 @@ for i in range(0, 97):
     hasAlarm.append(False)
 
 
-def define_buttons(receive_ui: Ui_MainWindow):
+def define_buttons(receive_ui: Ui_MainWindow, alarm_dialog: AlarmDialog, show_alarm_screen):
     """
     Define the buttons of the screen
 
     Params:
         receive_ui = main ui of the application
     """
-    global UI
+    global UI, DIALOG, SHOW_ALARM_SCREEN
     UI = receive_ui
+    DIALOG = alarm_dialog
+    SHOW_ALARM_SCREEN = show_alarm_screen
     UI.btn_sobe_alarm.clicked.connect(lambda: row_up(UI.alarm_list_widget))
     UI.btn_desce_alarm.clicked.connect(lambda: row_down(UI.alarm_list_widget))
     UI.btn_sobe_alarm_hist.clicked.connect(lambda: row_up(UI.hist_alarm_list_widget))
@@ -57,6 +62,7 @@ def define_new_alarm(alarm_time: str, alarm_id: int):
     """
     listWidget = UI.alarm_list_widget
     histWidget = UI.hist_alarm_list_widget
+    dialogsListWidget = DIALOG.ui.alarm_list_widget
 
     row_num = 0
     hist_row_num = 0
@@ -74,6 +80,11 @@ def define_new_alarm(alarm_time: str, alarm_id: int):
     hist_time.setText(str(alarm_time))
     hist_msg.setText(alarm_msg)
 
+    dialog_time = QTableWidgetItem()
+    dialog_msg = QTableWidgetItem()
+    dialog_time.setText(str(alarm_time))
+    dialog_msg.setText(alarm_msg)
+
     listWidget.insertRow(row_num)
     listWidget.setItem(row_num, 0, time_item)
     listWidget.setItem(row_num, 1, msg_item)
@@ -81,6 +92,11 @@ def define_new_alarm(alarm_time: str, alarm_id: int):
     histWidget.insertRow(hist_row_num)
     histWidget.setItem(hist_row_num, 0, hist_time)
     histWidget.setItem(hist_row_num, 1, hist_msg)
+
+    dialogsListWidget.insertRow(0)
+    dialogsListWidget.setItem(0, 0, dialog_time)
+    dialogsListWidget.setItem(0, 1, dialog_msg)
+    DIALOG.show_dialog(SHOW_ALARM_SCREEN)
 
 def delete_alarm_row(alarm_id: int):
     """
@@ -131,8 +147,8 @@ def UpdateAlarms(tag):
     try:
         alarms_count = 0
         for alarm in tag:
-            now = str(datetime.now())
-            verify_alarms(now[0:19], alarms_count, alarm[1])
+            time_now = str(datetime.now())
+            verify_alarms(time_now[0:19], alarms_count, alarm[1])
             alarms_count += 1
     except Exception as e:
         print(f"{e} - dialogs/alarms.py - UpdateAlarms")

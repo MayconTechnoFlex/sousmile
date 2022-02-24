@@ -849,7 +849,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -1650,7 +1650,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguarndado conexão</string>
+                                 <string>Aguardando conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2847,7 +2847,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguarndado conexão</string>
+                                 <string>Aguardando conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5209,7 +5209,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguarndado conexão</string>
+                                 <string>Aguardando conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6409,7 +6409,7 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguarndado conexão</string>
+                                 <string>Aguardando conexão</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -13612,7 +13612,7 @@ border-radius: 15; padding: 0 10;
 
 *{ margin: 0; padding:0; border:0}
 
- #line_23, #line_24, #line_25, #line_26, #line_27, #line_28, #line_29, #line_30, #line_31, #line_32, #line_33, #line_34, #line_35, #line_36, #line_37, #line_38, #line_39, #line_40, #line_41, #line_42, #line_43, #line_44, #line_45, #line_46 {border: 3px solid #b0b0b0; margin:0; padding:0}</string>
+#line_21, #line_23, #line_24, #line_25, #line_26, #line_27, #line_28, #line_29, #line_30, #line_31, #line_32, #line_33, #line_34, #line_35, #line_36, #line_37, #line_38, #line_39, #line_40, #line_41, #line_42, #line_43, #line_44, #line_45, #line_46 {border: 3px solid #b0b0b0; margin:0; padding:0}</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -16440,6 +16440,18 @@ DE MANUTENÇÃO</string>
                               </property>
                               <item>
                                <widget class="QFrame" name="frame_205">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>80</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>80</height>
+                                 </size>
+                                </property>
                                 <property name="frameShape">
                                  <enum>QFrame::StyledPanel</enum>
                                 </property>
@@ -16454,13 +16466,13 @@ DE MANUTENÇÃO</string>
                                   <number>25</number>
                                  </property>
                                  <property name="topMargin">
-                                  <number>35</number>
+                                  <number>0</number>
                                  </property>
                                  <property name="rightMargin">
                                   <number>25</number>
                                  </property>
                                  <property name="bottomMargin">
-                                  <number>35</number>
+                                  <number>0</number>
                                  </property>
                                  <item>
                                   <widget class="QLabel" name="label_93">
@@ -16492,13 +16504,7 @@ DE MANUTENÇÃO</string>
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
-                                     <height>61</height>
-                                    </size>
-                                   </property>
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>16777215</width>
-                                     <height>61</height>
+                                     <height>0</height>
                                     </size>
                                    </property>
                                    <property name="font">
@@ -16542,10 +16548,16 @@ DE MANUTENÇÃO</string>
                               </item>
                               <item>
                                <widget class="QFrame" name="frame_206">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>80</height>
+                                 </size>
+                                </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>16777215</width>
-                                  <height>100</height>
+                                  <height>80</height>
                                  </size>
                                 </property>
                                 <property name="frameShape">
@@ -16562,13 +16574,13 @@ DE MANUTENÇÃO</string>
                                   <number>25</number>
                                  </property>
                                  <property name="topMargin">
-                                  <number>5</number>
+                                  <number>0</number>
                                  </property>
                                  <property name="rightMargin">
                                   <number>25</number>
                                  </property>
                                  <property name="bottomMargin">
-                                  <number>5</number>
+                                  <number>0</number>
                                  </property>
                                  <item>
                                   <widget class="QLabel" name="label_109">
@@ -16611,6 +16623,87 @@ border-radius: 30; border: 1.5px solid #767676
 *::disabled {
 background-color: #f00000;
 }</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="Line" name="line_21">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>2</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>2</height>
+                                 </size>
+                                </property>
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QFrame" name="frame_361">
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Raised</enum>
+                                </property>
+                                <layout class="QHBoxLayout" name="horizontalLayout_39">
+                                 <property name="spacing">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="leftMargin">
+                                  <number>25</number>
+                                 </property>
+                                 <property name="topMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>25</number>
+                                 </property>
+                                 <property name="bottomMargin">
+                                  <number>0</number>
+                                 </property>
+                                 <item>
+                                  <widget class="QLabel" name="label_77">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>220</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
+                                   <property name="font">
+                                    <font>
+                                     <family>Equinox Bold</family>
+                                     <pointsize>14</pointsize>
+                                    </font>
+                                   </property>
+                                   <property name="text">
+                                    <string>Retorno do CLP:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="lbl_return_plc_barcode">
+                                   <property name="font">
+                                    <font>
+                                     <family>Equinox Bold</family>
+                                     <pointsize>14</pointsize>
+                                    </font>
+                                   </property>
+                                   <property name="text">
+                                    <string>Aguardando conexão</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                                    </property>
                                   </widget>
                                  </item>
@@ -27731,14 +27824,14 @@ VALOR</string>
                    <widget class="QPushButton" name="btn_habilita_logs">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
-                      <height>75</height>
+                      <width>156</width>
+                      <height>80</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
-                      <height>75</height>
+                      <width>156</width>
+                      <height>80</height>
                      </size>
                     </property>
                     <property name="font">
@@ -27753,6 +27846,36 @@ VALOR</string>
                     <property name="text">
                      <string>Habilitar Log
 de pontos</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_config_barcode">
+                    <property name="minimumSize">
+                     <size>
+                      <width>156</width>
+                      <height>100</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>156</width>
+                      <height>100</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Equinox Bold</family>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>Config. Porta
+Leitor Cod.
+Barras</string>
                     </property>
                    </widget>
                   </item>

@@ -2,6 +2,7 @@
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
+from dialogs.barcode_config import BarCodeDialog
 
 from PyQt5.QtWidgets import QApplication
 
@@ -11,10 +12,12 @@ from utils.btn_style import *
 
 UI: Ui_MainWindow
 DIALOG: AlteraValorDialog
+BARCODE_DIALOG: BarCodeDialog
 
 tag_list: PLCReturn
 
-def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog):
+def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog,
+                   receive_barcode_dialog: BarCodeDialog):
     """
     Define the buttons of the screen
 
@@ -22,9 +25,10 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog)
         receive_ui = main ui of the application
         receive_show_dialog = function for pop-up buttons
     """
-    global UI, DIALOG
+    global UI, DIALOG, BARCODE_DIALOG
     UI = receive_ui
     DIALOG = receive_dialog
+    BARCODE_DIALOG = receive_barcode_dialog
     def_coordinate_buttons()
     def_prof_cort()
     def_pts()
@@ -33,6 +37,7 @@ def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog)
 
     # buttons
     UI.btn_habilita_logs.clicked.connect(lambda: set_reset_btn_int(3, tag_list, UI.btn_habilita_logs))
+    UI.btn_config_barcode.clicked.connect(lambda: BARCODE_DIALOG.show_dialog())
 
 
 ### Defining Dialogs
@@ -145,8 +150,9 @@ def UpdateHMI(tag):
         QApplication.restoreOverrideCursor()
 
     except Exception as e:
-        UI.btn_habilita_logs.setStyleSheet("background-color : #dc1f1f; color : black")
+        UI.btn_habilita_logs.setStyleSheet(btn_error_style)
         UI.btn_habilita_logs.setText('Erro')
+        UI.btn_habilita_logs.setEnabled(False)
         print(f'{e} - engineering.UpdateHMI')
 
 

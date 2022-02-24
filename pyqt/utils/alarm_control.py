@@ -1,14 +1,8 @@
 """Controlling the alarm list"""
 from typing import List
 
+from utils.Tags import alarm_tag_list
 from utils.Types import AlarmDict
-
-
-alarm_tag_list: List[str] = []
-
-for i in range(0, 3):
-    for j in range(0, 32):
-        alarm_tag_list.append(f"AlarmProcess[{i}].{j}")
 
 alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
                       "Alarme 5:", "Alarme 6: Porta da Célula Aberta", "Alarme 7:", "Alarme 8:",

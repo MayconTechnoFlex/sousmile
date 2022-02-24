@@ -24,7 +24,7 @@ def read_tags(tag_name: str) -> PLCReturn:
         return e
 
 
-def write_tag(tag_name: str, value: Union[str, int, float]):
+def write_tag(tag_name: str, value: Union[str, int, float]) -> Union[None, Exception]:
     """
     Write a tag on PLC
     If it goes wrong, print's the error
@@ -38,6 +38,7 @@ def write_tag(tag_name: str, value: Union[str, int, float]):
             plc.write((tag_name, value))
     except Exception as e:
         print(f"{e} - Error on plc communication")
+        return e
 
 
 def read_multiples(tag_list: List[str]) -> Union[List[Tag], Exception]:

@@ -1,9 +1,11 @@
-from PyQt5.QtCore import QObject, pyqtSignal, QThread, Qt
-from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit, QPushButton
+"""Threads for write on PLC from Dialogs"""
+
+from pycomm3 import CommError
+from PyQt5.QtCore import QThread, Qt
+from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit
 
 from utils.ctrl_plc import write_tag, read_tags
 from utils.Types import TagTypes
-
 
 class Thread_Dialogs_NoLineEdit(QThread):
     def __init__(self, dialog: QDialog, tag_name: str):
@@ -16,15 +18,19 @@ class Thread_Dialogs_NoLineEdit(QThread):
         self.dialog.setEnabled(False)
         try:
             value = read_tags(self.tag_name)
+            if type(value) is CommError:
+                raise Exception("Erro de Conexão")
             if value:
                 write_tag(self.tag_name, 0)
             else:
                 write_tag(self.tag_name, 1)
+
         except Exception as e:
             print(e)
-        QApplication.restoreOverrideCursor()
-        self.dialog.setEnabled(True)
-        self.dialog.cancel_action()
+        finally:
+            QApplication.restoreOverrideCursor()
+            self.dialog.setEnabled(True)
+            self.dialog.close()
 
 
 class Thread_LineEdit(QThread):
@@ -56,13 +62,16 @@ class Thread_LineEdit(QThread):
             if not data or data == '':
                 raise Exception("Campo vazio")
             else:
-                write_tag(self.tag_name, data)
+                ret = write_tag(self.tag_name, data)
+                if type(ret) is CommError:
+                    raise Exception("Erro de Conexão")
         except Exception as e:
             print(f"{e} - Thread_LineEdit")
-        self.widget.clear()
-        self.dialog.close()
+        finally:
+            self.widget.clear()
+            self.dialog.close()
 
-        QApplication.restoreOverrideCursor()
+            QApplication.restoreOverrideCursor()
 
-        self.dialog.setEnabled(True)
-        self.finished.emit()
+            self.dialog.setEnabled(True)
+            self.finished.emit()

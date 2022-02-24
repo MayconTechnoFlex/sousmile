@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication
 from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.ctrl_plc import write_tag
+from utils.btn_style import btn_error_style
 
 UI: Ui_MainWindow
 
@@ -82,5 +83,21 @@ def UpdateHMI(tag):
 
         QApplication.restoreOverrideCursor()
     except:
-        pass
-
+        UI.btn_reset_prod_a1.setStyleSheet(btn_error_style)
+        UI.btn_reset_prod_a2.setStyleSheet(btn_error_style)
+        UI.btn_reset_prod_total_a.setStyleSheet(btn_error_style)
+        UI.btn_reset_prod_b1.setStyleSheet(btn_error_style)
+        UI.btn_reset_prod_b2.setStyleSheet(btn_error_style)
+        UI.btn_reset_prod_total_b.setStyleSheet(btn_error_style)
+        UI.btn_reset_prod_a1.setText('Erro')
+        UI.btn_reset_prod_a2.setText('Erro')
+        UI.btn_reset_prod_total_a.setText('Erro')
+        UI.btn_reset_prod_b1.setText('Erro')
+        UI.btn_reset_prod_b2.setText('Erro')
+        UI.btn_reset_prod_total_b.setText('Erro')
+        UI.btn_reset_prod_a1.setEnabled(False)
+        UI.btn_reset_prod_a2.setEnabled(False)
+        UI.btn_reset_prod_total_a.setEnabled(False)
+        UI.btn_reset_prod_b1.setEnabled(False)
+        UI.btn_reset_prod_b2.setEnabled(False)
+        UI.btn_reset_prod_total_b.setEnabled(False)

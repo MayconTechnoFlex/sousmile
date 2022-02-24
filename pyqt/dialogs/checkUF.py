@@ -3,10 +3,7 @@ from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
 
 from ui_py.ui_check_uf import Ui_Dialog
-from utils.Types import TagTypes
-from utils.gui_functions import write_LineEdit
 from utils.write_thread import Thread_LineEdit, Thread_Dialogs_NoLineEdit
-from utils.ctrl_plc import write_tag
 
 class CheckUserFrame(QDialog):
     def __init__(self, parents=None):

@@ -5,8 +5,9 @@ from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
-from utils.gui_functions import change_state_button, change_status, set_reset_btn_int
+from utils.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
+from utils.btn_style import btn_error_style
 
 UI: Ui_MainWindow
 tag_list: PLCReturn
@@ -121,9 +122,9 @@ def UpdateBarCode(tag):
     """
     global UI
     try:
-        UI.lbl_BarCodeReader_data.setText(str(tag["Data"]))
+        UI.lbl_BarCodeReader_data.setText(str(tag["DataPy"]))
         WStatus = UI.sts_BarCodeReader_completed
-        change_status(tag["ReadCompete"], WStatus)
+        change_status(tag["ReadComplete"], WStatus)
     except:
         pass
 
@@ -135,12 +136,59 @@ def UpdateHMI(tag):
         tag = readed tag from BarCodeReader
     """
     global UI
-    if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
-        UI.btn_move_home.setEnabled(True)
-        UI.btn_check_uf.setEnabled(True)
-    else:
-        UI.btn_move_home.setEnabled(False)
-        UI.btn_check_uf.setEnabled(False)
+    try:
+        if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
+            UI.btn_move_home.setEnabled(True)
+            UI.btn_check_uf.setEnabled(True)
+        else:
+            UI.btn_move_home.setEnabled(False)
+            UI.btn_check_uf.setEnabled(False)
+    except Exception:
+        error_buttons()
+
+def error_buttons():
+    UI.btn_move_home.setEnabled(False)
+    UI.btn_move_home.setText("Erro")
+    UI.btn_move_home.setStyleSheet(btn_error_style)
+    UI.btn_check_uf.setEnabled(False)
+    UI.btn_check_uf.setText("Erro")
+    UI.btn_check_uf.setStyleSheet(btn_error_style)
+    UI.btn_menos_1_mm.setEnabled(False)
+    UI.btn_menos_1_mm.setText("Erro")
+    UI.btn_menos_1_mm.setStyleSheet(btn_error_style)
+    UI.btn_termina_check_uf.setEnabled(False)
+    UI.btn_termina_check_uf.setText("Erro")
+    UI.btn_termina_check_uf.setStyleSheet(btn_error_style)
+
+    UI.btn_DoorSideA_abrir.setEnabled(False)
+    UI.btn_DoorSideA_abrir.setText("Erro")
+    UI.btn_DoorSideA_abrir.setStyleSheet(btn_error_style)
+    UI.btn_DoorSideA_fechar.setEnabled(False)
+    UI.btn_DoorSideA_fechar.setText("Erro")
+    UI.btn_DoorSideA_fechar.setStyleSheet(btn_error_style)
+    UI.btn_DoorSideA_manut.setEnabled(False)
+    UI.btn_DoorSideA_manut.setText("Erro")
+    UI.btn_DoorSideA_manut.setStyleSheet(btn_error_style)
+
+    UI.btn_DoorSideB_abrir.setEnabled(False)
+    UI.btn_DoorSideB_abrir.setText("Erro")
+    UI.btn_DoorSideB_abrir.setStyleSheet(btn_error_style)
+    UI.btn_DoorSideB_fechar.setEnabled(False)
+    UI.btn_DoorSideB_fechar.setText("Erro")
+    UI.btn_DoorSideB_fechar.setStyleSheet(btn_error_style)
+    UI.btn_DoorSideB_manut.setEnabled(False)
+    UI.btn_DoorSideB_manut.setText("Erro")
+    UI.btn_DoorSideB_manut.setStyleSheet(btn_error_style)
+
+    UI.btn_SpindleRobo_abrir.setEnabled(False)
+    UI.btn_SpindleRobo_abrir.setText("Erro")
+    UI.btn_SpindleRobo_abrir.setStyleSheet(btn_error_style)
+    UI.btn_SpindleRobo_fechar.setEnabled(False)
+    UI.btn_SpindleRobo_fechar.setText("Erro")
+    UI.btn_SpindleRobo_fechar.setStyleSheet(btn_error_style)
+    UI.btn_SpindleRobo_manut.setEnabled(False)
+    UI.btn_SpindleRobo_manut.setText("Erro")
+    UI.btn_SpindleRobo_manut.setStyleSheet(btn_error_style)
 
 def UpdateRobotInput(tag):
     """
@@ -158,5 +206,6 @@ def UpdateRobotInput(tag):
         UI.btn_termina_check_uf.setEnabled(False)
 
 def UpdateTagsList(tags):
-    global tag_list
+    global UI, tag_list
     tag_list = tags
+    UI.lbl_return_plc_barcode.setText(tags[15][1])
