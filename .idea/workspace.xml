@@ -4,9 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="Maycon 20/02/2022&#10;Maycon teste com pycharm">
+    <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/serial_ports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/serial_ports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/insert_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/insert_code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/alarms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/alarms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/engineering.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/engineering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/in_out.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/in_out.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/maintenance.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/maintenance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/screens/robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/robot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui/gui_rev04.ui" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/gui_rev04.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui/images.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/images.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/images_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/images_rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/Types.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/Types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/db_users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyqt/utils/workers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/workers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +48,13 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/utils/gui_functions.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/dialogs/login.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/utils/Tags.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/screens/in_out.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/utils/workers.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/gui_functions.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/screens/in_out.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,7 +69,6 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -113,21 +135,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644940849237</updated>
     </task>
-    <task id="LOCAL-00001" summary="Maycon 20/02/2022&#10;Maycon teste com pycharm">
-      <created>1645789536786</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1645789536786</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Maycon 20/02/2022&#10;Maycon teste com pycharm">
-      <created>1645789849587</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1645789849587</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,10 +164,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Maycon 20/02/2022&#10;Maycon teste com pycharm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Maycon 20/02/2022&#10;Maycon teste com pycharm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
