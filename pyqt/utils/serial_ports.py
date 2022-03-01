@@ -1,8 +1,10 @@
 import serial
+from typing import List
 
 PORT = ""
 
-def get_serial_ports() -> list[str]:
+
+def get_serial_ports() -> List[str]:
     """ Lists serial port names
 
         :raises EnvironmentError:
@@ -18,9 +20,10 @@ def get_serial_ports() -> list[str]:
             s = serial.Serial(port)
             s.close()
             result.append(port)
-        except Exception:
-            pass
+        except Exception as e:
+            print(e)
     return result
+
 
 def set_my_port(port: str):
     """
