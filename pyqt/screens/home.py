@@ -1,16 +1,22 @@
 """Module with all functions used on the HomeScreen of the application"""
 from utils.Types import PLCReturn
+from typing import Literal
 
-from PyQt5.QtWidgets import QLabel, QApplication
+from PyQt5.QtCore import QThreadPool
+from PyQt5.QtWidgets import QLabel, QApplication, QPushButton
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
 from utils.gui_functions import set_reset_btn_int
 from utils.btn_style import *
 
+from utils.workers import Worker_ToggleBtnValue
+
 UI: Ui_MainWindow
 
 tag_list: PLCReturn
+
+write_thread = QThreadPool()
 
 def sts_string(id_num: int, widget: QLabel):
     """
@@ -52,8 +58,24 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
     UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
 
+    UI.btn_trans_dados_man_a1.clicked.connect(lambda: transfer_data("A1", UI.btn_trans_dados_man_a1))
+    UI.btn_trans_dados_man_a2.clicked.connect(lambda: transfer_data("A2", UI.btn_trans_dados_man_a2))
+    UI.btn_trans_dados_man_b1.clicked.connect(lambda: transfer_data("B1", UI.btn_trans_dados_man_b1))
+    UI.btn_trans_dados_man_b2.clicked.connect(lambda: transfer_data("B2", UI.btn_trans_dados_man_b2))
+
     UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_btn_int(0, tag_list, UI.btn_man_auto_lado_a))
     UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_btn_int(1, tag_list, UI.btn_man_auto_lado_b))
+
+def transfer_data(side: Literal["A1", "A2", "B1", "B2"], button: QPushButton):
+    global UI, write_thread
+    if side == "A1"\
+            or side == "A2"\
+            or side == "B1"\
+            or side == "B2":
+        worker_toggle = Worker_ToggleBtnValue(f"HMI.ManTransData{side}", 0, button)
+        write_thread.start(worker_toggle, priority=0)
+    else:
+        raise ValueError('Nome incorreto do lado, deve ser "A1", "A2", "B1", "B2"')
 
 def UpdateDataCtrl_A1(tag):
     """
@@ -210,11 +232,11 @@ def UpdateRobotInput(tag):
 
     try:
         if tag["Prg_running"] and tag["RSA"]:
-            UI.btn_man_auto_lado_a.setEnabled(True)
-            UI.btn_man_auto_lado_b.setEnabled(True)
-        else:
             UI.btn_man_auto_lado_a.setEnabled(False)
             UI.btn_man_auto_lado_b.setEnabled(False)
+        else:
+            UI.btn_man_auto_lado_a.setEnabled(True)
+            UI.btn_man_auto_lado_b.setEnabled(True)
     except Exception as e:
         print(f"{e} - UpdateRobotInput - home")
 

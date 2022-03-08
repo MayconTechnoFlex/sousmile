@@ -20,8 +20,9 @@ def get_serial_ports() -> List[str]:
             s = serial.Serial(port)
             s.close()
             result.append(port)
+            print(f"{port} é uma porta serial válida!")
         except Exception as e:
-            print(e)
+            pass
     return result
 
 

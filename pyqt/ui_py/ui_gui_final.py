@@ -4548,7 +4548,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_36.addItem(spacerItem5)
         self.btn_desce_alarm = QtWidgets.QPushButton(self.frame_140)
         self.btn_desce_alarm.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btn_desce_alarm.setStyleSheet("")
         self.btn_desce_alarm.setText("")
         icon8 = QtGui.QIcon()
         icon8.addPixmap(QtGui.QPixmap(":/newPrefix/assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -6511,14 +6510,14 @@ class Ui_MainWindow(object):
         self.label_77.setFont(font)
         self.label_77.setObjectName("label_77")
         self.horizontalLayout_39.addWidget(self.label_77)
-        self.label_79 = QtWidgets.QLabel(self.frame_361)
+        self.lbl_return_plc_barcode = QtWidgets.QLabel(self.frame_361)
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")
         font.setPointSize(14)
-        self.label_79.setFont(font)
-        self.label_79.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_79.setObjectName("label_79")
-        self.horizontalLayout_39.addWidget(self.label_79)
+        self.lbl_return_plc_barcode.setFont(font)
+        self.lbl_return_plc_barcode.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbl_return_plc_barcode.setObjectName("lbl_return_plc_barcode")
+        self.horizontalLayout_39.addWidget(self.lbl_return_plc_barcode)
         self.verticalLayout_79.addWidget(self.frame_361)
         self.verticalLayout_68.addWidget(self.frame_185)
         self.verticalLayout_65.addWidget(self.frame_179)
@@ -11095,7 +11094,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -11248,6 +11247,8 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "MESSAGE"))
         self.btn_hist_alarm.setText(_translate("MainWindow", "HISTÓRICO\n"
 "DE ALARMES"))
+        self.btn_desce_alarm.setShortcut(_translate("MainWindow", "Down"))
+        self.btn_sobe_alarm.setShortcut(_translate("MainWindow", "Up"))
         self.label_8.setText(_translate("MainWindow", "PRODUÇÃO"))
         self.label_51.setText(_translate("MainWindow", "LADO A"))
         self.label_53.setText(_translate("MainWindow", "Peças produzidas pelo lado A1:"))
@@ -11348,7 +11349,7 @@ class Ui_MainWindow(object):
         self.lbl_BarCodeReader_data.setText(_translate("MainWindow", "aguardando leitura"))
         self.label_109.setText(_translate("MainWindow", "Leitura completa:"))
         self.label_77.setText(_translate("MainWindow", "Retorno do CLP:"))
-        self.label_79.setText(_translate("MainWindow", "Aguardando conexão"))
+        self.lbl_return_plc_barcode.setText(_translate("MainWindow", "Aguardando conexão"))
         self.label_86.setText(_translate("MainWindow", "Coordenada Mesa"))
         self.label_95.setText(_translate("MainWindow", "A1"))
         self.label_96.setText(_translate("MainWindow", "A2"))
@@ -11623,5 +11624,7 @@ class Ui_MainWindow(object):
         item = self.hist_alarm_list_widget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "MESSAGE"))
         self.btn_atual_alarm.setText(_translate("MainWindow", "ALARMES ATUAIS"))
+        self.btn_desce_alarm_hist.setShortcut(_translate("MainWindow", "Down"))
+        self.btn_sobe_alarm_hist.setShortcut(_translate("MainWindow", "Up"))
 import ui_py.icons_rc
 import ui_py.images_rc

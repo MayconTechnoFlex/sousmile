@@ -849,7 +849,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -11579,9 +11579,6 @@ DE ALARMES</string>
                        <property name="cursor">
                         <cursorShape>PointingHandCursor</cursorShape>
                        </property>
-                       <property name="styleSheet">
-                        <string notr="true"/>
-                       </property>
                        <property name="text">
                         <string/>
                        </property>
@@ -11594,6 +11591,9 @@ DE ALARMES</string>
                          <width>100</width>
                          <height>100</height>
                         </size>
+                       </property>
+                       <property name="shortcut">
+                        <string>Down</string>
                        </property>
                       </widget>
                      </item>
@@ -11617,6 +11617,9 @@ DE ALARMES</string>
                          <width>100</width>
                          <height>100</height>
                         </size>
+                       </property>
+                       <property name="shortcut">
+                        <string>Up</string>
                        </property>
                        <property name="default">
                         <bool>false</bool>
@@ -28389,6 +28392,9 @@ QPushButton:pressed{background-color:#dfc200 }</string>
                          <height>100</height>
                         </size>
                        </property>
+                       <property name="shortcut">
+                        <string>Down</string>
+                       </property>
                       </widget>
                      </item>
                      <item>
@@ -28411,6 +28417,9 @@ QPushButton:pressed{background-color:#dfc200 }</string>
                          <width>100</width>
                          <height>100</height>
                         </size>
+                       </property>
+                       <property name="shortcut">
+                        <string>Up</string>
                        </property>
                        <property name="default">
                         <bool>false</bool>

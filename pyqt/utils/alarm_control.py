@@ -4,9 +4,9 @@ from typing import List
 from utils.Tags import alarm_tag_list
 from utils.Types import AlarmDict
 
-alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
-                      "Alarme 5:", "Alarme 6: Porta da Célula Aberta", "Alarme 7:", "Alarme 8:",
-                      "Alarme 9: Pressão do ar comprimido baixa", "Alarme 10:",
+alarm_message_list = ["Alarme 00: Botão de Emergência Pressionado", "Alarme 01:", "Alarme 02:", "Alarme 03:",
+                      "Alarme 04:", "Alarme 05:", "Alarme 06: Porta da Célula Aberta", "Alarme 07:", "Alarme 08:",
+                      "Alarme 09: Pressão do ar comprimido baixa", "Alarme 10:",
                       "Alarme 11: Emergência Interior da Célula Pressionada", "Alarme 12:", "Alarme 13:",
                       "Alarme 14: Botão de Emergência Pressionado no Robô", "Alarme 15: Robô em falha",
                       "Alarme 16: Transferência de Dados com o Robô excedeu o tempo",

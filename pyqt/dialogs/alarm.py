@@ -21,7 +21,8 @@ class AlarmDialog(QDialog):
 
     def closeEvent(self, event):
         # limpar lista de alarmes
-        self.ui.alarm_list_widget.clear()
+        while self.ui.alarm_list_widget.rowCount() != 0:
+            self.ui.alarm_list_widget.removeRow(0)
 
     def go_to_alarms(self):
         self.close()

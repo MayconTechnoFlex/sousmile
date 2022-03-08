@@ -1,4 +1,5 @@
 """Module with all functions used on the MaintenanceScreen of the application"""
+from PyQt5.QtCore import QThreadPool
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
@@ -8,9 +9,11 @@ from dialogs.checkUF import CheckUserFrame
 from utils.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import btn_error_style
+from utils.workers import Worker_ToggleBtnValue
 
 UI: Ui_MainWindow
 tag_list: PLCReturn
+write_thread = QThreadPool()
 
 def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
                    confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
@@ -22,13 +25,13 @@ def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
         altValDialog = function for pop-up buttons
         confirm_dialog = confirmation dialog object
     """
-    global UI
+    global UI, tag_list
     UI = receive_UI
 
     buttons_ConfirmDialogs(confirmDialog)
     UI.btn_check_uf.clicked.connect(checkUF.show_dialog)
-    UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_btn_int(4, tag_list, UI.btn_menos_1_mm))
-    UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_btn_int(5, tag_list, UI.btn_termina_check_uf))
+    UI.btn_menos_1_mm.clicked.connect(btn_menos_1mm)
+    UI.btn_termina_check_uf.clicked.connect(termina_check_uf)
 
     UI.btn_DoorSideA_abrir.clicked.connect(lambda: set_reset_btn_int(6, tag_list, UI.btn_DoorSideA_abrir))
     UI.btn_DoorSideA_fechar.clicked.connect(lambda: set_reset_btn_int(7, tag_list, UI.btn_DoorSideA_fechar))
@@ -63,6 +66,28 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
         lambda: dialog.show_dialog("MoveHome",
                                    "Cuidado, você vai movimentar o robô para aposição inicial, "
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
+
+def btn_menos_1mm():
+    global UI, tag_list, write_thread
+    i = 4
+    tag_name = tag_list[i][0]
+    value = tag_list[i][1]
+    try:
+        worker_toggle = Worker_ToggleBtnValue(tag_name, value, UI.btn_menos_1_mm)
+        write_thread.start(worker_toggle, priority=0)
+    except Exception as e:
+        print(e, "erro botão -1 mm")
+
+def termina_check_uf():
+    global UI, tag_list, write_thread
+    i = 5
+    tag_name = tag_list[i][0]
+    value = tag_list[i][1]
+    try:
+        worker_toggle = Worker_ToggleBtnValue(tag_name, value, UI.btn_termina_check_uf)
+        write_thread.start(worker_toggle, priority=0)
+    except Exception as e:
+        print(e, "erro botão termina check uf")
 
 def UpdateCylA(tag):
     """

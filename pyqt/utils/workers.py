@@ -2,6 +2,8 @@
 
 import time, traceback, sys
 
+from typing import Union
+
 from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
@@ -611,3 +613,28 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                 self.create_device()
             self.signal.result.emit({"Connected": self.device_connected})
 
+class Worker_ToggleBtnValue(QRunnable, WorkerParent):
+    def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget):
+        super(Worker_ToggleBtnValue, self).__init__()
+        self.tag = tag
+        self.actual_value = actual_value
+        self.widget = widget
+
+    @pyqtSlot()
+    def run(self):
+        self.widget.setEnabled(False)
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        if self.actual_value == 0:
+            self.widget.setEnabled(False)
+            write_tag(self.tag, 1)
+            self.widget.setEnabled(False)
+        else:
+            raise ValueError("Valor atual da tag invalido")
+
+        while True:
+            self.widget.setEnabled(False)
+            if read_tags(self.tag) == 1:
+                write_tag(self.tag, 0)
+                break
+        QApplication.restoreOverrideCursor()
+        self.widget.setEnabled(True)
