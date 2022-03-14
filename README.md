@@ -4,10 +4,4 @@
 ---
 
 ### ToDo:
-- [ ] Adicionar leitor de código de barras  
-
-### Botões a serem conectados:
-- Home:
-  - [ ] Transferir Dados Manualmente
-### Ideias:
-- Criar tipagem para as informações recebidas do CLP
+- Verificações finais e ajustes finos
