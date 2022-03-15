@@ -3,7 +3,7 @@
 from typing import Union
 from PyQt5.QtCore import QThreadPool
 from PyQt5.QtWidgets import QWidget, QLabel
-from utils.workers import Worker_WriteTags, Worker_ReadTags
+from utils.workers import Worker_Pressed_WriteTags, Worker_ReadTags
 #############################################
 # Workers and trheads
 #############################################
@@ -25,11 +25,11 @@ def set_reset_btn_int(i: int, tag_list, widget: QWidget) -> None:
         value = tag_list[i][1]
         if value == 0:
             write_value = 1
-            worker_write_tags = Worker_WriteTags(tag_name, write_value, widget)
+            worker_write_tags = Worker_Pressed_WriteTags(tag_name, write_value, widget)
             write_thread.start(worker_write_tags, priority=0)
         elif value == 1:
             write_value = 0
-            worker_write_tags = Worker_WriteTags(tag_name, write_value, widget)
+            worker_write_tags = Worker_Pressed_WriteTags(tag_name, write_value, widget)
             write_thread.start(worker_write_tags, priority=0)
     except Exception as e:
         print(e)

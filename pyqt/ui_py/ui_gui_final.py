@@ -6270,14 +6270,6 @@ class Ui_MainWindow(object):
         self.btn_SpindleRobo_abrir.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_SpindleRobo_abrir.setObjectName("btn_SpindleRobo_abrir")
         self.horizontalLayout_85.addWidget(self.btn_SpindleRobo_abrir)
-        self.btn_SpindleRobo_fechar = QtWidgets.QPushButton(self.frame_231)
-        font = QtGui.QFont()
-        font.setFamily("Equinox Bold")
-        font.setPointSize(13)
-        self.btn_SpindleRobo_fechar.setFont(font)
-        self.btn_SpindleRobo_fechar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btn_SpindleRobo_fechar.setObjectName("btn_SpindleRobo_fechar")
-        self.horizontalLayout_85.addWidget(self.btn_SpindleRobo_fechar)
         self.btn_SpindleRobo_manut = QtWidgets.QPushButton(self.frame_231)
         font = QtGui.QFont()
         font.setFamily("Equinox Bold")
@@ -11114,7 +11106,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -11356,8 +11348,7 @@ class Ui_MainWindow(object):
         self.label_85.setText(_translate("MainWindow", "Spindle"))
         self.label_107.setText(_translate("MainWindow", "Saída CLP liga Spindle"))
         self.label_108.setText(_translate("MainWindow", "Saída CLP desliga Spindle"))
-        self.btn_SpindleRobo_abrir.setText(_translate("MainWindow", "ABRIR"))
-        self.btn_SpindleRobo_fechar.setText(_translate("MainWindow", "FECHAR"))
+        self.btn_SpindleRobo_abrir.setText(_translate("MainWindow", "LIGAR"))
         self.btn_SpindleRobo_manut.setText(_translate("MainWindow", "MANUTENÇÃO"))
         self.btn_SpindleRobo_TimeMaint.setText(_translate("MainWindow", "ALTERAR TEMPO\n"
 "DE MANUTENÇÃO"))

@@ -533,7 +533,7 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
     Worker thread
     """
 
-    def __init__(self, tag: str, value, widget: QWidget):
+    def __init__(self, tag: str, value, widget: QWidget = None):
         super(Worker_WriteTags, self).__init__()
         self.tag = tag
         self.value = value
@@ -543,12 +543,33 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
     def run(self):
         QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
-            self.widget.setEnabled(False)
+            if self.widget:
+                self.widget.setEnabled(False)
             write_tag(self.tag, self.value)
         except Exception as e:
             print(f'{e} - Write Tags Worker')
         finally:
-            self.widget.setEnabled(True)
+            if self.widget:
+                self.widget.setEnabled(True)
+        QApplication.restoreOverrideCursor()
+
+class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+
+    def __init__(self, tag: str, value):
+        super(Worker_Pressed_WriteTags, self).__init__()
+        self.tag = tag
+        self.value = value
+
+    @pyqtSlot()
+    def run(self):
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        try:
+            write_tag(self.tag, self.value)
+        except Exception as e:
+            print(f'{e} - Write Tags Worker')
         QApplication.restoreOverrideCursor()
 
 class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
@@ -611,7 +632,10 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                     self.device_connected = False
             else:
                 self.create_device()
-            self.signal.result.emit({"Connected": self.device_connected})
+            try:
+                self.signal.result.emit({"Connected": self.device_connected})
+            except RuntimeError as e:
+                print("Erro de execução no worker do leitor de código de barras: ", e)
 
 class Worker_ToggleBtnValue(QRunnable, WorkerParent):
     def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget):
