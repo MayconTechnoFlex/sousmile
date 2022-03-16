@@ -5,7 +5,7 @@ QPushButton{
 }
 QPushButton:hover{ background-color: #f1d100 }
 QPushButton:pressed{ background-color: #dfc200 }
-QPushButton:disabled{ background-color: #cbcbcb; color: #000000 }
+QPushButton::disabled{ background-color: #cbcbcb; color: gray }
 """
 
 checked_button_style = """
@@ -15,7 +15,7 @@ QPushButton{
 }
 QPushButton:hover{ background-color: #434343 }
 QPushButton:pressed{ background-color: #232323 }
-QPushButton:disabled{ background-color: #cbcbcb; color: #000000 }
+QPushButton::disabled{ background-color: #cbcbcb; color: gray }
 """
 
 btn_error_style = """

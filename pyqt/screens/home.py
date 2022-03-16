@@ -9,6 +9,7 @@ from dialogs.insert_code import InsertCodeDialog
 
 from utils.gui_functions import set_reset_btn_int
 from utils.btn_style import *
+from utils.gui_functions import change_status
 
 from utils.workers import Worker_ToggleBtnValue
 
@@ -18,7 +19,7 @@ tag_list: PLCReturn
 
 write_thread = QThreadPool()
 
-def sts_string(id_num: int, widget: QLabel):
+def sts_string(id_num: int, widget: QLabel, side: Literal["A", "B"]):
     """
     Set the label with the code reader status
 
@@ -26,22 +27,40 @@ def sts_string(id_num: int, widget: QLabel):
         id_num = code of the status
         widget = label for status text
     """
-    if id_num == 100:
-        widget.setText('Transferencia do codigo da peca habilitado para o lado A1')
-    elif id_num == 110:
-        widget.setText('Transferencia do lado A1 aguardando python iniciar a transferencia')
-    elif id_num == 120:
-        widget.setText('Transferencia iniciou A1  python -> CLP')
-    elif id_num == 200:
-        widget.setText('Transferencia do codigo da peca habilitado para o lado A2')
-    elif id_num == 210:
-        widget.setText('Transferencia do lado A2 aguardando python iniciar a transferencia')
-    elif id_num == 220:
-        widget.setText('Transferencia iniciou lado A2  python -> CLP')
-    elif id_num == 0:
-        widget.setText('Aguardando leitura do código')
-    else:
-        widget.setText('Erro')
+    if side == "A":
+        if id_num == 100:
+            widget.setText('Transferência do código da peça habilitado para o lado A1')
+        elif id_num == 110:
+            widget.setText('Transferência do lado A1 aguardando python iniciar a transferência')
+        elif id_num == 120:
+            widget.setText('Transferência iniciou lado A1: python -> CLP')
+        elif id_num == 200:
+            widget.setText('Transferência do código da peça habilitado para o lado A2')
+        elif id_num == 210:
+            widget.setText('Transferência do lado A2 aguardando python iniciar a transferência')
+        elif id_num == 220:
+            widget.setText('Transferência iniciou lado A2: python -> CLP')
+        elif id_num == 0:
+            widget.setText('Aguardando leitura do código')
+        else:
+            widget.setText('Erro')
+    elif side == "B":
+        if id_num == 100:
+            widget.setText('Transferência do código da peça habilitado para o lado B1')
+        elif id_num == 110:
+            widget.setText('Transferência do lado B1 aguardando python iniciar a transferência')
+        elif id_num == 120:
+            widget.setText('Transferência iniciou lado B1: python -> CLP')
+        elif id_num == 200:
+            widget.setText('Transferência do código da peça habilitado para o lado B2')
+        elif id_num == 210:
+            widget.setText('Transferência do lado B2 aguardando python iniciar a transferência')
+        elif id_num == 220:
+            widget.setText('Transferência iniciou lado B2: python -> CLP')
+        elif id_num == 0:
+            widget.setText('Aguardando leitura do código')
+        else:
+            widget.setText('Erro')
 
 def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     """
@@ -51,7 +70,7 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
         receive_ui = main ui of the application
         dialog = function for pop-up buttons
     """
-    global UI
+    global UI, tag_list
     UI = receive_ui
     UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string"))
     UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string"))
@@ -90,6 +109,7 @@ def UpdateDataCtrl_A1(tag):
         UI.lbl_FileNumPos_A1.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_A1.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_A1.setText(str(tag['IndexPos']))
+        change_status(tag["Complete"], UI.sts_Complete_A1)
     except:
         pass
 
@@ -106,6 +126,7 @@ def UpdateDataCtrl_A2(tag):
         UI.lbl_FileNumPos_A2.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_A2.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_A2.setText(str(tag['IndexPos']))
+        change_status(tag["Complete"], UI.sts_Complete_A2)
     except:
         pass
 
@@ -122,6 +143,7 @@ def UpdateDataCtrl_B1(tag):
         UI.lbl_FileNumPos_B1.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_B1.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_B1.setText(str(tag['IndexPos']))
+        change_status(tag["Complete"], UI.sts_Complete_B1)
     except:
         pass
 
@@ -138,6 +160,7 @@ def UpdateDataCtrl_B2(tag):
         UI.lbl_FileNumPos_B2.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_B2.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_B2.setText(str(tag['IndexPos']))
+        change_status(tag["Complete"], UI.sts_Complete_B2)
     except:
         pass
 
@@ -156,8 +179,8 @@ def UpdateHMI(tag):
         UI.lbl_production_TimeCutA2.setText(str(round(prodTag['TimeCutA2'], 2)))
         UI.lbl_production_TimeCutB1.setText(str(round(prodTag['TimeCutB1'], 2)))
         UI.lbl_production_TimeCutB2.setText(str(round(prodTag['TimeCutB2'], 2)))
-        sts_string(tag['Sts']['TransDataSideA'], UI.lbl_sts_TransDataSideA)
-        sts_string(tag['Sts']['TransDataSideB'], UI.lbl_sts_TransDataSideB)
+        sts_string(tag['Sts']['TransDataSideA'], UI.lbl_sts_TransDataSideA, "A")
+        sts_string(tag['Sts']['TransDataSideB'], UI.lbl_sts_TransDataSideB, "B")
 
         ### buttons manual <-> auto
         if tag['SideA']['ModeValue'] == 0:

@@ -239,8 +239,6 @@ class RnRobotics_Gui(QMainWindow):
                 maint.UpdateHMI(tag)
             elif self.ui.stackedWidget.currentIndex() == 6:
                 eng.UpdateHMI(tag)
-
-
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:

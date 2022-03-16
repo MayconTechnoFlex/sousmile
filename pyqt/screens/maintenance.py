@@ -81,7 +81,6 @@ def spindle_off():
         print(e, "Erro no ligar spindle")
         UI.btn_SpindleRobo_abrir.setStyleSheet(checked_button_style)
 
-
 def set_reset_button(i: int, button: QPushButton):
     global UI, tag_list, write_thread
     tag_name = tag_list[i][0]
@@ -196,9 +195,32 @@ def UpdateHMI(tag):
         if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
             UI.btn_move_home.setEnabled(True)
             UI.btn_check_uf.setEnabled(True)
+            UI.btn_SpindleRobo_abrir.setEnabled(True)
+            UI.btn_SpindleRobo_manut.setEnabled(True)
         else:
             UI.btn_move_home.setEnabled(False)
             UI.btn_check_uf.setEnabled(False)
+            UI.btn_SpindleRobo_abrir.setEnabled(False)
+            UI.btn_SpindleRobo_manut.setEnabled(False)
+
+        if tag["SideA"]["Manual"]:
+            UI.btn_DoorSideA_abrir.setEnabled(True)
+            UI.btn_DoorSideA_fechar.setEnabled(True)
+            UI.btn_DoorSideA_manut.setEnabled(True)
+        else:
+            UI.btn_DoorSideA_abrir.setEnabled(False)
+            UI.btn_DoorSideA_fechar.setEnabled(False)
+            UI.btn_DoorSideA_manut.setEnabled(False)
+
+        if tag["SideB"]["Manual"]:
+            UI.btn_DoorSideB_abrir.setEnabled(True)
+            UI.btn_DoorSideB_fechar.setEnabled(True)
+            UI.btn_DoorSideB_manut.setEnabled(True)
+        else:
+            UI.btn_DoorSideB_abrir.setEnabled(False)
+            UI.btn_DoorSideB_fechar.setEnabled(False)
+            UI.btn_DoorSideB_manut.setEnabled(False)
+
     except Exception:
         error_buttons()
 
@@ -239,9 +261,6 @@ def error_buttons():
     UI.btn_SpindleRobo_abrir.setEnabled(False)
     UI.btn_SpindleRobo_abrir.setText("Erro")
     UI.btn_SpindleRobo_abrir.setStyleSheet(btn_error_style)
-    UI.btn_SpindleRobo_fechar.setEnabled(False)
-    UI.btn_SpindleRobo_fechar.setText("Erro")
-    UI.btn_SpindleRobo_fechar.setStyleSheet(btn_error_style)
     UI.btn_SpindleRobo_manut.setEnabled(False)
     UI.btn_SpindleRobo_manut.setText("Erro")
     UI.btn_SpindleRobo_manut.setStyleSheet(btn_error_style)

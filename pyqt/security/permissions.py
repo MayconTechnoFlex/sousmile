@@ -14,4 +14,4 @@ def engConnected(ui: Ui_MainWindow):
     ui.btnEngineeringScreen.setEnabled(True)
 
 def rnConnected(ui: Ui_MainWindow):
-    ui.btnEngineeringScreen.setEnabled(False)
+    ui.btnEngineeringScreen.setEnabled(True)

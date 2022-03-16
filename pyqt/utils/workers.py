@@ -638,11 +638,12 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                 print("Erro de execução no worker do leitor de código de barras: ", e)
 
 class Worker_ToggleBtnValue(QRunnable, WorkerParent):
-    def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget):
+    def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget, timeout = 5):
         super(Worker_ToggleBtnValue, self).__init__()
         self.tag = tag
         self.actual_value = actual_value
         self.widget = widget
+        self.timeout = timeout
 
     @pyqtSlot()
     def run(self):
@@ -652,13 +653,9 @@ class Worker_ToggleBtnValue(QRunnable, WorkerParent):
             self.widget.setEnabled(False)
             write_tag(self.tag, 1)
             self.widget.setEnabled(False)
+            time.sleep(1)
+            write_tag(self.tag, 0)
         else:
             raise ValueError("Valor atual da tag invalido")
-
-        while True:
-            self.widget.setEnabled(False)
-            if read_tags(self.tag) == 1:
-                write_tag(self.tag, 0)
-                break
         QApplication.restoreOverrideCursor()
         self.widget.setEnabled(True)
