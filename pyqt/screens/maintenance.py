@@ -7,6 +7,8 @@ from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
+from security.db_users import connected_username
+
 from utils.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import btn_error_style
@@ -101,8 +103,18 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
     global UI
     UI.btn_move_home.clicked.connect(
         lambda: dialog.show_dialog("MoveHome",
-                                   "Cuidado, você vai movimentar o robô para aposição inicial, "
+                                   "Cuidado! Você vai movimentar o robô para a posição inicial, "
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
+    UI.btn_check_utool.clicked.connect(
+        lambda: dialog.show_dialog("CheckUTOOL",
+                                   "Cuidado! Você vai movimentar o robô para ajustar a User Tool. "
+                                   "Para isso, o robô deve estar em Home, caso contrário, não funcionará.")
+    )
+    UI.btn_change_tool.clicked.connect(
+        lambda: dialog.show_dialog("ChangeTool",
+                                   "Cuidado! Você vai movimentar o robô para trocar sua ferramenta. "
+                                   "Para isso, o robô deve estar em Home, caso contrário, não funcionará.")
+    )
 
 def UpdateCylA(tag):
     """
@@ -194,32 +206,42 @@ def UpdateHMI(tag):
     try:
         if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
             UI.btn_move_home.setEnabled(True)
-            UI.btn_check_uf.setEnabled(True)
-            UI.btn_SpindleRobo_abrir.setEnabled(True)
-            UI.btn_SpindleRobo_manut.setEnabled(True)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_check_uf.setEnabled(True)
+                UI.btn_check_utool.setEnabled(True)
+                UI.btn_change_tool.setEnabled(True)
+                UI.btn_SpindleRobo_abrir.setEnabled(True)
+                UI.btn_SpindleRobo_manut.setEnabled(True)
         else:
             UI.btn_move_home.setEnabled(False)
-            UI.btn_check_uf.setEnabled(False)
-            UI.btn_SpindleRobo_abrir.setEnabled(False)
-            UI.btn_SpindleRobo_manut.setEnabled(False)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_check_uf.setEnabled(False)
+                UI.btn_check_utool.setEnabled(False)
+                UI.btn_change_tool.setEnabled(False)
+                UI.btn_SpindleRobo_abrir.setEnabled(False)
+                UI.btn_SpindleRobo_manut.setEnabled(False)
 
         if tag["SideA"]["Manual"]:
             UI.btn_DoorSideA_abrir.setEnabled(True)
             UI.btn_DoorSideA_fechar.setEnabled(True)
-            UI.btn_DoorSideA_manut.setEnabled(True)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideA_manut.setEnabled(True)
         else:
             UI.btn_DoorSideA_abrir.setEnabled(False)
             UI.btn_DoorSideA_fechar.setEnabled(False)
-            UI.btn_DoorSideA_manut.setEnabled(False)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideA_manut.setEnabled(False)
 
         if tag["SideB"]["Manual"]:
             UI.btn_DoorSideB_abrir.setEnabled(True)
             UI.btn_DoorSideB_fechar.setEnabled(True)
-            UI.btn_DoorSideB_manut.setEnabled(True)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideB_manut.setEnabled(True)
         else:
             UI.btn_DoorSideB_abrir.setEnabled(False)
             UI.btn_DoorSideB_fechar.setEnabled(False)
-            UI.btn_DoorSideB_manut.setEnabled(False)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideB_manut.setEnabled(False)
 
     except Exception:
         error_buttons()
@@ -237,6 +259,9 @@ def error_buttons():
     UI.btn_termina_check_uf.setEnabled(False)
     UI.btn_termina_check_uf.setText("Erro")
     UI.btn_termina_check_uf.setStyleSheet(btn_error_style)
+    UI.btn_check_utool.setEnabled(False)
+    UI.btn_check_utool.setStyleSheet(btn_error_style)
+    UI.btn_check_utool.setText("Erro")
 
     UI.btn_DoorSideA_abrir.setEnabled(False)
     UI.btn_DoorSideA_abrir.setText("Erro")

@@ -22,7 +22,7 @@ class ConfirmationDialog(QDialog):
         self.ACTION_TO_CONFIRM: ActionsToConfirm = ""
 
         self.thread = QThreadPool()
-        self.worker_home: Worker_ToggleBtnValue
+        self.worker: Worker_ToggleBtnValue
         self.thread_dialog: Thread_Dialogs_NoLineEdit
 
     def show_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
@@ -38,7 +38,11 @@ class ConfirmationDialog(QDialog):
             self.ui.description_text.setText(text)
         self.buttons_of_dialog()
         if action_to_confirm == "MoveHome":
-            self.worker_home = Worker_ToggleBtnValue("HMI.btnGoHome", 0, self.ui.btn_confirm)
+            self.worker = Worker_ToggleBtnValue("HMI.btnGoHome", 0, self.ui.btn_confirm)
+        elif action_to_confirm == "CheckUTOOL":
+            self.worker = Worker_ToggleBtnValue("HMI.btn_AdjustUTOOL", 0, self.ui.btn_confirm)
+        elif action_to_confirm == "ChangeTool":
+            self.worker = Worker_ToggleBtnValue("HMI.btn_ChangeTool", 0, self.ui.btn_confirm)
         elif action_to_confirm == "":
             raise Exception("Nenhuma ação foi passada para confirmação")
         self.exec_()
@@ -51,9 +55,9 @@ class ConfirmationDialog(QDialog):
         """Called when the "Confirmar" button is pressed"""
         action = self.ACTION_TO_CONFIRM
         try:
-            if action == "MoveHome":
-                self.thread.start(self.worker_home)
-            elif action == "":
+            if action:
+                self.thread.start(self.worker)
+            else:
                 raise Exception("Nenhuma ação foi passada")
         except Exception as e:
             print(f"{e} - Erro na ação")

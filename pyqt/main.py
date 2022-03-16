@@ -74,7 +74,7 @@ class RnRobotics_Gui(QMainWindow):
         ###################################################################
         # Workers #########################################################
         ###################################################################
-        self.worker = Worker()
+        # self.worker = Worker()
         self.worker_data_ctrl_a1 = Worker_Data_Ctrl_A1()
         self.worker_data_ctrl_a2 = Worker_Data_Ctrl_A2()
         self.worker_data_ctrl_b1 = Worker_Data_Ctrl_B1()
@@ -121,7 +121,7 @@ class RnRobotics_Gui(QMainWindow):
         ###################################################################
         # Start the threads ###############################################
         ###################################################################
-        self.threadpool_0.start(self.worker)
+        # self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
         self.threadpool_2.start(self.worker_data_ctrl_a2)
         self.threadpool_3.start(self.worker_data_ctrl_b1)
@@ -313,7 +313,7 @@ class RnRobotics_Gui(QMainWindow):
     def stop_threads(self):
         print("Finalizando Threads")
         try:
-            self.worker.stop()
+            # self.worker.stop()
             self.worker_data_ctrl_a1.stop()
             self.worker_data_ctrl_a2.stop()
             self.worker_data_ctrl_b1.stop()

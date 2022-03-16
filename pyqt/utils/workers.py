@@ -7,7 +7,7 @@ from typing import Union
 from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
-from utils.ctrl_plc import read_tags, read_multiples, write_tag
+from utils.ctrl_plc import read_tags, read_multiples, write_tag, write_multiples
 from utils.Tags import *
 
 from utils.serial_ports import get_my_port, set_my_port
@@ -613,14 +613,20 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                         self.code_size = len(self.info)
                         if self.code_size > 4:
                             readed_code = self.info[2:(self.code_size - 3)]
+                            print("-- code readed")
+                            write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
+                            print("-- writed to plc")
+                            # write_tag("BarCodeReader.Data", readed_code)
+                            # print("-- code sended")
+                            # write_tag("BarCodeReader.ReadCompete", True)
+                            # print("-- read complete true")
                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
                                                      "Connected": self.device_connected})
-                            write_tag("BarCodeReader.Data", readed_code)
-                            write_tag("BarCodeReader.ReadCompete", True)
-                            time.sleep(3)
+                            time.sleep(1)
+                            write_tag("BarCodeReader.ReadCompete", False)
+                            print("-- read completed false")
                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
                                                      "Connected": self.device_connected})
-                            write_tag("BarCodeReader.ReadCompete", False)
                 except SerialException:
                     print(f"Dispotivo desconectado da porta {self.port}")
                     self.device.close()

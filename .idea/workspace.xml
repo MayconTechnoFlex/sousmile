@@ -5,31 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sousmile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sousmile.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/altera_valor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/confirmation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/insert_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/insert_code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/dialogs/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/dialogs/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/alarms.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/alarms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/engineering.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/engineering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/in_out.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/in_out.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/maintenance.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/maintenance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/production.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/screens/robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/screens/robot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/confirm_dialog.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui/gui_rev04.ui" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/gui_rev04.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui/images.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui/images.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/confirm_dialog_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/images_rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/images_rc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/ui_py/ui_gui_v1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/Types.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/Types.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/alarm_control.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/ctrl_plc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/db_users.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/gui_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/workers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/workers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,17 +22,17 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/pyqt" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pyqt/utils/Tags.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/screens/in_out.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/utils/workers.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/dialogs/login.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/utils/gui_functions.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/dialogs/login.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/Tags.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/workers.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/screens/in_out.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -71,12 +49,36 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="ReaderModeSettings">
+    <option name="showLigatures" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Maycon\TechnoFlex\Projetos\TP RN Robotics\CR967 - Sousmile\Programas\sousmile\pyqt\ui_py" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="CreateExe" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="sousmile" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CreateExe.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="db_users" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sousmile" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -98,7 +100,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="sousmile" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,7 +123,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.CreateExe" />
         <item itemvalue="Python.db_users" />
       </list>
     </recent_temporary>

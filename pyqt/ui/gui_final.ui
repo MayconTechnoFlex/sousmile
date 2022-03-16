@@ -17460,16 +17460,16 @@ background-color: #f00000;
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_59">
                      <property name="spacing">
-                      <number>20</number>
+                      <number>10</number>
                      </property>
                      <property name="leftMargin">
-                      <number>25</number>
+                      <number>10</number>
                      </property>
                      <property name="topMargin">
                       <number>33</number>
                      </property>
                      <property name="rightMargin">
-                      <number>25</number>
+                      <number>10</number>
                      </property>
                      <property name="bottomMargin">
                       <number>25</number>
@@ -17484,7 +17484,7 @@ background-color: #f00000;
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>175</width>
+                         <width>150</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -17519,7 +17519,7 @@ e Saídas</string>
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>175</width>
+                         <width>150</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -17554,7 +17554,7 @@ para Home</string>
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>175</width>
+                         <width>150</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -17583,13 +17583,13 @@ User Frame</string>
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>120</width>
+                         <width>110</width>
                          <height>70</height>
                         </size>
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>175</width>
+                         <width>110</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -17646,17 +17646,74 @@ User Frame</string>
                       </widget>
                      </item>
                      <item>
-                      <spacer name="horizontalSpacer_18">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                      <widget class="QPushButton" name="btn_check_utool">
+                       <property name="enabled">
+                        <bool>true</bool>
                        </property>
-                       <property name="sizeHint" stdset="0">
+                       <property name="minimumSize">
                         <size>
-                         <width>40</width>
-                         <height>20</height>
+                         <width>150</width>
+                         <height>70</height>
                         </size>
                        </property>
-                      </spacer>
+                       <property name="maximumSize">
+                        <size>
+                         <width>150</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Equinox Bold</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">* { border-radius: 30}</string>
+                       </property>
+                       <property name="text">
+                        <string>Ajustar
+Tool Frame</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_change_tool">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>70</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>150</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Equinox Bold</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">* { border-radius: 30}</string>
+                       </property>
+                       <property name="text">
+                        <string>Trocar de
+Ferramenta</string>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </widget>
