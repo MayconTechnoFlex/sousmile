@@ -4,10 +4,10 @@ from typing import List
 from utils.Tags import alarm_tag_list
 from utils.Types import AlarmDict
 
-alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:", "Alarme 2:", "Alarme 3:", "Alarme 4:",
-                      "Alarme 5:", "Alarme 6: Porta da Célula Aberta", "Alarme 7:", "Alarme 8:",
-                      "Alarme 9: Pressão do ar comprimido baixa", "Alarme 10:",
-                      "Alarme 11: Emergência Interior da Célula Pressionada", "Alarme 12:", "Alarme 13:",
+alarm_message_list = ["Alarme 00: Botão de Emergência Pressionado", "Alarme 01:", "Alarme 02:", "Alarme 03:",
+                      "Alarme 04:", "Alarme 05:", "Alarme 06: Porta da Célula Aberta", "Alarme 07:", "Alarme 08:",
+                      "Alarme 09: Pressão do ar comprimido baixa", "Alarme 10: Emergência do Lado Esquerdo Acionado",
+                      "Alarme 11:  Emergência do Lado Direito Acionado", "Alarme 12:", "Alarme 13:",
                       "Alarme 14: Botão de Emergência Pressionado no Robô", "Alarme 15: Robô em falha",
                       "Alarme 16: Transferência de Dados com o Robô excedeu o tempo",
                       "Alarme 17: Mais de um sinal de Transferência de Dados ligado, verifique os sinais do robô",
@@ -35,9 +35,19 @@ alarm_message_list = ["Alarme 0: Botão de Emergência Pressionado", "Alarme 1:"
                       "Alarme 70: Transferência de dados lado B2 com erro (Python para CLP)",
                       "Alarme 71: Coordenada recebida com risco de colisão lado B2",
                       "Alarme 72: Proteção da porta do lado B foi acionada",
-                      "Alarme 73: Robô no lado B e sensor de segurança da porta lado B não esta acionado", "Alarme 74:"]
+                      "Alarme 73: Robô no lado B e sensor de segurança da porta lado B não esta acionado", "Alarme 74:",
+                      "Alarme 75:", "Alarme 76:", "Alarme 77:", "Alarme 78:", "Alarme 79:", "Alarme 80:", "Alarme 81:",
+                      "Alarme 82:", "Alarme 83:", "Alarme 84:", "Alarme 85:", "Alarme 86:", "Alarme 87:", "Alarme 88:",
+                      "Alarme 89:", "Alarme 90:", "Alarme 91:", "Alarme 92:", "Alarme 93:", "Alarme 94:", "Alarme 95:",
+                      "Alarme 96: Falha na verificação de User Tool", "Alarme 97:", "Alarme 98:", "Alarme 99:",
+                      "Alarme 100:", "Alarme 101:", "Alarme 102:", "Alarme 103:", "Alarme 104:", "Alarme 105:",
+                      "Alarme 106:", "Alarme 107:", "Alarme 108:", "Alarme 109:", "Alarme 110:", "Alarme 111:",
+                      "Alarme 112:", "Alarme 113:", "Alarme 114:", "Alarme 115:", "Alarme 116:", "Alarme 117:",
+                      "Alarme 118:", "Alarme 119:", "Alarme 120:", "Alarme 121:", "Alarme 122:", "Alarme 123:",
+                      "Alarme 124:", "Alarme 125:", "Alarme 126:", "Alarme 127:"]
 
 alarm_list: List[AlarmDict] = []
+
 alarm_history: List[AlarmDict] = []
 
 def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str) -> None:
