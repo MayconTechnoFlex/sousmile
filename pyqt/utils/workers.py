@@ -572,72 +572,72 @@ class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
             print(f'{e} - Write Tags Worker')
         QApplication.restoreOverrideCursor()
 
-class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
-    """
-    Worker thread
-    """
-    def __init__(self):
-        super(Worker_BarCodeScanner, self).__init__()
-        self.signal = WorkerSignals()
-        self.info: str
-        self.code: int
-        self.running = True
-        self.device: serial.Serial = None
-        self.device_connected = False
-        self.create_device()
-        self.port = get_my_port()
-
-    def create_device(self):
-        self.port = get_my_port()
-        time.sleep(1)
-        try:
-            if self.port:
-                self.device = serial.Serial(self.port, timeout=0.5)
-                self.device_connected = True
-                print("Dispositivo conectado")
-            else:
-                raise Exception("Nenhuma ou mais de uma porta serial encontrada")
-        except Exception as e:
-            print(e)
-            time.sleep(2)
-
-    @pyqtSlot()
-    def run(self):
-        while self.running:
-            if self.device_connected:
-                try:
-                    if not self.device.isOpen():
-                        self.device.open()
-                    else:
-                        self.info = str(self.device.readline())
-                        self.code_size = len(self.info)
-                        if self.code_size > 4:
-                            readed_code = self.info[2:(self.code_size - 3)]
-                            print("-- code readed")
-                            # write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
-                            # print("-- writed to plc")
-                            self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
-                                                     "Connected": self.device_connected})
-                            time.sleep(1)
-                            # write_tag("BarCodeReader.ReadCompete", False)
-                            # print("-- read completed false")
-                            self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
-                                                     "Connected": self.device_connected})
-                except SerialException:
-                    print(f"Dispotivo desconectado da porta {self.port}")
-                    self.device.close()
-                    self.device_connected = False
-                    set_my_port("")
-                except Exception as e:
-                    print(f"{e} - Worker_BarCodeScanner")
-                    self.device.close()
-                    self.device_connected = False
-            else:
-                self.create_device()
-            try:
-                self.signal.result.emit({"Connected": self.device_connected})
-            except RuntimeError as e:
-                print("Erro de execução no worker do leitor de código de barras: ", e)
+# class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
+#     """
+#     Worker thread
+#     """
+#     def __init__(self):
+#         super(Worker_BarCodeScanner, self).__init__()
+#         self.signal = WorkerSignals()
+#         self.info: str
+#         self.code: int
+#         self.running = True
+#         self.device: serial.Serial = None
+#         self.device_connected = False
+#         # self.create_device()
+#         self.port = get_my_port()
+#
+#     # def create_device(self):
+#     #     self.port = get_my_port()
+#     #     time.sleep(1)
+#     #     try:
+#     #         if self.port:
+#     #             self.device = serial.Serial(self.port, timeout=0.5)
+#     #             self.device_connected = True
+#     #             print("Dispositivo conectado")
+#     #         else:
+#     #             raise Exception("Nenhuma ou mais de uma porta serial encontrada")
+#     #     except Exception as e:
+#     #         print(e)
+#     #         time.sleep(2)
+#
+#     @pyqtSlot()
+#     def run(self):
+#         while self.running:
+#             if self.device_connected:
+#                 try:
+#                     if not self.device.isOpen():
+#                         self.device.open()
+#                     else:
+#                         self.info = str(self.device.readline())
+#                         self.code_size = len(self.info)
+#                         if self.code_size > 4:
+#                             readed_code = self.info[2:(self.code_size - 3)]
+#                             print("-- code readed")
+#                             # write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
+#                             # print("-- writed to plc")
+#                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
+#                                                      "Connected": self.device_connected})
+#                             time.sleep(1)
+#                             # write_tag("BarCodeReader.ReadCompete", False)
+#                             # print("-- read completed false")
+#                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
+#                                                      "Connected": self.device_connected})
+#                 except SerialException:
+#                     print(f"Dispotivo desconectado da porta {self.port}")
+#                     self.device.close()
+#                     self.device_connected = False
+#                     set_my_port("")
+#                 except Exception as e:
+#                     print(f"{e} - Worker_BarCodeScanner")
+#                     self.device.close()
+#                     self.device_connected = False
+#             else:
+#                 self.create_device()
+#             try:
+#                 self.signal.result.emit({"Connected": self.device_connected})
+#             except RuntimeError as e:
+#                 print("Erro de execução no worker do leitor de código de barras: ", e)
 
 class Worker_ToggleBtnValue(QRunnable, WorkerParent):
     def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget, timeout = 5):

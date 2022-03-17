@@ -18,7 +18,7 @@ from utils.serial_ports import get_serial_ports, set_my_port
 
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
-    engineering as eng, in_out as inOut
+    engineering as eng, in_out as inOut, coord_filter as cf
 
 from dialogs.alarm import AlarmDialog
 from dialogs.altera_valor import AlteraValorDialog
@@ -91,7 +91,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut = Worker_InOut()
         self.worker_user = Worker_User()
         self.worker_read_tags = Worker_ReadTags()
-        self.worker_barcode_scanner = Worker_BarCodeScanner()
+        # self.worker_barcode_scanner = Worker_BarCodeScanner()
         ###########################################################################################
         # Connect results of the workers ##########################################################
         ###########################################################################################
@@ -117,7 +117,7 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
         self.worker_user.signal_user.result.connect(lambda signal: UpdateUserAccess(signal, self.ui))
         self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
-        self.worker_barcode_scanner.signal.result.connect(self.update_BarCode)
+        # self.worker_barcode_scanner.signal.result.connect(self.update_BarCode)
         ###################################################################
         # Start the threads ###############################################
         ###################################################################
@@ -138,7 +138,7 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14.start(self.worker_inOut)
         self.threadpool_15.start(self.worker_user)
         self.thread_read_tags.start(self.worker_read_tags)
-        self.thread_barcode_scanner.start(self.worker_barcode_scanner)
+        # self.thread_barcode_scanner.start(self.worker_barcode_scanner)
         ###################################################################
         # Defining buttons of screens #####################################
         ###################################################################
@@ -150,12 +150,29 @@ class RnRobotics_Gui(QMainWindow):
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.altera_valor_dialog, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
+        self.coord_filter = cf.CoordFilter(self.ui)
+
+        self.coord_filter.myworker_bcscanner.signal.result.connect(self.update_BarCode)
         ###################################################################
-        if self.worker_barcode_scanner.device_connected:
+        if self.coord_filter.myworker_bcscanner.device_connected:
             self.ui.btn_config_barcode.setEnabled(False)
         else:
             self.ui.btn_config_barcode.setEnabled(True)
         ###################################################################
+
+    def create_device(self):
+        self.port = get_my_port()
+        time.sleep(1)
+        try:
+            if self.port:
+                self.device = serial.Serial(self.port, timeout=0.5)
+                self.device_connected = True
+                print("Dispositivo conectado")
+            else:
+                raise Exception("Nenhuma ou mais de uma porta serial encontrada")
+        except Exception as e:
+            print(e)
+            time.sleep(2)
 
     ####################################################################
     #### functions to navigate between screens
@@ -169,12 +186,14 @@ class RnRobotics_Gui(QMainWindow):
         self.ui.btnMaintenaceScreen.clicked.connect(self.show_maintenance)
         self.ui.btnEngineeringScreen.clicked.connect(self.show_engineering)
         self.ui.btn_in_out_screen.clicked.connect(self.show_in_out)
+        self.ui.btnCoordFilterScreen.clicked.connect(self.show_coor_filter)
         ### login and logout
         self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show_dialog(self.ui.lbl_username))
         self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
         ### alarm
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
+
 
     def show_home(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
@@ -201,6 +220,9 @@ class RnRobotics_Gui(QMainWindow):
     def show_alarm_history(self):
         self.ui.hist_alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarm_history_screen)
+
+    def show_coor_filter(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.coord_filter)
 
     #######################################################################
     #### Updating Tags on the PLC
@@ -330,7 +352,7 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_inOut.stop()
             self.worker_user.stop()
             self.worker_read_tags.stop()
-            self.worker_barcode_scanner.stop()
+            # self.worker_barcode_scanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
