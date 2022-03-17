@@ -880,7 +880,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -13536,9 +13536,9 @@ QPushButton:disabled{background-color:#ababab; color: grey}
 border: 2px solid #bcbcbc; padding: 0; margin:0
 }
 
-/*#line, #line_2, #line_3, #line_4, #line_5, #line_6,
-#line_7, #line_8, #line_9, #line_10, #line_11, #line_12, #line_13,
-#line_14, #line_15 {border: 2px solid #b0b0b0; margin:0; padding:0}*/
+#line, #line_22, #line_190, #line_181, #line_192, #line_194,
+#line_197, #line_198, #line_200, #line_201, #line_199, #line_196, #line_193,
+#line_195, #line_191 {border: 2px solid #b0b0b0; margin:0; padding:0}
 
 *{border:0; margin:0;padding:0; font-family: &quot;Equinox Bold&quot;}
 
@@ -13619,13 +13619,13 @@ QScrollBar::handle {
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
-                   <height>50</height>
+                   <height>52</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
-                   <height>50</height>
+                   <height>52</height>
                   </size>
                  </property>
                  <property name="font">
@@ -13714,13 +13714,13 @@ background-color: white
                    <widget class="QFrame" name="frame_363">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>1000</width>
                       <height>425</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
+                      <width>1000</width>
                       <height>425</height>
                      </size>
                     </property>
@@ -13804,6 +13804,18 @@ background-color: white
                          <verstretch>0</verstretch>
                         </sizepolicy>
                        </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>1000</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>1000</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
                        <property name="frameShadow">
                         <enum>QFrame::Plain</enum>
                        </property>
@@ -13835,8 +13847,14 @@ background-color: white
                    <widget class="QFrame" name="frame_364">
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>1000</width>
                       <height>323</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>1000</width>
+                      <height>16777215</height>
                      </size>
                     </property>
                     <property name="frameShape">
@@ -13913,6 +13931,18 @@ background-color: white
                      </item>
                      <item>
                       <widget class="QTableWidget" name="tbl_positions">
+                       <property name="minimumSize">
+                        <size>
+                         <width>1000</width>
+                         <height>419</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>1000</width>
+                         <height>419</height>
+                        </size>
+                       </property>
                        <property name="styleSheet">
                         <string notr="true"> * { border:0; margin: 0; padding:0}
 
@@ -13937,7 +13967,7 @@ QTableWidget {
                         <enum>QAbstractItemView::SelectRows</enum>
                        </property>
                        <attribute name="horizontalHeaderVisible">
-                        <bool>false</bool>
+                        <bool>true</bool>
                        </attribute>
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
@@ -13949,7 +13979,7 @@ QTableWidget {
                         <number>20</number>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
-                        <bool>false</bool>
+                        <bool>true</bool>
                        </attribute>
                        <column>
                         <property name="text">

@@ -206,3 +206,18 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent):
                 self.signal.result.emit({"Connected": self.device_connected})
             except RuntimeError as e:
                 print("Erro de execução no worker do leitor de código de barras: ", e)
+
+
+class Worker_CreateTable(QRunnable, WorkerParent):
+    """
+    Worker thread for multiple signals
+    """
+
+    def __init__(self, *args):
+        super(Worker_CreateTable, self).__init__()
+        self.signal = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        self.signal.result.emit(True)
+        time.sleep(sleep_time)

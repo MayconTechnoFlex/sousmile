@@ -53,7 +53,7 @@ class RnRobotics_Gui(QMainWindow):
         ##################################################################
         # Thread - to update PLC values ##################################
         ##################################################################
-        self.threadpool_0 = QThreadPool()
+        # self.threadpool_0 = QThreadPool()
         self.threadpool_1 = QThreadPool()
         self.threadpool_2 = QThreadPool()
         self.threadpool_3 = QThreadPool()
@@ -150,11 +150,12 @@ class RnRobotics_Gui(QMainWindow):
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.altera_valor_dialog, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
-        self.coord_filter = cf.CoordFilter(self.ui)
 
-        self.coord_filter.myworker_bcscanner.signal.result.connect(self.update_BarCode)
+        self.coord_filter = cf.CoordFilter(self.ui, self.ui.coord_filter)
+
+        self.coord_filter.my_worker_bcscanner.signal.result.connect(self.update_BarCode)
         ###################################################################
-        if self.coord_filter.myworker_bcscanner.device_connected:
+        if self.coord_filter.my_worker_bcscanner.device_connected:
             self.ui.btn_config_barcode.setEnabled(False)
         else:
             self.ui.btn_config_barcode.setEnabled(True)
@@ -257,33 +258,33 @@ class RnRobotics_Gui(QMainWindow):
                 robot.UpdateHMI(tag)
             elif self.ui.stackedWidget.currentIndex() == 3:
                 prod.UpdateHMI(tag)
-            elif self.ui.stackedWidget.currentIndex() == 4:
+            elif self.ui.stackedWidget.currentIndex() == 5:
                 maint.UpdateHMI(tag)
-            elif self.ui.stackedWidget.currentIndex() == 6:
+            elif self.ui.stackedWidget.currentIndex() == 7:
                 eng.UpdateHMI(tag)
     ########################################################################
     def update_ConfigPontos(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 6:
+        if self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateConfigPts(tag)
     ########################################################################
     def update_CylDoorSideA(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 4:
+        if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateCylA(tag)
-        elif self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateCylA(tag)
     ########################################################################
     def update_CylDoorSideB(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 4:
+        if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateCylB(tag)
-        elif self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateCylB(tag)
     ########################################################################
     def update_CylSpindle(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 4:
+        if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateCylSpindle(tag)
     ########################################################################
     def update_indexRobotPos(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 6:
+        if self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateRobotPos(tag)
     ########################################################################
     def update_RoboInput(self, tag):
@@ -291,17 +292,17 @@ class RnRobotics_Gui(QMainWindow):
             home.UpdateRobotInput(tag)
         elif self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateInput(tag)
-        elif self.ui.stackedWidget.currentIndex() == 4:
+        elif self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateRobotInput(tag)
     ########################################################################
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateOutput(tag)
-        elif self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateRobotOutput(tag)
     ########################################################################
     def update_BarCode(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 4:
+        if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateBarCode(tag)
 
         if tag["Connected"]:

@@ -2,7 +2,7 @@
 # imports
 ########################################
 from typing import List
-from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QGraphicsScene
+from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QGraphicsScene, QWidget
 from PyQt5.QtCore import QThreadPool, QRectF, Qt, QRegExp
 from PyQt5.QtGui import QPen, QRegExpValidator
 from ui_py.ui_gui_final import Ui_MainWindow
@@ -15,7 +15,7 @@ from utils.coord_filter.workers_coord_filter import *
 
 
 class CoordFilter:
-    def __init__(self, parents=None):
+    def __init__(self, parents=None, q_widget=None):
         self.ui = parents
         self.trigger_a1: bool = False
         self.trigger_a2: bool = False
@@ -23,28 +23,30 @@ class CoordFilter:
         self.trigger_b2: bool = False
         self.code_read: str = ""
         self.side_string: str = ""
+        self.q_widget = q_widget
         #######################################
         # Thread
         #######################################
-        self.mythread_plc = QThreadPool()
-        self.mythread_test = QThreadPool()
-        self.mythread_bcscanner = QThreadPool()
+        self.my_thread_plc = QThreadPool()
+        self.my_thread_test = QThreadPool()
+        self.my_thread_bcscanner = QThreadPool()
+        self.my_thread_create_table = QThreadPool()
 
-        self.myworker_plc = Worker_PLC()
-        self.myworker_test = Worker_Test()
-        self.myworker_bcscanner = Worker_BarCodeScanner()
+        self.my_worker_plc = Worker_PLC()
+        self.my_worker_test = Worker_Test()
+        self.my_worker_bcscanner = Worker_BarCodeScanner()
 
-        self.myworker_plc.signal_worker.result_multiples.connect(self.plc_routine)
-        self.myworker_plc.signal_worker.error.connect(self.runnable_error_plc)  # signal when we have a plc comm error
-        self.myworker_test.signal_worker_test.result.connect(self.start_test)
-        self.myworker_test.signal_worker_test.error.connect(self.runnable_error_test)  # signal when we have a plc comm error
-        self.myworker_bcscanner.signal.result_list.connect(self.bar_code_scanner_result)
+        self.my_worker_plc.signal_worker.result_multiples.connect(self.plc_routine)
+        self.my_worker_plc.signal_worker.error.connect(self.runnable_error_plc)  # signal when we have a plc comm error
+        self.my_worker_test.signal_worker_test.result.connect(self.start_test)
+        self.my_worker_test.signal_worker_test.error.connect(self.runnable_error_test)  # signal when we have a plc comm error
+        self.my_worker_bcscanner.signal.result_list.connect(self.bar_code_scanner_result)
         #####################################################################
         # Button call function to start test of filter positions with a file
         #####################################################################
-        self.mythread_plc.start(self.myworker_plc)
-        self.mythread_test.start(self.myworker_test)
-        self.mythread_bcscanner.start(self.myworker_bcscanner)
+        self.my_thread_plc.start(self.my_worker_plc)
+        self.my_thread_test.start(self.my_worker_test)
+        self.my_thread_bcscanner.start(self.my_worker_bcscanner)
         #########################################################################
         # Initial Settings
         #########################################################################
@@ -191,11 +193,11 @@ class CoordFilter:
         self.test_signal = True
 
     def search_folder(self):
-        path_name = QFileDialog.getExistingDirectory(self, "Selecione um arquivo", os.getcwd())
+        path_name = QFileDialog.getExistingDirectory(self.q_widget, "Selecione um arquivo", os.getcwd())
         self.ui.le_file_path.setText(path_name)
 
     def search_file_for_test(self):
-        path_file_name = QFileDialog.getOpenFileName(self, "Selecione um arquivo", os.getcwd(), "*.csv")
+        path_file_name = QFileDialog.getOpenFileName(self.q_widget, "Selecione um arquivo", os.getcwd(), "*.csv")
         self.ui.le_file_for_test.setText(path_file_name[0])
         if self.ui.le_file_for_test.text():
             self.test_file_selected = True
@@ -330,31 +332,10 @@ class CoordFilter:
                       self.list_pos, self.list_pos_info, self.limit_d, self.limit_c, self.limit_dist_xyz, self.limit_h,
                       self.limit_p)
             #######################################
-            for n in range(self.ui.tbl_positions.rowCount()):
-                self.ui.tbl_positions.removeRow(n)
 
-            self.scene.clear()
-            self.ui.graphicsView.scene().clear()
-            self.ui.graphicsView.update()
-
-            qt_create_table(self.ui.tbl_positions,
-                            7,
-                            len(self.list_pos))
-
-            for i in range(len(self.list_pos)):
-                self.ui.tbl_positions.setItem(i, 0, QTableWidgetItem(str(self.list_pos[i])))
-                self.ui.tbl_positions.setItem(i, 1, QTableWidgetItem(str(self.list_pos_x[i])))
-                self.ui.tbl_positions.setItem(i, 2, QTableWidgetItem(str(self.list_pos_y[i])))
-                self.ui.tbl_positions.setItem(i, 3, QTableWidgetItem(str(self.list_pos_z[i])))
-                self.ui.tbl_positions.setItem(i, 4, QTableWidgetItem(str(self.list_pos_c[i])))
-                self.ui.tbl_positions.setItem(i, 5, QTableWidgetItem(str(self.list_pos_d[i])))
-                self.ui.tbl_positions.setItem(i, 6, QTableWidgetItem(str(self.list_pos_info[i])))
-                self.ui.tbl_positions.resizeColumnsToContents()
-
-                self.scene.addEllipse(QRectF(self.list_pos_x[i], self.list_pos_y[i], 0.2, 0.2), QPen(Qt.blue))
-
-            self.ui.graphicsView.update()
-            self.ui.graphicsView.show()
+            my_worker_create_table = Worker_CreateTable()
+            my_worker_create_table.signal.result.connect(self.create_table)
+            self.my_thread_create_table.start(my_worker_create_table)
 
             #######################################
             # Enable test button on the gui
@@ -374,6 +355,33 @@ class CoordFilter:
             self.test_signal = False
             #######################################
 
+    def create_table(self, signal):
+        for n in range(self.ui.tbl_positions.rowCount()):
+            self.ui.tbl_positions.removeRow(n)
+
+        qt_create_table(self.ui.tbl_positions,
+                        7,
+                        len(self.list_pos))
+
+        self.scene.clear()
+        self.ui.graphicsView.scene().clear()
+        self.ui.graphicsView.update()
+
+        for i in range(len(self.list_pos)):
+            self.ui.tbl_positions.setItem(i, 0, QTableWidgetItem(str(self.list_pos[i])))
+            self.ui.tbl_positions.setItem(i, 1, QTableWidgetItem(str(self.list_pos_x[i])))
+            self.ui.tbl_positions.setItem(i, 2, QTableWidgetItem(str(self.list_pos_y[i])))
+            self.ui.tbl_positions.setItem(i, 3, QTableWidgetItem(str(self.list_pos_z[i])))
+            self.ui.tbl_positions.setItem(i, 4, QTableWidgetItem(str(self.list_pos_c[i])))
+            self.ui.tbl_positions.setItem(i, 5, QTableWidgetItem(str(self.list_pos_d[i])))
+            self.ui.tbl_positions.setItem(i, 6, QTableWidgetItem(str(self.list_pos_info[i])))
+            self.ui.tbl_positions.resizeColumnsToContents()
+
+            self.scene.addEllipse(QRectF(self.list_pos_x[i], self.list_pos_y[i], 0.2, 0.2), QPen(Qt.blue))
+
+        self.ui.graphicsView.update()
+        self.ui.graphicsView.show()
+
     def runnable_error_plc(self):
         if self.ui.rb_plc.isChecked():
             print("Erro no worker de envio de dados para o CLP")
@@ -385,9 +393,9 @@ class CoordFilter:
     def stop_threads(self):
         print("Finalizando Threads")
         try:
-            self.myworker_plc.stop()
-            self.myworker_test.stop()
-            self.myworker_bcscanner.stop()
+            self.my_worker_plc.stop()
+            self.my_worker_test.stop()
+            self.my_worker_bcscanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")

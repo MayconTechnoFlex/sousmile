@@ -15,6 +15,8 @@ from PyQt5.QtCore import QRectF, Qt
 from PyQt5.QtGui import QPen
 from utils.coord_filter.qt_utils import qt_create_table
 
+from utils.coord_filter.workers_coord_filter import *
+
 #######################################
 # Assigning lists
 #######################################
@@ -166,36 +168,10 @@ def data_to_plc(data_ctrl: dict,
         ########################################################################################
         # Create a table
         ########################################################################################
-        for n in range(ui.tbl_positions.rowCount()):
-            ui.tbl_positions.removeRow(n)
 
-        qt_create_table(ui.tbl_positions,
-                        7,
-                        len(data_list_pos))
-        #######################################
-        # Create graphic
-        #######################################
-        # Defining a scene rect of 400x200, with it's origin at 0,0.
-        # If we don't set this on creation, we can set it later with .setSceneRect
-        scene.clear()
-        ui.graphicsView.scene().clear()
-        ui.graphicsView.update()
-
-        for i in range(len(data_list_pos)):
-            ui.tbl_positions.setItem(i, 0, QTableWidgetItem(str(data_list_pos[i])))
-            ui.tbl_positions.setItem(i, 1, QTableWidgetItem(str(data_list_X[i])))
-            ui.tbl_positions.setItem(i, 2, QTableWidgetItem(str(data_list_Y[i])))
-            ui.tbl_positions.setItem(i, 3, QTableWidgetItem(str(data_list_Z[i])))
-            ui.tbl_positions.setItem(i, 4, QTableWidgetItem(str(data_list_C[i])))
-            ui.tbl_positions.setItem(i, 5, QTableWidgetItem(str(data_list_D[i])))
-            ui.tbl_positions.setItem(i, 6, QTableWidgetItem(str(data_list_info[i])))
-            ui.tbl_positions.resizeColumnsToContents()
-
-            scene.addEllipse(QRectF(data_list_X[i], data_list_Y[i], 0.2, 0.2), QPen(Qt.blue))
-
-        ui.graphicsView.update()
-        ui.graphicsView.show()
-
+        my_worker_create_table = Worker_CreateTable()
+        my_worker_create_table.signal.result.connect(ui.create_table)
+        ui.my_thread_create_table.start(my_worker_create_table)
 
     except Exception as e:
         # print python error
