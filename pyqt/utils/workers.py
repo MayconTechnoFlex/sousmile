@@ -614,17 +614,13 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                         if self.code_size > 4:
                             readed_code = self.info[2:(self.code_size - 3)]
                             print("-- code readed")
-                            write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
-                            print("-- writed to plc")
-                            # write_tag("BarCodeReader.Data", readed_code)
-                            # print("-- code sended")
-                            # write_tag("BarCodeReader.ReadCompete", True)
-                            # print("-- read complete true")
+                            # write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
+                            # print("-- writed to plc")
                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
                                                      "Connected": self.device_connected})
                             time.sleep(1)
-                            write_tag("BarCodeReader.ReadCompete", False)
-                            print("-- read completed false")
+                            # write_tag("BarCodeReader.ReadCompete", False)
+                            # print("-- read completed false")
                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
                                                      "Connected": self.device_connected})
                 except SerialException:
