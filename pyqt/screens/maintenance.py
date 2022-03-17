@@ -1,16 +1,23 @@
 """Module with all functions used on the MaintenanceScreen of the application"""
+from PyQt5.QtCore import QThreadPool
+from PyQt5.QtWidgets import QPushButton
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
+from security.db_users import connected_username
+
 from utils.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import btn_error_style
+from utils.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags
+from utils.btn_style import base_button_style, checked_button_style
 
 UI: Ui_MainWindow
 tag_list: PLCReturn
+write_thread = QThreadPool()
 
 def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
                    confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
@@ -22,34 +29,69 @@ def define_buttons(receive_UI: Ui_MainWindow, altValDialog: AlteraValorDialog,
         altValDialog = function for pop-up buttons
         confirm_dialog = confirmation dialog object
     """
-    global UI
+    global UI, tag_list
     UI = receive_UI
 
     buttons_ConfirmDialogs(confirmDialog)
     UI.btn_check_uf.clicked.connect(checkUF.show_dialog)
-    UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_btn_int(4, tag_list, UI.btn_menos_1_mm))
-    UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_btn_int(5, tag_list, UI.btn_termina_check_uf))
+    UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_button(4, UI.btn_menos_1_mm))
+    UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_button(5, UI.btn_termina_check_uf))
 
-    UI.btn_DoorSideA_abrir.clicked.connect(lambda: set_reset_btn_int(6, tag_list, UI.btn_DoorSideA_abrir))
-    UI.btn_DoorSideA_fechar.clicked.connect(lambda: set_reset_btn_int(7, tag_list, UI.btn_DoorSideA_fechar))
+    UI.btn_DoorSideA_abrir.clicked.connect(lambda: set_reset_button(6, UI.btn_DoorSideA_abrir))
+    UI.btn_DoorSideA_fechar.clicked.connect(lambda: set_reset_button(7, UI.btn_DoorSideA_fechar))
     UI.btn_DoorSideA_manut.clicked.connect(lambda: set_reset_btn_int(8, tag_list, UI.btn_DoorSideA_manut))
     UI.btn_DoorSideA_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado A:", "Cyl_DoorSideA.TimeMaintTest", "int")
     )
 
-    UI.btn_DoorSideB_abrir.clicked.connect(lambda: set_reset_btn_int(9, tag_list, UI.btn_DoorSideB_abrir))
-    UI.btn_DoorSideB_fechar.clicked.connect(lambda: set_reset_btn_int(10, tag_list, UI.btn_DoorSideB_fechar))
+    UI.btn_DoorSideB_abrir.clicked.connect(lambda: set_reset_button(9, UI.btn_DoorSideB_abrir))
+    UI.btn_DoorSideB_fechar.clicked.connect(lambda: set_reset_button(10, UI.btn_DoorSideB_fechar))
     UI.btn_DoorSideB_manut.clicked.connect(lambda: set_reset_btn_int(11, tag_list, UI.btn_DoorSideB_manut))
     UI.btn_DoorSideB_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado B:", "Cyl_DoorSideB.TimeMaintTest", "int")
     )
 
-    UI.btn_SpindleRobo_abrir.clicked.connect(lambda: set_reset_btn_int(12, tag_list, UI.btn_SpindleRobo_abrir))
-    UI.btn_SpindleRobo_fechar.clicked.connect(lambda: set_reset_btn_int(13, tag_list, UI.btn_SpindleRobo_fechar))
-    UI.btn_SpindleRobo_manut.clicked.connect(lambda: set_reset_btn_int(14, tag_list, UI.btn_SpindleRobo_manut))
+    UI.btn_SpindleRobo_abrir.pressed.connect(spindle_on)
+    UI.btn_SpindleRobo_abrir.released.connect(spindle_off)
+
+    # UI.btn_SpindleRobo_abrir.clicked.connect(lambda: set_reset_button(12, UI.btn_SpindleRobo_abrir))
+
+    UI.btn_SpindleRobo_manut.clicked.connect(lambda: set_reset_btn_int(13, tag_list, UI.btn_SpindleRobo_manut))
     UI.btn_SpindleRobo_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
     )
+
+def spindle_on():
+    global UI, tag_list, write_thread
+    tag_name = tag_list[12][0]
+    try:
+        worker_pressed = Worker_Pressed_WriteTags(tag_name, 1)
+        write_thread.start(worker_pressed, priority=0)
+        UI.btn_SpindleRobo_abrir.setStyleSheet(checked_button_style)
+    except Exception as e:
+        print(e, "Erro no ligar spindle")
+        UI.btn_SpindleRobo_abrir.setStyleSheet(base_button_style)
+
+def spindle_off():
+    global UI, tag_list, write_thread
+    tag_name = tag_list[12][0]
+    try:
+        worker_pressed = Worker_Pressed_WriteTags(tag_name, 0)
+        write_thread.start(worker_pressed, priority=0)
+        UI.btn_SpindleRobo_abrir.setStyleSheet(base_button_style)
+    except Exception as e:
+        print(e, "Erro no ligar spindle")
+        UI.btn_SpindleRobo_abrir.setStyleSheet(checked_button_style)
+
+def set_reset_button(i: int, button: QPushButton):
+    global UI, tag_list, write_thread
+    tag_name = tag_list[i][0]
+    value = tag_list[i][1]
+    try:
+        worker_toggle = Worker_ToggleBtnValue(tag_name, value, button)
+        write_thread.start(worker_toggle, priority=0)
+    except Exception as e:
+        print(e, "botão de manutenção falhou")
 
 def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
     """
@@ -61,8 +103,18 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
     global UI
     UI.btn_move_home.clicked.connect(
         lambda: dialog.show_dialog("MoveHome",
-                                   "Cuidado, você vai movimentar o robô para aposição inicial, "
+                                   "Cuidado! Você vai movimentar o robô para a posição inicial, "
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
+    UI.btn_check_utool.clicked.connect(
+        lambda: dialog.show_dialog("CheckUTOOL",
+                                   "Cuidado! Você vai movimentar o robô para ajustar a User Tool. "
+                                   "Para isso, o robô deve estar em Home, caso contrário, não funcionará.")
+    )
+    UI.btn_change_tool.clicked.connect(
+        lambda: dialog.show_dialog("ChangeTool",
+                                   "Cuidado! Você vai movimentar o robô para trocar sua ferramenta. "
+                                   "Para isso, o robô deve estar em Home, caso contrário, não funcionará.")
+    )
 
 def UpdateCylA(tag):
     """
@@ -78,6 +130,11 @@ def UpdateCylA(tag):
         change_status(tag["InSenRet"], UI.sts_port_aber_a)
         change_status(tag["OutExtCyl"], UI.sts_plc_port_fech_a)
         change_status(tag["OutRetCyl"], UI.sts_plc_port_aber_a)
+
+        if tag["MaintTest"]:
+            UI.btn_DoorSideA_manut.setStyleSheet(checked_button_style)
+        else:
+            UI.btn_DoorSideA_manut.setStyleSheet(base_button_style)
     except:
         pass
 
@@ -95,6 +152,11 @@ def UpdateCylB(tag):
         change_status(tag["InSenRet"], UI.sts_port_aber_b)
         change_status(tag["OutExtCyl"], UI.sts_plc_port_fech_b)
         change_status(tag["OutRetCyl"], UI.sts_plc_port_aber_b)
+
+        if tag["MaintTest"]:
+            UI.btn_DoorSideB_manut.setStyleSheet(checked_button_style)
+        else:
+            UI.btn_DoorSideB_manut.setStyleSheet(base_button_style)
     except:
         pass
 
@@ -110,6 +172,11 @@ def UpdateCylSpindle(tag):
         UI.lbl_TimeMaint_Spindle.setText(str(tag["TimeMaintTest"]))
         change_status(tag["OutExtCyl"], UI.sts_plc_liga_spindle)
         change_status(tag["OutRetCyl"], UI.sts_plc_desl_spindle)
+
+        if tag["MaintTest"]:
+            UI.btn_SpindleRobo_manut.setStyleSheet(checked_button_style)
+        else:
+            UI.btn_SpindleRobo_manut.setStyleSheet(base_button_style)
     except:
         pass
 
@@ -139,10 +206,43 @@ def UpdateHMI(tag):
     try:
         if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
             UI.btn_move_home.setEnabled(True)
-            UI.btn_check_uf.setEnabled(True)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_check_uf.setEnabled(True)
+                UI.btn_check_utool.setEnabled(True)
+                UI.btn_change_tool.setEnabled(True)
+                UI.btn_SpindleRobo_abrir.setEnabled(True)
+                UI.btn_SpindleRobo_manut.setEnabled(True)
         else:
             UI.btn_move_home.setEnabled(False)
-            UI.btn_check_uf.setEnabled(False)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_check_uf.setEnabled(False)
+                UI.btn_check_utool.setEnabled(False)
+                UI.btn_change_tool.setEnabled(False)
+                UI.btn_SpindleRobo_abrir.setEnabled(False)
+                UI.btn_SpindleRobo_manut.setEnabled(False)
+
+        if tag["SideA"]["Manual"]:
+            UI.btn_DoorSideA_abrir.setEnabled(True)
+            UI.btn_DoorSideA_fechar.setEnabled(True)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideA_manut.setEnabled(True)
+        else:
+            UI.btn_DoorSideA_abrir.setEnabled(False)
+            UI.btn_DoorSideA_fechar.setEnabled(False)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideA_manut.setEnabled(False)
+
+        if tag["SideB"]["Manual"]:
+            UI.btn_DoorSideB_abrir.setEnabled(True)
+            UI.btn_DoorSideB_fechar.setEnabled(True)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideB_manut.setEnabled(True)
+        else:
+            UI.btn_DoorSideB_abrir.setEnabled(False)
+            UI.btn_DoorSideB_fechar.setEnabled(False)
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_DoorSideB_manut.setEnabled(False)
+
     except Exception:
         error_buttons()
 
@@ -159,6 +259,9 @@ def error_buttons():
     UI.btn_termina_check_uf.setEnabled(False)
     UI.btn_termina_check_uf.setText("Erro")
     UI.btn_termina_check_uf.setStyleSheet(btn_error_style)
+    UI.btn_check_utool.setEnabled(False)
+    UI.btn_check_utool.setStyleSheet(btn_error_style)
+    UI.btn_check_utool.setText("Erro")
 
     UI.btn_DoorSideA_abrir.setEnabled(False)
     UI.btn_DoorSideA_abrir.setText("Erro")
@@ -183,9 +286,6 @@ def error_buttons():
     UI.btn_SpindleRobo_abrir.setEnabled(False)
     UI.btn_SpindleRobo_abrir.setText("Erro")
     UI.btn_SpindleRobo_abrir.setStyleSheet(btn_error_style)
-    UI.btn_SpindleRobo_fechar.setEnabled(False)
-    UI.btn_SpindleRobo_fechar.setText("Erro")
-    UI.btn_SpindleRobo_fechar.setStyleSheet(btn_error_style)
     UI.btn_SpindleRobo_manut.setEnabled(False)
     UI.btn_SpindleRobo_manut.setText("Erro")
     UI.btn_SpindleRobo_manut.setStyleSheet(btn_error_style)
@@ -208,4 +308,4 @@ def UpdateRobotInput(tag):
 def UpdateTagsList(tags):
     global UI, tag_list
     tag_list = tags
-    UI.lbl_return_plc_barcode.setText(tags[15][1])
+    UI.lbl_return_plc_barcode.setText(tags[14][1])

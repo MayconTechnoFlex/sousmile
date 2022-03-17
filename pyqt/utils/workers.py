@@ -2,10 +2,12 @@
 
 import time, traceback, sys
 
+from typing import Union
+
 from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
-from utils.ctrl_plc import read_tags, read_multiples, write_tag
+from utils.ctrl_plc import read_tags, read_multiples, write_tag, write_multiples
 from utils.Tags import *
 
 from utils.serial_ports import get_my_port, set_my_port
@@ -531,7 +533,7 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
     Worker thread
     """
 
-    def __init__(self, tag: str, value, widget: QWidget):
+    def __init__(self, tag: str, value, widget: QWidget = None):
         super(Worker_WriteTags, self).__init__()
         self.tag = tag
         self.value = value
@@ -541,12 +543,33 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
     def run(self):
         QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
-            self.widget.setEnabled(False)
+            if self.widget:
+                self.widget.setEnabled(False)
             write_tag(self.tag, self.value)
         except Exception as e:
             print(f'{e} - Write Tags Worker')
         finally:
-            self.widget.setEnabled(True)
+            if self.widget:
+                self.widget.setEnabled(True)
+        QApplication.restoreOverrideCursor()
+
+class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
+    """
+    Worker thread
+    """
+
+    def __init__(self, tag: str, value):
+        super(Worker_Pressed_WriteTags, self).__init__()
+        self.tag = tag
+        self.value = value
+
+    @pyqtSlot()
+    def run(self):
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        try:
+            write_tag(self.tag, self.value)
+        except Exception as e:
+            print(f'{e} - Write Tags Worker')
         QApplication.restoreOverrideCursor()
 
 class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
@@ -590,14 +613,16 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                         self.code_size = len(self.info)
                         if self.code_size > 4:
                             readed_code = self.info[2:(self.code_size - 3)]
+                            print("-- code readed")
+                            # write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
+                            # print("-- writed to plc")
                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
                                                      "Connected": self.device_connected})
-                            write_tag("BarCodeReader.Data", readed_code)
-                            write_tag("BarCodeReader.ReadCompete", True)
-                            time.sleep(3)
+                            time.sleep(1)
+                            # write_tag("BarCodeReader.ReadCompete", False)
+                            # print("-- read completed false")
                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
                                                      "Connected": self.device_connected})
-                            write_tag("BarCodeReader.ReadCompete", False)
                 except SerialException:
                     print(f"Dispotivo desconectado da porta {self.port}")
                     self.device.close()
@@ -609,5 +634,30 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
                     self.device_connected = False
             else:
                 self.create_device()
-            self.signal.result.emit({"Connected": self.device_connected})
+            try:
+                self.signal.result.emit({"Connected": self.device_connected})
+            except RuntimeError as e:
+                print("Erro de execução no worker do leitor de código de barras: ", e)
 
+class Worker_ToggleBtnValue(QRunnable, WorkerParent):
+    def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget, timeout = 5):
+        super(Worker_ToggleBtnValue, self).__init__()
+        self.tag = tag
+        self.actual_value = actual_value
+        self.widget = widget
+        self.timeout = timeout
+
+    @pyqtSlot()
+    def run(self):
+        self.widget.setEnabled(False)
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        if self.actual_value == 0:
+            self.widget.setEnabled(False)
+            write_tag(self.tag, 1)
+            self.widget.setEnabled(False)
+            time.sleep(1)
+            write_tag(self.tag, 0)
+        else:
+            raise ValueError("Valor atual da tag invalido")
+        QApplication.restoreOverrideCursor()
+        self.widget.setEnabled(True)

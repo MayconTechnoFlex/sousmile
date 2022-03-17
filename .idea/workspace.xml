@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bc2bfb3-9178-49e8-8c37-28f0494edea4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pyqt/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyqt/utils/serial_ports.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyqt/utils/serial_ports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sousmile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sousmile.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,18 +22,17 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/pyqt" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/dialogs/login.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/utils/Tags.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/utils/serial_ports.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/screens/in_out.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/screens/home.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/utils/workers.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/dialogs/login.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pyqt/utils/gui_functions.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pyqt/main.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,12 +49,36 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="ReaderModeSettings">
+    <option name="showLigatures" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Maycon\TechnoFlex\Projetos\TP RN Robotics\CR967 - Sousmile\Programas\sousmile\pyqt\ui_py" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="CreateExe" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="sousmile" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CreateExe.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="db_users" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sousmile" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,7 +100,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="sousmile" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -99,7 +123,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.CreateExe" />
         <item itemvalue="Python.db_users" />
       </list>
     </recent_temporary>

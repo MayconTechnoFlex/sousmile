@@ -1,11 +1,12 @@
 """Dialog for confirm or cancel an action"""
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThreadPool
 from PyQt5.QtWidgets import QDialog
 
 from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 from utils.Types import ActionsToConfirm
 from utils.write_thread import Thread_Dialogs_NoLineEdit
+from utils.workers import Worker_ToggleBtnValue
 from utils.ctrl_plc import write_tag
 
 class ConfirmationDialog(QDialog):
@@ -20,7 +21,9 @@ class ConfirmationDialog(QDialog):
 
         self.ACTION_TO_CONFIRM: ActionsToConfirm = ""
 
-        self.thread: Thread_Dialogs_NoLineEdit
+        self.thread = QThreadPool()
+        self.worker: Worker_ToggleBtnValue
+        self.thread_dialog: Thread_Dialogs_NoLineEdit
 
     def show_dialog(self, action_to_confirm: ActionsToConfirm, text: str = ""):
         """
@@ -35,7 +38,11 @@ class ConfirmationDialog(QDialog):
             self.ui.description_text.setText(text)
         self.buttons_of_dialog()
         if action_to_confirm == "MoveHome":
-            self.thread = Thread_Dialogs_NoLineEdit(self, "HMI.btnGoHome")
+            self.worker = Worker_ToggleBtnValue("HMI.btnGoHome", 0, self.ui.btn_confirm)
+        elif action_to_confirm == "CheckUTOOL":
+            self.worker = Worker_ToggleBtnValue("HMI.btn_AdjustUTOOL", 0, self.ui.btn_confirm)
+        elif action_to_confirm == "ChangeTool":
+            self.worker = Worker_ToggleBtnValue("HMI.btn_ChangeTool", 0, self.ui.btn_confirm)
         elif action_to_confirm == "":
             raise Exception("Nenhuma ação foi passada para confirmação")
         self.exec_()
@@ -48,12 +55,14 @@ class ConfirmationDialog(QDialog):
         """Called when the "Confirmar" button is pressed"""
         action = self.ACTION_TO_CONFIRM
         try:
-            if action == "MoveHome":
-                self.thread.start()
-            elif action == "":
+            if action:
+                self.thread.start(self.worker)
+            else:
                 raise Exception("Nenhuma ação foi passada")
         except Exception as e:
             print(f"{e} - Erro na ação")
+        finally:
+            self.close()
 
     def cancel_action(self):
         """Called when the "Cancelar" button is pressed"""

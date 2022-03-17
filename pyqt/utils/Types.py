@@ -4,7 +4,7 @@ from typing import Literal, Union, TypedDict
 
 # Literals
 TagTypes = Literal["string", "int", "float", ""]
-ActionsToConfirm = Literal["MoveHome", ""]
+ActionsToConfirm = Literal["MoveHome", "CheckUTOOL", "ChangeTool", ""]
 
 # Unions
 PLCReturn = Union[str, int, float, list, dict, Exception]

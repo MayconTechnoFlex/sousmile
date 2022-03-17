@@ -14,8 +14,6 @@ from ui_py.ui_gui_final import Ui_MainWindow
 from utils.workers import *
 from security.functions import UpdateUserAccess
 
-from utils.Types import *
-
 from utils.serial_ports import get_serial_ports, set_my_port
 
 from screens import home, robot, alarms,\
@@ -76,7 +74,7 @@ class RnRobotics_Gui(QMainWindow):
         ###################################################################
         # Workers #########################################################
         ###################################################################
-        self.worker = Worker()
+        # self.worker = Worker()
         self.worker_data_ctrl_a1 = Worker_Data_Ctrl_A1()
         self.worker_data_ctrl_a2 = Worker_Data_Ctrl_A2()
         self.worker_data_ctrl_b1 = Worker_Data_Ctrl_B1()
@@ -123,7 +121,7 @@ class RnRobotics_Gui(QMainWindow):
         ###################################################################
         # Start the threads ###############################################
         ###################################################################
-        self.threadpool_0.start(self.worker)
+        # self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
         self.threadpool_2.start(self.worker_data_ctrl_a2)
         self.threadpool_3.start(self.worker_data_ctrl_b1)
@@ -241,8 +239,6 @@ class RnRobotics_Gui(QMainWindow):
                 maint.UpdateHMI(tag)
             elif self.ui.stackedWidget.currentIndex() == 6:
                 eng.UpdateHMI(tag)
-
-
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 6:
@@ -317,7 +313,7 @@ class RnRobotics_Gui(QMainWindow):
     def stop_threads(self):
         print("Finalizando Threads")
         try:
-            self.worker.stop()
+            # self.worker.stop()
             self.worker_data_ctrl_a1.stop()
             self.worker_data_ctrl_a2.stop()
             self.worker_data_ctrl_b1.stop()
@@ -333,6 +329,7 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_alarm.stop()
             self.worker_inOut.stop()
             self.worker_user.stop()
+            self.worker_read_tags.stop()
             self.worker_barcode_scanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")

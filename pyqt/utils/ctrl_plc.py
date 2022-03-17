@@ -55,3 +55,11 @@ def read_multiples(tag_list: List[str]) -> Union[List[Tag], Exception]:
     except Exception as e:
         print(f"{e} - Error on plc communication")
         return e
+
+def write_multiples(*tags: Tag) -> Union[None, Exception]:
+    try:
+        with LogixDriver(IP) as plc:
+            plc.write(*tags)
+    except Exception as e:
+        print(f"{e} - Error on plc communication")
+        return e

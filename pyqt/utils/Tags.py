@@ -17,7 +17,6 @@ Tag_List = [
     "Cyl_DoorSideB.ManRet",
     "Cyl_DoorSideB.ManExt",
     "Cyl_DoorSideB.MaintTest",
-    "Cyl_SpindleRobo.ManRet",
     "Cyl_SpindleRobo.ManExt",
     "Cyl_SpindleRobo.MaintTest",
     "BarCodeReader.Data"
