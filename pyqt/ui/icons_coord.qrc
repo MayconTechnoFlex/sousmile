@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>../assets/baseline_cloud_done_black_48dp.png</file>
+    <file>../assets/baseline_cloud_queue_black_48dp.png</file>
+    <file>../assets/baseline_settings_suggest_black_48dp.png</file>
+    <file>../assets/rn.ico</file>
+    <file>../assets/sharp_home_black_48dp.png</file>
+  </qresource>
+</RCC>

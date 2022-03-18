@@ -577,7 +577,11 @@ background-color: white;
              </size>
             </property>
             <property name="text">
-             <string>PushButton</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/newPrefix/Design/icons/black-24dp patern/2x/outline_pattern_black_24dp.png</normaloff>:/newPrefix/Design/icons/black-24dp patern/2x/outline_pattern_black_24dp.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -13536,7 +13540,7 @@ QPushButton:disabled{background-color:#ababab; color: grey}
 border: 2px solid #bcbcbc; padding: 0; margin:0
 }
 
-#line, #line_22, #line_190, #line_181, #line_192, #line_194,
+#line_202, #line_22, #line_190, #line_181, #line_192, #line_194,
 #line_197, #line_198, #line_200, #line_201, #line_199, #line_196, #line_193,
 #line_195, #line_191 {border: 2px solid #b0b0b0; margin:0; padding:0}
 
@@ -13644,6 +13648,13 @@ background-color: white
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="Line" name="line_202">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
                 </widget>
                </item>
@@ -13967,7 +13978,7 @@ QTableWidget {
                         <enum>QAbstractItemView::SelectRows</enum>
                        </property>
                        <attribute name="horizontalHeaderVisible">
-                        <bool>true</bool>
+                        <bool>false</bool>
                        </attribute>
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
@@ -13979,7 +13990,7 @@ QTableWidget {
                         <number>20</number>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
-                        <bool>true</bool>
+                        <bool>false</bool>
                        </attribute>
                        <column>
                         <property name="text">
@@ -15898,6 +15909,9 @@ valores</string>
                 </widget>
                </item>
               </layout>
+              <zorder>frame_362</zorder>
+              <zorder>frame_365</zorder>
+              <zorder>line_191</zorder>
              </widget>
             </item>
            </layout>
