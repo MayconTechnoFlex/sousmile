@@ -1,7 +1,7 @@
 import traceback
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from pycomm3.exceptions import CommError
-from utils.coord_filter.data.comm_plc import read_multiple
+from utils.coord_filter.data.comm_plc import read_multiple, write_tags
 
 from utils.coord_filter.functions.serial_ports import get_my_port, set_my_port
 from serial import *
@@ -190,6 +190,7 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent):
                             time.sleep(1)
                             self.signal.result.emit({"DataPy": self.code_read, "ReadComplete": False,
                                                      "Connected": self.device_connected})
+                            write_tags("BarCodeReader.Data", self.code_read)
 
                 except SerialException:
                     print(f"Dispotivo desconectado da porta {self.port}")

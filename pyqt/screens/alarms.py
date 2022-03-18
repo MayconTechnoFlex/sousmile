@@ -106,6 +106,7 @@ def delete_alarm_row(alarm_id: int):
         alarm_id = number of the alarm
     """
     listWidget: QTableWidget = UI.alarm_list_widget
+    print(alarm_id)
 
     itemFound = listWidget.findItems(f"Alarme {alarm_id}:", Qt.MatchContains)
     listWidget.setCurrentItem(itemFound[0])

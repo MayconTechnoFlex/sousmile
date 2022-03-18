@@ -302,8 +302,7 @@ class RnRobotics_Gui(QMainWindow):
             eng.UpdateRobotOutput(tag)
     ########################################################################
     def update_BarCode(self, tag):
-        if self.ui.stackedWidget.currentIndex() == 5:
-            maint.UpdateBarCode(tag)
+        maint.UpdateBarCode(tag)
 
         if tag["Connected"]:
             self.ui.btn_config_barcode.setEnabled(False)
@@ -353,6 +352,7 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_inOut.stop()
             self.worker_user.stop()
             self.worker_read_tags.stop()
+            self.coord_filter.stop_threads()
             # self.worker_barcode_scanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
