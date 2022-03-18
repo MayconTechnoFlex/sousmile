@@ -9,10 +9,10 @@ from dialogs.checkUF import CheckUserFrame
 
 from security.db_users import connected_username
 
-from utils.gui_functions import change_status, set_reset_btn_int
+from utils.functions.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import btn_error_style
-from utils.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags
+from utils.workers.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags
 from utils.btn_style import base_button_style, checked_button_style
 
 UI: Ui_MainWindow

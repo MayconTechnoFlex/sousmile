@@ -3,7 +3,7 @@
 from typing import Union
 from PyQt5.QtCore import QThreadPool
 from PyQt5.QtWidgets import QWidget, QLabel
-from utils.workers import Worker_WriteTags, Worker_ReadTags
+from utils.workers.workers import Worker_WriteTags, Worker_ReadTags
 #############################################
 # Workers and trheads
 #############################################

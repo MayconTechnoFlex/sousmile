@@ -6,7 +6,7 @@ from dialogs.barcode_config import BarCodeDialog
 
 from PyQt5.QtWidgets import QApplication
 
-from utils.gui_functions import set_reset_btn_int
+from utils.functions.gui_functions import set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import *
 

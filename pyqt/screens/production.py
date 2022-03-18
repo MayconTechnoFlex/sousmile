@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication
 
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.ctrl_plc import write_tag
+from utils.functions.ctrl_plc import write_tag
 from utils.btn_style import btn_error_style
 
 UI: Ui_MainWindow

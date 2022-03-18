@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import Qt
 from ui_py.ui_barCode_dialog import Ui_Dialog
 
-from utils.serial_ports import get_serial_ports, set_my_port
+from utils.functions.serial_ports import get_serial_ports, set_my_port
 
 class BarCodeDialog(QDialog):
     """

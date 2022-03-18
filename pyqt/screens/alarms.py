@@ -1,14 +1,13 @@
 """Module with all functions used on the AlarmScreen of the application"""
 
 from datetime import datetime
-from typing import List
 
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from PyQt5.QtCore import Qt
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.alarm import AlarmDialog
-from utils.alarm_control import *
+from utils.functions.alarm_control import *
 
 UI: Ui_MainWindow
 DIALOG: AlarmDialog

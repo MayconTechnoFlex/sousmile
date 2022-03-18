@@ -5,9 +5,9 @@ from PyQt5.QtWidgets import QDialog
 
 from ui_py.confirm_dialog_ui import Ui_ConfirmDialog
 from utils.Types import ActionsToConfirm
-from utils.write_thread import Thread_Dialogs_NoLineEdit
-from utils.workers import Worker_ToggleBtnValue
-from utils.ctrl_plc import write_tag
+from utils.workers.write_thread import Thread_Dialogs_NoLineEdit
+from utils.workers.workers import Worker_ToggleBtnValue
+
 
 class ConfirmationDialog(QDialog):
     """

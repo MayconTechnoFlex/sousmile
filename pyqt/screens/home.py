@@ -7,11 +7,11 @@ from PyQt5.QtWidgets import QLabel, QApplication, QPushButton
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
-from utils.gui_functions import set_reset_btn_int
+from utils.functions.gui_functions import set_reset_btn_int
 from utils.btn_style import *
-from utils.gui_functions import change_status
+from utils.functions.gui_functions import change_status
 
-from utils.workers import Worker_ToggleBtnValue
+from utils.workers.workers import Worker_ToggleBtnValue
 
 UI: Ui_MainWindow
 

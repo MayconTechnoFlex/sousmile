@@ -4,7 +4,7 @@ from pycomm3 import CommError
 from PyQt5.QtCore import QThread, Qt
 from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit
 
-from utils.ctrl_plc import write_tag, read_tags
+from utils.functions.ctrl_plc import write_tag, read_tags
 from utils.Types import TagTypes
 
 class Thread_Dialogs_NoLineEdit(QThread):

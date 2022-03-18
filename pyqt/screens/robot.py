@@ -5,7 +5,7 @@ from dialogs.altera_valor import AlteraValorDialog
 
 from PyQt5.QtWidgets import QApplication
 
-from utils.gui_functions import change_status, set_reset_btn_int
+from utils.functions.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import *
 

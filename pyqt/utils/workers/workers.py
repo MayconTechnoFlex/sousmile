@@ -7,13 +7,8 @@ from typing import Union
 from pycomm3.exceptions import CommError
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
-from utils.ctrl_plc import read_tags, read_multiples, write_tag, write_multiples
+from utils.functions.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.Tags import *
-
-from utils.serial_ports import get_my_port, set_my_port
-
-import serial
-from serial import SerialException
 
 sleep_time = 0.8
 stop_time = 0.2

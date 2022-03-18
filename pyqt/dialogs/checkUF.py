@@ -3,8 +3,8 @@ from PyQt5.QtCore import QRegExp, Qt, QThreadPool
 from PyQt5.QtGui import QRegExpValidator
 
 from ui_py.ui_check_uf import Ui_Dialog
-from utils.write_thread import Thread_LineEdit
-from utils.workers import Worker_ToggleBtnValue
+from utils.workers.write_thread import Thread_LineEdit
+from utils.workers.workers import Worker_ToggleBtnValue
 
 class CheckUserFrame(QDialog):
     def __init__(self, parents=None):

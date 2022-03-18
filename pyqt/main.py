@@ -5,16 +5,19 @@
 ##############################################################
 ### IMPORTS
 ##############################################################
+import sys
+
 from PyQt5.QtCore import QThreadPool
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QApplication
 
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.workers import *
 from security.functions import UpdateUserAccess
 
-from utils.serial_ports import get_serial_ports, set_my_port
+from utils.functions.serial_ports import get_serial_ports, set_my_port
+
+from utils.workers.workers import *
 
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
