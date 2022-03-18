@@ -1,5 +1,6 @@
 import os
 import time
+from PyQt5.QtCore import QThreadPool
 from utils.coord_filter.data.comm_plc import read_tags, write_tags
 from datetime import date, datetime
 import pandas as pd
@@ -29,6 +30,7 @@ data_list_pos: List[int] = []
 data_list_info: List[str] = []
 #######################################
 
+my_thread_create_table = QThreadPool()
 
 def data_to_plc(data_ctrl: dict,
                 tag_cut_depth: str,
@@ -41,7 +43,8 @@ def data_to_plc(data_ctrl: dict,
                 local_file: str,
                 ui: Ui_MainWindow,
                 scene,
-                code: str):
+                code: str,
+                create_table):
     """
     :param data_ctrl: DataCtrl_(Lado do corte (A1, A2, B1, B2))
     :param tag_cut_depth: Tag com a profundidade do corte
@@ -170,12 +173,14 @@ def data_to_plc(data_ctrl: dict,
         ########################################################################################
 
         my_worker_create_table = Worker_CreateTable()
-        my_worker_create_table.signal.result.connect(ui.create_table)
-        ui.my_thread_create_table.start(my_worker_create_table)
+        my_worker_create_table.signal.result.connect(lambda: create_table(data_list_pos, data_list_X, data_list_Y,
+                                                                          data_list_Z, data_list_C, data_list_D,
+                                                                          data_list_info))
+        my_thread_create_table.start(my_worker_create_table)
 
     except Exception as e:
         # print python error
         print(e)
 
         with LogixDriver('192.168.1.10') as plc:
-            plc.write((f'{data_ctrl}.Error', True), (f'{data_ctrl}.Status', 'Erro na Transferencia de Dados'))
+            plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))

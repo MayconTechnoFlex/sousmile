@@ -16,7 +16,7 @@ from utils.coord_filter.workers_coord_filter import *
 
 class CoordFilter:
     def __init__(self, parents=None, q_widget=None):
-        self.ui = parents
+        self.ui: Ui_MainWindow = parents
         self.trigger_a1: bool = False
         self.trigger_a2: bool = False
         self.trigger_b1: bool = False
@@ -107,7 +107,7 @@ class CoordFilter:
         # If we don't set this on creation, we can set it later with .setSceneRect
         self.scene = QGraphicsScene(-70, -41, 140, 82)
         self.ui.graphicsView.setScene(self.scene)
-        self.ui.graphicsView.scale(3, 3)
+        self.ui.graphicsView.scale(5, 5)
         self.ui.tbl_positions.horizontalHeader().setVisible(False)
         self.ui.tbl_positions.verticalHeader().setVisible(False)
 
@@ -207,12 +207,20 @@ class CoordFilter:
         self.code_read, self.side_string = list_bcscanner
 
         if self.side_string == "A1":
+            if not self.code_read == "A1":
+                self.ui.lbl_ProdCode_A1.setText(self.code_read)
             self.trigger_a1 = True
         elif self.side_string == "A2":
+            if not self.code_read == "A2":
+                self.ui.lbl_ProdCode_A2.setText(self.code_read)
             self.trigger_a2 = True
         elif self.side_string == "B1":
+            if not self.code_read == "B1":
+                self.ui.lbl_ProdCode_B1.setText(self.code_read)
             self.trigger_b1 = True
         elif self.side_string == "B2":
+            if not self.code_read == "B2":
+                self.ui.lbl_ProdCode_B2.setText(self.code_read)
             self.trigger_b2 = True
 
     def plc_routine(self, configpontos, data_ctrl_a1, data_ctrl_a2, data_ctrl_b1, data_ctrl_b2, HMI):
@@ -225,6 +233,9 @@ class CoordFilter:
             ##############################################
             try:
                 if (self.trigger_a1 or data_ctrl_a1["Trigger"]) and not self.transferring_data:
+                    if data_ctrl_a1["Trigger"]:
+                        self.code_read = self.ui.lbl_ProdCode_A1.text()
+
                     self.transferring_data = True
                     data_to_plc(data_ctrl_a1,
                                 'CutDepthA1',
@@ -237,7 +248,8 @@ class CoordFilter:
                                 self.ui.le_file_path.text(),
                                 self.ui,
                                 self.scene,
-                                self.code_read)
+                                self.code_read,
+                                self.create_table)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A1')
             ##############################################
@@ -245,6 +257,9 @@ class CoordFilter:
             ##############################################
             try:
                 if (self.trigger_a2 or data_ctrl_a2["Trigger"]) and not self.transferring_data:
+                    if data_ctrl_a2["Trigger"]:
+                        self.code_read = self.ui.lbl_ProdCode_A2.text()
+
                     self.transferring_data = True
                     data_to_plc(data_ctrl_a2,
                                 'CutDepthA2',
@@ -257,7 +272,8 @@ class CoordFilter:
                                 self.ui.le_file_path.text(),
                                 self.ui,
                                 self.scene,
-                                self.code_read)
+                                self.code_read,
+                                self.create_table)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A2')
             ##############################################
@@ -265,6 +281,9 @@ class CoordFilter:
             ##############################################
             try:
                 if (self.trigger_b1 or data_ctrl_b1["Trigger"]) and not self.transferring_data:
+                    if data_ctrl_b1["Trigger"]:
+                        self.code_read = self.ui.lbl_ProdCode_B1.text()
+
                     self.transferring_data = True
                     data_to_plc(data_ctrl_b1,
                                 'CutDepthB1',
@@ -277,7 +296,8 @@ class CoordFilter:
                                 self.ui.le_file_path.text(),
                                 self.ui,
                                 self.scene,
-                                self.code_read)
+                                self.code_read,
+                                self.create_table)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B1')
             ##############################################
@@ -285,6 +305,9 @@ class CoordFilter:
             ##############################################
             try:
                 if (self.trigger_b2 or data_ctrl_b2["Trigger"]) and not self.transferring_data:
+                    if data_ctrl_b2["Trigger"]:
+                        self.code_read = self.ui.lbl_ProdCode_B2.text()
+
                     self.transferring_data = True
                     data_to_plc(data_ctrl_b2,
                                 'CutDepthB2',
@@ -297,7 +320,8 @@ class CoordFilter:
                                 self.ui.le_file_path.text(),
                                 self.ui,
                                 self.scene,
-                                self.code_read)
+                                self.code_read,
+                                self.create_table)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B2')
 
@@ -355,7 +379,15 @@ class CoordFilter:
             self.test_signal = False
             #######################################
 
-    def create_table(self, signal):
+    def create_table(self, l_pos, l_pos_x, l_pos_y, l_pos_z, l_pos_c, l_pos_d, l_pos_info):
+        self.list_pos = l_pos
+        self.list_pos_x = l_pos_x
+        self.list_pos_y = l_pos_y
+        self.list_pos_z = l_pos_z
+        self.list_pos_c = l_pos_c
+        self.list_pos_d = l_pos_d
+        self.list_pos_info = l_pos_info
+
         for n in range(self.ui.tbl_positions.rowCount()):
             self.ui.tbl_positions.removeRow(n)
 
@@ -365,6 +397,7 @@ class CoordFilter:
 
         self.scene.clear()
         self.ui.graphicsView.scene().clear()
+        self.ui.graphicsView.rotate(180)
         self.ui.graphicsView.update()
 
         for i in range(len(self.list_pos)):

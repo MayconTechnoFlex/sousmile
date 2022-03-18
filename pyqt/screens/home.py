@@ -72,10 +72,10 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     """
     global UI, tag_list
     UI = receive_ui
-    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string"))
-    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string"))
-    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string"))
-    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string"))
+    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string", UI, "A1"))
+    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string", UI, "A2"))
+    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string", UI, "B1"))
+    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string", UI, "B2"))
 
     UI.btn_trans_dados_man_a1.clicked.connect(lambda: transfer_data("A1", UI.btn_trans_dados_man_a1))
     UI.btn_trans_dados_man_a2.clicked.connect(lambda: transfer_data("A2", UI.btn_trans_dados_man_a2))
@@ -105,7 +105,7 @@ def UpdateDataCtrl_A1(tag):
     """
     global UI
     try:
-        UI.lbl_ProdCode_A1.setText(tag['ProdCode'])
+        # UI.lbl_ProdCode_A1.setText(tag['ProdCode'])
         UI.lbl_FileNumPos_A1.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_A1.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_A1.setText(str(tag['IndexPos']))
@@ -122,7 +122,7 @@ def UpdateDataCtrl_A2(tag):
     """
     global UI
     try:
-        UI.lbl_ProdCode_A2.setText(tag['ProdCode'])
+        # UI.lbl_ProdCode_A2.setText(tag['ProdCode'])
         UI.lbl_FileNumPos_A2.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_A2.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_A2.setText(str(tag['IndexPos']))
@@ -139,7 +139,7 @@ def UpdateDataCtrl_B1(tag):
     """
     global UI
     try:
-        UI.lbl_ProdCode_B1.setText(tag['ProdCode'])
+        # UI.lbl_ProdCode_B1.setText(tag['ProdCode'])
         UI.lbl_FileNumPos_B1.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_B1.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_B1.setText(str(tag['IndexPos']))
@@ -156,7 +156,7 @@ def UpdateDataCtrl_B2(tag):
     """
     global UI
     try:
-        UI.lbl_ProdCode_B2.setText(tag['ProdCode'])
+        # UI.lbl_ProdCode_B2.setText(tag['ProdCode'])
         UI.lbl_FileNumPos_B2.setText(str(tag['FileNumPos']))
         UI.lbl_NumPos_B2.setText(str(tag['NumPos']))
         UI.lbl_IndexPos_B2.setText(str(tag['IndexPos']))
