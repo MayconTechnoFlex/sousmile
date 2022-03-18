@@ -1,9 +1,9 @@
 <RCC>
   <qresource prefix="icons">
-    <file>../assets/baseline_cloud_done_black_48dp.png</file>
-    <file>../assets/baseline_cloud_queue_black_48dp.png</file>
-    <file>../assets/baseline_settings_suggest_black_48dp.png</file>
-    <file>../assets/rn.ico</file>
-    <file>../assets/sharp_home_black_48dp.png</file>
+    <file>../assets/icons_coord/sharp_folder_black_48dp.png</file>
+    <file>../assets/icons_coord/sharp_cloud_black_48dp.png</file>
+    <file>../assets/icons_coord/sharp_dvr_black_48dp.png</file>
+    <file>../assets/icons_coord/sharp_insert_drive_file_black_48dp.png</file>
+    <file>../assets/icons_coord/sharp_note_add_black_48dp.png</file>
   </qresource>
 </RCC>

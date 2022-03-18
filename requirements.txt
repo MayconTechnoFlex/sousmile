@@ -1,0 +1,5 @@
+pandas==1.4.1
+matplotlib==3.5.1
+pyserial==3.5
+pyqt5==5.15.4
+pycomm3==1.2.6

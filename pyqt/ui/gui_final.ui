@@ -576,12 +576,15 @@ background-color: white;
               <height>80</height>
              </size>
             </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="text">
              <string/>
             </property>
             <property name="icon">
              <iconset resource="icons.qrc">
-              <normaloff>:/newPrefix/Design/icons/black-24dp patern/2x/outline_pattern_black_24dp.png</normaloff>:/newPrefix/Design/icons/black-24dp patern/2x/outline_pattern_black_24dp.png</iconset>
+              <normaloff>:/newPrefix/assets/icons/icons/2x/outline_pattern_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/outline_pattern_black_48dp.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -884,7 +887,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -13536,11 +13539,7 @@ QPushButton:disabled{background-color:#ababab; color: grey}
           </widget>
           <widget class="QWidget" name="coord_filter">
            <property name="styleSheet">
-            <string notr="true">#centralwidget{
-border: 2px solid #bcbcbc; padding: 0; margin:0
-}
-
-#line_202, #line_22, #line_190, #line_181, #line_192, #line_194,
+            <string notr="true">#line_202, #line_22, #line_190, #line_181, #line_192, #line_194,
 #line_197, #line_198, #line_200, #line_201, #line_199, #line_196, #line_193,
 #line_195, #line_191 {border: 2px solid #b0b0b0; margin:0; padding:0}
 
@@ -13653,6 +13652,18 @@ background-color: white
                </item>
                <item>
                 <widget class="Line" name="line_202">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>2</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>2</height>
+                  </size>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -14213,7 +14224,7 @@ QTableWidget {
                               <string/>
                              </property>
                              <property name="pixmap">
-                              <pixmap resource="../../../../../Software - Filtro de Pontos/sousmile-coord-filter/coord_filter_to_plc/ui/icons.qrc">:/icons/assets/sharp_cloud_black_48dp.png</pixmap>
+                              <pixmap resource="icons_coord.qrc">:/icons/assets/icons_coord/sharp_cloud_black_48dp.png</pixmap>
                              </property>
                              <property name="scaledContents">
                               <bool>true</bool>
@@ -14272,7 +14283,7 @@ QTableWidget {
                               <string/>
                              </property>
                              <property name="pixmap">
-                              <pixmap resource="../../../../../Software - Filtro de Pontos/sousmile-coord-filter/coord_filter_to_plc/ui/icons.qrc">:/icons/assets/sharp_insert_drive_file_black_48dp.png</pixmap>
+                              <pixmap resource="icons_coord.qrc">:/icons/assets/icons_coord/sharp_folder_black_48dp.png</pixmap>
                              </property>
                              <property name="scaledContents">
                               <bool>true</bool>
@@ -14630,7 +14641,7 @@ QTableWidget {
                                  <string/>
                                 </property>
                                 <property name="pixmap">
-                                 <pixmap resource="../../../../../Software - Filtro de Pontos/sousmile-coord-filter/coord_filter_to_plc/ui/icons.qrc">:/icons/assets/sharp_dvr_black_48dp.png</pixmap>
+                                 <pixmap resource="icons_coord.qrc">:/icons/assets/icons_coord/sharp_dvr_black_48dp.png</pixmap>
                                 </property>
                                 <property name="scaledContents">
                                  <bool>true</bool>
@@ -14689,7 +14700,7 @@ QTableWidget {
                                  <string/>
                                 </property>
                                 <property name="pixmap">
-                                 <pixmap resource="../../../../../Software - Filtro de Pontos/sousmile-coord-filter/coord_filter_to_plc/ui/icons.qrc">:/icons/assets/sharp_insert_drive_file_black_48dp.png</pixmap>
+                                 <pixmap resource="icons_coord.qrc">:/icons/assets/icons_coord/sharp_insert_drive_file_black_48dp.png</pixmap>
                                 </property>
                                 <property name="scaledContents">
                                  <bool>true</bool>
@@ -31109,7 +31120,7 @@ QPushButton:pressed{background-color:#dfc200 }</string>
  <resources>
   <include location="icons.qrc"/>
   <include location="images.qrc"/>
-  <include location="../../../../../Software - Filtro de Pontos/sousmile-coord-filter/coord_filter_to_plc/ui/icons.qrc"/>
+  <include location="icons_coord.qrc"/>
  </resources>
  <connections/>
 </ui>
