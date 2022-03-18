@@ -7,16 +7,17 @@ from PyQt5.QtCore import QThreadPool, QRectF, Qt, QRegExp
 from PyQt5.QtGui import QPen, QRegExpValidator
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.coord_filter.data.plc import data_to_plc
+from utils.coord_filter.data.plc import Worker_Data_to_PLC
 from utils.coord_filter.qt_utils import qt_create_table
 from utils.coord_filter.test.test import test_file
 from utils.coord_filter.workers_coord_filter import *
+
 ########################################
 
 
 class CoordFilter:
-    def __init__(self, parents=None, q_widget=None):
-        self.ui: Ui_MainWindow = parents
+    def __init__(self, ui=None, q_widget=None):
+        self.ui: Ui_MainWindow = ui
         self.trigger_a1: bool = False
         self.trigger_a2: bool = False
         self.trigger_b1: bool = False
@@ -31,15 +32,18 @@ class CoordFilter:
         self.my_thread_test = QThreadPool()
         self.my_thread_bcscanner = QThreadPool()
         self.my_thread_create_table = QThreadPool()
+        self.my_thread_data_to_plc = QThreadPool()
 
         self.my_worker_plc = Worker_PLC()
         self.my_worker_test = Worker_Test()
         self.my_worker_bcscanner = Worker_BarCodeScanner()
+        self.my_worker_data_to_plc: Worker_Data_to_PLC
 
         self.my_worker_plc.signal_worker.result_multiples.connect(self.plc_routine)
         self.my_worker_plc.signal_worker.error.connect(self.runnable_error_plc)  # signal when we have a plc comm error
         self.my_worker_test.signal_worker_test.result.connect(self.start_test)
-        self.my_worker_test.signal_worker_test.error.connect(self.runnable_error_test)  # signal when we have a plc comm error
+        self.my_worker_test.signal_worker_test.error.connect(
+            self.runnable_error_test)  # signal when we have a plc comm error
         self.my_worker_bcscanner.signal.result_list.connect(self.bar_code_scanner_result)
         #####################################################################
         # Button call function to start test of filter positions with a file
@@ -108,6 +112,7 @@ class CoordFilter:
         self.scene = QGraphicsScene(-70, -41, 140, 82)
         self.ui.graphicsView.setScene(self.scene)
         self.ui.graphicsView.scale(5, 5)
+        self.ui.graphicsView.rotate(180)
         self.ui.tbl_positions.horizontalHeader().setVisible(False)
         self.ui.tbl_positions.verticalHeader().setVisible(False)
 
@@ -237,19 +242,20 @@ class CoordFilter:
                         self.code_read = self.ui.lbl_ProdCode_A1.text()
 
                     self.transferring_data = True
-                    data_to_plc(data_ctrl_a1,
-                                'CutDepthA1',
-                                HMI['EnableLog'],
-                                HMI['NumPosMax'],
-                                configpontos,
-                                'DataCtrl_A1',
-                                self.ui.rb_cloud_file.isChecked(),
-                                self.ui.rb_local_file.isChecked(),
-                                self.ui.le_file_path.text(),
-                                self.ui,
-                                self.scene,
-                                self.code_read,
-                                self.create_table)
+                    self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_a1,
+                                                                    'CutDepthA1',
+                                                                    HMI['EnableLog'],
+                                                                    HMI['NumPosMax'],
+                                                                    configpontos,
+                                                                    'DataCtrl_A1',
+                                                                    self.ui.rb_cloud_file.isChecked(),
+                                                                    self.ui.rb_local_file.isChecked(),
+                                                                    self.ui.le_file_path.text(),
+                                                                    self.ui,
+                                                                    self.scene,
+                                                                    self.code_read,
+                                                                    self.create_table)
+                    self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A1')
             ##############################################
@@ -261,19 +267,20 @@ class CoordFilter:
                         self.code_read = self.ui.lbl_ProdCode_A2.text()
 
                     self.transferring_data = True
-                    data_to_plc(data_ctrl_a2,
-                                'CutDepthA2',
-                                HMI['EnableLog'],
-                                HMI['NumPosMax'],
-                                configpontos,
-                                'DataCtrl_A2',
-                                self.ui.rb_cloud_file.isChecked(),
-                                self.ui.rb_local_file.isChecked(),
-                                self.ui.le_file_path.text(),
-                                self.ui,
-                                self.scene,
-                                self.code_read,
-                                self.create_table)
+                    self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_a2,
+                                                                    'CutDepthA2',
+                                                                    HMI['EnableLog'],
+                                                                    HMI['NumPosMax'],
+                                                                    configpontos,
+                                                                    'DataCtrl_A2',
+                                                                    self.ui.rb_cloud_file.isChecked(),
+                                                                    self.ui.rb_local_file.isChecked(),
+                                                                    self.ui.le_file_path.text(),
+                                                                    self.ui,
+                                                                    self.scene,
+                                                                    self.code_read,
+                                                                    self.create_table)
+                    self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A2')
             ##############################################
@@ -285,19 +292,21 @@ class CoordFilter:
                         self.code_read = self.ui.lbl_ProdCode_B1.text()
 
                     self.transferring_data = True
-                    data_to_plc(data_ctrl_b1,
-                                'CutDepthB1',
-                                HMI['EnableLog'],
-                                HMI['NumPosMax'],
-                                configpontos,
-                                'DataCtrl_B1',
-                                self.ui.rb_cloud_file.isChecked(),
-                                self.ui.rb_local_file.isChecked(),
-                                self.ui.le_file_path.text(),
-                                self.ui,
-                                self.scene,
-                                self.code_read,
-                                self.create_table)
+
+                    self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_b1,
+                                                                    'CutDepthB1',
+                                                                    HMI['EnableLog'],
+                                                                    HMI['NumPosMax'],
+                                                                    configpontos,
+                                                                    'DataCtrl_B1',
+                                                                    self.ui.rb_cloud_file.isChecked(),
+                                                                    self.ui.rb_local_file.isChecked(),
+                                                                    self.ui.le_file_path.text(),
+                                                                    self.ui,
+                                                                    self.scene,
+                                                                    self.code_read,
+                                                                    self.create_table)
+                    self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B1')
             ##############################################
@@ -309,19 +318,20 @@ class CoordFilter:
                         self.code_read = self.ui.lbl_ProdCode_B2.text()
 
                     self.transferring_data = True
-                    data_to_plc(data_ctrl_b2,
-                                'CutDepthB2',
-                                HMI['EnableLog'],
-                                HMI['NumPosMax'],
-                                configpontos,
-                                'DataCtrl_B2',
-                                self.ui.rb_cloud_file.isChecked(),
-                                self.ui.rb_local_file.isChecked(),
-                                self.ui.le_file_path.text(),
-                                self.ui,
-                                self.scene,
-                                self.code_read,
-                                self.create_table)
+                    self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_b2,
+                                                                    'CutDepthB2',
+                                                                    HMI['EnableLog'],
+                                                                    HMI['NumPosMax'],
+                                                                    configpontos,
+                                                                    'DataCtrl_B2',
+                                                                    self.ui.rb_cloud_file.isChecked(),
+                                                                    self.ui.rb_local_file.isChecked(),
+                                                                    self.ui.le_file_path.text(),
+                                                                    self.ui,
+                                                                    self.scene,
+                                                                    self.code_read,
+                                                                    self.create_table)
+                    self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B2')
 
@@ -352,13 +362,15 @@ class CoordFilter:
             ###############################################
             print("Inicio da execução do teste de filtros")
             ###############################################
+            print("--------------", self.list_pos_x)
             test_file(file_path, self.list_pos_x, self.list_pos_y, self.list_pos_z, self.list_pos_c, self.list_pos_d,
                       self.list_pos, self.list_pos_info, self.limit_d, self.limit_c, self.limit_dist_xyz, self.limit_h,
                       self.limit_p)
+            print("--------------", self.list_pos_x)
             #######################################
 
             my_worker_create_table = Worker_CreateTable()
-            my_worker_create_table.signal.result.connect(self.create_table)
+            my_worker_create_table.signal.result.connect(lambda: self.create_table())
             self.my_thread_create_table.start(my_worker_create_table)
 
             #######################################
@@ -379,14 +391,16 @@ class CoordFilter:
             self.test_signal = False
             #######################################
 
-    def create_table(self, l_pos, l_pos_x, l_pos_y, l_pos_z, l_pos_c, l_pos_d, l_pos_info):
-        self.list_pos = l_pos
-        self.list_pos_x = l_pos_x
-        self.list_pos_y = l_pos_y
-        self.list_pos_z = l_pos_z
-        self.list_pos_c = l_pos_c
-        self.list_pos_d = l_pos_d
-        self.list_pos_info = l_pos_info
+    def create_table(self, l_pos=None, l_pos_x=None, l_pos_y=None, l_pos_z=None,
+                     l_pos_c=None, l_pos_d=None, l_pos_info=None):
+        if l_pos is not None:
+            self.list_pos = l_pos
+            self.list_pos_x = l_pos_x
+            self.list_pos_y = l_pos_y
+            self.list_pos_z = l_pos_z
+            self.list_pos_c = l_pos_c
+            self.list_pos_d = l_pos_d
+            self.list_pos_info = l_pos_info
 
         for n in range(self.ui.tbl_positions.rowCount()):
             self.ui.tbl_positions.removeRow(n)
@@ -397,7 +411,6 @@ class CoordFilter:
 
         self.scene.clear()
         self.ui.graphicsView.scene().clear()
-        self.ui.graphicsView.rotate(180)
         self.ui.graphicsView.update()
 
         for i in range(len(self.list_pos)):
