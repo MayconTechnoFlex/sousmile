@@ -262,6 +262,9 @@ def error_buttons():
     UI.btn_check_utool.setEnabled(False)
     UI.btn_check_utool.setStyleSheet(btn_error_style)
     UI.btn_check_utool.setText("Erro")
+    UI.btn_change_tool.setEnabled(False)
+    UI.btn_change_tool.setStyleSheet(btn_error_style)
+    UI.btn_change_tool.setText("Erro")
 
     UI.btn_DoorSideA_abrir.setEnabled(False)
     UI.btn_DoorSideA_abrir.setText("Erro")

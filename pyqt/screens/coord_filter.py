@@ -109,7 +109,7 @@ class CoordFilter:
         #######################################
         # Defining a scene rect of 400x200, with it's origin at 0,0.
         # If we don't set this on creation, we can set it later with .setSceneRect
-        self.scene = QGraphicsScene(-70, -41, 140, 82)
+        self.scene = QGraphicsScene(0, 0, 0, 0)
         self.ui.graphicsView.setScene(self.scene)
         self.ui.graphicsView.scale(5, 5)
         self.ui.graphicsView.rotate(180)

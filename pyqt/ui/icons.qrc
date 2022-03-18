@@ -1,29 +1,23 @@
 <RCC>
-  <qresource prefix="newPrefix">
-    <file>../assets/icons/icons/2x/sharp_check_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_close_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/outline_pattern_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_precision_manufacturing_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/outline_arrow_back_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/outline_arrow_drop_up_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/outline_power_settings_new_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_account_circle_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_app_settings_alt_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_build_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_density_small_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_engineering_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_equalizer_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_feedback_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_home_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_language_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_login_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_logout_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_notification_important_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_poll_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_settings_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_speed_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_undo_black_48dp.png</file>
-    <file>../assets/icons/icons/2x/sharp_warning_amber_black_48dp.png</file>
+  <qresource prefix="icons">
+    <file>../assets/icons/sharp_check_black_48dp.png</file>
+    <file>../assets/icons/sharp_close_black_48dp.png</file>
+    <file>../assets/icons/sharp_cloud_black_48dp.png</file>
+    <file>../assets/icons/sharp_dvr_black_48dp.png</file>
+    <file>../assets/icons/sharp_folder_black_48dp.png</file>
+    <file>../assets/icons/sharp_insert_drive_file_black_48dp.png</file>
+    <file>../assets/icons/outline_arrow_back_black_48dp.png</file>
+    <file>../assets/icons/outline_arrow_drop_down_black_48dp.png</file>
+    <file>../assets/icons/outline_arrow_drop_up_black_48dp.png</file>
+    <file>../assets/icons/outline_pattern_black_48dp.png</file>
+    <file>../assets/icons/sharp_account_circle_black_48dp.png</file>
+    <file>../assets/icons/sharp_build_black_48dp.png</file>
+    <file>../assets/icons/sharp_engineering_black_48dp.png</file>
+    <file>../assets/icons/sharp_home_black_48dp.png</file>
+    <file>../assets/icons/sharp_login_black_48dp.png</file>
+    <file>../assets/icons/sharp_logout_black_48dp.png</file>
+    <file>../assets/icons/sharp_poll_black_48dp.png</file>
+    <file>../assets/icons/sharp_precision_manufacturing_black_48dp.png</file>
+    <file>../assets/icons/sharp_warning_amber_black_48dp.png</file>
   </qresource>
 </RCC>
