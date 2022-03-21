@@ -46,42 +46,6 @@ class WorkerSignals(QObject):
 #######################################################################################################
 # Classes funcionais
 #######################################################################################################
-class Worker(QRunnable, WorkerParent):
-    """Worker para multiplos sinais"""
-
-    def __init__(self, *args):
-        super(Worker, self).__init__()
-        self.signal_local1In = WorkerSignals()
-        self.signal_local1Out = WorkerSignals()
-        self.signal_local2In = WorkerSignals()
-        self.running = True
-
-    @pyqtSlot()
-    def run(self):
-        while self.running:
-            try:
-                local_1_in = read_tags("Local:1:I.Data")
-                local_1_out = read_tags("Local:1:O.Data")
-                local_2_in = read_tags("Local:2:I.Data")
-
-                if type(local_1_in) == CommError:
-                    traceback.print_exc()
-                    exctype, value = sys.exc_info()[:2]
-                    self.signal_local1In.error.emit((exctype, value, traceback.format_exc()))
-                    self.signal_local1Out.error.emit((exctype, value, traceback.format_exc()))
-                    self.signal_local2In.error.emit((exctype, value, traceback.format_exc()))
-                    raise Exception("connection failed")
-                else:
-                    self.signal_local1In.result.emit(local_1_in)
-                    self.signal_local1Out.result.emit(local_1_out)
-                    self.signal_local2In.result.emit(local_2_in)
-
-            except Exception as e:
-                print(f'{e} Worker - workers.py')
-                self.stop()
-                break
-            time.sleep(sleep_time)
-#######################################################################################################
 # DataCtrl
 #######################################################################################################
 class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):

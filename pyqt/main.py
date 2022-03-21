@@ -54,7 +54,6 @@ class RnRobotics_Gui(QMainWindow):
         ##################################################################
         # Thread - to update PLC values
         ##################################################################
-        # self.threadpool_0 = QThreadPool()
         self.threadpool_1 = QThreadPool()
         self.threadpool_2 = QThreadPool()
         self.threadpool_3 = QThreadPool()
@@ -71,11 +70,9 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14 = QThreadPool()
         self.threadpool_15 = QThreadPool()
         self.thread_read_tags = QThreadPool()
-        self.thread_barcode_scanner = QThreadPool()
         ###################################################################
         # Workers
         ###################################################################
-        # self.worker = Worker()
         self.worker_data_ctrl_a1 = Worker_Data_Ctrl_A1()
         self.worker_data_ctrl_a2 = Worker_Data_Ctrl_A2()
         self.worker_data_ctrl_b1 = Worker_Data_Ctrl_B1()
@@ -92,7 +89,6 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut = Worker_InOut()
         self.worker_user = Worker_User()
         self.worker_read_tags = Worker_ReadTags()
-        # self.worker_barcode_scanner = Worker_BarCodeScanner()
         ###########################################################################################
         # Connect results of the workers
         ###########################################################################################
@@ -118,11 +114,9 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
         self.worker_user.signal_user.result.connect(lambda signal: UpdateUserAccess(signal, self.ui))
         self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
-        # self.worker_barcode_scanner.signal.result.connect(self.update_BarCode)
         ###################################################################
         # Start the threads
         ###################################################################
-        # self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
         self.threadpool_2.start(self.worker_data_ctrl_a2)
         self.threadpool_3.start(self.worker_data_ctrl_b1)
@@ -139,7 +133,6 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14.start(self.worker_inOut)
         self.threadpool_15.start(self.worker_user)
         self.thread_read_tags.start(self.worker_read_tags)
-        # self.thread_barcode_scanner.start(self.worker_barcode_scanner)
         ###################################################################
         # Defining buttons of screens
         ###################################################################
@@ -177,7 +170,6 @@ class RnRobotics_Gui(QMainWindow):
         except Exception as e:
             print(e)
             time.sleep(2)
-
     ####################################################################
     # functions to navigate between screens
     ####################################################################
@@ -336,7 +328,6 @@ class RnRobotics_Gui(QMainWindow):
     def stop_threads(self):
         print("Finalizando Threads")
         try:
-            # self.worker.stop()
             self.worker_data_ctrl_a1.stop()
             self.worker_data_ctrl_a2.stop()
             self.worker_data_ctrl_b1.stop()
@@ -354,7 +345,6 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_user.stop()
             self.worker_read_tags.stop()
             self.coord_filter.stop_threads()
-            # self.worker_barcode_scanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
