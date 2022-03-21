@@ -2,8 +2,6 @@
 #######################################################################################################
 # Importações
 #######################################################################################################
-import time
-
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QDialog, QLabel

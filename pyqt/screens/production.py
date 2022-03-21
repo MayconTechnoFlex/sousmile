@@ -7,8 +7,8 @@ from PyQt5.QtWidgets import QApplication
 
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.functions.ctrl_plc import write_tag, write_multiples
-from utils.btn_style import btn_error_style
+from utils.functions.ctrl_plc import write_tag
+from utils.btn_style import setErrorButton
 #######################################################################################################
 class ThreadResetProduct(QThread):
     """Thread para reset das tags dos produtos"""
@@ -90,22 +90,10 @@ def UpdateHMI(tag):
 
         QApplication.restoreOverrideCursor()
     except:
-        UI.btn_reset_prod_a1.setStyleSheet(btn_error_style)
-        UI.btn_reset_prod_a2.setStyleSheet(btn_error_style)
-        UI.btn_reset_prod_total_a.setStyleSheet(btn_error_style)
-        UI.btn_reset_prod_b1.setStyleSheet(btn_error_style)
-        UI.btn_reset_prod_b2.setStyleSheet(btn_error_style)
-        UI.btn_reset_prod_total_b.setStyleSheet(btn_error_style)
-        UI.btn_reset_prod_a1.setText('Erro')
-        UI.btn_reset_prod_a2.setText('Erro')
-        UI.btn_reset_prod_total_a.setText('Erro')
-        UI.btn_reset_prod_b1.setText('Erro')
-        UI.btn_reset_prod_b2.setText('Erro')
-        UI.btn_reset_prod_total_b.setText('Erro')
-        UI.btn_reset_prod_a1.setEnabled(False)
-        UI.btn_reset_prod_a2.setEnabled(False)
-        UI.btn_reset_prod_total_a.setEnabled(False)
-        UI.btn_reset_prod_b1.setEnabled(False)
-        UI.btn_reset_prod_b2.setEnabled(False)
-        UI.btn_reset_prod_total_b.setEnabled(False)
+        setErrorButton(UI.btn_reset_prod_a1)
+        setErrorButton(UI.btn_reset_prod_a2)
+        setErrorButton(UI.btn_reset_prod_total_a)
+        setErrorButton(UI.btn_reset_prod_b1)
+        setErrorButton(UI.btn_reset_prod_b2)
+        setErrorButton(UI.btn_reset_prod_total_b)
 #######################################################################################################

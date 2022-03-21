@@ -142,9 +142,7 @@ def UpdateHMI(tag):
         QApplication.restoreOverrideCursor()
 
     except Exception as e:
-        UI.btn_habilita_logs.setStyleSheet(btn_error_style)
-        UI.btn_habilita_logs.setText('Erro')
-        UI.btn_habilita_logs.setEnabled(False)
+        setErrorButton(UI.btn_habilita_logs)
         print(f'{e} - engineering.UpdateHMI')
 #######################################################################################################
 def UpdateConfigPts(tag):

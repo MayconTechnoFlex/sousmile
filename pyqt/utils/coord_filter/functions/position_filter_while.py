@@ -2,7 +2,6 @@
 #######################################################################################################
 # Importações
 #######################################################################################################
-from utils.functions.ctrl_plc import read_tags
 from utils.coord_filter.functions.calc_functions import *
 from pandas.io.parsers.readers import DataFrame
 from typing import List

@@ -5,7 +5,7 @@
 import traceback
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from pycomm3.exceptions import CommError
-from utils.functions.ctrl_plc import read_multipless, write_tag
+from utils.functions.ctrl_plc import read_multiples, write_tag
 
 from utils.functions.serial_ports import get_my_port, set_my_port
 from serial import *

@@ -4,7 +4,6 @@
 #######################################################################################################
 from typing import List
 
-from utils.Tags import alarm_tag_list
 from utils.Types import AlarmDict
 #######################################################################################################
 # Definição das variáveis globais

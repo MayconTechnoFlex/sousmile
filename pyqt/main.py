@@ -15,7 +15,6 @@ from ui_py.ui_gui_final import Ui_MainWindow
 from security.functions import UpdateUserAccess
 
 from utils.functions.serial_ports import get_serial_ports, set_my_port
-
 from utils.workers.workers import *
 
 from screens import home, robot, alarms,\

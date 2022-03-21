@@ -3,7 +3,7 @@
 # Importações
 #######################################################################################################
 from typing import List
-from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QGraphicsScene, QWidget
+from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QGraphicsScene
 from PyQt5.QtCore import QThreadPool, QRectF, Qt, QRegExp
 from PyQt5.QtGui import QPen, QRegExpValidator
 from ui_py.ui_gui_final import Ui_MainWindow

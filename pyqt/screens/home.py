@@ -243,12 +243,8 @@ def UpdateHMI(tag):
     except Exception as e:
         hmi_side_a_mode_value = None
         hmi_side_b_mode_value = None
-        UI.btn_man_auto_lado_a.setStyleSheet(btn_error_style)
-        UI.btn_man_auto_lado_b.setStyleSheet(btn_error_style)
-        UI.btn_man_auto_lado_a.setText('Erro')
-        UI.btn_man_auto_lado_b.setText('Erro')
-        UI.btn_man_auto_lado_a.setEnabled(False)
-        UI.btn_man_auto_lado_b.setEnabled(False)
+        setErrorButton(UI.btn_man_auto_lado_a)
+        setErrorButton(UI.btn_man_auto_lado_b)
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value

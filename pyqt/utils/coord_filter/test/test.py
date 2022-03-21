@@ -4,8 +4,6 @@
 #######################################################################################################
 from utils.coord_filter.functions.detect_error import *
 from utils.coord_filter.functions import position_filter_test
-import matplotlib.pyplot as plt
-from datetime import date, datetime
 from typing import List
 #######################################################################################################
 # Função
