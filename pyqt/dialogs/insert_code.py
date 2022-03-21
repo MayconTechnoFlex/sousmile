@@ -1,4 +1,8 @@
-"""Dialog for insert code manually in the HomeScreen"""
+"""Dialog para inserir o código manualmente na tela Home"""
+#######################################################################################################
+# Importações
+#######################################################################################################
+from typing import Literal
 
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
@@ -9,12 +13,11 @@ from ui_py.ui_gui_final import Ui_MainWindow
 from ui_py.ui_cod_dialog_win import Ui_Dialog
 from utils.workers.write_thread import Thread_LineEdit
 from utils.Types import TagTypes
-
+#######################################################################################################
 
 class InsertCodeDialog(QDialog):
-    """
-    Dialog for insert code manually in the HomeScreen
-    """
+    """Dialog para inserir o código manualmente na tela Home"""
+
     def __init__(self, parents=None):
         super(InsertCodeDialog, self).__init__(parents)
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
@@ -28,18 +31,19 @@ class InsertCodeDialog(QDialog):
         self.validator = QRegExpValidator(regex)
 
         self.thread: Thread_LineEdit
-
+    ###################################################################################################
     def closeEvent(self, event) -> None:
-        """Activated when the Dialog is closed"""
+        """Ativado quando o dialog é fechado"""
         self.ui.txt_code.clear()
-
-    def show_dialog(self, tag: str, tag_type: TagTypes, ui_main: Ui_MainWindow, side):
+    ###################################################################################################
+    def show_dialog(self, tag: str, tag_type: TagTypes, ui_main: Ui_MainWindow, side: Literal["A1", "A2", "B1", "B2"]):
         """
-        Pop up the dialog in the screen
+        Mostra o dialog na tela
 
-        Params:
-            tag: the PLC tag that the value of LineEdit will change
-            tag_type = the value's type that will be sent to the PLC
+        :param tag: Tag do CLP que o valor do QLineEdit vai alterar
+        :param tag_type: O tipo de valor que a tag pode receber
+        :param ui_main: Ui da tela principal
+        :param side: Lado que receberá o código
         """
         self.TAG_INDEX = tag
         self.TAG_TYPE = tag_type
@@ -49,11 +53,10 @@ class InsertCodeDialog(QDialog):
         self.side = side
         self.set_button()
         self.exec_()
-
+    ###################################################################################################
     def insert_code(self):
         try:
             if self.ui.txt_code.text():
-                # self.thread.start()
                 if self.side == "A1":
                     self.ui_main.lbl_ProdCode_A1.setText(self.ui.txt_code.text())
                 elif self.side == "A2":
@@ -68,7 +71,8 @@ class InsertCodeDialog(QDialog):
                 raise Exception("Campo vazio")
         except Exception as e:
             print(f"{e} - insert_code - InsertCodeDialog")
-
+    ###################################################################################################
     def set_button(self):
-        """Set the button of the dialog"""
+        """Define os botões do dialog"""
         self.ui.btn_insert_code_man.clicked.connect(self.insert_code)
+#######################################################################################################

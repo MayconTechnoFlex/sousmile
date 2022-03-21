@@ -1,8 +1,13 @@
+"""Função para detecção e filtro de erros"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 import pandas as pd
 from pandas.io.parsers.readers import TextFileReader
 from utils.coord_filter.functions.calc_functions import *
-
-
+#######################################################################################################
+# Funções
+#######################################################################################################
 def find_error_filter(data: TextFileReader):
     """
     Calcula a distancia entre um ponto e os seus próximos 25 pontos para ver se a distancia entre o
@@ -34,6 +39,4 @@ def find_error_filter(data: TextFileReader):
     print('Foram removidas', len(data) - len(new_data), 'linhas')
 
     return new_df
-
-
-
+#######################################################################################################

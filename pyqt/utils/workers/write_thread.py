@@ -1,14 +1,24 @@
-"""Threads for write on PLC from Dialogs"""
-
+"""Threads para escrever no CLP através de dialog"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from pycomm3 import CommError
 from PyQt5.QtCore import QThread, Qt
 from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit
 
 from utils.functions.ctrl_plc import write_tag, read_tags
 from utils.Types import TagTypes
-
+#######################################################################################################
+# Threads
+#######################################################################################################
 class Thread_Dialogs_NoLineEdit(QThread):
     def __init__(self, dialog: QDialog, tag_name: str):
+        """
+        Escreve no CLP 1 caso esteja escrito 0 e vice-versa
+
+        :param dialog: Dialog que executou a thread
+        :param tag_name: String com o nome da tag
+        """
         super(Thread_Dialogs_NoLineEdit, self).__init__()
         self.dialog = dialog
         self.tag_name = tag_name
@@ -31,14 +41,21 @@ class Thread_Dialogs_NoLineEdit(QThread):
             QApplication.restoreOverrideCursor()
             self.dialog.setEnabled(True)
             self.dialog.close()
-
-
+#######################################################################################################
 class Thread_LineEdit(QThread):
-    def __init__(self, tag_name: str, dialog: QDialog, widget: QLineEdit, data_type: TagTypes = "string"):
+    def __init__(self, tag_name: str, dialog: QDialog, lineEdit: QLineEdit, data_type: TagTypes = "string"):
+        """
+        Escreve o valor do LineEdit no CLP
+
+        :param tag_name: String com o nome da tag
+        :param dialog: Dialog que executou a thread
+        :param lineEdit: LineEdit do dialog
+        :param data_type: Tipo de dado que será enviado para o CLP
+        """
         super(Thread_LineEdit, self).__init__()
         self.tag_name = tag_name
         self.dialog = dialog
-        self.widget = widget
+        self.lineEdit = lineEdit
         self.data_type = data_type
 
     def run(self):
@@ -47,11 +64,11 @@ class Thread_LineEdit(QThread):
 
         try:
             if self.data_type == "string":
-                data = str(self.widget.text())
+                data = str(self.lineEdit.text())
             elif self.data_type == "int":
-                data = int(self.widget.text())
+                data = int(self.lineEdit.text())
             elif self.data_type == "float":
-                data = float(self.widget.text())
+                data = float(self.lineEdit.text())
             else:
                 raise Exception("Tipo incorreto foi passado")
         except Exception as e:
@@ -68,10 +85,11 @@ class Thread_LineEdit(QThread):
         except Exception as e:
             print(f"{e} - Thread_LineEdit")
         finally:
-            self.widget.clear()
+            self.lineEdit.clear()
             self.dialog.close()
 
             QApplication.restoreOverrideCursor()
 
             self.dialog.setEnabled(True)
             self.finished.emit()
+#######################################################################################################

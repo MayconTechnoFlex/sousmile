@@ -1,5 +1,7 @@
-"""Workers for actualize GUI with PLC Information"""
-
+"""Workers para atualização da aplicação com dados do CLP"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 import time, traceback, sys
 
 from typing import Union
@@ -9,38 +11,43 @@ from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QApplication
 from utils.functions.ctrl_plc import read_tags, read_multiples, write_tag
 from utils.Tags import *
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
 sleep_time = 0.8
 stop_time = 0.2
-
+#######################################################################################################
+# Classes Base
+#######################################################################################################
 class WorkerParent:
-    """Class for shared functions of the workers"""
+    """Classe compartilhada entre Workers"""
     def __init__(self):
         super(WorkerParent, self).__init__()
         self.running = True
 
     def stop(self):
-        """Stops thread"""
+        """Para o Worker"""
         self.running = False
         time.sleep(stop_time)
-
+#######################################################################################################
 class WorkerSignals(QObject):
     """
-    Defines the signals available from a running worker thread.
-    Supported signals are:
+    Define os sinais disponiveis para um Running Worker.
 
-    error
+    Os sinais suportados são:
+
+    error:
         tuple (exctype, value, traceback.format_exc() )
-    result
+    result:
         object data returned from processing, anything
     """
     error = pyqtSignal(tuple)
     result = pyqtSignal(object)
-
+#######################################################################################################
+# Classes funcionais
+#######################################################################################################
 class Worker(QRunnable, WorkerParent):
-    """
-    Worker thread for multiple signals
-    """
+    """Worker para multiplos sinais"""
 
     def __init__(self, *args):
         super(Worker, self).__init__()
@@ -74,11 +81,11 @@ class Worker(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
+# DataCtrl
+#######################################################################################################
 class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "DataCtrl_A1" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_A1, self).__init__()
@@ -103,11 +110,9 @@ class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "DataCtrl_A2" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_A2, self).__init__()
@@ -132,11 +137,10 @@ class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "DataCtrl_B1" do CLP"""
+
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_B1, self).__init__()
@@ -161,11 +165,10 @@ class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "DataCtrl_B2" do CLP"""
+
 
     def __init__(self, *args):
         super(Worker_Data_Ctrl_B2, self).__init__()
@@ -190,11 +193,11 @@ class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
+# HMI
+#######################################################################################################
 class Worker_HMI(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "HMI" do CLP"""
 
     def __init__(self, *args):
         super(Worker_HMI, self).__init__()
@@ -219,11 +222,11 @@ class Worker_HMI(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
+# Config pontos e Cyl
+#######################################################################################################
 class Worker_Config_Pts(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "ConfigPontos" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Config_Pts, self).__init__()
@@ -248,11 +251,9 @@ class Worker_Config_Pts(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Cyl_Door_A(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "Cyl_DoorSideA" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Cyl_Door_A, self).__init__()
@@ -277,11 +278,9 @@ class Worker_Cyl_Door_A(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Cyl_Door_B(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "Cyl_DoorSideB" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Cyl_Door_B, self).__init__()
@@ -306,11 +305,9 @@ class Worker_Cyl_Door_B(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Cyl_Spindle(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "Cyl_SpindleRobo" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Cyl_Spindle, self).__init__()
@@ -335,11 +332,11 @@ class Worker_Cyl_Spindle(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
+# Robô
+#######################################################################################################
 class Worker_Robot_Inputs(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "Robo.Input" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Robot_Inputs, self).__init__()
@@ -364,11 +361,9 @@ class Worker_Robot_Inputs(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_Robot_Outputs(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "Robo.Output" do CLP"""
 
     def __init__(self, *args):
         super(Worker_Robot_Outputs, self).__init__()
@@ -393,11 +388,9 @@ class Worker_Robot_Outputs(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_IndexRobotPos(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados da tag "IndexRobotPos" do CLP"""
 
     def __init__(self, *args):
         super(Worker_IndexRobotPos, self).__init__()
@@ -422,11 +415,12 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
+# Tags List
+#######################################################################################################
 class Worker_Alarms(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados do CLP referentes às tags na TagList de Alarmes"""
+
     def __init__(self):
         super(Worker_Alarms, self).__init__()
         self.signal_alarm = WorkerSignals()
@@ -449,11 +443,10 @@ class Worker_Alarms(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_InOut(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados do CLP referentes às tags na TagList de Entradas e Saídas (InOut)"""
+
     def __init__(self):
         super(Worker_InOut, self).__init__()
         self.signal_inOut = WorkerSignals()
@@ -476,11 +469,10 @@ class Worker_InOut(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
 class Worker_User(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para verificar conexão do usuário"""
+
     def __init__(self):
         super(Worker_User, self).__init__()
         self.signal_user = WorkerSignals()
@@ -494,11 +486,10 @@ class Worker_User(QRunnable, WorkerParent):
                 time.sleep(0.2)
             except Exception as e:
                 print(f'{e} - User worker')
-
+#######################################################################################################
 class Worker_ReadTags(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para receber dados do CLP referentes às tags na TagList Geral, levando esses dados à diversos locais"""
+
     def __init__(self):
         super(Worker_ReadTags, self).__init__()
         self.signal_ReadTags = WorkerSignals()
@@ -522,13 +513,18 @@ class Worker_ReadTags(QRunnable, WorkerParent):
                 self.stop()
                 break
             time.sleep(sleep_time)
-
+#######################################################################################################
+# Escrita de Tags
+#######################################################################################################
 class Worker_WriteTags(QRunnable, WorkerParent, QObject):
-    """
-    Worker thread
-    """
-
     def __init__(self, tag: str, value, widget: QWidget = None):
+        """
+        Worker para escrever dados no CLP
+
+        :param tag: String da Tag que será escrita
+        :param value: Valor a ser escrito
+        :param widget: (opcional) Widget a ser bloqueado enquanto é escrito no CLP
+        """
         super(Worker_WriteTags, self).__init__()
         self.tag = tag
         self.value = value
@@ -547,13 +543,15 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
             if self.widget:
                 self.widget.setEnabled(True)
         QApplication.restoreOverrideCursor()
-
+#######################################################################################################
 class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
-
     def __init__(self, tag: str, value):
+        """
+        Worker para escrever dados no CLP enquanto um botão é pressionado
+
+        :param tag: String da Tag que será escrita
+        :param value: Valor a ser escrito
+        """
         super(Worker_Pressed_WriteTags, self).__init__()
         self.tag = tag
         self.value = value
@@ -566,81 +564,20 @@ class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
         except Exception as e:
             print(f'{e} - Write Tags Worker')
         QApplication.restoreOverrideCursor()
-
-# class Worker_BarCodeScanner(QRunnable, WorkerParent, QObject):
-#     """
-#     Worker thread
-#     """
-#     def __init__(self):
-#         super(Worker_BarCodeScanner, self).__init__()
-#         self.signal = WorkerSignals()
-#         self.info: str
-#         self.code: int
-#         self.running = True
-#         self.device: serial.Serial = None
-#         self.device_connected = False
-#         # self.create_device()
-#         self.port = get_my_port()
-#
-#     # def create_device(self):
-#     #     self.port = get_my_port()
-#     #     time.sleep(1)
-#     #     try:
-#     #         if self.port:
-#     #             self.device = serial.Serial(self.port, timeout=0.5)
-#     #             self.device_connected = True
-#     #             print("Dispositivo conectado")
-#     #         else:
-#     #             raise Exception("Nenhuma ou mais de uma porta serial encontrada")
-#     #     except Exception as e:
-#     #         print(e)
-#     #         time.sleep(2)
-#
-#     @pyqtSlot()
-#     def run(self):
-#         while self.running:
-#             if self.device_connected:
-#                 try:
-#                     if not self.device.isOpen():
-#                         self.device.open()
-#                     else:
-#                         self.info = str(self.device.readline())
-#                         self.code_size = len(self.info)
-#                         if self.code_size > 4:
-#                             readed_code = self.info[2:(self.code_size - 3)]
-#                             print("-- code readed")
-#                             # write_multiples(("BarCodeReader.Data", readed_code), ("BarCodeReader.ReadCompete", True))
-#                             # print("-- writed to plc")
-#                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": True,
-#                                                      "Connected": self.device_connected})
-#                             time.sleep(1)
-#                             # write_tag("BarCodeReader.ReadCompete", False)
-#                             # print("-- read completed false")
-#                             self.signal.result.emit({"DataPy": readed_code, "ReadComplete": False,
-#                                                      "Connected": self.device_connected})
-#                 except SerialException:
-#                     print(f"Dispotivo desconectado da porta {self.port}")
-#                     self.device.close()
-#                     self.device_connected = False
-#                     set_my_port("")
-#                 except Exception as e:
-#                     print(f"{e} - Worker_BarCodeScanner")
-#                     self.device.close()
-#                     self.device_connected = False
-#             else:
-#                 self.create_device()
-#             try:
-#                 self.signal.result.emit({"Connected": self.device_connected})
-#             except RuntimeError as e:
-#                 print("Erro de execução no worker do leitor de código de barras: ", e)
-
+#######################################################################################################
 class Worker_ToggleBtnValue(QRunnable, WorkerParent):
-    def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget, timeout = 5):
+    def __init__(self, tag: str, actual_value: Union[int, bool], widget: QWidget):
+        """
+        Worker para escrever 1 em uma tag e escrever 0 logo em seguida
+
+        :param tag: String da Tag que será escrita
+        :param actual_value: Valor atual da tag
+        :param widget: Widget a ser bloqueado enquanto é escrito no CLP
+        """
         super(Worker_ToggleBtnValue, self).__init__()
         self.tag = tag
         self.actual_value = actual_value
         self.widget = widget
-        self.timeout = timeout
 
     @pyqtSlot()
     def run(self):
@@ -656,3 +593,4 @@ class Worker_ToggleBtnValue(QRunnable, WorkerParent):
             raise ValueError("Valor atual da tag invalido")
         QApplication.restoreOverrideCursor()
         self.widget.setEnabled(True)
+#######################################################################################################

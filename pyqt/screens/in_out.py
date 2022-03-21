@@ -1,25 +1,37 @@
-"""Module with all functions used on the InOutScreen of the application"""
-
+"""Módulo com todas as funções para a tela Entradas e Saídas"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from typing import Callable
 from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.functions.gui_functions import change_status
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
 UI: Ui_MainWindow
-
-def define_buttons(receive_ui: Ui_MainWindow, change_screen_func: Callable[[], None]):
+#######################################################################################################
+# Funções de Definição
+#######################################################################################################
+def define_buttons(ui_main: Ui_MainWindow, change_screen_func: Callable[[], None]):
     """
-    Define the buttons of the screen
+    Define os botões da tela
 
-    Params:
-        receive_ui = main ui of the application
-        change_screen_func = function to back the screen to maintenance
+    :param main_ui: Ui da aplicação
+    :param change_screen_func: Função para retornar à tela anterior (Manutenção)
     """
     global UI
-    UI = receive_ui
+    UI = ui_main
     UI.btn_volta_manut_screen.clicked.connect(change_screen_func)
-
+#######################################################################################################
+# Funções de Atualização
+#######################################################################################################
 def UpdateInOut(tag):
+    """
+    Atualiza os Status da tela com os valores do CLP
+
+    :param tag: Tag lida do CLP
+    """
     global UI
     try:
         change_status(tag[0][1], UI.sts_start_a)
@@ -66,3 +78,4 @@ def UpdateInOut(tag):
         change_status(tag[39][1], UI.sts_ent_reserv_07)
     except Exception as e:
         print(e)
+#######################################################################################################

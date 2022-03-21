@@ -1,16 +1,21 @@
+"""Módulo para controle da Porta do Leitor de Código de Barras"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 import serial
 from typing import List
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
 PORT = ""
-
-
+#######################################################################################################
+# Funções de Controle
+#######################################################################################################
 def get_serial_ports() -> List[str]:
-    """ Lists serial port names
+    """
+    Lista de portas seriais
 
-        :raises EnvironmentError:
-            On unsupported or unknown platforms
-        :returns:
-            A list of the serial ports available on the system
+    :return: Lista das portas seriais disponíveis
     """
     ports = ['COM%s' % (i + 1) for i in range(256)]
 
@@ -24,29 +29,27 @@ def get_serial_ports() -> List[str]:
         except Exception as e:
             pass
     return result
-
-
+#######################################################################################################
 def set_my_port(port: str):
     """
-    Set's the port in the module variable
+    Define a porta na variável do módulo
 
-    Params:
-        port = the port string
+    :param port: String da Porta
     """
     global PORT
     PORT = port
-
+#######################################################################################################
 def get_my_port() -> str:
     """
-    Returns the port from the module variable
+    Retorna a porta da variável do módulo
 
-    Return:
-        the port string
+    :return: String da Porta
     """
     global PORT
     return PORT
-
-
+#######################################################################################################
+# Verifica se há apenas uma porta e já configura ela
+#######################################################################################################
 if len(get_serial_ports()) == 1:
     set_my_port(get_serial_ports()[0])
-
+#######################################################################################################

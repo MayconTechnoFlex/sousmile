@@ -1,28 +1,17 @@
-"""
-
-Modulo de fórmula para filtrar pontos
-
-"""
-
-from utils.coord_filter.data.comm_plc import read_tags
+"""Modulo para Filtrar Pontos de arquivo de teste"""
+#######################################################################################################
+# Importações
+#######################################################################################################
+from utils.functions.ctrl_plc import read_tags
 from utils.coord_filter.functions.calc_functions import *
 from pandas.io.parsers.readers import DataFrame
 from typing import List
-
-
-def pos_filter(in_data: DataFrame,
-                    lx: List[float],
-                    ly: List[float],
-                    lz: List[float],
-                    lc: List[float],
-                    ld: List[float],
-                    l_pos: List[int],
-                    l_info: List[str],
-                    var_limit_D: float,
-                    var_limit_C: float,
-                    var_limit_XYZ: float,
-                    var_limit_h: float,
-                    var_p: float):
+#######################################################################################################
+# Função
+#######################################################################################################
+def pos_filter(in_data: DataFrame, lx: List[float], ly: List[float], lz: List[float],
+               lc: List[float], ld: List[float], l_pos: List[int], l_info: List[str],
+               var_limit_D: float, var_limit_C: float, var_limit_XYZ: float, var_limit_h: float, var_p: float):
     """
     Função para filtrar pontos e salvar em listas individuais
 
@@ -228,3 +217,4 @@ def pos_filter(in_data: DataFrame,
                 l_pos.append(l_pos[_])
                 l_info.append(f'Ponto adicionado para terminar o ciclo')
             break
+#######################################################################################################

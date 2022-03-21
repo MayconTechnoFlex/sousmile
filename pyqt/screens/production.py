@@ -1,15 +1,17 @@
-"""Module with all functions used on the ProductionScreen of the application"""
+"""Módulo com todas as funções para a tela Produção"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from PyQt5.QtCore import QThread, Qt
 from PyQt5.QtWidgets import QApplication
 
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.functions.ctrl_plc import write_tag
+from utils.functions.ctrl_plc import write_tag, write_multiples
 from utils.btn_style import btn_error_style
-
-UI: Ui_MainWindow
-
+#######################################################################################################
 class ThreadResetProduct(QThread):
+    """Thread para reset das tags dos produtos"""
     def __init__(self, button, *tags: str):
         super(ThreadResetProduct, self).__init__()
         self.button = button
@@ -25,23 +27,27 @@ class ThreadResetProduct(QThread):
             print(e)
         self.button.setEnabled(True)
 
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
+UI: Ui_MainWindow
 resetA1: ThreadResetProduct
 resetA2: ThreadResetProduct
 resetA: ThreadResetProduct
 resetB1: ThreadResetProduct
 resetB2: ThreadResetProduct
 resetB: ThreadResetProduct
-
-def define_buttons(receive_ui: Ui_MainWindow):
+#######################################################################################################
+# Funções de Definição
+#######################################################################################################
+def define_buttons(main_ui: Ui_MainWindow):
     """
-    Define the buttons of the screen
+    Define os botões da tela
 
-    Params:
-        receive_ui = main ui of the application
+    :param main_ui: Ui da aplicação
     """
     global UI, resetA1, resetA2, resetA, resetB1, resetB2, resetB
-    UI = receive_ui
+    UI = main_ui
 
     resetA1 = ThreadResetProduct(UI.btn_reset_prod_a1, "HMI.Production.PartsDoneA1")
     resetA2 = ThreadResetProduct(UI.btn_reset_prod_a2, "HMI.Production.PartsDoneA2")
@@ -56,13 +62,14 @@ def define_buttons(receive_ui: Ui_MainWindow):
     UI.btn_reset_prod_b2.clicked.connect(resetB2.start)
     UI.btn_reset_prod_total_a.clicked.connect(resetA.start)
     UI.btn_reset_prod_total_b.clicked.connect(resetB.start)
-
+#######################################################################################################
+# Funções de Atualização
+#######################################################################################################
 def UpdateHMI(tag):
     """
-    Updates the screen's labels with the readed tag values
+    Atualiza os Labels da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from HMI
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
@@ -101,3 +108,4 @@ def UpdateHMI(tag):
         UI.btn_reset_prod_b1.setEnabled(False)
         UI.btn_reset_prod_b2.setEnabled(False)
         UI.btn_reset_prod_total_b.setEnabled(False)
+#######################################################################################################

@@ -1,26 +1,22 @@
-import os
-import time
-from PyQt5.QtCore import QThreadPool
-from utils.coord_filter.data.comm_plc import read_tags, write_tags
+"""Filtro de Coordenadas via CLP"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from datetime import date, datetime
-import pandas as pd
-from utils.coord_filter.functions import position_filter_while
-from pycomm3 import LogixDriver
-from utils.coord_filter.functions.detect_error import find_error_filter
 from typing import List
+
 import matplotlib.pyplot as plt
+import pandas as pd
+from PyQt5.QtCore import QThreadPool
+from pycomm3 import LogixDriver
 
 from ui_py.ui_gui_final import Ui_MainWindow
-from PyQt5.QtWidgets import QTableWidgetItem, QGraphicsScene
-from PyQt5.QtCore import QRectF, Qt
-from PyQt5.QtGui import QPen
-from utils.coord_filter.qt_utils import qt_create_table
-
+from utils.coord_filter.functions import position_filter_while
+from utils.coord_filter.functions.detect_error import find_error_filter
 from utils.coord_filter.workers_coord_filter import *
-
-#######################################
-# Assigning lists
-#######################################
+#######################################################################################################
+# Definição das Variáveis Globais
+#######################################################################################################
 data_list_X: List[float] = []
 data_list_Y: List[float] = []
 data_list_Z: List[float] = []
@@ -28,10 +24,9 @@ data_list_C: List[float] = []
 data_list_D: List[float] = []
 data_list_pos: List[int] = []
 data_list_info: List[str] = []
-#######################################
 
 my_thread_create_table = QThreadPool()
-
+#######################################################################################################
 class Worker_Data_to_PLC(QRunnable):
     def __init__(self,
                  data_ctrl: dict,
@@ -108,12 +103,12 @@ class Worker_Data_to_PLC(QRunnable):
         print('-Inicia tempo de tranferência')
         start = time.time()  # Inicio da contagem de tempo para a transferência de dados
 
-        write_tags(f'{data_ctrl_str}.Started', True)
+        write_tag(f'{data_ctrl_str}.Started', True)
         try:
             ##############################################################################################
             print("- Lendo arquivo...")
             data = pd.read_csv(filepath, sep=',', header=None)  # Copia o arquivo csv do caminho  -filepath
-            write_tags(f'{data_ctrl_str}.FileNumPos', len(data.index))  # Number of positions in the original file
+            write_tag(f'{data_ctrl_str}.FileNumPos', len(data.index))  # Number of positions in the original file
             ##############################################################################################
             print('- Iniciou filtro para verificar se há erros na linha de corte')
             new_data = find_error_filter(data)
@@ -229,3 +224,4 @@ class Worker_Data_to_PLC(QRunnable):
                     self.scene,
                     self.code,
                     self.create_table)
+#######################################################################################################

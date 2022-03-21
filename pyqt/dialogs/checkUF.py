@@ -1,3 +1,7 @@
+"""Dialog para chegar a UserFrame"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import QRegExp, Qt, QThreadPool
 from PyQt5.QtGui import QRegExpValidator
@@ -5,27 +9,29 @@ from PyQt5.QtGui import QRegExpValidator
 from ui_py.ui_check_uf import Ui_Dialog
 from utils.workers.write_thread import Thread_LineEdit
 from utils.workers.workers import Worker_ToggleBtnValue
+#######################################################################################################
 
 class CheckUserFrame(QDialog):
+    """Dialog para chegar a UserFrame"""
+
     def __init__(self, parents=None):
         super(CheckUserFrame, self).__init__(parents)
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
+        # definições iniciais
         self.thread: Thread_LineEdit
         self.worker_check: Worker_ToggleBtnValue
         self.worker_thread = QThreadPool()
-
+    ###################################################################################################
     def closeEvent(self, event):
-        """Activated when the Dialog is closed"""
+        """Ativado quando o dialog é fechado, apaga os QLineEdit"""
         self.ui.lineEdit.clear()
         self.ui.lineEdit.setFocus()
-
+    ###################################################################################################
     def show_dialog(self):
-        """
-        Pop up the dialog in the screen
-        """
+        """Mostra o dialog na tela"""
         validator: QValidator
         try:
             regex = QRegExp(r"\d{2}")
@@ -38,9 +44,9 @@ class CheckUserFrame(QDialog):
         self.worker_check = Worker_ToggleBtnValue("HMI.btnCheckUF", 0, self.ui.btn_confirm)
         self.set_button()
         self.exec_()
-
+    ###################################################################################################
     def confirm_action(self):
-        """Called when the "Confirmar" button is pressed"""
+        """Chamado quando o botão Confirmar é clicado"""
         try:
             if self.ui.lineEdit.text():
                 self.thread.start()
@@ -51,12 +57,9 @@ class CheckUserFrame(QDialog):
             print(f"{e} - confirm_action - CheckUF")
         finally:
             self.close()
-
-    def cancel_action(self):
-        """Called when the "Cancelar" button is pressed"""
-        self.close()
-
+    ###################################################################################################
     def set_button(self):
-        """Set the button of the dialog"""
+        """Define os botões do dialog"""
         self.ui.btn_confirm.clicked.connect(self.confirm_action)
-        self.ui.btn_cancel.clicked.connect(self.cancel_action)
+        self.ui.btn_cancel.clicked.connect(self.close)
+#######################################################################################################

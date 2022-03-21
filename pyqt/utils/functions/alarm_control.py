@@ -1,9 +1,14 @@
-"""Controlling the alarm list"""
+"""Controle da Lista de Alarmes"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from typing import List
 
 from utils.Tags import alarm_tag_list
 from utils.Types import AlarmDict
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
 alarm_message_list = ["Alarme 00: Botão de Emergência Pressionado", "Alarme 01:", "Alarme 02:", "Alarme 03:",
                       "Alarme 04:", "Alarme 05:", "Alarme 06: Porta da Célula Aberta", "Alarme 07:", "Alarme 08:",
                       "Alarme 09: Pressão do ar comprimido baixa", "Alarme 10: Emergência do Lado Esquerdo Acionado",
@@ -45,33 +50,53 @@ alarm_message_list = ["Alarme 00: Botão de Emergência Pressionado", "Alarme 01
                       "Alarme 112:", "Alarme 113:", "Alarme 114:", "Alarme 115:", "Alarme 116:", "Alarme 117:",
                       "Alarme 118:", "Alarme 119:", "Alarme 120:", "Alarme 121:", "Alarme 122:", "Alarme 123:",
                       "Alarme 124:", "Alarme 125:", "Alarme 126:", "Alarme 127:"]
-
+#######################################################################################################
 alarm_list: List[AlarmDict] = []
-
 alarm_history: List[AlarmDict] = []
-
+#######################################################################################################
+# Funções de Controle
+#######################################################################################################
 def set_alarm_list(alarm_id: int, alarm_time: str, alarm_msg: str) -> None:
     """
-    Add the alarm {"id": int, "time": str, "message": str} to a list in the module
+    Adiciona o alarme nas listas do módulo
+
+    Formato do alarme:
+        { "id": int, "time": str, "message": str }
+
+    :param alarm_id: Id do alarme
+    :param alarm_time: Momento em que o alarme apareceu
+    :param alarm_msg: Mensagem do respectivo alarme
     """
     actual_alarm: AlarmDict = {"id": alarm_id, "time": alarm_time, "message": alarm_msg}
     alarm_list.append(actual_alarm)
     alarm_history.append(actual_alarm)
-
+#######################################################################################################
 def delete_alarm_from_list(alarm_id: int) -> None:
     """
-    Find the alarm using its id in the modules alarm list
+    Encontra o alarme usando o Id passado e deleta da lista do módulo
+
+    :param alarm_id: Id do alarme
     """
     count_index = 0
     for item in alarm_list:
         if item["id"] == alarm_id:
             alarm_list.pop(count_index)
         count_index += 1
-
+#######################################################################################################
 def get_alarm_message(alarm_id: int) -> str:
-    """Returns the message from an alarm"""
-    return alarm_message_list[alarm_id]
+    """
+    Retorna a mensagem do alarme
 
+    :param alarm_id: Id do alarme
+    :return: Mensagem do Alarme
+    """
+    return alarm_message_list[alarm_id]
+#######################################################################################################
 def get_alarm_history() -> list:
-    """Returns all the alarm historic from the list control in the module"""
+    """
+    Retorna o histórico de alarmes salvo na lista do módulo
+
+    :return: Lista de todos os alarmes que já ocorreram
+    """
     return alarm_history
+#######################################################################################################

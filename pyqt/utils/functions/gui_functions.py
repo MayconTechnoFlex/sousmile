@@ -1,23 +1,26 @@
-"""Functions to use in multiple screens and widgets"""
-#############################################
+"""Funções para usar em multiplas telas e módulos"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from typing import Union
 from PyQt5.QtCore import QThreadPool
 from PyQt5.QtWidgets import QWidget, QLabel
 from utils.workers.workers import Worker_WriteTags, Worker_ReadTags
-#############################################
-# Workers and trheads
-#############################################
+#######################################################################################################
+# Definindo Threads
+#######################################################################################################
 write_thread = QThreadPool()
 read_thread = QThreadPool()
-#############################################
+#######################################################################################################
+# Funções
+#######################################################################################################
 def set_reset_btn_int(i: int, tag_list, widget: QWidget) -> None:
     """
-    Change the value of the button with the tag_list
+    Muda o valor de um botão utilizando a Tag List Geral
 
-    Params:
-        i = the tag of tag_list
-        tag_list = list of tags from utils.Tags
-        widget = button or widget that must be disabled
+    :param i: Index da TagList que contenha a tag desejada
+    :param tag_list: A lista das tags
+    :param widget: Botão ou Widget que será desabilitado
     """
     global write_thread
     try:
@@ -33,16 +36,16 @@ def set_reset_btn_int(i: int, tag_list, widget: QWidget) -> None:
             write_thread.start(worker_write_tags, priority=0)
     except Exception as e:
         print(e)
-#############################################
-def change_status(tag: Union[int, bool], stsWidget: QWidget) -> None:
+#######################################################################################################
+def change_status(tag_value: Union[int, bool], stsWidget: QWidget) -> None:
     """
-    Change the red/green status circles based on the tag received
+    Muda os Status Vermelho/Verde baseado no valor recebido
 
-    Params:
-        tag = the result of a read Tag
-        stsWidget = widget that will be activated/deactivated
+    :param tag_value: Valor da Tag para a verificação
+    :param stsWidget: Widget que será habilitado/desabilitado
     """
-    if tag:
+    if tag_value:
         stsWidget.setEnabled(True)
     else:
         stsWidget.setEnabled(False)
+#######################################################################################################
