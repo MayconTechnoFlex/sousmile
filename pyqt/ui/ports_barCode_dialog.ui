@@ -66,13 +66,15 @@ QComboBox::drop-down {
 }
 
 QComboBox::down-arrow{
-	image: url(:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_down_black_48dp.png);
+	
+	image: url(:/icons/assets/icons/outline_arrow_drop_down_black_48dp.png);
 	width: 30;
 	height:30;
 }
 
 QComboBox::down-arrow:on{
-	image: url(:/newPrefix/assets/icons/icons/2x/outline_arrow_drop_up_black_48dp.png);
+	
+	image: url(:/icons/assets/icons/outline_arrow_drop_up_black_48dp.png);
 	width: 30;
 	height:30;
 }
@@ -270,7 +272,7 @@ QComboBox::drop-down:pressed{
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_check_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_check_black_48dp.png</iconset>
+          <normaloff>:/icons/assets/icons/sharp_check_black_48dp.png</normaloff>:/icons/assets/icons/sharp_check_black_48dp.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -331,7 +333,7 @@ QPushButton::disabled{background-color:#cbcbcb}</string>
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_close_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_close_black_48dp.png</iconset>
+          <normaloff>:/icons/assets/icons/sharp_close_black_48dp.png</normaloff>:/icons/assets/icons/sharp_close_black_48dp.png</iconset>
         </property>
         <property name="iconSize">
          <size>

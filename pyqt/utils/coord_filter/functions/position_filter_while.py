@@ -1,39 +1,29 @@
-"""
-
-Modulo de fórmula para filtrar pontos
-
-"""
-
-from utils.coord_filter.data.comm_plc import read_tags
+"""Modulo para Filtrar Pontos de arquivo da nuvem"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from utils.coord_filter.functions.calc_functions import *
 from pandas.io.parsers.readers import DataFrame
 from typing import List
-
-
-def pos_filter(in_data: DataFrame,
-               lx: List[float],
-               ly: List[float],
-               lz: List[float],
-               lc: List[float],
-               ld: List[float],
-               l_pos: List[int],
-               l_info: List[str],
-               tag_cut_depth: str,
-               config_pontos: dict):
+#######################################################################################################
+# Função
+#######################################################################################################
+def pos_filter(in_data: DataFrame, lx: List[float], ly: List[float], lz: List[float],
+               lc: List[float], ld: List[float], l_pos: List[int], l_info: List[str],
+               tag_cut_depth: str, config_pontos: dict):
     """
     Função para filtrar pontos e salvar em listas individuais
 
     :param in_data:
-    :param lx:
-    :param ly:
-    :param lz:
-    :param lc:
-    :param ld:
-    :param l_pos:
-    :param l_info:
-    :param tag_cut_depth:
-    :param config_pontos:
-    :return:
+    :param lx: Lista para valores de posição em X
+    :param ly: Lista para valores de posição em Y
+    :param lz: Lista para valores de posição em Z
+    :param lc: Lista para valores de posição em C
+    :param ld: Lista para valores de posição em D
+    :param l_pos: Lista para valores o numero da posição
+    :param l_info: Lista de informações
+    :param tag_cut_depth: Tag de profundidade de corte
+    :param config_pontos: Tag de ConfigPontos
     """
 
     print('- Lendo tag do clp para a configuração dos filtros de pontos')
@@ -223,3 +213,4 @@ def pos_filter(in_data: DataFrame,
                 l_pos.append(l_pos[_])
                 l_info.append(f'Ponto adicionado para terminar o ciclo')
             break
+#######################################################################################################

@@ -1,4 +1,7 @@
-"""Module with all functions used on the HomeScreen of the application"""
+"""Módulo com todas as funções para a tela Home"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from utils.Types import PLCReturn
 from typing import Literal
 
@@ -7,18 +10,20 @@ from PyQt5.QtWidgets import QLabel, QApplication, QPushButton
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.insert_code import InsertCodeDialog
 
-from utils.gui_functions import set_reset_btn_int
+from utils.functions.gui_functions import set_reset_btn_int
 from utils.btn_style import *
-from utils.gui_functions import change_status
+from utils.functions.gui_functions import change_status
 
-from utils.workers import Worker_ToggleBtnValue
-
+from utils.workers.workers import Worker_ToggleBtnValue
+#######################################################################################################
+# Definição das Variáveis Globais
+#######################################################################################################
 UI: Ui_MainWindow
-
 tag_list: PLCReturn
-
 write_thread = QThreadPool()
-
+#######################################################################################################
+# Funçoes de Controle
+#######################################################################################################
 def sts_string(id_num: int, widget: QLabel, side: Literal["A", "B"]):
     """
     Set the label with the code reader status
@@ -61,7 +66,20 @@ def sts_string(id_num: int, widget: QLabel, side: Literal["A", "B"]):
             widget.setText('Aguardando leitura do código')
         else:
             widget.setText('Erro')
-
+#######################################################################################################
+def transfer_data(side: Literal["A1", "A2", "B1", "B2"], button: QPushButton):
+    global UI, write_thread
+    if side == "A1"\
+            or side == "A2"\
+            or side == "B1"\
+            or side == "B2":
+        worker_toggle = Worker_ToggleBtnValue(f"HMI.ManTransData{side}", 0, button)
+        write_thread.start(worker_toggle, priority=0)
+    else:
+        raise ValueError('Nome incorreto do lado, deve ser "A1", "A2", "B1", "B2"')
+#######################################################################################################
+# Funções de Definição
+#######################################################################################################
 def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     """
     Define the buttons of the screen
@@ -84,18 +102,9 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
 
     UI.btn_man_auto_lado_a.clicked.connect(lambda: set_reset_btn_int(0, tag_list, UI.btn_man_auto_lado_a))
     UI.btn_man_auto_lado_b.clicked.connect(lambda: set_reset_btn_int(1, tag_list, UI.btn_man_auto_lado_b))
-
-def transfer_data(side: Literal["A1", "A2", "B1", "B2"], button: QPushButton):
-    global UI, write_thread
-    if side == "A1"\
-            or side == "A2"\
-            or side == "B1"\
-            or side == "B2":
-        worker_toggle = Worker_ToggleBtnValue(f"HMI.ManTransData{side}", 0, button)
-        write_thread.start(worker_toggle, priority=0)
-    else:
-        raise ValueError('Nome incorreto do lado, deve ser "A1", "A2", "B1", "B2"')
-
+#######################################################################################################
+# Funções de Atualização
+#######################################################################################################
 def UpdateDataCtrl_A1(tag):
     """
     Updates the screen's labels with the readed tag values
@@ -112,7 +121,7 @@ def UpdateDataCtrl_A1(tag):
         change_status(tag["Complete"], UI.sts_Complete_A1)
     except:
         pass
-
+#######################################################################################################
 def UpdateDataCtrl_A2(tag):
     """
     Updates the screen's labels with the readed tag values
@@ -129,7 +138,7 @@ def UpdateDataCtrl_A2(tag):
         change_status(tag["Complete"], UI.sts_Complete_A2)
     except:
         pass
-
+#######################################################################################################
 def UpdateDataCtrl_B1(tag):
     """
     Updates the screen's labels with the readed tag values
@@ -146,7 +155,7 @@ def UpdateDataCtrl_B1(tag):
         change_status(tag["Complete"], UI.sts_Complete_B1)
     except:
         pass
-
+#######################################################################################################
 def UpdateDataCtrl_B2(tag):
     """
     Updates the screen's labels with the readed tag values
@@ -163,7 +172,7 @@ def UpdateDataCtrl_B2(tag):
         change_status(tag["Complete"], UI.sts_Complete_B2)
     except:
         pass
-
+#######################################################################################################
 def UpdateHMI(tag):
     """
     Updates the screen's labels and status widgets with the readed tag values
@@ -234,16 +243,12 @@ def UpdateHMI(tag):
     except Exception as e:
         hmi_side_a_mode_value = None
         hmi_side_b_mode_value = None
-        UI.btn_man_auto_lado_a.setStyleSheet(btn_error_style)
-        UI.btn_man_auto_lado_b.setStyleSheet(btn_error_style)
-        UI.btn_man_auto_lado_a.setText('Erro')
-        UI.btn_man_auto_lado_b.setText('Erro')
-        UI.btn_man_auto_lado_a.setEnabled(False)
-        UI.btn_man_auto_lado_b.setEnabled(False)
+        setErrorButton(UI.btn_man_auto_lado_a)
+        setErrorButton(UI.btn_man_auto_lado_b)
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value
-
+#######################################################################################################
 def UpdateRobotInput(tag):
     """
     Updates the screen's labels and status widgets with the readed tag values
@@ -262,7 +267,8 @@ def UpdateRobotInput(tag):
             UI.btn_man_auto_lado_b.setEnabled(True)
     except Exception as e:
         print(f"{e} - UpdateRobotInput - home")
-
+#######################################################################################################
 def UpdateTagsList(tags):
     global tag_list
     tag_list = tags
+#######################################################################################################

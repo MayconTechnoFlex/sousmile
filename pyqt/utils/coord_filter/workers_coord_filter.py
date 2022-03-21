@@ -1,46 +1,56 @@
+"""Runnable Workers para controle do Filtro de Coordenadas"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 import traceback
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from pycomm3.exceptions import CommError
-from utils.coord_filter.data.comm_plc import read_multiple, write_tags
+from utils.functions.ctrl_plc import read_multiples, write_tag
 
-from utils.coord_filter.functions.serial_ports import get_my_port, set_my_port
+from utils.functions.serial_ports import get_my_port, set_my_port
 from serial import *
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
 sleep_time = 1.0
 stop_time = 0.2
-
-
+#######################################################################################################
+# Workers Base
+#######################################################################################################
 class WorkerParent:
-    """Class for shared functions of the workers"""
+    """Classe compartilhada entre Workers"""
     def __init__(self):
         self.running = True
 
     def stop(self):
-        """Stops thread"""
+        """Para o Worker"""
         self.running = False
         time.sleep(stop_time)
-
-
+#######################################################################################################
 class WorkerSignals(QObject):
     """
-    Defines the signals available from a running worker thread.
-    Supported signals are:
+    Define os sinais disponiveis para um Running Worker.
 
-    error
+    Os sinais suportados são:
+
+    error:
         tuple (exctype, value, traceback.format_exc() )
-    result
+    result:
         object data returned from processing, anything
+    result_multiples:
+        5 objects returned from processing
+    result_list:
+        list with results
     """
     error = pyqtSignal(tuple)
     result = pyqtSignal(object)
     result_multiples = pyqtSignal(object, object, object, object, object, object)
     result_list = pyqtSignal(list)
-
-
+#######################################################################################################
+# Workers
+#######################################################################################################
 class Worker_PLC(QRunnable, WorkerParent):
-    """
-    Worker thread for multiple signals
-    """
+    """Worker para multiplos sinais"""
 
     def __init__(self, *args):
         super(Worker_PLC, self).__init__()
@@ -53,7 +63,7 @@ class Worker_PLC(QRunnable, WorkerParent):
             try:
                 tag_list = ['ConfigPontos', 'DataCtrl_A1', 'DataCtrl_A2', 'DataCtrl_B1', 'DataCtrl_B2', 'HMI']
 
-                tags = read_multiple(tag_list)
+                tags = read_multiples(tag_list)
                 config_pontos = tags[0][1]
                 data_ctrl_a1 = tags[1][1]
                 data_ctrl_a2 = tags[2][1]
@@ -81,12 +91,9 @@ class Worker_PLC(QRunnable, WorkerParent):
                 print(f'{e} Worker - workers.py')
                 time.sleep(3)
             time.sleep(sleep_time)
-
-
+#######################################################################################################
 class Worker_Test(QRunnable, WorkerParent):
-    """
-    Worker thread for multiple signals
-    """
+    """Worker para Arquivo Teste"""
 
     def __init__(self, *args):
         super(Worker_Test, self).__init__()
@@ -98,12 +105,10 @@ class Worker_Test(QRunnable, WorkerParent):
         while self.running:
             self.signal_worker_test.result.emit(True)
             time.sleep(sleep_time)
-
-
+#######################################################################################################
 class Worker_BarCodeScanner(QRunnable, WorkerParent):
-    """
-    Worker thread
-    """
+    """Worker para leitura do Leitor de Código de Barras"""
+
     def __init__(self, *args):
         super(Worker_BarCodeScanner, self).__init__()
         self.signal = WorkerSignals()
@@ -190,7 +195,7 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent):
                             time.sleep(1)
                             self.signal.result.emit({"DataPy": self.code_read, "ReadComplete": False,
                                                      "Connected": self.device_connected})
-                            write_tags("BarCodeReader.Data", self.code_read)
+                            write_tag("BarCodeReader.Data", self.code_read)
 
                 except SerialException:
                     print(f"Dispotivo desconectado da porta {self.port}")
@@ -207,12 +212,9 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent):
                 self.signal.result.emit({"Connected": self.device_connected})
             except RuntimeError as e:
                 print("Erro de execução no worker do leitor de código de barras: ", e)
-
-
+#######################################################################################################
 class Worker_CreateTable(QRunnable, WorkerParent):
-    """
-    Worker thread for multiple signals
-    """
+    """Worker para Criar Tabela"""
 
     def __init__(self, *args):
         super(Worker_CreateTable, self).__init__()
@@ -222,3 +224,4 @@ class Worker_CreateTable(QRunnable, WorkerParent):
     def run(self):
         self.signal.result.emit(True)
         time.sleep(sleep_time)
+#######################################################################################################

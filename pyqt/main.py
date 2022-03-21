@@ -1,20 +1,21 @@
-##############################################################
+#######################################################################################################
 ### CR 967 - Sousmile
 ### RN Robotics
-##############################################################
-##############################################################
-### IMPORTS
-##############################################################
+#######################################################################################################
+# Importações
+#######################################################################################################
+import sys
+
 from PyQt5.QtCore import QThreadPool
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QApplication
 
 from ui_py.ui_gui_final import Ui_MainWindow
 
-from utils.workers import *
 from security.functions import UpdateUserAccess
 
-from utils.serial_ports import get_serial_ports, set_my_port
+from utils.functions.serial_ports import get_serial_ports, set_my_port
+from utils.workers.workers import *
 
 from screens import home, robot, alarms,\
     production as prod, maintenance as maint,\
@@ -27,7 +28,7 @@ from dialogs.checkUF import CheckUserFrame
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.login import LoginDialog
 from dialogs.insert_code import InsertCodeDialog
-##############################################################
+#######################################################################################################
 
 class RnRobotics_Gui(QMainWindow):
     def __init__(self):
@@ -35,7 +36,7 @@ class RnRobotics_Gui(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         ##################################################################
-        # IDefining dialogs ##############################################
+        # Defining dialogs
         ##################################################################
         self.alarm_dialog = AlarmDialog(self)
         self.altera_valor_dialog = AlteraValorDialog(self)
@@ -45,15 +46,14 @@ class RnRobotics_Gui(QMainWindow):
         self.login_dialog = LoginDialog(self)
         self.insert_code_dialog = InsertCodeDialog(self)
         ##################################################################
-        # Initial configuration ##########################################
+        # Initial configuration
         ##################################################################
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
         self.setWindowTitle("HMI SouSmile")
         self.ui.lbl_username.setText("Nenhum usuário logado")
         ##################################################################
-        # Thread - to update PLC values ##################################
+        # Thread - to update PLC values
         ##################################################################
-        # self.threadpool_0 = QThreadPool()
         self.threadpool_1 = QThreadPool()
         self.threadpool_2 = QThreadPool()
         self.threadpool_3 = QThreadPool()
@@ -70,11 +70,9 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14 = QThreadPool()
         self.threadpool_15 = QThreadPool()
         self.thread_read_tags = QThreadPool()
-        self.thread_barcode_scanner = QThreadPool()
         ###################################################################
-        # Workers #########################################################
+        # Workers
         ###################################################################
-        # self.worker = Worker()
         self.worker_data_ctrl_a1 = Worker_Data_Ctrl_A1()
         self.worker_data_ctrl_a2 = Worker_Data_Ctrl_A2()
         self.worker_data_ctrl_b1 = Worker_Data_Ctrl_B1()
@@ -91,9 +89,8 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut = Worker_InOut()
         self.worker_user = Worker_User()
         self.worker_read_tags = Worker_ReadTags()
-        # self.worker_barcode_scanner = Worker_BarCodeScanner()
         ###########################################################################################
-        # Connect results of the workers ##########################################################
+        # Connect results of the workers
         ###########################################################################################
         self.worker_data_ctrl_a1.signal_a1.result.connect(self.update_DataCtrl_A1)
         self.worker_data_ctrl_a2.signal_a2.result.connect(self.update_DataCtrl_A2)
@@ -117,11 +114,9 @@ class RnRobotics_Gui(QMainWindow):
         self.worker_inOut.signal_inOut.result.connect(self.update_InOut)
         self.worker_user.signal_user.result.connect(lambda signal: UpdateUserAccess(signal, self.ui))
         self.worker_read_tags.signal_ReadTags.result.connect(self.update_tag_list)
-        # self.worker_barcode_scanner.signal.result.connect(self.update_BarCode)
         ###################################################################
-        # Start the threads ###############################################
+        # Start the threads
         ###################################################################
-        # self.threadpool_0.start(self.worker)
         self.threadpool_1.start(self.worker_data_ctrl_a1)
         self.threadpool_2.start(self.worker_data_ctrl_a2)
         self.threadpool_3.start(self.worker_data_ctrl_b1)
@@ -138,9 +133,8 @@ class RnRobotics_Gui(QMainWindow):
         self.threadpool_14.start(self.worker_inOut)
         self.threadpool_15.start(self.worker_user)
         self.thread_read_tags.start(self.worker_read_tags)
-        # self.thread_barcode_scanner.start(self.worker_barcode_scanner)
         ###################################################################
-        # Defining buttons of screens #####################################
+        # Defining buttons of screens
         ###################################################################
         self.define_navigate_buttons()
         home.define_buttons(self.ui, self.insert_code_dialog)
@@ -150,17 +144,19 @@ class RnRobotics_Gui(QMainWindow):
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.altera_valor_dialog, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
-
+        ###################################################################
+        # Defining Coord Filter
+        ###################################################################
         self.coord_filter = cf.CoordFilter(self.ui, self.ui.coord_filter)
-
         self.coord_filter.my_worker_bcscanner.signal.result.connect(self.update_BarCode)
         ###################################################################
         if self.coord_filter.my_worker_bcscanner.device_connected:
             self.ui.btn_config_barcode.setEnabled(False)
         else:
             self.ui.btn_config_barcode.setEnabled(True)
-        ###################################################################
-
+    ####################################################################
+    # Bar Code Scanner Function
+    ####################################################################
     def create_device(self):
         self.port = get_my_port()
         time.sleep(1)
@@ -174,9 +170,8 @@ class RnRobotics_Gui(QMainWindow):
         except Exception as e:
             print(e)
             time.sleep(2)
-
     ####################################################################
-    #### functions to navigate between screens
+    # functions to navigate between screens
     ####################################################################
     def define_navigate_buttons(self):
         ### control screen
@@ -192,41 +187,39 @@ class RnRobotics_Gui(QMainWindow):
         self.ui.btnLogin.clicked.connect(lambda: self.login_dialog.show_dialog(self.ui.lbl_username))
         self.ui.btnLogout.clicked.connect(self.login_dialog.logout_user)
         ### alarm
-        self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
-
-
+        self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
+    #######################################################################
     def show_home(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
-
+    #######################################################################
     def show_robot(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.robot_screen)
-
+    #######################################################################
     def show_alarm(self):
         self.ui.alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarms_screen)
-
+    #######################################################################
     def show_production(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.production_screen)
-
+    #######################################################################
+    def show_coor_filter(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.coord_filter)
+    #######################################################################
     def show_maintenance(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.maintenace_screen)
-
+    #######################################################################
     def show_in_out(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.inOut_screen)
-
+    #######################################################################
     def show_engineering(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.engineering_screen)
-
+    #######################################################################
     def show_alarm_history(self):
         self.ui.hist_alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarm_history_screen)
-
-    def show_coor_filter(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.coord_filter)
-
     #######################################################################
-    #### Updating Tags on the PLC
+    # Updating Tags on the PLC
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
@@ -330,12 +323,11 @@ class RnRobotics_Gui(QMainWindow):
         elif self.ui.stackedWidget.currentIndex() == 6:
             eng.UpdateTagsList(tags)
     ########################################################################
-    #### Stop Threads ######################################################
+    # Stop Threads
     ########################################################################
     def stop_threads(self):
         print("Finalizando Threads")
         try:
-            # self.worker.stop()
             self.worker_data_ctrl_a1.stop()
             self.worker_data_ctrl_a2.stop()
             self.worker_data_ctrl_b1.stop()
@@ -353,11 +345,10 @@ class RnRobotics_Gui(QMainWindow):
             self.worker_user.stop()
             self.worker_read_tags.stop()
             self.coord_filter.stop_threads()
-            # self.worker_barcode_scanner.stop()
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
-    ########################################################################
+#######################################################################################################
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

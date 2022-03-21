@@ -1,20 +1,12 @@
 <RCC>
-  <qresource prefix="newPrefix">
+  <qresource prefix="images">
     <file>../assets/images/mesa_a1.png</file>
     <file>../assets/images/mesa_a2.png</file>
     <file>../assets/images/mesa_b1.png</file>
     <file>../assets/images/mesa_b2.png</file>
     <file>../assets/images/robot1.png</file>
-    <file>../assets/images/SouSmile 60x60.png</file>
-    <file>../assets/images/SouSmile 40x40.png</file>
-    <file>../assets/images/RN ico.jpg</file>
-    <file>../assets/images/RN_ico.png</file>
     <file>../assets/images/RN_Logo.png</file>
     <file>../assets/images/RN_Logo.ico</file>
-    <file>../assets/images/RN New 140x39.jpg</file>
-    <file>../assets/images/RN New.jpg</file>
     <file>../assets/images/SouSmile.png</file>
-    <file>../assets/images/robo_fanuc-removebg-preview.png</file>
-    <file>../assets/images/Mesa-removebg-preview.png</file>
   </qresource>
 </RCC>

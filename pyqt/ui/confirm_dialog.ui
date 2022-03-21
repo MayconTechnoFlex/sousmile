@@ -174,7 +174,7 @@ border-radius: 18
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_check_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_check_black_48dp.png</iconset>
+          <normaloff>:/icons/assets/icons/sharp_check_black_48dp.png</normaloff>:/icons/assets/icons/sharp_check_black_48dp.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -235,7 +235,7 @@ QPushButton::disabled{background-color:#cbcbcb}</string>
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/newPrefix/assets/icons/icons/2x/sharp_close_black_48dp.png</normaloff>:/newPrefix/assets/icons/icons/2x/sharp_close_black_48dp.png</iconset>
+          <normaloff>:/icons/assets/icons/sharp_close_black_48dp.png</normaloff>:/icons/assets/icons/sharp_close_black_48dp.png</iconset>
         </property>
         <property name="iconSize">
          <size>

@@ -1,50 +1,55 @@
-"""Module with all functions used on the EngineeringScreen of the application"""
-
+"""Módulo com todas as funções para a tela Engenharia"""
+#######################################################################################################
+# Importações
+#######################################################################################################
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.barcode_config import BarCodeDialog
 
 from PyQt5.QtWidgets import QApplication
 
-from utils.gui_functions import set_reset_btn_int
+from utils.functions.gui_functions import set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import *
-
+#######################################################################################################
+# Definição das variáveis globais
+#######################################################################################################
 UI: Ui_MainWindow
 DIALOG: AlteraValorDialog
 BARCODE_DIALOG: BarCodeDialog
 
 tag_list: PLCReturn
-
-def define_buttons(receive_ui: Ui_MainWindow, receive_dialog: AlteraValorDialog,
-                   receive_barcode_dialog: BarCodeDialog):
+#######################################################################################################
+# Funções de Definição
+#######################################################################################################
+def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
+                   configBarCodeDialog: BarCodeDialog):
     """
-    Define the buttons of the screen
+    Define os botões da tela
 
-    Params:
-        receive_ui = main ui of the application
-        receive_show_dialog = function for pop-up buttons
+    :param main_ui: Ui da aplicação
+    :param altValDialog: Dialog para alterar valor de tag
+    :param configBarCodeDialog: Dialog para configurar porta do Leitor de Código de Barras
     """
+    # define as variáveis globais
     global UI, DIALOG, BARCODE_DIALOG
-    UI = receive_ui
-    DIALOG = receive_dialog
-    BARCODE_DIALOG = receive_barcode_dialog
+    UI = main_ui
+    DIALOG = altValDialog
+    BARCODE_DIALOG = configBarCodeDialog
+
+    # chama função configuração de botões e labels
     def_coordinate_buttons()
     def_prof_cort()
     def_pts()
     def_delayA()
     def_delayB()
 
-    # buttons
+    # botões da lateral direita
     UI.btn_habilita_logs.clicked.connect(lambda: set_reset_btn_int(3, tag_list, UI.btn_habilita_logs))
     UI.btn_config_barcode.clicked.connect(lambda: BARCODE_DIALOG.show_dialog())
-
-
-### Defining Dialogs
+#######################################################################################################
 def def_coordinate_buttons():
-    """
-    Define the coordinate buttons of the screen
-    """
+    """Define os botões de Seleção de Pontos"""
     global UI, DIALOG
     UI.btn_md_val_dist_xyz.clicked.connect(
         lambda: DIALOG.show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
@@ -62,12 +67,9 @@ def def_coordinate_buttons():
         lambda: DIALOG.show_dialog("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
                                    "ConfigPontos.DistVar",
                                    "float"))
-
-
+#######################################################################################################
 def def_prof_cort():
-    """
-    Define the depth cut buttons of the screen
-    """
+    """Define os botões de Profundidade de Corte"""
     global UI, DIALOG
     UI.btn_md_val_prof_corte_a1.clicked.connect(
         lambda: DIALOG.show_dialog("Alterar a profundidade de corte em A1:", "ConfigPontos.CutDepthA1", "float"))
@@ -77,23 +79,17 @@ def def_prof_cort():
         lambda: DIALOG.show_dialog("Alterar a profundidade de corte em B1:", "ConfigPontos.CutDepthB1", "float"))
     UI.btn_md_val_prof_corte_b2.clicked.connect(
         lambda: DIALOG.show_dialog("Alterar a profundidade de corte em B2", "ConfigPontos.CutDepthB2", "float"))
-
-
+#######################################################################################################
 def def_pts():
-    """
-    Define the point buttons of the screen
-    """
+    """Define os botões dos Offsets Atuais do Robô"""
     global UI, DIALOG
     UI.btn_md_val_max_pts.clicked.connect(
         lambda: DIALOG.show_dialog("Altera o número máximo de pontos:", "HMI.NumPosMax", "int"))
     UI.btn_md_val_vel_corte.clicked.connect(
         lambda: DIALOG.show_dialog("Altera a velocidade de corte:", "Robo.Output.CutSpeed", "int"))
-
-
+#######################################################################################################
 def def_delayA():
-    """
-    Define the Side A buttons of the screen
-    """
+    """Define os botões do Ajuste de Tempo do lado A"""
     global UI, DIALOG
     UI.btn_md_val_delay_abre_porta_a.clicked.connect(
         lambda: DIALOG.show_dialog("Altera delay para abrir porta A:", "Cyl_DoorSideA.TimeDelayRet", "int"))
@@ -103,12 +99,9 @@ def def_delayA():
         lambda: DIALOG.show_dialog("Altera tempo do alarme de sensores A:", "Cyl_DoorSideA.TimeBothSenOnOff", "int"))
     UI.btn_md_val_temp_alarm_pos_port_a.clicked.connect(
         lambda: DIALOG.show_dialog("Altera tempo do alarme de posição da porta A:", "Cyl_DoorSideA.TimeOut", "int"))
-
-
+#######################################################################################################
 def def_delayB():
-    """
-    Define the Side B buttons of the screen
-    """
+    """Define os botões do Ajuste de Tempo do lado B"""
     global UI, DIALOG
     UI.btn_md_val_delay_abre_porta_b.clicked.connect(
         lambda: DIALOG.show_dialog("Altera delay para abrir porta B:", "Cyl_DoorSideB.TimeDelayRet", "int"))
@@ -118,15 +111,14 @@ def def_delayB():
         lambda: DIALOG.show_dialog("Altera tempo do alarme de sensores B:", "Cyl_DoorSideB.TimeBothSenOnOff", "int"))
     UI.btn_md_val_temp_alarm_pos_port_b.clicked.connect(
         lambda: DIALOG.show_dialog("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
-
-
-### Updating widgets
+#######################################################################################################
+# Funções de Atualização
+#######################################################################################################
 def UpdateHMI(tag):
     """
-    Updates the screen's labels and buttons with the readed tag values
+    Atualiza os Labels e os Botões da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from HMI
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
@@ -150,18 +142,14 @@ def UpdateHMI(tag):
         QApplication.restoreOverrideCursor()
 
     except Exception as e:
-        UI.btn_habilita_logs.setStyleSheet(btn_error_style)
-        UI.btn_habilita_logs.setText('Erro')
-        UI.btn_habilita_logs.setEnabled(False)
+        setErrorButton(UI.btn_habilita_logs)
         print(f'{e} - engineering.UpdateHMI')
-
-
+#######################################################################################################
 def UpdateConfigPts(tag):
     """
-    Updates the screen's labels with the readed tag values
+    Atualiza os Labels da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from ConfigPts
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
@@ -177,14 +165,12 @@ def UpdateConfigPts(tag):
         UI.lbl_CutDepth_B2.setText(str(round(tag["CutDepthB2"], 1)))
     except:
         pass
-
-
+#######################################################################################################
 def UpdateCylA(tag):
     """
-    Updates the screen's labels with the readed tag values
+    Atualiza os Labels da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from CYLSideA
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
@@ -194,14 +180,12 @@ def UpdateCylA(tag):
         UI.lbl_temp_alarm_pos_port_a.setText(str(tag["TimeOut"]))
     except:
         pass
-
-
+#######################################################################################################
 def UpdateCylB(tag):
     """
-    Updates the screen's labels with the readed tag values
+    Atualiza os Labels da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from CYLSideB
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
@@ -211,35 +195,32 @@ def UpdateCylB(tag):
         UI.lbl_temp_alarm_pos_port_b.setText(str(tag["TimeOut"]))
     except:
         pass
-
-
+#######################################################################################################
 def UpdateRobotPos(tag):
     """
-    Updates the screen's labels with the readed tag values
+    Atualiza o Label da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from RobotPos
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
         UI.lbl_RobotPos.setText(str(tag))
     except:
         pass
-
-
+#######################################################################################################
 def UpdateRobotOutput(tag):
     """
-    Updates the screen's labels with the readed tag values
+    Atualiza o Label da tela com os valores do CLP
 
-    Params:
-        tag = readed tag from RobotOutput
+    :param tag: Tag lida do CLP
     """
     global UI
     try:
         UI.lbl_CutSpeed.setText(str(tag["CutSpeed"]))
     except:
         pass
-
+#######################################################################################################
 def UpdateTagsList(tags):
     global tag_list
     tag_list = tags
+#######################################################################################################
