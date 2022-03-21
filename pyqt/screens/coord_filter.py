@@ -263,9 +263,9 @@ class CoordFilter:
                                                                     self.ui.le_file_path.text(),
                                                                     self.ui,
                                                                     self.scene,
-                                                                    self.code_read,
-                                                                    self.create_table_and_graphic)
+                                                                    self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
+                    # self.my_worker_data_to_plc.signal.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A1')
             ###########################################################################################
@@ -288,9 +288,9 @@ class CoordFilter:
                                                                     self.ui.le_file_path.text(),
                                                                     self.ui,
                                                                     self.scene,
-                                                                    self.code_read,
-                                                                    self.create_table_and_graphic)
+                                                                    self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
+                    # self.my_worker_data_to_plc.signal.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A2')
             ###########################################################################################
@@ -314,9 +314,9 @@ class CoordFilter:
                                                                     self.ui.le_file_path.text(),
                                                                     self.ui,
                                                                     self.scene,
-                                                                    self.code_read,
-                                                                    self.create_table_and_graphic)
+                                                                    self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
+                    self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B1')
             ###########################################################################################
@@ -339,9 +339,9 @@ class CoordFilter:
                                                                     self.ui.le_file_path.text(),
                                                                     self.ui,
                                                                     self.scene,
-                                                                    self.code_read,
-                                                                    self.create_table_and_graphic)
+                                                                    self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
+                    # self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B2')
             ###########################################################################################
@@ -369,7 +369,7 @@ class CoordFilter:
                       self.limit_p)
             ###########################################################################################
             my_worker_create_table = Worker_CreateTable()
-            my_worker_create_table.signal.result.connect(lambda: self.create_table_and_graphic())
+            my_worker_create_table.signal.result.connect(lambda: self.create_table_and_graphic() )
             self.my_thread_create_table.start(my_worker_create_table)
             ###########################################################################################
             self.ui.btn_test_file.setEnabled(True)
@@ -378,17 +378,16 @@ class CoordFilter:
             print("Selecione um arquivo")
             self.test_signal = False
     ###################################################################################################
-    def create_table_and_graphic(self, l_pos=None, l_pos_x=None, l_pos_y=None, l_pos_z=None,
-                                 l_pos_c=None, l_pos_d=None, l_pos_info=None):
+    def create_table_and_graphic(self, lists_pos):
         """Função para criação da tabela de posições"""
-        if l_pos is not None:
-            self.list_pos = l_pos
-            self.list_pos_x = l_pos_x
-            self.list_pos_y = l_pos_y
-            self.list_pos_z = l_pos_z
-            self.list_pos_c = l_pos_c
-            self.list_pos_d = l_pos_d
-            self.list_pos_info = l_pos_info
+        if lists_pos is not None:
+            self.list_pos = lists_pos[0]
+            self.list_pos_x = lists_pos[1]
+            self.list_pos_y = lists_pos[2]
+            self.list_pos_z = lists_pos[3]
+            self.list_pos_c = lists_pos[4]
+            self.list_pos_d = lists_pos[5]
+            self.list_pos_info = lists_pos[6]
         ###########################################################################################
         for n in range(self.ui.tbl_positions.rowCount()):
             self.ui.tbl_positions.removeRow(n)

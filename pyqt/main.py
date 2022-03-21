@@ -318,9 +318,9 @@ class RnRobotics_Gui(QMainWindow):
             home.UpdateTagsList(tags)
         elif self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateTagsList(tags)
-        elif self.ui.stackedWidget.currentIndex() == 4:
+        elif self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateTagsList(tags)
-        elif self.ui.stackedWidget.currentIndex() == 6:
+        elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateTagsList(tags)
     ########################################################################
     # Stop Threads

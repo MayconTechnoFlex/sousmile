@@ -21,7 +21,7 @@ from utils.btn_style import base_button_style, checked_button_style
 # Definição das variáveis globais
 #######################################################################################################
 UI: Ui_MainWindow
-tag_list: PLCReturn
+tag_list: PLCReturn = []
 write_thread = QThreadPool()
 #######################################################################################################
 # Funções de Definição

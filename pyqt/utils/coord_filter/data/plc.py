@@ -2,18 +2,20 @@
 #######################################################################################################
 # Importações
 #######################################################################################################
+from PyQt5.QtCore import pyqtSignal, QRunnable, QObject
 from datetime import date, datetime
 from typing import List
 
 import matplotlib.pyplot as plt
 import pandas as pd
-from PyQt5.QtCore import QThreadPool
 from pycomm3 import LogixDriver
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from utils.coord_filter.functions import position_filter_while
 from utils.coord_filter.functions.detect_error import find_error_filter
 from utils.coord_filter.workers_coord_filter import *
+
+from utils.coord_filter.workers_coord_filter import WorkerSignals
 #######################################################################################################
 # Definição das Variáveis Globais
 #######################################################################################################
@@ -24,8 +26,6 @@ data_list_C: List[float] = []
 data_list_D: List[float] = []
 data_list_pos: List[int] = []
 data_list_info: List[str] = []
-
-my_thread_create_table = QThreadPool()
 #######################################################################################################
 class Worker_Data_to_PLC(QRunnable):
     def __init__(self,
@@ -40,9 +40,9 @@ class Worker_Data_to_PLC(QRunnable):
                  local_file: str,
                  ui: Ui_MainWindow,
                  scene,
-                 code: str,
-                 create_table):
+                 code: str):
         super(Worker_Data_to_PLC, self).__init__()
+        self.signal = WorkerSignals()
         self.data_ctrl = data_ctrl
         self.tag_cut_depth = tag_cut_depth
         self.tag_enable_log = tag_enable_log
@@ -51,10 +51,10 @@ class Worker_Data_to_PLC(QRunnable):
         self.data_ctrl_str = data_ctrl_str
         self.cloud_signal = cloud_signal
         self.local_signal = local_signal
+        self.local_file = local_file
         self.ui = ui
         self.scene = scene
         self.code = code
-        self.create_table = create_table
 
     def data_to_plc(self,
                     data_ctrl: dict,
@@ -68,8 +68,7 @@ class Worker_Data_to_PLC(QRunnable):
                     local_file: str,
                     ui: Ui_MainWindow,
                     scene,
-                    code: str,
-                    create_table):
+                    code: str):
         """
         :param data_ctrl: DataCtrl_(Lado do corte (A1, A2, B1, B2))
         :param tag_cut_depth: Tag com a profundidade do corte
@@ -193,17 +192,12 @@ class Worker_Data_to_PLC(QRunnable):
 
             print(f'- Transferencia acabou, duração de {duration}')
             ########################################################################################
-            # Create table to show data and a scene to create a graphic that was passed to the robot
+            # Create table to show data and a scene to 'create' a graphic that was passed to the robot
             ########################################################################################
             # Create a table
             ########################################################################################
-
-            my_worker_create_table = Worker_CreateTable()
-            my_worker_create_table.signal.result.connect(lambda: create_table(data_list_pos, data_list_X, data_list_Y,
-                                                                              data_list_Z, data_list_C, data_list_D,
-                                                                              data_list_info))
-            my_thread_create_table.start(my_worker_create_table)
-
+            self.signal.result_list.emit([data_list_pos, data_list_X, data_list_Y,
+                             data_list_Z, data_list_C, data_list_D, data_list_info])
         except Exception as e:
             # print python error
             print(e)
@@ -212,16 +206,16 @@ class Worker_Data_to_PLC(QRunnable):
                 plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))
 
     def run(self):
-        data_to_plc(self.data_ctrl,
-                    self.tag_cut_depth,
-                    self.tag_enable_log,
-                    self.tag_max_num_points,
-                    self.config_pontos,
-                    self.data_ctrl_str,
-                    self.cloud_signal,
-                    self.local_signal,
-                    self.ui,
-                    self.scene,
-                    self.code,
-                    self.create_table)
+        self.data_to_plc(self.data_ctrl,
+                         self.tag_cut_depth,
+                         self.tag_enable_log,
+                         self.tag_max_num_points,
+                         self.config_pontos,
+                         self.data_ctrl_str,
+                         self.cloud_signal,
+                         self.local_signal,
+                         self.local_file,
+                         self.ui,
+                         self.scene,
+                         self.code)
 #######################################################################################################
