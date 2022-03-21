@@ -12041,6 +12041,7 @@ class Ui_MainWindow(object):
         self.btnRobotScreen.setToolTip(_translate("MainWindow", "Robô"))
         self.btnAlarmScreen.setToolTip(_translate("MainWindow", "Alarmes"))
         self.btnProductionScreen.setToolTip(_translate("MainWindow", "Produção"))
+        self.btnCoordFilterScreen.setToolTip(_translate("MainWindow", "Filtro de Coordenadas"))
         self.btnMaintenaceScreen.setToolTip(_translate("MainWindow", "Manutenção"))
         self.btnEngineeringScreen.setToolTip(_translate("MainWindow", "Engenharia"))
         self.btnLogin.setToolTip(_translate("MainWindow", "LogIn"))

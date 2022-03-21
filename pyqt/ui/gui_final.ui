@@ -537,6 +537,9 @@ background-color: white;
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>Filtro de Coordenadas</string>
+            </property>
             <property name="text">
              <string/>
             </property>

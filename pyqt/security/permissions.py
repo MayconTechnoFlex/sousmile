@@ -8,8 +8,8 @@ from ui_py.ui_gui_final import Ui_MainWindow
 #######################################################################################################
 def noneUserConnected(ui: Ui_MainWindow):
     """Para caso de nenhum usuário conectado"""
-    if ui.stackedWidget.currentIndex() == 6:
-        ui.stackedWidget.setCurrentIndex(0)
+    if ui.stackedWidget.currentWidget() == ui.engineering_screen:
+        ui.stackedWidget.setCurrentWidget(ui.home_screen)
     ui.btnEngineeringScreen.setEnabled(False)
     ui.btn_change_tool.setEnabled(False)
     ui.btn_check_uf.setEnabled(False)
@@ -21,8 +21,8 @@ def noneUserConnected(ui: Ui_MainWindow):
 #######################################################################################################
 def operConnected(ui: Ui_MainWindow):
     """Para caso de um Operador conectado"""
-    if ui.stackedWidget.currentIndex() == 6:
-        ui.stackedWidget.setCurrentIndex(0)
+    if ui.stackedWidget.currentWidget() == ui.engineering_screen:
+        ui.stackedWidget.setCurrentWidget(ui.home_screen)
     ui.btnEngineeringScreen.setEnabled(False)
     ui.btn_change_tool.setEnabled(False)
     ui.btn_check_uf.setEnabled(False)
