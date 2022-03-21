@@ -1790,7 +1790,8 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguardando conexão</string>
+                                 <string>Aguardando leitura
+ou inserção</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2999,7 +3000,8 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguardando conexão</string>
+                                 <string>Aguardando leitura
+ou inserção</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5373,7 +5375,8 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguardando conexão</string>
+                                 <string>Aguardando leitura
+ou inserção</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6585,7 +6588,8 @@ background-color: #f00000;
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Aguardando conexão</string>
+                                 <string>Aguardando leitura
+ou inserção</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

@@ -12053,7 +12053,8 @@ class Ui_MainWindow(object):
         self.label_13.setText(_translate("MainWindow", "Transferência de dados\n"
 "A1 completa:"))
         self.label_14.setText(_translate("MainWindow", "Código peça A1:"))
-        self.lbl_ProdCode_A1.setText(_translate("MainWindow", "Aguardando conexão"))
+        self.lbl_ProdCode_A1.setText(_translate("MainWindow", "Aguardando leitura\n"
+"ou inserção"))
         self.label_15.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original A1:"))
         self.lbl_FileNumPos_A1.setText(_translate("MainWindow", "----"))
@@ -12072,7 +12073,8 @@ class Ui_MainWindow(object):
         self.label_29.setText(_translate("MainWindow", "Transferência de dados\n"
 "A2 completa:"))
         self.label_28.setText(_translate("MainWindow", "Código peça A2:"))
-        self.lbl_ProdCode_A2.setText(_translate("MainWindow", "Aguardando conexão"))
+        self.lbl_ProdCode_A2.setText(_translate("MainWindow", "Aguardando leitura\n"
+"ou inserção"))
         self.label_27.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original A2:"))
         self.lbl_FileNumPos_A2.setText(_translate("MainWindow", "----"))
@@ -12099,7 +12101,8 @@ class Ui_MainWindow(object):
         self.label_20.setText(_translate("MainWindow", "Transferência de dados\n"
 "B1 completa:"))
         self.label_21.setText(_translate("MainWindow", "Código peça B1:"))
-        self.lbl_ProdCode_B1.setText(_translate("MainWindow", "Aguardando conexão"))
+        self.lbl_ProdCode_B1.setText(_translate("MainWindow", "Aguardando leitura\n"
+"ou inserção"))
         self.label_22.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original B1:"))
         self.lbl_FileNumPos_B1.setText(_translate("MainWindow", "----"))
@@ -12118,7 +12121,8 @@ class Ui_MainWindow(object):
         self.label_36.setText(_translate("MainWindow", "Transferência de dados\n"
 "B2 completa:"))
         self.label_32.setText(_translate("MainWindow", "Código peça B2:"))
-        self.lbl_ProdCode_B2.setText(_translate("MainWindow", "Aguardando conexão"))
+        self.lbl_ProdCode_B2.setText(_translate("MainWindow", "Aguardando leitura\n"
+"ou inserção"))
         self.label_37.setText(_translate("MainWindow", "Número de posições no\n"
 "arquivo original B2:"))
         self.lbl_FileNumPos_B2.setText(_translate("MainWindow", "----"))

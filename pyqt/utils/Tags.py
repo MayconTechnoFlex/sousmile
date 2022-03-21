@@ -21,7 +21,9 @@ Tag_List = [
     "Cyl_DoorSideB.MaintTest",
     "Cyl_SpindleRobo.ManExt",
     "Cyl_SpindleRobo.MaintTest",
-    "BarCodeReader.Data"
+    "BarCodeReader.Data",
+    "In_SegLadoA",
+    "In_SegLadoB"
 ]
 #######################################################################################################
 # TagList de Entradas e Saídas

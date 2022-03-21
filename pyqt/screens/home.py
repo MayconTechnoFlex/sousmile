@@ -181,7 +181,7 @@ def UpdateHMI(tag):
         tag = readed tag from HMI
     """
 
-    global UI
+    global UI, tag_list
     try:
         prodTag = tag["Production"]
         UI.lbl_production_TimeCutA1.setText(str(round(prodTag['TimeCutA1'], 2)))
@@ -212,17 +212,17 @@ def UpdateHMI(tag):
 
         QApplication.restoreOverrideCursor()
 
-        #### setting alarm status
-        if tag["AlarmSideA"]:
-            UI.sts_sem_alarm_a.setEnabled(False)
-        else:
-            UI.sts_sem_alarm_a.setEnabled(True)
+        # setting status
+        change_status(tag["SideA.Manual"], UI.sts_auto_man_a)
+        change_status(tag["SideB.Manual"], UI.sts_auto_man_b)
+        change_status(tag["RobotCuttingSideA"], UI.sts_robo_cort_a)
+        change_status(tag["RobotCuttingSideB"], UI.sts_robo_cort_b)
+        change_status(tag_list[15], UI.sts_seg_cort_a)
+        change_status(tag_list[16], UI.sts_seg_cort_b)
+        change_status(tag["AlarmSideA"], UI.sts_sem_alarm_a)
+        change_status(tag["AlarmSideB"], UI.sts_sem_alarm_b)
 
-        if tag["AlarmSideB"]:
-            UI.sts_sem_alarm_b.setEnabled(False)
-        else:
-            UI.sts_sem_alarm_b.setEnabled(True)
-
+        # enable/disable buttons
         if tag["Sts"]["TransDataSideA"] == 0:
             UI.btn_trans_dados_man_a1.setEnabled(True)
             UI.btn_trans_dados_man_a2.setEnabled(True)
