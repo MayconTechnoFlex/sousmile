@@ -265,7 +265,7 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    # self.my_worker_data_to_plc.signal.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A1')
             ###########################################################################################
@@ -290,7 +290,7 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    # self.my_worker_data_to_plc.signal.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A2')
             ###########################################################################################
@@ -341,7 +341,7 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    # self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B2')
             ###########################################################################################
