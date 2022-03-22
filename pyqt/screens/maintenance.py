@@ -23,6 +23,7 @@ from utils.btn_style import base_button_style, checked_button_style
 UI: Ui_MainWindow
 tag_list: PLCReturn = []
 write_thread = QThreadPool()
+HomePos: int = 1
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
@@ -236,22 +237,25 @@ def UpdateHMI(tag):
     """
     global UI
     try:
-        if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
+        if not HomePos and tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
             UI.btn_move_home.setEnabled(True)
-            if connected_username == "rn" or connected_username == "eng":
-                UI.btn_check_uf.setEnabled(True)
-                UI.btn_check_utool.setEnabled(True)
-                UI.btn_change_tool.setEnabled(True)
-                UI.btn_SpindleRobo_abrir.setEnabled(True)
-                UI.btn_SpindleRobo_manut.setEnabled(True)
+            UI.btn_check_utool.setEnabled(False)
+            UI.btn_change_tool.setEnabled(False)
         else:
             UI.btn_move_home.setEnabled(False)
             if connected_username == "rn" or connected_username == "eng":
-                UI.btn_check_uf.setEnabled(False)
-                UI.btn_check_utool.setEnabled(False)
-                UI.btn_change_tool.setEnabled(False)
-                UI.btn_SpindleRobo_abrir.setEnabled(False)
-                UI.btn_SpindleRobo_manut.setEnabled(False)
+                UI.btn_check_utool.setEnabled(True)
+                UI.btn_change_tool.setEnabled(True)
+
+        if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
+            if connected_username == "rn" or connected_username == "eng":
+                UI.btn_check_uf.setEnabled(True)
+                UI.btn_SpindleRobo_abrir.setEnabled(True)
+                UI.btn_SpindleRobo_manut.setEnabled(True)
+        else:
+            UI.btn_check_uf.setEnabled(False)
+            UI.btn_SpindleRobo_abrir.setEnabled(False)
+            UI.btn_SpindleRobo_manut.setEnabled(False)
 
         if tag["SideA"]["Manual"]:
             UI.btn_DoorSideA_abrir.setEnabled(True)
@@ -284,13 +288,15 @@ def UpdateRobotInput(tag):
 
     :param tag: Tag lida do CLP
     """
-    global UI
+    global UI, HomePos
     if tag["CUFOn"] and tag["Prg_running"]:
         UI.btn_menos_1_mm.setEnabled(True)
         UI.btn_termina_check_uf.setEnabled(True)
     else:
         UI.btn_menos_1_mm.setEnabled(False)
         UI.btn_termina_check_uf.setEnabled(False)
+
+    HomePos = tag["HomePos"]
 #######################################################################################################
 def UpdateTagsList(tags):
     global UI, tag_list

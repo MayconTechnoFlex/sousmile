@@ -232,14 +232,16 @@ def UpdateHMI(tag):
             change_status(1, UI.sts_sem_alarm_b)
 
         # enable/disable buttons
-        if not tag["Sts"]["TransDataSideA"] and not tag["AlarmSideA"] and tag["SideA"]["Auto"]:
+        if (not tag["Sts"]["TransDataSideA"] and not tag["Sts"]["TransDataSideB"]) and \
+                not tag["AlarmSideA"] and tag["SideA"]["Auto"]:
             UI.btn_trans_dados_man_a1.setEnabled(True)
             UI.btn_trans_dados_man_a2.setEnabled(True)
         else:
             UI.btn_trans_dados_man_a1.setEnabled(False)
             UI.btn_trans_dados_man_a2.setEnabled(False)
 
-        if not tag["Sts"]["TransDataSideB"] and not tag["AlarmSideB"] and tag["SideB"]["Auto"]:
+        if (not tag["Sts"]["TransDataSideA"] and not tag["Sts"]["TransDataSideB"]) and \
+                not tag["AlarmSideB"] and tag["SideB"]["Auto"]:
             UI.btn_trans_dados_man_b1.setEnabled(True)
             UI.btn_trans_dados_man_b2.setEnabled(True)
         else:
