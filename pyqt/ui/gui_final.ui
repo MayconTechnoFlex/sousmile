@@ -19103,13 +19103,7 @@ DE MANUTENÇÃO</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>0</width>
-                                  <height>80</height>
-                                 </size>
-                                </property>
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>16777215</width>
-                                  <height>80</height>
+                                  <height>120</height>
                                  </size>
                                 </property>
                                 <property name="frameShape">
@@ -19211,13 +19205,7 @@ DE MANUTENÇÃO</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>0</width>
-                                  <height>80</height>
-                                 </size>
-                                </property>
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>16777215</width>
-                                  <height>80</height>
+                                  <height>119</height>
                                  </size>
                                 </property>
                                 <property name="frameShape">
@@ -19283,87 +19271,6 @@ border-radius: 30; border: 1.5px solid #767676
 *::disabled {
 background-color: #f00000;
 }</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="Line" name="line_21">
-                                <property name="minimumSize">
-                                 <size>
-                                  <width>0</width>
-                                  <height>2</height>
-                                 </size>
-                                </property>
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>16777215</width>
-                                  <height>2</height>
-                                 </size>
-                                </property>
-                                <property name="orientation">
-                                 <enum>Qt::Horizontal</enum>
-                                </property>
-                               </widget>
-                              </item>
-                              <item>
-                               <widget class="QFrame" name="frame_361">
-                                <property name="frameShape">
-                                 <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                 <enum>QFrame::Raised</enum>
-                                </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_39">
-                                 <property name="spacing">
-                                  <number>0</number>
-                                 </property>
-                                 <property name="leftMargin">
-                                  <number>25</number>
-                                 </property>
-                                 <property name="topMargin">
-                                  <number>0</number>
-                                 </property>
-                                 <property name="rightMargin">
-                                  <number>25</number>
-                                 </property>
-                                 <property name="bottomMargin">
-                                  <number>0</number>
-                                 </property>
-                                 <item>
-                                  <widget class="QLabel" name="label_77">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>220</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="font">
-                                    <font>
-                                     <family>Equinox Bold</family>
-                                     <pointsize>14</pointsize>
-                                    </font>
-                                   </property>
-                                   <property name="text">
-                                    <string>Retorno do CLP:</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QLabel" name="lbl_return_plc_barcode">
-                                   <property name="font">
-                                    <font>
-                                     <family>Equinox Bold</family>
-                                     <pointsize>14</pointsize>
-                                    </font>
-                                   </property>
-                                   <property name="text">
-                                    <string>Aguardando conexão</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                                    </property>
                                   </widget>
                                  </item>
@@ -20685,7 +20592,7 @@ background-color: #d0d0d0
                               </font>
                              </property>
                              <property name="text">
-                              <string>Start Lado A:</string>
+                              <string>Start Lado A</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -20798,7 +20705,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Start Lado B:</string>
+                              <string>Start Lado B</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -20911,8 +20818,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Botão solicita entrada
-de célula:</string>
+                              <string>Botão Reset</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21025,7 +20931,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Botão Reset:</string>
+                              <string>Sinal de Emergência</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21138,7 +21044,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Sinal de emergência:</string>
+                              <string>Sinal Porta</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21251,7 +21157,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Sinal Porta:</string>
+                              <string>Botão de Emergência
+do lado esquerdo</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21364,8 +21271,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Botão de emerg. EHM
-(frente da célula):</string>
+                              <string>Botão de Emergência
+do lado direito</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21478,8 +21385,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Botão de emergência
-da célula inteira:</string>
+                              <string>Sensor para ajuste da
+User Tool</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21619,8 +21526,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Botão de emergência
-da porta:</string>
+                              <string>Entrada Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21734,7 +21640,7 @@ background-color: #f00000;
                              </property>
                              <property name="text">
                               <string>Sensor de Porta
-Fechada Lado A:</string>
+Fechada Lado A</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21848,7 +21754,7 @@ background-color: #f00000;
                              </property>
                              <property name="text">
                               <string>Sensor de Porta
-Aberta Lado A:</string>
+Aberta Lado A</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -21962,7 +21868,7 @@ background-color: #f00000;
                              </property>
                              <property name="text">
                               <string>Sensor de Porta
-Fechada Lado B:</string>
+Fechada Lado B</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -22076,7 +21982,7 @@ background-color: #f00000;
                              </property>
                              <property name="text">
                               <string>Sensor de Porta
-Aberta Lado B:</string>
+Aberta Lado B</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -22189,8 +22095,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Sinal de Segurança
-de porta (Lado A):</string>
+                              <string>Entrada Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -22303,8 +22208,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Sinal de Segurança
-de porta (Lado B):</string>
+                              <string>Entrada Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -22671,7 +22575,7 @@ background-color: #f00000;
                           </property>
                           <property name="text">
                            <string>Segurança Porta
-Lado A:</string>
+Lado A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -22785,7 +22689,7 @@ background-color: #f00000;
                           </property>
                           <property name="text">
                            <string>Segurança Porta
-Lado B:</string>
+Lado B</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -22898,7 +22802,7 @@ background-color: #f00000;
                            </font>
                           </property>
                           <property name="text">
-                           <string>Entrada Reserva:</string>
+                           <string>Entrada Reserva</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23011,7 +22915,7 @@ background-color: #f00000;
                            </font>
                           </property>
                           <property name="text">
-                           <string>Entrada Reserva:</string>
+                           <string>Entrada Reserva</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23124,7 +23028,7 @@ background-color: #f00000;
                            </font>
                           </property>
                           <property name="text">
-                           <string>Entrada Reserva:</string>
+                           <string>Entrada Reserva</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23237,7 +23141,7 @@ background-color: #f00000;
                            </font>
                           </property>
                           <property name="text">
-                           <string>Entrada Reserva:</string>
+                           <string>Entrada Reserva</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23350,7 +23254,7 @@ background-color: #f00000;
                            </font>
                           </property>
                           <property name="text">
-                           <string>Entrada Reserva:</string>
+                           <string>Entrada Reserva</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23463,7 +23367,7 @@ background-color: #f00000;
                            </font>
                           </property>
                           <property name="text">
-                           <string>Entrada Reserva:</string>
+                           <string>Entrada Reserva</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23728,7 +23632,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Saída Reserva:</string>
+                              <string>Lâmpada Verde
+(Lado A)</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23841,7 +23746,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Saída Reserva:</string>
+                              <string>Lâmpada Vermelha
+(Lado A)</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -23954,7 +23860,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Saída Reserva:</string>
+                              <string>Lâmpada Verde
+(Lado B)</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24067,7 +23974,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Saída Reserva:</string>
+                              <string>Lâmpada Vermelha
+(Lado B)</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24180,7 +24088,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Saída Reserva:</string>
+                              <string>Lâmpada do Botão
+de Reset</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24293,8 +24202,8 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Verde
-(Lado A):</string>
+                              <string>Válvula de
+Segurança</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24407,8 +24316,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Vermelha
-(Lado A):</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24521,8 +24429,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Amarela
-(Lado A):</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24667,8 +24574,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Verde
-(Lado B):</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24781,8 +24687,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Vermelha
-(Lado B):</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -24895,8 +24800,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Amarela
-(Lado B):</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -25009,7 +24913,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Sinal Sonoro:</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -25122,8 +25026,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada do Botão
-de Reset:</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -25236,8 +25139,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Lâmpada Botão
-Solicita Entrada:</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -25350,7 +25252,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Entrada Liberada:</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -25463,7 +25365,7 @@ background-color: #f00000;
                               </font>
                              </property>
                              <property name="text">
-                              <string>Saída Reserva:</string>
+                              <string>Saída Reserva</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

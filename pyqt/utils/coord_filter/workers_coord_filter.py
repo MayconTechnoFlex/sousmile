@@ -225,3 +225,13 @@ class Worker_CreateTable(QRunnable, WorkerParent):
         self.signal.result.emit(True)
         time.sleep(sleep_time)
 #######################################################################################################
+class Worker_RunTest(QRunnable, WorkerParent):
+    def __init__(self):
+        super(Worker_RunTest, self).__init__()
+        self.signal = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        self.signal.result.emit(True)
+        time.sleep(sleep_time)
+#######################################################################################################
