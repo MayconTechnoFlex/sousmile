@@ -19,7 +19,7 @@ from utils.workers.workers import Worker_ToggleBtnValue
 # Definição das Variáveis Globais
 #######################################################################################################
 UI: Ui_MainWindow
-tag_list: PLCReturn
+tag_list: PLCReturn = None
 write_thread = QThreadPool()
 #######################################################################################################
 # Funçoes de Controle
@@ -181,7 +181,7 @@ def UpdateHMI(tag):
         tag = readed tag from HMI
     """
 
-    global UI
+    global UI, tag_list
     try:
         prodTag = tag["Production"]
         UI.lbl_production_TimeCutA1.setText(str(round(prodTag['TimeCutA1'], 2)))
@@ -192,45 +192,54 @@ def UpdateHMI(tag):
         sts_string(tag['Sts']['TransDataSideB'], UI.lbl_sts_TransDataSideB, "B")
 
         ### buttons manual <-> auto
-        if tag['SideA']['ModeValue'] == 0:
+        if tag['SideA']['Manual']:
             hmi_side_a_mode_value = 0
             UI.btn_man_auto_lado_a.setStyleSheet(base_button_style)
             UI.btn_man_auto_lado_a.setText('Manual')
-        elif tag['SideA']['ModeValue'] == 1:
+        elif tag['SideA']['Auto']:
             hmi_side_a_mode_value = 1
             UI.btn_man_auto_lado_a.setStyleSheet(checked_button_style)
             UI.btn_man_auto_lado_a.setText('Automático')
 
-        if tag['SideB']['ModeValue'] == 0:
+        if tag['SideB']['Manual']:
             hmi_side_b_mode_value = 0
             UI.btn_man_auto_lado_b.setStyleSheet(base_button_style)
             UI.btn_man_auto_lado_b.setText('Manual')
-        elif tag['SideB']['ModeValue'] == 1:
+        elif tag['SideB']['Auto']:
             hmi_side_b_mode_value = 1
             UI.btn_man_auto_lado_b.setStyleSheet(checked_button_style)
             UI.btn_man_auto_lado_b.setText('Automático')
 
         QApplication.restoreOverrideCursor()
 
-        #### setting alarm status
+        # setting status
+        change_status(tag["SideA"]["Manual"], UI.sts_auto_man_a)
+        change_status(tag["SideB"]["Manual"], UI.sts_auto_man_b)
+        change_status(tag["RobotCuttingSideA"], UI.sts_robo_cort_a)
+        change_status(tag["RobotCuttingSideB"], UI.sts_robo_cort_b)
+        if tag_list:
+            change_status(tag_list[15], UI.sts_seg_cort_a)
+            change_status(tag_list[16], UI.sts_seg_cort_b)
+
         if tag["AlarmSideA"]:
-            UI.sts_sem_alarm_a.setEnabled(False)
+            change_status(0, UI.sts_sem_alarm_a)
         else:
-            UI.sts_sem_alarm_a.setEnabled(True)
+            change_status(1, UI.sts_sem_alarm_a)
 
         if tag["AlarmSideB"]:
-            UI.sts_sem_alarm_b.setEnabled(False)
+            change_status(0, UI.sts_sem_alarm_b)
         else:
-            UI.sts_sem_alarm_b.setEnabled(True)
+            change_status(1, UI.sts_sem_alarm_b)
 
-        if tag["Sts"]["TransDataSideA"] == 0:
+        # enable/disable buttons
+        if not tag["Sts"]["TransDataSideA"] and not tag["AlarmSideA"] and tag["SideA"]["Auto"]:
             UI.btn_trans_dados_man_a1.setEnabled(True)
             UI.btn_trans_dados_man_a2.setEnabled(True)
         else:
             UI.btn_trans_dados_man_a1.setEnabled(False)
             UI.btn_trans_dados_man_a2.setEnabled(False)
 
-        if tag["Sts"]["TransDataSideB"] == 0:
+        if not tag["Sts"]["TransDataSideB"] and not tag["AlarmSideB"] and tag["SideB"]["Auto"]:
             UI.btn_trans_dados_man_b1.setEnabled(True)
             UI.btn_trans_dados_man_b2.setEnabled(True)
         else:
@@ -245,6 +254,10 @@ def UpdateHMI(tag):
         hmi_side_b_mode_value = None
         setErrorButton(UI.btn_man_auto_lado_a)
         setErrorButton(UI.btn_man_auto_lado_b)
+        setErrorButton(UI.btn_trans_dados_man_a1)
+        setErrorButton(UI.btn_trans_dados_man_a2)
+        setErrorButton(UI.btn_trans_dados_man_b1)
+        setErrorButton(UI.btn_trans_dados_man_b2)
         print(f'{e} - home.UpdateHMI')
 
     return hmi_side_a_mode_value, hmi_side_b_mode_value

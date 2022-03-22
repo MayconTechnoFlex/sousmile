@@ -364,12 +364,12 @@ class CoordFilter:
             file_path = self.ui.le_file_for_test.text()
             ###########################################################################################
             print("Inicio da execução do teste de filtros")
-            test_file(file_path, self.list_pos_x, self.list_pos_y, self.list_pos_z, self.list_pos_c, self.list_pos_d,
-                      self.list_pos, self.list_pos_info, self.limit_d, self.limit_c, self.limit_dist_xyz, self.limit_h,
-                      self.limit_p)
+            test_file(file_path, self.list_pos_x, self.list_pos_y, self.list_pos_z,
+                      self.list_pos_c, self.list_pos_d, self.list_pos, self.list_pos_info,
+                      self.limit_d, self.limit_c, self.limit_dist_xyz, self.limit_h, self.limit_p)
             ###########################################################################################
             my_worker_create_table = Worker_CreateTable()
-            my_worker_create_table.signal.result.connect(lambda: self.create_table_and_graphic() )
+            my_worker_create_table.signal.result.connect(lambda: self.create_table_and_graphic())
             self.my_thread_create_table.start(my_worker_create_table)
             ###########################################################################################
             self.ui.btn_test_file.setEnabled(True)
@@ -378,7 +378,7 @@ class CoordFilter:
             print("Selecione um arquivo")
             self.test_signal = False
     ###################################################################################################
-    def create_table_and_graphic(self, lists_pos):
+    def create_table_and_graphic(self, lists_pos=None):
         """Função para criação da tabela de posições"""
         if lists_pos is not None:
             self.list_pos = lists_pos[0]

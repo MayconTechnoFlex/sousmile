@@ -295,5 +295,4 @@ def UpdateRobotInput(tag):
 def UpdateTagsList(tags):
     global UI, tag_list
     tag_list = tags
-    UI.lbl_return_plc_barcode.setText(tags[14][1])
 #######################################################################################################
