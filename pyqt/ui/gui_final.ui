@@ -14237,11 +14237,11 @@ QTableWidget {
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
                        </attribute>
-                       <attribute name="horizontalHeaderMinimumSectionSize">
-                        <number>20</number>
-                       </attribute>
                        <attribute name="horizontalHeaderHighlightSections">
                         <bool>true</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderMinimumSectionSize">
+                        <number>20</number>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
                         <bool>false</bool>

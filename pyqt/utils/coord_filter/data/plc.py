@@ -197,7 +197,7 @@ class Worker_Data_to_PLC(QRunnable):
             # Create a table
             ########################################################################################
             self.signal.result_list.emit([data_list_pos, data_list_X, data_list_Y,
-                             data_list_Z, data_list_C, data_list_D, data_list_info])
+                                          data_list_Z, data_list_C, data_list_D, data_list_info])
         except Exception as e:
             # print python error
             print(e)

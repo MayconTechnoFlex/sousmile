@@ -55,7 +55,6 @@ def UpdateHMI(tag):
             QApplication.restoreOverrideCursor()
         else:
             pass
-
     except Exception as e:
         setErrorButton(UI.btn_parar_robo)
         print(f'{e} - robot.UpdateHMI')
