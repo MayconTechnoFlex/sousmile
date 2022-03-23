@@ -34,34 +34,34 @@ def sts_string(id_num: int, widget: QLabel, side: Literal["A", "B"]):
     """
     if side == "A":
         if id_num == 100:
-            widget.setText('Transferência do código da peça habilitado para o lado A1')
+            widget.setText('Transferência do cód. habilitado')
         elif id_num == 110:
-            widget.setText('Transferência do lado A1 aguardando python iniciar a transferência')
+            widget.setText('Aguardando Python iniciar a transf.')
         elif id_num == 120:
-            widget.setText('Transferência iniciou lado A1: python -> CLP')
+            widget.setText('Transferência iniciou')
         elif id_num == 200:
-            widget.setText('Transferência do código da peça habilitado para o lado A2')
+            widget.setText('Transferência do cód. habilitado')
         elif id_num == 210:
-            widget.setText('Transferência do lado A2 aguardando python iniciar a transferência')
+            widget.setText('Aguardando Python iniciar a transf.')
         elif id_num == 220:
-            widget.setText('Transferência iniciou lado A2: python -> CLP')
+            widget.setText('Transferência iniciou')
         elif id_num == 0:
             widget.setText('Aguardando leitura do código')
         else:
             widget.setText('Erro')
     elif side == "B":
         if id_num == 100:
-            widget.setText('Transferência do código da peça habilitado para o lado B1')
+            widget.setText('Transferência do cód. habilitado')
         elif id_num == 110:
-            widget.setText('Transferência do lado B1 aguardando python iniciar a transferência')
+            widget.setText('Aguardando Python iniciar a transf.')
         elif id_num == 120:
-            widget.setText('Transferência iniciou lado B1: python -> CLP')
+            widget.setText('Transferência iniciou')
         elif id_num == 200:
-            widget.setText('Transferência do código da peça habilitado para o lado B2')
+            widget.setText('Transferência do cód. habilitado')
         elif id_num == 210:
-            widget.setText('Transferência do lado B2 aguardando python iniciar a transferência')
+            widget.setText('Aguardando Python iniciar a transf.')
         elif id_num == 220:
-            widget.setText('Transferência iniciou lado B2: python -> CLP')
+            widget.setText('Transferência iniciou')
         elif id_num == 0:
             widget.setText('Aguardando leitura do código')
         else:
@@ -188,8 +188,15 @@ def UpdateHMI(tag):
         UI.lbl_production_TimeCutA2.setText(str(round(prodTag['TimeCutA2'], 2)))
         UI.lbl_production_TimeCutB1.setText(str(round(prodTag['TimeCutB1'], 2)))
         UI.lbl_production_TimeCutB2.setText(str(round(prodTag['TimeCutB2'], 2)))
-        sts_string(tag['Sts']['TransDataSideA'], UI.lbl_sts_TransDataSideA, "A")
-        sts_string(tag['Sts']['TransDataSideB'], UI.lbl_sts_TransDataSideB, "B")
+        sts_string(tag['Sts']['TransDataSideA1'], UI.lbl_sts_TransDataSideA1, "A")
+        sts_string(tag['Sts']['TransDataSideA2'], UI.lbl_sts_TransDataSideA2, "A")
+        sts_string(tag['Sts']['TransDataSideB1'], UI.lbl_sts_TransDataSideB1, "B")
+        sts_string(tag['Sts']['TransDataSideB2'], UI.lbl_sts_TransDataSideB2, "B")
+
+        setButton(UI.btn_trans_dados_man_a1, "Transferir dados\n manualmente A1")
+        setButton(UI.btn_trans_dados_man_a2, "Transferir dados\n manualmente A2")
+        setButton(UI.btn_trans_dados_man_b1, "Transferir dados\n manualmente B1")
+        setButton(UI.btn_trans_dados_man_b2, "Transferir dados\n manualmente B2")
 
         ### buttons manual <-> auto
         if tag['SideA']['Manual']:
@@ -232,21 +239,44 @@ def UpdateHMI(tag):
             change_status(1, UI.sts_sem_alarm_b)
 
         # enable/disable buttons
-        if (not tag["Sts"]["TransDataSideA"] and not tag["Sts"]["TransDataSideB"]) and \
-                not tag["AlarmSideA"] and tag["SideA"]["Auto"]:
+        # if (not tag["Sts"]["TransDataSideA1"] and not tag["Sts"]["TransDataSideA2"]
+        #     and not tag["Sts"]["TransDataSideB1"] and not tag["Sts"]["TransDataSideB2"]) and \
+        #         not tag["AlarmSideA"] and tag["SideA"]["Auto"]:
+        #     UI.btn_trans_dados_man_a1.setEnabled(True)
+        #     UI.btn_trans_dados_man_a2.setEnabled(True)
+        # else:
+        #     UI.btn_trans_dados_man_a1.setEnabled(False)
+        #     UI.btn_trans_dados_man_a2.setEnabled(False)
+        #
+        # if (not tag["Sts"]["TransDataSideA1"] and not tag["Sts"]["TransDataSideA2"]
+        #     and not tag["Sts"]["TransDataSideB1"] and not tag["Sts"]["TransDataSideB2"])  and \
+        #         not tag["AlarmSideB"] and tag["SideB"]["Auto"]:
+        #     UI.btn_trans_dados_man_b1.setEnabled(True)
+        #     UI.btn_trans_dados_man_b2.setEnabled(True)
+        # else:
+        #     UI.btn_trans_dados_man_b1.setEnabled(False)
+        #     UI.btn_trans_dados_man_b2.setEnabled(False)
+
+        if not tag["AlarmSideA"] and not tag["Sts"]["TransDataSideA1"] and tag["SideA"]["Auto"]:
             UI.btn_trans_dados_man_a1.setEnabled(True)
-            UI.btn_trans_dados_man_a2.setEnabled(True)
         else:
             UI.btn_trans_dados_man_a1.setEnabled(False)
+
+        if not tag["AlarmSideA"] and not tag["Sts"]["TransDataSideA2"] and tag["SideA"]["Auto"]:
+            UI.btn_trans_dados_man_a2.setEnabled(True)
+        else:
             UI.btn_trans_dados_man_a2.setEnabled(False)
 
-        if (not tag["Sts"]["TransDataSideA"] and not tag["Sts"]["TransDataSideB"]) and \
-                not tag["AlarmSideB"] and tag["SideB"]["Auto"]:
+        if not tag["AlarmSideB"] and not tag["Sts"]["TransDataSideB1"] and tag["SideB"]["Auto"]:
             UI.btn_trans_dados_man_b1.setEnabled(True)
-            UI.btn_trans_dados_man_b2.setEnabled(True)
         else:
             UI.btn_trans_dados_man_b1.setEnabled(False)
+
+        if not tag["AlarmSideB"] and not tag["Sts"]["TransDataSideB2"] and tag["SideB"]["Auto"]:
+            UI.btn_trans_dados_man_b2.setEnabled(True)
+        else:
             UI.btn_trans_dados_man_b2.setEnabled(False)
+
 
         QApplication.restoreOverrideCursor()
 

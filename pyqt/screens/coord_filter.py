@@ -12,6 +12,7 @@ from utils.coord_filter.data.plc import Worker_Data_to_PLC
 from utils.coord_filter.config_table import qt_create_table
 from utils.coord_filter.test.test import test_file
 from utils.coord_filter.workers_coord_filter import *
+from utils.workers.workers import Worker_WriteTags
 #######################################################################################################
 
 class CoordFilter:
@@ -66,6 +67,7 @@ class CoordFilter:
         self.my_thread_bcscanner = QThreadPool()
         self.my_thread_create_table = QThreadPool()
         self.my_thread_data_to_plc = QThreadPool()
+        self.my_thread_send_code_plc = QThreadPool()
         ###############################################################################################
         # Workers
         ###############################################################################################
@@ -73,6 +75,7 @@ class CoordFilter:
         self.my_worker_test = Worker_Test()
         self.my_worker_bcscanner = Worker_BarCodeScanner()
         self.my_worker_data_to_plc: Worker_Data_to_PLC
+        self.my_worker_send_code_plc: Worker_WriteTags
         ###############################################################################################
         # Conexões das Threads
         ###############################################################################################
@@ -237,6 +240,9 @@ class CoordFilter:
             if not self.code_read == "B2":
                 self.ui.lbl_ProdCode_B2.setText(self.code_read)
             self.trigger_b2 = True
+
+        self.my_worker_send_code_plc = Worker_WriteTags("BarCodeReader.Data", self.code_read)
+        self.my_thread_send_code_plc.start(self.my_worker_send_code_plc)
     ###################################################################################################
     def plc_routine(self, configpontos, data_ctrl_a1, data_ctrl_a2, data_ctrl_b1, data_ctrl_b2, HMI):
         """Rotina para dados recebidos do CLP"""

@@ -29,4 +29,9 @@ def setErrorButton(button: QPushButton):
     button.setStyleSheet(btn_error_style)
     button.setText("Erro")
     button.setEnabled(False)
+
 #######################################################################################################
+def setButton(button: QPushButton, text: str):
+    button.setStyleSheet(base_button_style)
+    button.setText(text)
+    button.setEnabled(False)

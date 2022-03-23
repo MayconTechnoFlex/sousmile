@@ -71,8 +71,8 @@ class Worker_Data_Ctrl_A1(QRunnable, WorkerParent):
                     self.signal_a1.result.emit(data_ctrl_a1)
             except Exception as e:
                 print(f'{e} Worker_Data_Ctrl_A1 - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
@@ -98,8 +98,8 @@ class Worker_Data_Ctrl_A2(QRunnable, WorkerParent):
                     self.signal_a2.result.emit(data_ctrl_a2)
             except Exception as e:
                 print(f'{e} Worker_Data_Ctrl_A2 - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
@@ -126,8 +126,8 @@ class Worker_Data_Ctrl_B1(QRunnable, WorkerParent):
                     self.signal_b1.result.emit(data_ctrl_b1)
             except Exception as e:
                 print(f'{e} Worker_Data_Ctrl_B1 - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
@@ -154,8 +154,8 @@ class Worker_Data_Ctrl_B2(QRunnable, WorkerParent):
                     self.signal_b2.result.emit(data_ctrl_b2)
             except Exception as e:
                 print(f'{e} Worker_Data_Ctrl_B2 - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 # HMI
@@ -183,8 +183,8 @@ class Worker_HMI(QRunnable, WorkerParent):
                     self.signal_hmi.result.emit(hmi)
             except Exception as e:
                 print(f'{e} Worker_HMI - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 # Config pontos e Cyl
@@ -212,8 +212,8 @@ class Worker_Config_Pts(QRunnable, WorkerParent):
                     self.signal_configPts.result.emit(config_pts)
             except Exception as e:
                 print(f'{e} Worker_Config_Pts - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Cyl_Door_A(QRunnable, WorkerParent):
@@ -239,8 +239,8 @@ class Worker_Cyl_Door_A(QRunnable, WorkerParent):
                     self.signal_cylDoorA.result.emit(cyl_door_a)
             except Exception as e:
                 print(f'{e} Worker_Cyl_Door_A - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Cyl_Door_B(QRunnable, WorkerParent):
@@ -266,8 +266,8 @@ class Worker_Cyl_Door_B(QRunnable, WorkerParent):
                     self.signal_cylDoorB.result.emit(cyl_door_b)
             except Exception as e:
                 print(f'{e} Worker_Cyl_Door_B - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Cyl_Spindle(QRunnable, WorkerParent):
@@ -293,8 +293,8 @@ class Worker_Cyl_Spindle(QRunnable, WorkerParent):
                     self.signal_cylSpindle.result.emit(cyl_spindle)
             except Exception as e:
                 print(f'{e} Worker_Cyl_Spindle - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 # Robô
@@ -322,8 +322,8 @@ class Worker_Robot_Inputs(QRunnable, WorkerParent):
                     self.signal_roboInput.result.emit(robo_input)
             except Exception as e:
                 print(f'{e} Worker_Robot_Inputs - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_Robot_Outputs(QRunnable, WorkerParent):
@@ -349,8 +349,8 @@ class Worker_Robot_Outputs(QRunnable, WorkerParent):
                     self.signal_robotOutput.result.emit(robo_output)
             except Exception as e:
                 print(f'{e} Worker_Robot_Outputs - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_IndexRobotPos(QRunnable, WorkerParent):
@@ -376,8 +376,8 @@ class Worker_IndexRobotPos(QRunnable, WorkerParent):
                     self.signal_indexRobotPos.result.emit(index_robot_pos)
             except Exception as e:
                 print(f'{e} Worker_IndexRobotPos - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 # Tags List
@@ -404,8 +404,8 @@ class Worker_Alarms(QRunnable, WorkerParent):
                     self.signal_alarm.result.emit(alarm_list)
             except Exception as e:
                 print(f'{e} Worker_Alarms - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_InOut(QRunnable, WorkerParent):
@@ -430,8 +430,8 @@ class Worker_InOut(QRunnable, WorkerParent):
                     self.signal_inOut.result.emit(inOut_list)
             except Exception as e:
                 print(f'{e} Worker_InOut - in workers.py')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 class Worker_User(QRunnable, WorkerParent):
@@ -474,8 +474,8 @@ class Worker_ReadTags(QRunnable, WorkerParent):
                     self.signal_ReadTags.result.emit(tag)
             except Exception as e:
                 print(f'{e} - Read Tags Worker')
-                self.stop()
-                break
+                # self.stop()
+                # break
             time.sleep(sleep_time)
 #######################################################################################################
 # Escrita de Tags
@@ -496,9 +496,9 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
 
     @pyqtSlot()
     def run(self):
-        QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
             if self.widget:
+                QApplication.setOverrideCursor(Qt.WaitCursor)
                 self.widget.setEnabled(False)
             write_tag(self.tag, self.value)
         except Exception as e:
@@ -506,7 +506,7 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
         finally:
             if self.widget:
                 self.widget.setEnabled(True)
-        QApplication.restoreOverrideCursor()
+                QApplication.restoreOverrideCursor()
 #######################################################################################################
 class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
     def __init__(self, tag: str, value):

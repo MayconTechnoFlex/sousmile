@@ -195,8 +195,6 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent):
                             time.sleep(1)
                             self.signal.result.emit({"DataPy": self.code_read, "ReadComplete": False,
                                                      "Connected": self.device_connected})
-                            write_tag("BarCodeReader.Data", self.code_read)
-
                 except SerialException:
                     print(f"Dispotivo desconectado da porta {self.port}")
                     self.device.close()

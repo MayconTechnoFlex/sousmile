@@ -31,7 +31,7 @@ background-color: white;
 border: 0; padding: 0; margin:0
 }
 
-#line_179,  #line_180 {border: 2px solid #b0b0b0; margin:0; padding:0}
+#line_179,  #line_180, #line_21 {border: 2px solid #b0b0b0; margin:0; padding:0}
 
 *{border:0; margin:0;padding:0;}</string>
    </property>
@@ -3891,6 +3891,9 @@ manualmente A2</string>
                          <height>1000000</height>
                         </size>
                        </property>
+                       <property name="styleSheet">
+                        <string notr="true">#line_205 {border: 3px solid #b0b0b0; margin:0; padding: 0}</string>
+                       </property>
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                        </property>
@@ -3902,49 +3905,71 @@ manualmente A2</string>
                          <number>0</number>
                         </property>
                         <property name="leftMargin">
-                         <number>15</number>
+                         <number>0</number>
                         </property>
                         <property name="topMargin">
                          <number>0</number>
                         </property>
                         <property name="rightMargin">
-                         <number>15</number>
+                         <number>0</number>
                         </property>
                         <property name="bottomMargin">
                          <number>0</number>
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_113">
-                          <property name="maximumSize">
-                           <size>
-                            <width>220</width>
-                            <height>9999999</height>
-                           </size>
-                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QVBoxLayout" name="verticalLayout_155">
+                          <layout class="QHBoxLayout" name="horizontalLayout_39">
                            <property name="spacing">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="leftMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_42">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>130</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>12</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Status:</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="lbl_sts_TransDataSideA1">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                                <horstretch>0</horstretch>
@@ -3958,7 +3983,7 @@ manualmente A2</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>Status lado A:</string>
+                              <string>Aguardando conexão</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignCenter</set>
@@ -3969,6 +3994,25 @@ manualmente A2</string>
                          </widget>
                         </item>
                         <item>
+                         <widget class="Line" name="line_205">
+                          <property name="minimumSize">
+                           <size>
+                            <width>2</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>2</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
                          <widget class="QFrame" name="frame_114">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
@@ -3976,24 +4020,52 @@ manualmente A2</string>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QVBoxLayout" name="verticalLayout_156">
+                          <layout class="QHBoxLayout" name="horizontalLayout_208">
                            <property name="spacing">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="leftMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="lbl_sts_TransDataSideA">
+                            <widget class="QLabel" name="label_287">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>130</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>12</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Status:</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="lbl_sts_TransDataSideA2">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                                <horstretch>0</horstretch>
@@ -7365,6 +7437,9 @@ manualmente B2</string>
                          <height>1000000</height>
                         </size>
                        </property>
+                       <property name="styleSheet">
+                        <string notr="true">#line_21 {border: 3px solid #b0b0b0; margin:0; padding: 0}</string>
+                       </property>
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                        </property>
@@ -7376,55 +7451,71 @@ manualmente B2</string>
                          <number>0</number>
                         </property>
                         <property name="leftMargin">
-                         <number>15</number>
+                         <number>0</number>
                         </property>
                         <property name="topMargin">
                          <number>0</number>
                         </property>
                         <property name="rightMargin">
-                         <number>15</number>
+                         <number>0</number>
                         </property>
                         <property name="bottomMargin">
                          <number>0</number>
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_127">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>55</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>220</width>
-                            <height>55</height>
-                           </size>
-                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QVBoxLayout" name="verticalLayout_149">
+                          <layout class="QHBoxLayout" name="horizontalLayout_207">
                            <property name="spacing">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="leftMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_43">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>130</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>12</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Status:</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="lbl_sts_TransDataSideB1">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                                <horstretch>0</horstretch>
@@ -7438,7 +7529,7 @@ manualmente B2</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>Status Lado B:</string>
+                              <string>Aguardando conexão</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignCenter</set>
@@ -7449,6 +7540,25 @@ manualmente B2</string>
                          </widget>
                         </item>
                         <item>
+                         <widget class="Line" name="line_21">
+                          <property name="minimumSize">
+                           <size>
+                            <width>2</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>2</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
                          <widget class="QFrame" name="frame_128">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
@@ -7456,24 +7566,52 @@ manualmente B2</string>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QVBoxLayout" name="verticalLayout_150">
+                          <layout class="QHBoxLayout" name="horizontalLayout_209">
                            <property name="spacing">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="leftMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>0</number>
+                            <number>15</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="lbl_sts_TransDataSideB">
+                            <widget class="QLabel" name="label_77">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>130</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>12</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Status:</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="lbl_sts_TransDataSideB2">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                                <horstretch>0</horstretch>
@@ -14099,11 +14237,11 @@ QTableWidget {
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
                        </attribute>
-                       <attribute name="horizontalHeaderHighlightSections">
-                        <bool>true</bool>
-                       </attribute>
                        <attribute name="horizontalHeaderMinimumSectionSize">
                         <number>20</number>
+                       </attribute>
+                       <attribute name="horizontalHeaderHighlightSections">
+                        <bool>true</bool>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
                         <bool>false</bool>

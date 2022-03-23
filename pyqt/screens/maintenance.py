@@ -10,7 +10,7 @@ from dialogs.confirmation import ConfirmationDialog
 from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
-from security.db_users import connected_username
+from security.db_users import get_connected_username
 
 from utils.functions.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
@@ -62,8 +62,6 @@ def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
     UI.btn_SpindleRobo_abrir.pressed.connect(spindle_on)
     UI.btn_SpindleRobo_abrir.released.connect(spindle_off)
 
-    # UI.btn_SpindleRobo_abrir.clicked.connect(lambda: set_reset_button(12, UI.btn_SpindleRobo_abrir))
-
     UI.btn_SpindleRobo_manut.clicked.connect(lambda: set_reset_btn_int(13, tag_list, UI.btn_SpindleRobo_manut))
     UI.btn_SpindleRobo_TimeMaint.clicked.connect(
         lambda: altValDialog.show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
@@ -82,13 +80,11 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
     UI.btn_check_utool.clicked.connect(
         lambda: dialog.show_dialog("CheckUTOOL",
-                                   "Cuidado! Você vai movimentar o robô para ajustar a User Tool. "
-                                   "Para isso, o robô deve estar em Home, caso contrário, não funcionará.")
+                                   "Cuidado! Você vai movimentar o robô para ajustar a User Tool.")
     )
     UI.btn_change_tool.clicked.connect(
         lambda: dialog.show_dialog("ChangeTool",
-                                   "Cuidado! Você vai movimentar o robô para trocar sua ferramenta. "
-                                   "Para isso, o robô deve estar em Home, caso contrário, não funcionará.")
+                                   "Cuidado! Você vai movimentar o robô para trocar sua ferramenta.")
     )
 #######################################################################################################
 def error_buttons():
@@ -235,49 +231,59 @@ def UpdateHMI(tag):
 
     :param tag: Tag lida do CLP
     """
-    global UI
+    global UI, HomePos
     try:
-        if not HomePos and tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
-            UI.btn_move_home.setEnabled(True)
-            UI.btn_check_utool.setEnabled(False)
-            UI.btn_change_tool.setEnabled(False)
-        else:
-            UI.btn_move_home.setEnabled(False)
-            if connected_username == "rn" or connected_username == "eng":
-                UI.btn_check_utool.setEnabled(True)
-                UI.btn_change_tool.setEnabled(True)
-
+        user = get_connected_username()
         if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
-            if connected_username == "rn" or connected_username == "eng":
-                UI.btn_check_uf.setEnabled(True)
+            UI.btn_move_home.setEnabled(True)
+            if HomePos:
+                if user == "rn" or user == "eng":
+                    UI.btn_check_uf.setEnabled(True)
+                    UI.btn_check_utool.setEnabled(True)
+                    UI.btn_change_tool.setEnabled(True)
+                else:
+                    UI.btn_check_uf.setEnabled(False)
+                    UI.btn_check_utool.setEnabled(False)
+                    UI.btn_change_tool.setEnabled(False)
+            else:
+                UI.btn_check_uf.setEnabled(False)
+                UI.btn_check_utool.setEnabled(False)
+                UI.btn_change_tool.setEnabled(False)
+
+            if user == "rn" or user == "eng":
                 UI.btn_SpindleRobo_abrir.setEnabled(True)
                 UI.btn_SpindleRobo_manut.setEnabled(True)
         else:
-            UI.btn_check_uf.setEnabled(False)
             UI.btn_SpindleRobo_abrir.setEnabled(False)
             UI.btn_SpindleRobo_manut.setEnabled(False)
+            UI.btn_move_home.setEnabled(False)
+            UI.btn_check_uf.setEnabled(False)
+            UI.btn_check_utool.setEnabled(False)
+            UI.btn_change_tool.setEnabled(False)
 
         if tag["SideA"]["Manual"]:
             UI.btn_DoorSideA_abrir.setEnabled(True)
             UI.btn_DoorSideA_fechar.setEnabled(True)
-            if connected_username == "rn" or connected_username == "eng":
+            if user == "rn" or user == "eng":
                 UI.btn_DoorSideA_manut.setEnabled(True)
+            else:
+                UI.btn_DoorSideA_manut.setEnabled(False)
         else:
             UI.btn_DoorSideA_abrir.setEnabled(False)
             UI.btn_DoorSideA_fechar.setEnabled(False)
-            if connected_username == "rn" or connected_username == "eng":
-                UI.btn_DoorSideA_manut.setEnabled(False)
+            UI.btn_DoorSideA_manut.setEnabled(False)
 
         if tag["SideB"]["Manual"]:
             UI.btn_DoorSideB_abrir.setEnabled(True)
             UI.btn_DoorSideB_fechar.setEnabled(True)
-            if connected_username == "rn" or connected_username == "eng":
+            if user == "rn" or user == "eng":
                 UI.btn_DoorSideB_manut.setEnabled(True)
+            else:
+                UI.btn_DoorSideB_manut.setEnabled(False)
         else:
             UI.btn_DoorSideB_abrir.setEnabled(False)
             UI.btn_DoorSideB_fechar.setEnabled(False)
-            if connected_username == "rn" or connected_username == "eng":
-                UI.btn_DoorSideB_manut.setEnabled(False)
+            UI.btn_DoorSideB_manut.setEnabled(False)
 
     except Exception:
         error_buttons()
