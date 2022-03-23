@@ -14,7 +14,7 @@ from security.db_users import get_connected_username
 
 from utils.functions.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
-from utils.btn_style import setErrorButton
+from utils.btn_style import setErrorButton, setButton
 from utils.workers.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags
 from utils.btn_style import base_button_style, checked_button_style
 #######################################################################################################
@@ -86,6 +86,30 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
         lambda: dialog.show_dialog("ChangeTool",
                                    "Cuidado! Você vai movimentar o robô para trocar sua ferramenta.")
     )
+#######################################################################################################
+def setup_buttons_style():
+    """Configura os botões para Erro caso hajá problema de conexão"""
+    # botões da parte inferior
+    setButton(UI.btn_move_home, "Mover\npara Home")
+    setButton(UI.btn_check_uf, "Check\nUser Frame")
+    setButton(UI.btn_menos_1_mm, "- 1 mm")
+    setButton(UI.btn_termina_check_uf, "Termina Check\nUser Frame")
+    setButton(UI.btn_check_utool, "Ajustar\nTool Frame")
+    setButton(UI.btn_change_tool, "Trocar de\nFerramenta")
+
+    # botões do lado A
+    setButton(UI.btn_DoorSideA_abrir, "ABRIR")
+    setButton(UI.btn_DoorSideA_fechar, "FECHAR")
+    setButton(UI.btn_DoorSideA_manut, "MANUTENÇÃO")
+
+    # botões do lado B
+    setButton(UI.btn_DoorSideB_abrir, "ABRIR")
+    setButton(UI.btn_DoorSideB_fechar, "FECHAR")
+    setButton(UI.btn_DoorSideB_manut, "MANUTENÇÃO")
+
+    # botões do spindle
+    setButton(UI.btn_SpindleRobo_abrir, "LIGAR")
+    setButton(UI.btn_SpindleRobo_manut, "MANUTENÇÃO")
 #######################################################################################################
 def error_buttons():
     """Configura os botões para Erro caso hajá problema de conexão"""
@@ -261,6 +285,8 @@ def UpdateHMI(tag):
             UI.btn_check_utool.setEnabled(False)
             UI.btn_change_tool.setEnabled(False)
 
+        setup_buttons_style()
+
         if tag["SideA"]["Manual"]:
             UI.btn_DoorSideA_abrir.setEnabled(True)
             UI.btn_DoorSideA_fechar.setEnabled(True)
@@ -284,7 +310,6 @@ def UpdateHMI(tag):
             UI.btn_DoorSideB_abrir.setEnabled(False)
             UI.btn_DoorSideB_fechar.setEnabled(False)
             UI.btn_DoorSideB_manut.setEnabled(False)
-
     except Exception:
         error_buttons()
 #######################################################################################################

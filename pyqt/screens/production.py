@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication
 from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.functions.ctrl_plc import write_tag
-from utils.btn_style import setErrorButton
+from utils.btn_style import setErrorButton, setButton
 #######################################################################################################
 class ThreadResetProduct(QThread):
     """Thread para reset das tags dos produtos"""
@@ -74,6 +74,14 @@ def UpdateHMI(tag):
     global UI
     try:
         prodTag = tag["Production"]
+
+        setButton(UI.btn_reset_prod_a1, "RESET")
+        setButton(UI.btn_reset_prod_a2, "RESET")
+        setButton(UI.btn_reset_prod_total_a, "RESET")
+        setButton(UI.btn_reset_prod_b1, "RESET")
+        setButton(UI.btn_reset_prod_b2, "RESET")
+        setButton(UI.btn_reset_prod_total_b, "RESET")
+
         UI.lbl_PartsDoneA1.setText(str(prodTag["PartsDoneA1"]))
         UI.lbl_PartsDoneA2.setText(str(prodTag["PartsDoneA2"]))
         UI.lbl_PartsDoneSideA.setText(str(prodTag["PartDoneSideA"]))
