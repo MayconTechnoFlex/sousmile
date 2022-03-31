@@ -10643,7 +10643,9 @@ QPushButton:hover{ background-color: #f1d100}
 QPushButton:pressed{background-color:#dfc200 }
 QPushButton:disabled{background-color:#ababab; color: grey}
 
- #line_8, #line_9,  #line_10, #line_11, #line_12, #line_13, #line_14, #line_15, #line_16, #line_17, #line_18, #line_19,  #line_20 {border: 3px solid #b0b0b0; margin:0; padding:0}</string>
+ #line_8, #line_9,  #line_10, #line_11, #line_12, #line_13, #line_14, #line_15, #line_16, #line_17, #line_18, #line_19,  #line_20, #line_46,  #line_119,  #line_206,  #line_207,  #line_116, #line_121,
+#line_123, #line_208, #line_209, #line_210, #line_211, #line_212, #line_213, #line_214
+ {border: 3px solid #b0b0b0; margin:0; padding:0}</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -10772,7 +10774,13 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                    </widget>
                   </item>
                   <item>
-                   <widget class="QFrame" name="frame_147">
+                   <widget class="QFrame" name="frame_150">
+                    <property name="styleSheet">
+                     <string notr="true">#frame_151, #frame_155, #frame_55, #frame_57, #frame_153, #frame_154
+{ background-color:#d0d0d0}
+
+#frame_150 { background-color: #efefef }</string>
+                    </property>
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -10784,29 +10792,377 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                       <number>0</number>
                      </property>
                      <property name="leftMargin">
-                      <number>75</number>
+                      <number>0</number>
                      </property>
                      <property name="topMargin">
-                      <number>50</number>
+                      <number>0</number>
                      </property>
                      <property name="rightMargin">
-                      <number>75</number>
+                      <number>0</number>
                      </property>
                      <property name="bottomMargin">
-                      <number>150</number>
+                      <number>0</number>
                      </property>
                      <item>
-                      <widget class="QFrame" name="frame_150">
-                       <property name="styleSheet">
-                        <string notr="true">#frame_151, #frame_153, #frame_155 { background-color:#d0d0d0}</string>
-                       </property>
+                      <widget class="QFrame" name="frame_151">
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                        </property>
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_32">
+                       <layout class="QHBoxLayout" name="horizontalLayout_44">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_53">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Peças produzidas pelo lado A1:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_4">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>155</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartsDoneA1">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_55">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>UNID.</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_reset_prod_a1">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string>RESET</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_15">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_152">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_45">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_54">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Peças produzidas pelo lado A2:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_6">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>150</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartsDoneA2">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_56">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>UNID.</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_reset_prod_a2">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string>RESET</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_14">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_153">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_46">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_58">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Total de peças no lado A (A1+A2):</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_8">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>204</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartsDoneSideA">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_57">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>UNID.</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_reset_prod_total_a">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string>RESET</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_213">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_44">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_21">
                         <property name="spacing">
                          <number>0</number>
                         </property>
@@ -10823,643 +11179,927 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QFrame" name="frame_151">
+                         <widget class="QFrame" name="frame_46">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_44">
+                          <layout class="QVBoxLayout" name="verticalLayout_32">
                            <property name="spacing">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <property name="leftMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="label_53">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_54">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>Peças produzidas pelo lado A1:</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_43">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_23">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições no
+arquivo original A1:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_FileNumPos_A1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <spacer name="horizontalSpacer_4">
+                            <widget class="Line" name="line_119">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_55">
+                             <property name="minimumSize">
                               <size>
-                               <width>155</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_56">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_24">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições A1:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_NumPos_A1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="lbl_PartsDoneA1">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="Line" name="line_12">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
                              </property>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_55">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_56">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>UNID.</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_59">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_26">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Posição atual A1:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_IndexPos_A1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_121">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
                              </property>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_reset_prod_a1">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_154">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>RESET</string>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_47">
+                              <property name="spacing">
+                               <number>10</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_60">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Tempo de corte do lado A1:</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_TimeCutA1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>---</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="label_59">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>SEG.</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>
                          </widget>
                         </item>
                         <item>
-                         <widget class="Line" name="line_15">
+                         <widget class="Line" name="line_116">
                           <property name="minimumSize">
                            <size>
-                            <width>0</width>
-                            <height>2</height>
+                            <width>2</width>
+                            <height>0</height>
                            </size>
                           </property>
                           <property name="maximumSize">
                            <size>
-                            <width>16777215</width>
-                            <height>2</height>
+                            <width>2</width>
+                            <height>16777215</height>
                            </size>
                           </property>
                           <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
+                           <enum>Qt::Vertical</enum>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QFrame" name="frame_152">
+                         <widget class="QFrame" name="frame_47">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_45">
+                          <layout class="QVBoxLayout" name="verticalLayout_41">
                            <property name="spacing">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <property name="leftMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="label_54">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_58">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>Peças produzidas pelo lado A2:</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_74">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_27">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições no
+arquivo original A2:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_FileNumPos_A2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <spacer name="horizontalSpacer_6">
+                            <widget class="Line" name="line_207">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_57">
+                             <property name="minimumSize">
                               <size>
-                               <width>150</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_PartsDoneA2">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_62">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_31">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições A2:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_NumPos_A2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_56">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="Line" name="line_11">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>UNID.</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QPushButton" name="btn_reset_prod_a2">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
-                             </property>
-                             <property name="text">
-                              <string>RESET</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_14">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_153">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_46">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_58">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Total de peças do lado A:
-(A1+A2)</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_8">
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_59">
+                             <property name="minimumSize">
                               <size>
-                               <width>204</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_PartsDoneSideA">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_60">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_33">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Posição atual A2:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_IndexPos_A2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_57">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="Line" name="line_206">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>UNID.</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QPushButton" name="btn_reset_prod_total_a">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
-                             </property>
-                             <property name="text">
-                              <string>RESET</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_13">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_154">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_47">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>140</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_60">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Tempo de corte do lado A1:</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_10">
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_155">
+                             <property name="minimumSize">
                               <size>
-                               <width>184</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_TimeCutA1">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>---</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_59">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>SEG.</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_12">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_155">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_48">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>140</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_62">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Tempo de corte do lado A2:</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_12">
-                             <property name="orientation">
-                              <enum>Qt::Horizontal</enum>
-                             </property>
-                             <property name="sizeHint" stdset="0">
+                             <property name="maximumSize">
                               <size>
-                               <width>193</width>
-                               <height>20</height>
+                               <width>16777215</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_TimeCutA2">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_61">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>SEG.</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_11">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_156">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_49">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>140</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_64">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Tempo total de corte do lado A:
-(A1+A2)</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_14">
-                             <property name="orientation">
-                              <enum>Qt::Horizontal</enum>
-                             </property>
-                             <property name="sizeHint" stdset="0">
-                              <size>
-                               <width>124</width>
-                               <height>20</height>
-                              </size>
-                             </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_TimeCutSideA">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>---</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_63">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>SEG.</string>
-                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_48">
+                              <property name="spacing">
+                               <number>10</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_62">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Tempo de corte do lado A2:</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_TimeCutA2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>---</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="label_61">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>SEG.</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>
                          </widget>
                         </item>
                        </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_13">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_156">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_49">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_64">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Tempo total de corte do lado A (A1+A2):</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_14">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>124</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_TimeCutSideA">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_63">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>SEG.</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_46">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
                       </widget>
                      </item>
                     </layout>
@@ -11592,9 +12232,11 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                    </widget>
                   </item>
                   <item>
-                   <widget class="QFrame" name="frame_149">
+                   <widget class="QFrame" name="frame_157">
                     <property name="styleSheet">
-                     <string notr="true"/>
+                     <string notr="true">#frame_69, #frame_72, #frame_160, #frame_161, #frame_162, #frame_163 {background-color:#d0d0d0}
+
+#frame_157 {background-color: #efefef}</string>
                     </property>
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
@@ -11607,29 +12249,377 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                       <number>0</number>
                      </property>
                      <property name="leftMargin">
-                      <number>75</number>
+                      <number>0</number>
                      </property>
                      <property name="topMargin">
-                      <number>50</number>
+                      <number>0</number>
                      </property>
                      <property name="rightMargin">
-                      <number>75</number>
+                      <number>0</number>
                      </property>
                      <property name="bottomMargin">
-                      <number>150</number>
+                      <number>0</number>
                      </property>
                      <item>
-                      <widget class="QFrame" name="frame_157">
-                       <property name="styleSheet">
-                        <string notr="true">#frame_160, #frame_162, #frame_163 {background-color:#d0d0d0}</string>
-                       </property>
+                      <widget class="QFrame" name="frame_162">
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                        </property>
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_34">
+                       <layout class="QHBoxLayout" name="horizontalLayout_54">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_73">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Peças produzidas pelo lado B1:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_5">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>155</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartsDoneB1">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_74">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>UNID.</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_reset_prod_b1">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string>RESET</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_20">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_159">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_51">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_67">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Peças produzidas pelo lado B2:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_7">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>150</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartsDoneB2">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_68">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>UNID.</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_reset_prod_b2">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string>RESET</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_17">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_160">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_52">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_69">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Total de peças do lado B (B1+B2):</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_9">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>204</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_PartsDoneSideB">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_70">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>UNID.</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_reset_prod_total_b">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string>RESET</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_214">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_60">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_40">
                         <property name="spacing">
                          <number>0</number>
                         </property>
@@ -11646,643 +12636,926 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QFrame" name="frame_162">
+                         <widget class="QFrame" name="frame_61">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_54">
+                          <layout class="QVBoxLayout" name="verticalLayout_34">
                            <property name="spacing">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <property name="leftMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="label_73">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_68">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>Peças produzidas pelo lado B1:</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_75">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_34">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições no
+arquivo original B1:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_FileNumPos_B1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <spacer name="horizontalSpacer_5">
+                            <widget class="Line" name="line_209">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_69">
+                             <property name="minimumSize">
                               <size>
-                               <width>155</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_145">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_37">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições B1:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_NumPos_B1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="lbl_PartsDoneB1">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="Line" name="line_210">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
                              </property>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_74">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_70">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>UNID.</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
+                             </property>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
+                             </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_146">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_50">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Posição atual B1:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_IndexPos_B1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_18">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
                              </property>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_reset_prod_b1">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_163">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>RESET</string>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_55">
+                              <property name="spacing">
+                               <number>10</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_75">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Tempo de corte dolado B2:</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_TimeCutB2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>---</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="label_76">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>SEG.</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>
                          </widget>
                         </item>
                         <item>
-                         <widget class="Line" name="line_20">
+                         <widget class="Line" name="line_208">
                           <property name="minimumSize">
                            <size>
-                            <width>0</width>
-                            <height>2</height>
+                            <width>2</width>
+                            <height>0</height>
                            </size>
                           </property>
                           <property name="maximumSize">
                            <size>
-                            <width>16777215</width>
-                            <height>2</height>
+                            <width>2</width>
+                            <height>16777215</height>
                            </size>
                           </property>
                           <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
+                           <enum>Qt::Vertical</enum>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QFrame" name="frame_159">
+                         <widget class="QFrame" name="frame_62">
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
                           <property name="frameShadow">
                            <enum>QFrame::Raised</enum>
                           </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_51">
+                          <layout class="QVBoxLayout" name="verticalLayout_42">
                            <property name="spacing">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <property name="leftMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="topMargin">
                             <number>0</number>
                            </property>
                            <property name="rightMargin">
-                            <number>20</number>
+                            <number>0</number>
                            </property>
                            <property name="bottomMargin">
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="label_67">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="QFrame" name="frame_73">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>Peças produzidas pelo lado B2:</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_148">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_79">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Número de posições B2:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_NumPos_B2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <spacer name="horizontalSpacer_7">
+                            <widget class="Line" name="line_211">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
+                             </property>
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_72">
+                             <property name="minimumSize">
                               <size>
-                               <width>150</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_PartsDoneB2">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_210">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_80">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Posição atual B2:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_IndexPos_B2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_68">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="Line" name="line_212">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>UNID.</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QPushButton" name="btn_reset_prod_b2">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
-                             </property>
-                             <property name="text">
-                              <string>RESET</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_17">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_160">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_52">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_69">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Total de peças do lado B:
-(B1+B2)</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_9">
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_71">
+                             <property name="minimumSize">
                               <size>
-                               <width>204</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_PartsDoneSideB">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>90</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_211">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>30</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_95">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Tempo de corte lado B2:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_production_TimeCutB2_2">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>----</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="label_70">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                            <widget class="Line" name="line_19">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                             <property name="text">
-                              <string>UNID.</string>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>2</height>
+                              </size>
                              </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QPushButton" name="btn_reset_prod_total_b">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
-                             </property>
-                             <property name="text">
-                              <string>RESET</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_19">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_161">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_53">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>140</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_71">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Tempo de corte do lado B1:</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_11">
                              <property name="orientation">
                               <enum>Qt::Horizontal</enum>
                              </property>
-                             <property name="sizeHint" stdset="0">
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QFrame" name="frame_161">
+                             <property name="minimumSize">
                               <size>
-                               <width>184</width>
-                               <height>20</height>
+                               <width>0</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_TimeCutB1">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>---</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_72">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>SEG.</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_18">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_163">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_55">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>140</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_75">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Tempo de corte do lado B2:</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_13">
-                             <property name="orientation">
-                              <enum>Qt::Horizontal</enum>
-                             </property>
-                             <property name="sizeHint" stdset="0">
+                             <property name="maximumSize">
                               <size>
-                               <width>193</width>
-                               <height>20</height>
+                               <width>16777215</width>
+                               <height>90</height>
                               </size>
                              </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_TimeCutB2">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                             <property name="text">
-                              <string>---</string>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_76">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>SEG.</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="Line" name="line_16">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="frame_158">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <layout class="QHBoxLayout" name="horizontalLayout_50">
-                           <property name="spacing">
-                            <number>10</number>
-                           </property>
-                           <property name="leftMargin">
-                            <number>20</number>
-                           </property>
-                           <property name="topMargin">
-                            <number>0</number>
-                           </property>
-                           <property name="rightMargin">
-                            <number>140</number>
-                           </property>
-                           <property name="bottomMargin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QLabel" name="label_65">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Tempo de corte do lado B:
-(B1+B2)</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <spacer name="horizontalSpacer_15">
-                             <property name="orientation">
-                              <enum>Qt::Horizontal</enum>
-                             </property>
-                             <property name="sizeHint" stdset="0">
-                              <size>
-                               <width>124</width>
-                               <height>20</height>
-                              </size>
-                             </property>
-                            </spacer>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="lbl_TimeCutSideB">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>---</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_66">
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>14</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>SEG.</string>
-                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_53">
+                              <property name="spacing">
+                               <number>10</number>
+                              </property>
+                              <property name="leftMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="topMargin">
+                               <number>0</number>
+                              </property>
+                              <property name="rightMargin">
+                               <number>25</number>
+                              </property>
+                              <property name="bottomMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="label_71">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>Tempo de corte do lado B1:</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="lbl_TimeCutB1">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>---</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLabel" name="label_72">
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>SEG.</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
                             </widget>
                            </item>
                           </layout>
                          </widget>
                         </item>
                        </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_16">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_158">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_50">
+                        <property name="spacing">
+                         <number>10</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>65</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>50</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_65">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Tempo de corte do lado B (B1+B2):</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_15">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>124</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_TimeCutSideB">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>---</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_66">
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>SEG.</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_123">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>2</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
                       </widget>
                      </item>
                     </layout>
