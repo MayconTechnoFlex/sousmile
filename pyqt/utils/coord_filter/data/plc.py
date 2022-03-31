@@ -199,6 +199,7 @@ class Worker_Data_to_PLC(QRunnable):
             self.signal.result_list.emit([data_list_pos, data_list_X, data_list_Y,
                                           data_list_Z, data_list_C, data_list_D, data_list_info])
         except Exception as e:
+            print(e)
             with LogixDriver('192.168.1.10') as plc:
                 plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))
 
