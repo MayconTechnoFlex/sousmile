@@ -989,7 +989,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>7</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -14091,11 +14091,11 @@ QTableWidget {
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
                        </attribute>
-                       <attribute name="horizontalHeaderMinimumSectionSize">
-                        <number>20</number>
-                       </attribute>
                        <attribute name="horizontalHeaderHighlightSections">
                         <bool>true</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderMinimumSectionSize">
+                        <number>20</number>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
                         <bool>false</bool>
@@ -25469,6 +25469,13 @@ background-color: #d0d0d0
                              <property name="enabled">
                               <bool>true</bool>
                              </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -25587,6 +25594,46 @@ pontos (X, Y, Z):</string>
                                </widget>
                               </item>
                               <item>
+                               <widget class="QLineEdit" name="le_dist_xyz">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="btn_md_val_dist_xyz">
                                 <property name="minimumSize">
                                  <size>
@@ -25639,6 +25686,13 @@ VALOR</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_256">
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -25752,6 +25806,46 @@ entre os pontos:</string>
                                </widget>
                               </item>
                               <item>
+                               <widget class="QLineEdit" name="le_dist_ang_c">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="btn_md_val_dist_c">
                                 <property name="minimumSize">
                                  <size>
@@ -25804,6 +25898,13 @@ VALOR</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_257">
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -25917,6 +26018,46 @@ entre os pontos:</string>
                                </widget>
                               </item>
                               <item>
+                               <widget class="QLineEdit" name="le_dist_ang_d">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="btn_md_val_dist_d">
                                 <property name="minimumSize">
                                  <size>
@@ -25969,6 +26110,13 @@ VALOR</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_258">
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -26087,6 +26235,46 @@ pontos (h):</string>
                                </widget>
                               </item>
                               <item>
+                               <widget class="QLineEdit" name="le_dist_h">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="btn_md_val_var_h">
                                 <property name="minimumSize">
                                  <size>
@@ -26139,6 +26327,13 @@ VALOR</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_259">
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -26254,6 +26449,46 @@ os outros pontos:</string>
                                 </property>
                                 <property name="text">
                                  <string/>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_dist_d0">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
                                 </property>
                                </widget>
                               </item>
@@ -27980,6 +28215,18 @@ VALOR</string>
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_241">
+                          <property name="minimumSize">
+                           <size>
+                            <width>575</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>575</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -28012,9 +28259,16 @@ VALOR</string>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>10000</width>
+                               <width>750</width>
                                <height>16777215</height>
                               </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
                              </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
@@ -28114,6 +28368,59 @@ VALOR</string>
                                </widget>
                               </item>
                               <item>
+                               <spacer name="horizontalSpacer_31">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_prof_corte_a1">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="btn_md_val_prof_corte_a1">
                                 <property name="minimumSize">
                                  <size>
@@ -28177,6 +28484,13 @@ VALOR</string>
                                <width>100000</width>
                                <height>16777215</height>
                               </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
                              </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
@@ -28272,6 +28586,59 @@ VALOR</string>
                                 </property>
                                 <property name="text">
                                  <string>mm</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer_32">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_prof_corte_a2">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
                                 </property>
                                </widget>
                               </item>
@@ -28374,7 +28741,11 @@ VALOR</string>
                               <bool>false</bool>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true"/>
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
                              </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
@@ -28474,6 +28845,59 @@ VALOR</string>
                                </widget>
                               </item>
                               <item>
+                               <spacer name="horizontalSpacer_33">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_prof_corte_b1">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="btn_md_val_prof_corte_b1">
                                 <property name="minimumSize">
                                  <size>
@@ -28537,6 +28961,13 @@ VALOR</string>
                                <width>100000</width>
                                <height>16777215</height>
                               </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
                              </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
@@ -28632,6 +29063,59 @@ VALOR</string>
                                 </property>
                                 <property name="text">
                                  <string>mm</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer_34">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_prof_corte_b2">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>125</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="inputMethodHints">
+                                 <set>Qt::ImhDigitsOnly</set>
+                                </property>
+                                <property name="inputMask">
+                                 <string/>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>0.0</string>
+                                </property>
+                                <property name="clearButtonEnabled">
+                                 <bool>false</bool>
                                 </property>
                                </widget>
                               </item>
