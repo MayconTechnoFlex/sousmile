@@ -263,12 +263,10 @@ def UpdateHMI(tag):
             if HomePos:
                 if user == "rn" or user == "eng":
                     UI.btn_check_uf.setEnabled(True)
-                    UI.btn_check_utool.setEnabled(True)
-                    UI.btn_change_tool.setEnabled(True)
                 else:
                     UI.btn_check_uf.setEnabled(False)
-                    UI.btn_check_utool.setEnabled(False)
-                    UI.btn_change_tool.setEnabled(False)
+                UI.btn_check_utool.setEnabled(True)
+                UI.btn_change_tool.setEnabled(True)
             else:
                 UI.btn_check_uf.setEnabled(False)
                 UI.btn_check_utool.setEnabled(False)
