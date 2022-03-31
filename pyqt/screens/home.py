@@ -114,10 +114,6 @@ def UpdateDataCtrl_A1(tag):
     """
     global UI
     try:
-        # UI.lbl_ProdCode_A1.setText(tag['ProdCode'])
-        UI.lbl_FileNumPos_A1.setText(str(tag['FileNumPos']))
-        UI.lbl_NumPos_A1.setText(str(tag['NumPos']))
-        UI.lbl_IndexPos_A1.setText(str(tag['IndexPos']))
         change_status(tag["Complete"], UI.sts_Complete_A1)
     except:
         pass
@@ -131,10 +127,6 @@ def UpdateDataCtrl_A2(tag):
     """
     global UI
     try:
-        # UI.lbl_ProdCode_A2.setText(tag['ProdCode'])
-        UI.lbl_FileNumPos_A2.setText(str(tag['FileNumPos']))
-        UI.lbl_NumPos_A2.setText(str(tag['NumPos']))
-        UI.lbl_IndexPos_A2.setText(str(tag['IndexPos']))
         change_status(tag["Complete"], UI.sts_Complete_A2)
     except:
         pass
@@ -148,10 +140,6 @@ def UpdateDataCtrl_B1(tag):
     """
     global UI
     try:
-        # UI.lbl_ProdCode_B1.setText(tag['ProdCode'])
-        UI.lbl_FileNumPos_B1.setText(str(tag['FileNumPos']))
-        UI.lbl_NumPos_B1.setText(str(tag['NumPos']))
-        UI.lbl_IndexPos_B1.setText(str(tag['IndexPos']))
         change_status(tag["Complete"], UI.sts_Complete_B1)
     except:
         pass
@@ -165,10 +153,6 @@ def UpdateDataCtrl_B2(tag):
     """
     global UI
     try:
-        # UI.lbl_ProdCode_B2.setText(tag['ProdCode'])
-        UI.lbl_FileNumPos_B2.setText(str(tag['FileNumPos']))
-        UI.lbl_NumPos_B2.setText(str(tag['NumPos']))
-        UI.lbl_IndexPos_B2.setText(str(tag['IndexPos']))
         change_status(tag["Complete"], UI.sts_Complete_B2)
     except:
         pass
@@ -237,25 +221,6 @@ def UpdateHMI(tag):
             change_status(0, UI.sts_sem_alarm_b)
         else:
             change_status(1, UI.sts_sem_alarm_b)
-
-        # enable/disable buttons
-        # if (not tag["Sts"]["TransDataSideA1"] and not tag["Sts"]["TransDataSideA2"]
-        #     and not tag["Sts"]["TransDataSideB1"] and not tag["Sts"]["TransDataSideB2"]) and \
-        #         not tag["AlarmSideA"] and tag["SideA"]["Auto"]:
-        #     UI.btn_trans_dados_man_a1.setEnabled(True)
-        #     UI.btn_trans_dados_man_a2.setEnabled(True)
-        # else:
-        #     UI.btn_trans_dados_man_a1.setEnabled(False)
-        #     UI.btn_trans_dados_man_a2.setEnabled(False)
-        #
-        # if (not tag["Sts"]["TransDataSideA1"] and not tag["Sts"]["TransDataSideA2"]
-        #     and not tag["Sts"]["TransDataSideB1"] and not tag["Sts"]["TransDataSideB2"])  and \
-        #         not tag["AlarmSideB"] and tag["SideB"]["Auto"]:
-        #     UI.btn_trans_dados_man_b1.setEnabled(True)
-        #     UI.btn_trans_dados_man_b2.setEnabled(True)
-        # else:
-        #     UI.btn_trans_dados_man_b1.setEnabled(False)
-        #     UI.btn_trans_dados_man_b2.setEnabled(False)
 
         if not tag["AlarmSideA"] and not tag["Sts"]["TransDataSideA1"] and tag["SideA"]["Auto"]:
             UI.btn_trans_dados_man_a1.setEnabled(True)

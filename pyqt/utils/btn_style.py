@@ -34,4 +34,4 @@ def setErrorButton(button: QPushButton):
 def setButton(button: QPushButton, text: str):
     button.setStyleSheet(base_button_style)
     button.setText(text)
-    button.setEnabled(False)
+    button.setEnabled(True)
