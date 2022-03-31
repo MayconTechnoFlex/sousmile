@@ -24,6 +24,7 @@ UI: Ui_MainWindow
 tag_list: PLCReturn = []
 write_thread = QThreadPool()
 HomePos: int = 1
+not_connected = True
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
@@ -255,7 +256,7 @@ def UpdateHMI(tag):
 
     :param tag: Tag lida do CLP
     """
-    global UI, HomePos
+    global UI, HomePos, not_connected
     try:
         user = get_connected_username()
         if tag["SideA"]["Manual"] and tag["SideB"]["Manual"]:
@@ -263,12 +264,10 @@ def UpdateHMI(tag):
             if HomePos:
                 if user == "rn" or user == "eng":
                     UI.btn_check_uf.setEnabled(True)
-                    UI.btn_check_utool.setEnabled(True)
-                    UI.btn_change_tool.setEnabled(True)
                 else:
                     UI.btn_check_uf.setEnabled(False)
-                    UI.btn_check_utool.setEnabled(False)
-                    UI.btn_change_tool.setEnabled(False)
+                UI.btn_check_utool.setEnabled(True)
+                UI.btn_change_tool.setEnabled(True)
             else:
                 UI.btn_check_uf.setEnabled(False)
                 UI.btn_check_utool.setEnabled(False)
@@ -285,7 +284,9 @@ def UpdateHMI(tag):
             UI.btn_check_utool.setEnabled(False)
             UI.btn_change_tool.setEnabled(False)
 
-        setup_buttons_style()
+        if not_connected:
+            setup_buttons_style()
+            not_connected = False
 
         if tag["SideA"]["Manual"]:
             UI.btn_DoorSideA_abrir.setEnabled(True)
@@ -312,6 +313,7 @@ def UpdateHMI(tag):
             UI.btn_DoorSideB_manut.setEnabled(False)
     except Exception:
         error_buttons()
+        not_connected = True
 #######################################################################################################
 def UpdateRobotInput(tag):
     """
