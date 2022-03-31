@@ -292,7 +292,6 @@ def UpdateHMI(tag):
         setErrorButton(UI.btn_trans_dados_man_b2)
         print(f'{e} - home.UpdateHMI')
 
-    return hmi_side_a_mode_value, hmi_side_b_mode_value
 #######################################################################################################
 def UpdateRobotInput(tag):
     """

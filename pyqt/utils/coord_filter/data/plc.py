@@ -106,7 +106,7 @@ class Worker_Data_to_PLC(QRunnable):
         try:
             ##############################################################################################
             print("- Lendo arquivo...")
-            data = pd.read_csv(filepath, sep=',', header=None)  # Copia o arquivo csv do caminho  -filepath
+            data = pd.read_csv(filepath, sep=',', header=None)  # Copia o arquivo csv do caminho # -filepath
             write_tag(f'{data_ctrl_str}.FileNumPos', len(data.index))  # Number of positions in the original file
             ##############################################################################################
             print('- Iniciou filtro para verificar se há erros na linha de corte')
@@ -199,9 +199,6 @@ class Worker_Data_to_PLC(QRunnable):
             self.signal.result_list.emit([data_list_pos, data_list_X, data_list_Y,
                                           data_list_Z, data_list_C, data_list_D, data_list_info])
         except Exception as e:
-            # print python error
-            print(e)
-
             with LogixDriver('192.168.1.10') as plc:
                 plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))
 

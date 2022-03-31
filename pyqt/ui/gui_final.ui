@@ -1518,6 +1518,12 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_28">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -1659,6 +1665,12 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_29">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -1825,6 +1837,12 @@ ou inserção</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_30">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -1985,6 +2003,12 @@ arquivo original A1:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_31">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -2144,6 +2168,12 @@ arquivo original A1:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_32">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -2303,6 +2333,12 @@ arquivo original A1:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_33">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -2493,10 +2529,16 @@ arquivo original A1:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_20">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>91</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
-                            <height>80</height>
+                            <height>91</height>
                            </size>
                           </property>
                           <property name="frameShape">
@@ -2728,6 +2770,12 @@ manualmente A1</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_78">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -2869,6 +2917,12 @@ background-color: #f00000;
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_75">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -3366,6 +3420,12 @@ arquivo original A2:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_82">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -3525,6 +3585,12 @@ arquivo original A2:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_74">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>55</height>
+                           </size>
+                          </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
@@ -3718,13 +3784,13 @@ arquivo original A2:</string>
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
-                            <height>60</height>
+                            <height>91</height>
                            </size>
                           </property>
                           <property name="maximumSize">
                            <size>
                             <width>16777215</width>
-                            <height>10000</height>
+                            <height>91</height>
                            </size>
                           </property>
                           <property name="frameShape">
@@ -3846,13 +3912,13 @@ manualmente A2</string>
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>250</height>
+                      <height>285</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
-                      <height>300</height>
+                      <height>285</height>
                      </size>
                     </property>
                     <property name="frameShape">
@@ -3882,13 +3948,13 @@ manualmente A2</string>
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
-                         <height>0</height>
+                         <height>55</height>
                         </size>
                        </property>
                        <property name="maximumSize">
                         <size>
                          <width>16777215</width>
-                         <height>1000000</height>
+                         <height>55</height>
                         </size>
                        </property>
                        <property name="styleSheet">
@@ -7392,13 +7458,13 @@ manualmente B2</string>
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>250</height>
+                      <height>285</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
-                      <height>300</height>
+                      <height>285</height>
                      </size>
                     </property>
                     <property name="frameShape">
