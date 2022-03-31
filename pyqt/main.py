@@ -155,6 +155,15 @@ class RnRobotics_Gui(QMainWindow):
             self.ui.btn_config_barcode.setEnabled(False)
         else:
             self.ui.btn_config_barcode.setEnabled(True)
+        ###################################################################
+        self.ui.graphicView_A1.scale(2.5, 2.5)
+        self.ui.graphicView_A1.rotate(180)
+        self.ui.graphicView_A2.scale(2.5, 2.5)
+        self.ui.graphicView_A2.rotate(180)
+        self.ui.graphicView_B1.scale(2.5, 2.5)
+        self.ui.graphicView_B1.rotate(180)
+        self.ui.graphicView_B2.scale(2.5, 2.5)
+        self.ui.graphicView_B2.rotate(180)
     ####################################################################
     # Bar Code Scanner Function
     ####################################################################
