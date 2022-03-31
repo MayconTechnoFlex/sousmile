@@ -480,6 +480,7 @@ class Worker_ReadTags(QRunnable, WorkerParent):
 #######################################################################################################
 # Escrita de Tags
 #######################################################################################################
+
 class Worker_WriteTags(QRunnable, WorkerParent, QObject):
     def __init__(self, tag: str, value, widget: QWidget = None):
         """
@@ -507,6 +508,7 @@ class Worker_WriteTags(QRunnable, WorkerParent, QObject):
             if self.widget:
                 self.widget.setEnabled(True)
                 QApplication.restoreOverrideCursor()
+
 #######################################################################################################
 class Worker_Pressed_WriteTags(QRunnable, WorkerParent):
     def __init__(self, tag: str, value):
