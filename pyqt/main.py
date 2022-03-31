@@ -139,7 +139,7 @@ class RnRobotics_Gui(QMainWindow):
         ###################################################################
         self.define_navigate_buttons()
         home.define_buttons(self.ui, self.insert_code_dialog)
-        robot.define_buttons(self.ui, self.altera_valor_dialog)
+        robot.define_buttons(self.ui)
         alarms.define_buttons(self.ui, self.alarm_dialog, self.show_alarm)
         prod.define_buttons(self.ui)
         maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)

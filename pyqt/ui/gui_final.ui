@@ -967,7 +967,7 @@ background-color: white;
             <x>0</x>
             <y>0</y>
             <width>1770</width>
-            <height>932</height>
+            <height>930</height>
            </rect>
           </property>
           <property name="minimumSize">
@@ -989,7 +989,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>7</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -9801,7 +9801,11 @@ background-color: #f00000;
                         </size>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">QLineEdit {border-radius: 25; padding: 0 12.5}</string>
+                        <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
                        </property>
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
@@ -9827,16 +9831,10 @@ background-color: #f00000;
                         </property>
                         <item>
                          <widget class="QLabel" name="label_185">
-                          <property name="minimumSize">
-                           <size>
-                            <width>248</width>
-                            <height>100</height>
-                           </size>
-                          </property>
                           <property name="maximumSize">
                            <size>
-                            <width>248</width>
-                            <height>100</height>
+                            <width>157</width>
+                            <height>16777215</height>
                            </size>
                           </property>
                           <property name="font">
@@ -9892,14 +9890,14 @@ do Robô:</string>
                          <widget class="QLabel" name="label_184">
                           <property name="minimumSize">
                            <size>
-                            <width>25</width>
-                            <height>25</height>
+                            <width>30</width>
+                            <height>0</height>
                            </size>
                           </property>
                           <property name="maximumSize">
                            <size>
-                            <width>10000</width>
-                            <height>30</height>
+                            <width>30</width>
+                            <height>16777215</height>
                            </size>
                           </property>
                           <property name="font">
@@ -9910,6 +9908,37 @@ do Robô:</string>
                           </property>
                           <property name="text">
                            <string>%</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_vel_robo">
+                          <property name="minimumSize">
+                           <size>
+                            <width>110</width>
+                            <height>60</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>110</width>
+                            <height>60</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Equinox Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                          <property name="placeholderText">
+                           <string>000</string>
                           </property>
                          </widget>
                         </item>
@@ -14091,11 +14120,11 @@ QTableWidget {
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
                        </attribute>
-                       <attribute name="horizontalHeaderHighlightSections">
-                        <bool>true</bool>
-                       </attribute>
                        <attribute name="horizontalHeaderMinimumSectionSize">
                         <number>20</number>
+                       </attribute>
+                       <attribute name="horizontalHeaderHighlightSections">
+                        <bool>true</bool>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
                         <bool>false</bool>
@@ -25296,18 +25325,6 @@ background-color: #d0d0d0
                </property>
                <item>
                 <widget class="QFrame" name="frame_200">
-                 <property name="minimumSize">
-                  <size>
-                   <width>1140</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>1140</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -25356,18 +25373,6 @@ background-color: #d0d0d0
                      </property>
                      <item>
                       <widget class="QFrame" name="frame_215">
-                       <property name="minimumSize">
-                        <size>
-                         <width>582</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>582</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                        </property>
@@ -25598,13 +25603,13 @@ pontos (X, Y, Z):</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -25810,13 +25815,13 @@ entre os pontos:</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -26022,13 +26027,13 @@ entre os pontos:</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -26239,13 +26244,13 @@ pontos (h):</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -26457,13 +26462,13 @@ os outros pontos:</string>
                                 <property name="minimumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>80</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -26551,18 +26556,6 @@ VALOR</string>
                      </item>
                      <item>
                       <widget class="QFrame" name="frame_216">
-                       <property name="minimumSize">
-                        <size>
-                         <width>558</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>558</width>
-                         <height>10000000</height>
-                        </size>
-                       </property>
                        <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                        </property>
@@ -27808,13 +27801,13 @@ VALOR</string>
                                   <widget class="QLabel" name="label_170">
                                    <property name="minimumSize">
                                     <size>
-                                     <width>250</width>
+                                     <width>170</width>
                                      <height>0</height>
                                     </size>
                                    </property>
                                    <property name="maximumSize">
                                     <size>
-                                     <width>250</width>
+                                     <width>170</width>
                                      <height>10000</height>
                                     </size>
                                    </property>
@@ -27834,18 +27827,25 @@ de Pontos</string>
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QLabel" name="lbl_MaxPts">
-                                   <property name="minimumSize">
+                                  <spacer name="horizontalSpacer_35">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
                                     <size>
-                                     <width>100</width>
-                                     <height>0</height>
+                                     <width>40</width>
+                                     <height>20</height>
                                     </size>
                                    </property>
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>100</width>
-                                     <height>16777215</height>
-                                    </size>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="lbl_MaxPts">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
                                    </property>
                                    <property name="font">
                                     <font>
@@ -27862,17 +27862,17 @@ de Pontos</string>
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QLabel" name="label_171">
+                                  <widget class="QLineEdit" name="le_num_max_pts">
                                    <property name="minimumSize">
                                     <size>
-                                     <width>50</width>
-                                     <height>30</height>
+                                     <width>80</width>
+                                     <height>50</height>
                                     </size>
                                    </property>
                                    <property name="maximumSize">
                                     <size>
-                                     <width>50</width>
-                                     <height>30</height>
+                                     <width>80</width>
+                                     <height>50</height>
                                     </size>
                                    </property>
                                    <property name="font">
@@ -27881,8 +27881,18 @@ de Pontos</string>
                                      <pointsize>14</pointsize>
                                     </font>
                                    </property>
-                                   <property name="text">
-                                    <string/>
+                                   <property name="styleSheet">
+                                    <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                   <property name="placeholderText">
+                                    <string>000</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -27965,13 +27975,13 @@ VALOR</string>
                                   <widget class="QLabel" name="label_173">
                                    <property name="minimumSize">
                                     <size>
-                                     <width>250</width>
+                                     <width>170</width>
                                      <height>0</height>
                                     </size>
                                    </property>
                                    <property name="maximumSize">
                                     <size>
-                                     <width>250</width>
+                                     <width>170</width>
                                      <height>10000</height>
                                     </size>
                                    </property>
@@ -27991,18 +28001,25 @@ de corte:</string>
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QLabel" name="lbl_CutSpeed">
-                                   <property name="minimumSize">
+                                  <spacer name="horizontalSpacer_36">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
                                     <size>
-                                     <width>100</width>
-                                     <height>0</height>
+                                     <width>40</width>
+                                     <height>20</height>
                                     </size>
                                    </property>
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>100</width>
-                                     <height>16777215</height>
-                                    </size>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="lbl_CutSpeed">
+                                   <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                                     <horstretch>0</horstretch>
+                                     <verstretch>0</verstretch>
+                                    </sizepolicy>
                                    </property>
                                    <property name="font">
                                     <font>
@@ -28040,6 +28057,41 @@ de corte:</string>
                                    </property>
                                    <property name="text">
                                     <string>mm/s</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="le_cut_spd">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>80</width>
+                                     <height>50</height>
+                                    </size>
+                                   </property>
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>80</width>
+                                     <height>50</height>
+                                    </size>
+                                   </property>
+                                   <property name="font">
+                                    <font>
+                                     <family>Equinox Bold</family>
+                                     <pointsize>14</pointsize>
+                                    </font>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                   <property name="placeholderText">
+                                    <string>0000</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -28385,13 +28437,13 @@ border-width: 1px;
                                 <property name="minimumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -28607,13 +28659,13 @@ border-width: 1px;
                                 <property name="minimumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -28862,13 +28914,13 @@ border-width: 1px;
                                 <property name="minimumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -29084,13 +29136,13 @@ border-width: 1px;
                                 <property name="minimumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
                                   <width>125</width>
-                                  <height>60</height>
+                                  <height>50</height>
                                  </size>
                                 </property>
                                 <property name="font">
@@ -29186,13 +29238,13 @@ VALOR</string>
                 <widget class="QFrame" name="frame_201">
                  <property name="minimumSize">
                   <size>
-                   <width>450</width>
+                   <width>480</width>
                    <height>0</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>450</width>
+                   <width>480</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -29318,6 +29370,13 @@ VALOR</string>
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_247">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -29342,16 +29401,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_124">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>0</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -29371,17 +29436,11 @@ fechar porta:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_delay_fecha_port_a">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -29417,16 +29476,47 @@ fechar porta:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_delay_fecha_porta_a">
+                            <widget class="QLineEdit" name="le_close_door_a">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_delay_fecha_porta_a">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -29469,6 +29559,13 @@ VALOR</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_248">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -29493,16 +29590,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_126">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>0</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -29522,17 +29625,11 @@ abrir porta:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_delay_abre_port_a">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -29568,16 +29665,47 @@ abrir porta:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_delay_abre_porta_a">
+                            <widget class="QLineEdit" name="le_open_door_a">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_delay_abre_porta_a">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -29620,6 +29748,13 @@ VALOR</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_249">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -29644,16 +29779,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_128">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>0</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -29674,17 +29815,11 @@ ligado e desligado:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_temp_alarm_sens_a">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -29720,16 +29855,47 @@ ligado e desligado:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_temp_alarm_sens_a">
+                            <widget class="QLineEdit" name="le_alarm_sens_a">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_temp_alarm_sens_a">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -29772,6 +29938,13 @@ VALOR</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_250">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -29796,16 +29969,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_130">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>0</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -29826,17 +30005,11 @@ da porta:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_temp_alarm_pos_port_a">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -29872,16 +30045,47 @@ da porta:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_temp_alarm_pos_port_a">
+                            <widget class="QLineEdit" name="le_alarm_door_a">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_temp_alarm_pos_port_a">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -30025,6 +30229,13 @@ VALOR</string>
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_251">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -30049,16 +30260,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_131">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -30078,17 +30295,11 @@ fechar porta:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_delay_fecha_port_b">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -30124,16 +30335,47 @@ fechar porta:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_delay_fecha_porta_b">
+                            <widget class="QLineEdit" name="le_close_door_b">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_delay_fecha_porta_b">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -30176,6 +30418,13 @@ VALOR</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_254">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -30200,16 +30449,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_137">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -30229,17 +30484,11 @@ abrir porta:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_delay_abre_port_b">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -30275,16 +30524,47 @@ abrir porta:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_delay_abre_porta_b">
+                            <widget class="QLineEdit" name="le_open_door_b">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_delay_abre_porta_b">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -30327,6 +30607,13 @@ VALOR</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_253">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -30351,16 +30638,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_135">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -30370,7 +30663,8 @@ VALOR</string>
                               </font>
                              </property>
                              <property name="text">
-                              <string>Tempo para alarme
+                              <string>Tempo para
+alarme
 de sensores
 ligado e desligado:</string>
                              </property>
@@ -30381,17 +30675,11 @@ ligado e desligado:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_temp_alarm_sens_b">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -30427,16 +30715,47 @@ ligado e desligado:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_temp_alarm_sens_b">
+                            <widget class="QLineEdit" name="le_alarm_sens_b">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_temp_alarm_sens_b">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
@@ -30479,6 +30798,13 @@ VALOR</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_252">
+                          <property name="styleSheet">
+                           <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+}</string>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -30503,16 +30829,22 @@ VALOR</string>
                            </property>
                            <item>
                             <widget class="QLabel" name="label_133">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
                              <property name="minimumSize">
                               <size>
-                               <width>0</width>
+                               <width>170</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>1000</width>
-                               <height>10000</height>
+                               <width>170</width>
+                               <height>16777215</height>
                               </size>
                              </property>
                              <property name="font">
@@ -30533,17 +30865,11 @@ da porta:</string>
                            </item>
                            <item>
                             <widget class="QLabel" name="lbl_temp_alarm_pos_port_b">
-                             <property name="minimumSize">
-                              <size>
-                               <width>90</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>90</width>
-                               <height>16777215</height>
-                              </size>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
                              </property>
                              <property name="font">
                               <font>
@@ -30579,16 +30905,47 @@ da porta:</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QPushButton" name="btn_md_val_temp_alarm_pos_port_b">
+                            <widget class="QLineEdit" name="le_alarm_door_b">
                              <property name="minimumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
                                <height>50</height>
                               </size>
                              </property>
                              <property name="maximumSize">
                               <size>
-                               <width>110</width>
+                               <width>75</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Equinox Bold</family>
+                               <pointsize>14</pointsize>
+                              </font>
+                             </property>
+                             <property name="inputMask">
+                              <string/>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                             <property name="placeholderText">
+                              <string>00000</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="btn_md_val_temp_alarm_pos_port_b">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>50</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>100</width>
                                <height>50</height>
                               </size>
                              </property>
