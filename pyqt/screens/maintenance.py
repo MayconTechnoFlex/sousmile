@@ -81,7 +81,7 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
     UI.btn_check_utool.clicked.connect(
         lambda: dialog.show_dialog("CheckUTOOL",
-                                   "Cuidado! Você vai movimentar o robô para ajustar a User Tool.")
+                                   "Cuidado! Você vai movimentar o robô para ajustar a fresa.")
     )
     UI.btn_change_tool.clicked.connect(
         lambda: dialog.show_dialog("ChangeTool",
@@ -95,7 +95,7 @@ def setup_buttons_style():
     setButton(UI.btn_check_uf, "Check\nUser Frame")
     setButton(UI.btn_menos_1_mm, "- 1 mm")
     setButton(UI.btn_termina_check_uf, "Termina Check\nUser Frame")
-    setButton(UI.btn_check_utool, "Ajustar\nTool Frame")
+    setButton(UI.btn_check_utool, "Ajustar\nFresa")
     setButton(UI.btn_change_tool, "Trocar de\nFerramenta")
 
     # botões do lado A

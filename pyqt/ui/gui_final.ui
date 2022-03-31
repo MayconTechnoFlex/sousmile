@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
+    <width>1922</width>
     <height>1083</height>
    </rect>
   </property>
@@ -967,7 +967,7 @@ background-color: white;
             <x>0</x>
             <y>0</y>
             <width>1770</width>
-            <height>930</height>
+            <height>932</height>
            </rect>
           </property>
           <property name="minimumSize">
@@ -11180,6 +11180,18 @@ QPushButton:disabled{background-color:#ababab; color: grey}
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_46">
+                          <property name="minimumSize">
+                           <size>
+                            <width>441</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>441</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -11527,12 +11539,26 @@ arquivo original A1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Tempo de corte do lado A1:</string>
+                                 <string>Tempo de corte do
+lado A1:</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignCenter</set>
                                 </property>
                                </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer_12">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
                               </item>
                               <item>
                                <widget class="QLabel" name="lbl_TimeCutA1">
@@ -11590,6 +11616,18 @@ arquivo original A1:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_47">
+                          <property name="minimumSize">
+                           <size>
+                            <width>441</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>441</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -11937,12 +11975,26 @@ arquivo original A2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Tempo de corte do lado A2:</string>
+                                 <string>Tempo de corte do
+lado A2:</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignCenter</set>
                                 </property>
                                </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer_13">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
                               </item>
                               <item>
                                <widget class="QLabel" name="lbl_TimeCutA2">
@@ -12081,25 +12133,6 @@ arquivo original A2:</string>
                          </widget>
                         </item>
                        </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="Line" name="line_46">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>2</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>2</height>
-                        </size>
-                       </property>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
                       </widget>
                      </item>
                     </layout>
@@ -12637,6 +12670,18 @@ arquivo original A2:</string>
                         </property>
                         <item>
                          <widget class="QFrame" name="frame_61">
+                          <property name="minimumSize">
+                           <size>
+                            <width>441</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>441</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -12984,12 +13029,26 @@ arquivo original B1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Tempo de corte dolado B2:</string>
+                                 <string>Tempo de corte do
+lado B2:</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignCenter</set>
                                 </property>
                                </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer_10">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
                               </item>
                               <item>
                                <widget class="QLabel" name="lbl_TimeCutB2">
@@ -13047,6 +13106,18 @@ arquivo original B1:</string>
                         </item>
                         <item>
                          <widget class="QFrame" name="frame_62">
+                          <property name="minimumSize">
+                           <size>
+                            <width>441</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>441</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -13393,12 +13464,26 @@ arquivo original B1:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Tempo de corte do lado B1:</string>
+                                 <string>Tempo de corte do
+lado B1:</string>
                                 </property>
                                 <property name="alignment">
                                  <set>Qt::AlignCenter</set>
                                 </property>
                                </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer_11">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
                               </item>
                               <item>
                                <widget class="QLabel" name="lbl_TimeCutB1">
@@ -13537,25 +13622,6 @@ arquivo original B1:</string>
                          </widget>
                         </item>
                        </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="Line" name="line_123">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>2</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>2</height>
-                        </size>
-                       </property>
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
                       </widget>
                      </item>
                     </layout>
@@ -19583,7 +19649,7 @@ para Home</string>
                           </property>
                           <property name="text">
                            <string>Ajustar
-Freza</string>
+Fresa</string>
                           </property>
                          </widget>
                         </item>

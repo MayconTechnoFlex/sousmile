@@ -177,10 +177,10 @@ def UpdateHMI(tag):
         sts_string(tag['Sts']['TransDataSideB1'], UI.lbl_sts_TransDataSideB1, "B")
         sts_string(tag['Sts']['TransDataSideB2'], UI.lbl_sts_TransDataSideB2, "B")
 
-        setButton(UI.btn_trans_dados_man_a1, "Transferir dados\n manualmente A1")
-        setButton(UI.btn_trans_dados_man_a2, "Transferir dados\n manualmente A2")
-        setButton(UI.btn_trans_dados_man_b1, "Transferir dados\n manualmente B1")
-        setButton(UI.btn_trans_dados_man_b2, "Transferir dados\n manualmente B2")
+        setButton(UI.btn_trans_dados_man_a1, "Transferir dados\nmanualmente")
+        setButton(UI.btn_trans_dados_man_a2, "Transferir dados\nmanualmente")
+        setButton(UI.btn_trans_dados_man_b1, "Transferir dados\nmanualmente")
+        setButton(UI.btn_trans_dados_man_b2, "Transferir dados\nmanualmente")
 
         ### buttons manual <-> auto
         if tag['SideA']['Manual']:
