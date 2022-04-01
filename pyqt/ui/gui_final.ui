@@ -989,7 +989,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -16243,9 +16243,15 @@ border-radius: 15; padding: 0 10;
                </property>
                <item>
                 <widget class="QFrame" name="frame_170">
+                 <property name="minimumSize">
+                  <size>
+                   <width>500</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="maximumSize">
                   <size>
-                   <width>825</width>
+                   <width>770</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -16882,13 +16888,13 @@ background-color: #f00000;
                             <number>0</number>
                            </property>
                            <property name="topMargin">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <property name="rightMargin">
                             <number>0</number>
                            </property>
                            <property name="bottomMargin">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <item>
                             <widget class="QFrame" name="frame_196">
@@ -16993,13 +16999,13 @@ background-color: #f00000;
                                <widget class="QPushButton" name="btn_DoorSideA_TimeMaint">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>250</width>
+                                  <width>226</width>
                                   <height>60</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>250</width>
+                                  <width>226</width>
                                   <height>60</height>
                                  </size>
                                 </property>
@@ -17015,6 +17021,42 @@ background-color: #f00000;
                                 <property name="text">
                                  <string>ALTERAR TEMPO
 DE MANUTENÇÃO</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_tempo_manut_a">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>50</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>50</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+border-radius: 25px;
+}</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>00000</string>
                                 </property>
                                </widget>
                               </item>
@@ -17788,7 +17830,7 @@ background-color: #f00000;
                             <number>0</number>
                            </property>
                            <property name="topMargin">
-                            <number>10</number>
+                            <number>0</number>
                            </property>
                            <property name="rightMargin">
                             <number>0</number>
@@ -17899,13 +17941,13 @@ background-color: #f00000;
                                <widget class="QPushButton" name="btn_DoorSideB_TimeMaint">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>250</width>
+                                  <width>226</width>
                                   <height>60</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>250</width>
+                                  <width>226</width>
                                   <height>60</height>
                                  </size>
                                 </property>
@@ -17921,6 +17963,42 @@ background-color: #f00000;
                                 <property name="text">
                                  <string>ALTERAR TEMPO
 DE MANUTENÇÃO</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QLineEdit" name="le_tempo_manut_b">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>50</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>80</width>
+                                  <height>50</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Equinox Bold</family>
+                                  <pointsize>14</pointsize>
+                                 </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+border-radius: 25px;
+}</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                                <property name="placeholderText">
+                                 <string>00000</string>
                                 </property>
                                </widget>
                               </item>
@@ -18501,13 +18579,13 @@ background-color: #f00000;
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
-                                     <height>107</height>
+                                     <height>109</height>
                                     </size>
                                    </property>
                                    <property name="maximumSize">
                                     <size>
                                      <width>16777215</width>
-                                     <height>107</height>
+                                     <height>109</height>
                                     </size>
                                    </property>
                                    <property name="frameShape">
@@ -18629,13 +18707,13 @@ background-color: #f00000;
                                   <number>0</number>
                                  </property>
                                  <property name="topMargin">
-                                  <number>10</number>
+                                  <number>0</number>
                                  </property>
                                  <property name="rightMargin">
                                   <number>0</number>
                                  </property>
                                  <property name="bottomMargin">
-                                  <number>10</number>
+                                  <number>0</number>
                                  </property>
                                  <item>
                                   <widget class="QFrame" name="frame_231">
@@ -18668,13 +18746,13 @@ background-color: #f00000;
                                       </property>
                                       <property name="minimumSize">
                                        <size>
-                                        <width>250</width>
+                                        <width>215</width>
                                         <height>0</height>
                                        </size>
                                       </property>
                                       <property name="maximumSize">
                                        <size>
-                                        <width>250</width>
+                                        <width>215</width>
                                         <height>16777215</height>
                                        </size>
                                       </property>
@@ -18699,13 +18777,13 @@ background-color: #f00000;
                                       </property>
                                       <property name="minimumSize">
                                        <size>
-                                        <width>250</width>
+                                        <width>215</width>
                                         <height>0</height>
                                        </size>
                                       </property>
                                       <property name="maximumSize">
                                        <size>
-                                        <width>250</width>
+                                        <width>215</width>
                                         <height>16777215</height>
                                        </size>
                                       </property>
@@ -18736,7 +18814,7 @@ background-color: #f00000;
                                    </property>
                                    <layout class="QHBoxLayout" name="horizontalLayout_86">
                                     <property name="spacing">
-                                     <number>25</number>
+                                     <number>10</number>
                                     </property>
                                     <property name="leftMargin">
                                      <number>25</number>
@@ -18754,13 +18832,13 @@ background-color: #f00000;
                                      <widget class="QPushButton" name="btn_SpindleRobo_TimeMaint">
                                       <property name="minimumSize">
                                        <size>
-                                        <width>250</width>
+                                        <width>215</width>
                                         <height>60</height>
                                        </size>
                                       </property>
                                       <property name="maximumSize">
                                        <size>
-                                        <width>250</width>
+                                        <width>215</width>
                                         <height>60</height>
                                        </size>
                                       </property>
@@ -18776,6 +18854,42 @@ background-color: #f00000;
                                       <property name="text">
                                        <string>ALTERAR TEMPO
 DE MANUTENÇÃO</string>
+                                      </property>
+                                     </widget>
+                                    </item>
+                                    <item>
+                                     <widget class="QLineEdit" name="le_tempo_manut_spindle">
+                                      <property name="minimumSize">
+                                       <size>
+                                        <width>80</width>
+                                        <height>50</height>
+                                       </size>
+                                      </property>
+                                      <property name="maximumSize">
+                                       <size>
+                                        <width>80</width>
+                                        <height>50</height>
+                                       </size>
+                                      </property>
+                                      <property name="font">
+                                       <font>
+                                        <family>Equinox Bold</family>
+                                        <pointsize>14</pointsize>
+                                       </font>
+                                      </property>
+                                      <property name="styleSheet">
+                                       <string notr="true">QLineEdit {
+color: black; 
+background-color: white;
+border-width: 1px;
+border-radius: 25px;
+}</string>
+                                      </property>
+                                      <property name="alignment">
+                                       <set>Qt::AlignCenter</set>
+                                      </property>
+                                      <property name="placeholderText">
+                                       <string>00000</string>
                                       </property>
                                      </widget>
                                     </item>
@@ -25624,9 +25738,6 @@ pontos (X, Y, Z):</string>
                                 <property name="inputMask">
                                  <string/>
                                 </property>
-                                <property name="text">
-                                 <string/>
-                                </property>
                                 <property name="alignment">
                                  <set>Qt::AlignCenter</set>
                                 </property>
@@ -28420,29 +28531,16 @@ border-width: 1px;
                                </widget>
                               </item>
                               <item>
-                               <spacer name="horizontalSpacer_31">
-                                <property name="orientation">
-                                 <enum>Qt::Horizontal</enum>
-                                </property>
-                                <property name="sizeHint" stdset="0">
-                                 <size>
-                                  <width>40</width>
-                                  <height>20</height>
-                                 </size>
-                                </property>
-                               </spacer>
-                              </item>
-                              <item>
                                <widget class="QLineEdit" name="le_prof_corte_a1">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
@@ -28451,6 +28549,9 @@ border-width: 1px;
                                   <family>Equinox Bold</family>
                                   <pointsize>14</pointsize>
                                  </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">*{ border-radius: 25px}</string>
                                 </property>
                                 <property name="inputMethodHints">
                                  <set>Qt::ImhDigitsOnly</set>
@@ -28642,29 +28743,16 @@ border-width: 1px;
                                </widget>
                               </item>
                               <item>
-                               <spacer name="horizontalSpacer_32">
-                                <property name="orientation">
-                                 <enum>Qt::Horizontal</enum>
-                                </property>
-                                <property name="sizeHint" stdset="0">
-                                 <size>
-                                  <width>40</width>
-                                  <height>20</height>
-                                 </size>
-                                </property>
-                               </spacer>
-                              </item>
-                              <item>
                                <widget class="QLineEdit" name="le_prof_corte_a2">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
@@ -28673,6 +28761,9 @@ border-width: 1px;
                                   <family>Equinox Bold</family>
                                   <pointsize>14</pointsize>
                                  </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">*{ border-radius: 25px}</string>
                                 </property>
                                 <property name="inputMethodHints">
                                  <set>Qt::ImhDigitsOnly</set>
@@ -28897,29 +28988,16 @@ border-width: 1px;
                                </widget>
                               </item>
                               <item>
-                               <spacer name="horizontalSpacer_33">
-                                <property name="orientation">
-                                 <enum>Qt::Horizontal</enum>
-                                </property>
-                                <property name="sizeHint" stdset="0">
-                                 <size>
-                                  <width>40</width>
-                                  <height>20</height>
-                                 </size>
-                                </property>
-                               </spacer>
-                              </item>
-                              <item>
                                <widget class="QLineEdit" name="le_prof_corte_b1">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
@@ -28928,6 +29006,9 @@ border-width: 1px;
                                   <family>Equinox Bold</family>
                                   <pointsize>14</pointsize>
                                  </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">*{ border-radius: 25px}</string>
                                 </property>
                                 <property name="inputMethodHints">
                                  <set>Qt::ImhDigitsOnly</set>
@@ -29119,29 +29200,16 @@ border-width: 1px;
                                </widget>
                               </item>
                               <item>
-                               <spacer name="horizontalSpacer_34">
-                                <property name="orientation">
-                                 <enum>Qt::Horizontal</enum>
-                                </property>
-                                <property name="sizeHint" stdset="0">
-                                 <size>
-                                  <width>40</width>
-                                  <height>20</height>
-                                 </size>
-                                </property>
-                               </spacer>
-                              </item>
-                              <item>
                                <widget class="QLineEdit" name="le_prof_corte_b2">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>125</width>
+                                  <width>80</width>
                                   <height>50</height>
                                  </size>
                                 </property>
@@ -29150,6 +29218,9 @@ border-width: 1px;
                                   <family>Equinox Bold</family>
                                   <pointsize>14</pointsize>
                                  </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">*{ border-radius: 25px}</string>
                                 </property>
                                 <property name="inputMethodHints">
                                  <set>Qt::ImhDigitsOnly</set>
@@ -29495,6 +29566,9 @@ fechar porta:</string>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
+                             </property>
                              <property name="inputMask">
                               <string/>
                              </property>
@@ -29683,6 +29757,9 @@ abrir porta:</string>
                                <family>Equinox Bold</family>
                                <pointsize>14</pointsize>
                               </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
                              </property>
                              <property name="inputMask">
                               <string/>
@@ -29874,6 +29951,9 @@ ligado e desligado:</string>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
+                             </property>
                              <property name="inputMask">
                               <string/>
                              </property>
@@ -30063,6 +30143,9 @@ da porta:</string>
                                <family>Equinox Bold</family>
                                <pointsize>14</pointsize>
                               </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
                              </property>
                              <property name="inputMask">
                               <string/>
@@ -30354,6 +30437,9 @@ fechar porta:</string>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
+                             </property>
                              <property name="inputMask">
                               <string/>
                              </property>
@@ -30542,6 +30628,9 @@ abrir porta:</string>
                                <family>Equinox Bold</family>
                                <pointsize>14</pointsize>
                               </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
                              </property>
                              <property name="inputMask">
                               <string/>
@@ -30734,6 +30823,9 @@ ligado e desligado:</string>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
+                             </property>
                              <property name="inputMask">
                               <string/>
                              </property>
@@ -30923,6 +31015,9 @@ da porta:</string>
                                <family>Equinox Bold</family>
                                <pointsize>14</pointsize>
                               </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">*{ border-radius: 25px}</string>
                              </property>
                              <property name="inputMask">
                               <string/>

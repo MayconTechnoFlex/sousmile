@@ -23,7 +23,6 @@ from screens import home, robot, alarms,\
     engineering as eng, in_out as inOut, coord_filter as cf
 
 from dialogs.alarm import AlarmDialog
-from dialogs.altera_valor import AlteraValorDialog
 from dialogs.barcode_config import BarCodeDialog
 from dialogs.checkUF import CheckUserFrame
 from dialogs.confirmation import ConfirmationDialog
@@ -40,7 +39,6 @@ class RnRobotics_Gui(QMainWindow):
         # Defining dialogs
         ##################################################################
         self.alarm_dialog = AlarmDialog(self)
-        self.altera_valor_dialog = AlteraValorDialog(self)
         self.config_barcode_dialog = BarCodeDialog(self)
         self.check_uf = CheckUserFrame(self)
         self.confirm_dialog = ConfirmationDialog(self)
@@ -142,8 +140,8 @@ class RnRobotics_Gui(QMainWindow):
         robot.define_buttons(self.ui)
         alarms.define_buttons(self.ui, self.alarm_dialog, self.show_alarm)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.altera_valor_dialog, self.confirm_dialog, self.check_uf)
-        eng.define_buttons(self.ui, self.altera_valor_dialog, self.config_barcode_dialog)
+        maint.define_buttons(self.ui, self.confirm_dialog, self.check_uf)
+        eng.define_buttons(self.ui, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
         # Defining Coord Filter
