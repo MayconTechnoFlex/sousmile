@@ -24,6 +24,7 @@ class AlteraValorDialog(QDialog):
         self.TAG_INDEX: str = ""
         self.TAG_TYPE: TagTypes = ""
         self.thread: Thread_LineEdit
+        self.set_button()
     ###################################################################################################
     def closeEvent(self, event):
         """Essa função é executada quando o dialog é fechado"""
@@ -63,7 +64,6 @@ class AlteraValorDialog(QDialog):
         # define a thread que será executada
         self.thread = Thread_LineEdit(self.TAG_INDEX, self, self.ui.new_value, self.TAG_TYPE)
 
-        self.set_button()
         self.exec_()
     ###################################################################################################
     def change_value(self):

@@ -20,6 +20,8 @@ class ConfirmationDialog(QDialog):
         self.ui = Ui_ConfirmDialog()
         self.ui.setupUi(self)
 
+        self.buttons_of_dialog()
+
         self.ACTION_TO_CONFIRM: ActionsToConfirm = ""
 
         self.thread = QThreadPool()
@@ -36,7 +38,6 @@ class ConfirmationDialog(QDialog):
         self.ACTION_TO_CONFIRM = action_to_confirm
         if text:
             self.ui.description_text.setText(text)
-        self.buttons_of_dialog()
         if action_to_confirm == "MoveHome":
             self.worker = Worker_ToggleBtnValue("HMI.btnGoHome", 0, self.ui.btn_confirm)
         elif action_to_confirm == "CheckUTOOL":

@@ -20,6 +20,8 @@ class CheckUserFrame(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
+        self.set_button()
+
         # definições iniciais
         self.thread: Thread_LineEdit
         self.worker_check: Worker_ToggleBtnValue
@@ -42,7 +44,6 @@ class CheckUserFrame(QDialog):
 
         self.thread = Thread_LineEdit("Robo.Output.UFCheck", self, self.ui.lineEdit, "int")
         self.worker_check = Worker_ToggleBtnValue("HMI.btnCheckUF", 0, self.ui.btn_confirm)
-        self.set_button()
         self.exec_()
     ###################################################################################################
     def confirm_action(self):
