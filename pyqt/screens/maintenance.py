@@ -2,12 +2,12 @@
 #######################################################################################################
 # Importações
 #######################################################################################################
+from PyQt5.Qt import QIntValidator
 from PyQt5.QtCore import QThreadPool
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton, QLineEdit
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
-from dialogs.altera_valor import AlteraValorDialog
 from dialogs.checkUF import CheckUserFrame
 
 from security.db_users import get_connected_username
@@ -15,7 +15,7 @@ from security.db_users import get_connected_username
 from utils.functions.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import setErrorButton, setButton
-from utils.workers.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags
+from utils.workers.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags, Worker_WriteTags
 from utils.btn_style import base_button_style, checked_button_style
 #######################################################################################################
 # Definição das variáveis globais
@@ -28,8 +28,7 @@ not_connected = True
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
-def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
-                   confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
+def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
     """
     Define os botões da tela
 
@@ -41,6 +40,8 @@ def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
     global UI, tag_list
     UI = main_ui
 
+    tempo_manut_validators()
+
     buttons_ConfirmDialogs(confirmDialog)
     UI.btn_check_uf.clicked.connect(checkUF.show_dialog)
     UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_button(4, UI.btn_menos_1_mm))
@@ -50,14 +51,14 @@ def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
     UI.btn_DoorSideA_fechar.clicked.connect(lambda: set_reset_button(7, UI.btn_DoorSideA_fechar))
     UI.btn_DoorSideA_manut.clicked.connect(lambda: set_reset_btn_int(8, tag_list, UI.btn_DoorSideA_manut))
     UI.btn_DoorSideA_TimeMaint.clicked.connect(
-        lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado A:", "Cyl_DoorSideA.TimeMaintTest", "int")
+        lambda: change_tempo_manut("Cyl_DoorSideA.TimeMaintTest", UI.le_tempo_manut_a)
     )
 
     UI.btn_DoorSideB_abrir.clicked.connect(lambda: set_reset_button(9, UI.btn_DoorSideB_abrir))
     UI.btn_DoorSideB_fechar.clicked.connect(lambda: set_reset_button(10, UI.btn_DoorSideB_fechar))
     UI.btn_DoorSideB_manut.clicked.connect(lambda: set_reset_btn_int(11, tag_list, UI.btn_DoorSideB_manut))
     UI.btn_DoorSideB_TimeMaint.clicked.connect(
-        lambda: altValDialog.show_dialog("Alterar tempo de manutenção do lado B:", "Cyl_DoorSideB.TimeMaintTest", "int")
+        lambda: change_tempo_manut("Cyl_DoorSideB.TimeMaintTest", UI.le_tempo_manut_b)
     )
 
     UI.btn_SpindleRobo_abrir.pressed.connect(spindle_on)
@@ -65,8 +66,24 @@ def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
 
     UI.btn_SpindleRobo_manut.clicked.connect(lambda: set_reset_btn_int(13, tag_list, UI.btn_SpindleRobo_manut))
     UI.btn_SpindleRobo_TimeMaint.clicked.connect(
-        lambda: altValDialog.show_dialog("Alterar tempo de manutenção do spindle:", "Cyl_SpindleRobo.TimeMaintTest", "int")
+        lambda: change_tempo_manut("Cyl_SpindleRobo.TimeMaintTest", UI.le_tempo_manut_spindle)
     )
+#######################################################################################################
+def tempo_manut_validators():
+    global UI
+    int_validator = QIntValidator(0, 10000)
+
+    UI.le_tempo_manut_a.setValidator(int_validator)
+    UI.le_tempo_manut_b.setValidator(int_validator)
+    UI.le_tempo_manut_spindle.setValidator(int_validator)
+#######################################################################################################
+def change_tempo_manut(tag_name: str, line_edit: QLineEdit):
+    if line_edit.text():
+        value = int(line_edit.text())
+        line_edit.clear()
+        worker = Worker_WriteTags(tag_name, value)
+        write_thread.start(worker)
+
 #######################################################################################################
 def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
     """
@@ -81,7 +98,7 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
     UI.btn_check_utool.clicked.connect(
         lambda: dialog.show_dialog("CheckUTOOL",
-                                   "Cuidado! Você vai movimentar o robô para ajustar a User Tool.")
+                                   "Cuidado! Você vai movimentar o robô para ajustar a fresa.")
     )
     UI.btn_change_tool.clicked.connect(
         lambda: dialog.show_dialog("ChangeTool",
@@ -95,7 +112,7 @@ def setup_buttons_style():
     setButton(UI.btn_check_uf, "Check\nUser Frame")
     setButton(UI.btn_menos_1_mm, "- 1 mm")
     setButton(UI.btn_termina_check_uf, "Termina Check\nUser Frame")
-    setButton(UI.btn_check_utool, "Ajustar\nTool Frame")
+    setButton(UI.btn_check_utool, "Ajustar\nFresa")
     setButton(UI.btn_change_tool, "Trocar de\nFerramenta")
 
     # botões do lado A
@@ -166,7 +183,7 @@ def set_reset_button(i: int, button: QPushButton):
     """Muda o valor da tag para 1 e depois para 0"""
     global UI, tag_list, write_thread
     tag_name = tag_list[i][0]
-    value= tag_list[i][1]
+    value = tag_list[i][1]
     try:
         worker_toggle = Worker_ToggleBtnValue(tag_name, value, button)
         write_thread.start(worker_toggle, priority=0)

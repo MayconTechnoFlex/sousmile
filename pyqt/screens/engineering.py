@@ -3,10 +3,9 @@
 # Importações
 #######################################################################################################
 from ui_py.ui_gui_final import Ui_MainWindow
-from dialogs.altera_valor import AlteraValorDialog
 from dialogs.barcode_config import BarCodeDialog
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QLineEdit
 from PyQt5.QtCore import QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator, QIntValidator, QDoubleValidator
 from PyQt5.QtCore import QThreadPool
@@ -20,30 +19,25 @@ from utils.workers.workers import *
 # Definição das variáveis globais
 #######################################################################################################
 UI: Ui_MainWindow
-DIALOG: AlteraValorDialog
 BARCODE_DIALOG: BarCodeDialog
 
 tag_list: PLCReturn
 
 thread_write_tags = QThreadPool()
 
-
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
-def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
-                   configBarCodeDialog: BarCodeDialog):
+def define_buttons(main_ui: Ui_MainWindow, configBarCodeDialog: BarCodeDialog):
     """
     Define os botões da tela
 
     :param main_ui: Ui da aplicação
-    :param altValDialog: Dialog para alterar valor de tag
     :param configBarCodeDialog: Dialog para configurar porta do Leitor de Código de Barras
     """
     # define as variáveis globais
-    global UI, DIALOG, BARCODE_DIALOG
+    global UI, BARCODE_DIALOG
     UI = main_ui
-    DIALOG = altValDialog
     BARCODE_DIALOG = configBarCodeDialog
 
     # chama função configuração de botões e labels
@@ -62,102 +56,64 @@ def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog,
 #######################################################################################################
 def def_coordinate_buttons():
     """Define os botões de Seleção de Pontos"""
-    global UI, DIALOG
-    # UI.btn_md_val_dist_xyz.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a distância entre pontos (XYZ):", "ConfigPontos.Dist_XYZ", "float"))
-
-    # UI.btn_md_val_dist_c.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo C (horizontal):",
-    #                                "ConfigPontos.Diff_AngleC",
-    #                                "float"))
-    # UI.btn_md_val_dist_d.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a distância entre pontos no ângulo D (de ataque):",
-    #                                "ConfigPontos.Diff_AngleD",
-    #                                "float"))
-    # UI.btn_md_val_var_h.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a variação entre pontos:", "ConfigPontos.Dist_H", "float"))
-    # UI.btn_md_val_d0_mnr_pts.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar as vezes que \"D[0]\" tem que ser menor que os outros pontos:",
-    #                                "ConfigPontos.DistVar",
-    #                                "float"))
-
-    UI.btn_md_val_dist_xyz.clicked.connect(lambda: write_tags_eng("ConfigPontos.Dist_XYZ",
-                                                                  float(UI.le_dist_xyz.text())))
-    UI.btn_md_val_dist_c.clicked.connect(lambda: write_tags_eng("ConfigPontos.Diff_AngleC",
-                                                                float(UI.le_dist_ang_c.text())))
-    UI.btn_md_val_dist_d.clicked.connect(lambda: write_tags_eng("ConfigPontos.Diff_AngleD",
-                                                                float(UI.le_dist_ang_d.text())))
-    UI.btn_md_val_var_h.clicked.connect(lambda: write_tags_eng("ConfigPontos.Dist_H",
-                                                               float(UI.le_dist_h.text())))
-    UI.btn_md_val_d0_mnr_pts.clicked.connect(lambda: write_tags_eng("ConfigPontos.DistVar",
-                                                                    float(UI.le_dist_d0.text())))
+    global UI
+    UI.btn_md_val_dist_xyz.clicked.connect(lambda: change_float("ConfigPontos.Dist_XYZ", UI.le_dist_xyz))
+    UI.btn_md_val_dist_c.clicked.connect(lambda: change_float("ConfigPontos.Diff_AngleC", UI.le_dist_ang_c))
+    UI.btn_md_val_dist_d.clicked.connect(lambda: change_float("ConfigPontos.Diff_AngleD", UI.le_dist_ang_d))
+    UI.btn_md_val_var_h.clicked.connect(lambda: change_float("ConfigPontos.Dist_H", UI.le_dist_h))
+    UI.btn_md_val_d0_mnr_pts.clicked.connect(lambda: change_float("ConfigPontos.DistVar", UI.le_dist_d0))
 
 
 #######################################################################################################
 def def_prof_cort():
     """Define os botões de Profundidade de Corte"""
-    global UI, DIALOG
-    # UI.btn_md_val_prof_corte_a1.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a profundidade de corte em A1:", "ConfigPontos.CutDepthA1", "float"))
-    # UI.btn_md_val_prof_corte_a2.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a profundidade de corte em A2:", "ConfigPontos.CutDepthA2", "float"))
-    # UI.btn_md_val_prof_corte_b1.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a profundidade de corte em B1:", "ConfigPontos.CutDepthB1", "float"))
-    # UI.btn_md_val_prof_corte_b2.clicked.connect(
-    #     lambda: DIALOG.show_dialog("Alterar a profundidade de corte em B2", "ConfigPontos.CutDepthB2", "float"))
-    UI.btn_md_val_prof_corte_a1.clicked.connect(lambda: write_tags_eng("ConfigPontos.CutDepthA1",
-                                                                       float(UI.le_prof_corte_a1.text())))
-    UI.btn_md_val_prof_corte_a2.clicked.connect(lambda: write_tags_eng("ConfigPontos.CutDepthA2",
-                                                                       float(UI.le_prof_corte_a2.text())))
-    UI.btn_md_val_prof_corte_b1.clicked.connect(lambda: write_tags_eng("ConfigPontos.CutDepthB1",
-                                                                       float(UI.le_prof_corte_b1.text())))
-    UI.btn_md_val_prof_corte_b2.clicked.connect(lambda: write_tags_eng("ConfigPontos.CutDepthB2",
-                                                                       float(UI.le_prof_corte_b2.text())))
+    global UI
+    UI.btn_md_val_prof_corte_a1.clicked.connect(lambda: change_float("ConfigPontos.CutDepthA1", UI.le_prof_corte_a1))
+    UI.btn_md_val_prof_corte_a2.clicked.connect(lambda: change_float("ConfigPontos.CutDepthA2", UI.le_prof_corte_a2))
+    UI.btn_md_val_prof_corte_b1.clicked.connect(lambda: change_float("ConfigPontos.CutDepthB1", UI.le_prof_corte_b1))
+    UI.btn_md_val_prof_corte_b2.clicked.connect(lambda: change_float("ConfigPontos.CutDepthB2", UI.le_prof_corte_b2))
 
 
 #######################################################################################################
 def def_pts():
     """Define os botões dos Offsets Atuais do Robô"""
-    global UI, DIALOG
-    UI.btn_md_val_max_pts.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera o número máximo de pontos:", "HMI.NumPosMax", "int"))
-    UI.btn_md_val_vel_corte.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera a velocidade de corte:", "Robo.Output.CutSpeed", "int"))
-
+    global UI
+    UI.btn_md_val_max_pts.clicked.connect(lambda: change_int("HMI.NumPosMax", UI.le_num_max_pts))
+    UI.btn_md_val_vel_corte.clicked.connect(lambda: change_int("Robo.Output.CutSpeed", UI.le_cut_spd))
 
 #######################################################################################################
 def def_delayA():
     """Define os botões do Ajuste de Tempo do lado A"""
-    global UI, DIALOG
+    global UI
     UI.btn_md_val_delay_abre_porta_a.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera delay para abrir porta A:", "Cyl_DoorSideA.TimeDelayRet", "int"))
+        lambda: change_int("Cyl_DoorSideA.TimeDelayRet", UI.le_open_door_a))
     UI.btn_md_val_delay_fecha_porta_a.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera delay para fechar porta A:", "Cyl_DoorSideA.TimeDelayExt", "int"))
+        lambda: change_int("Cyl_DoorSideA.TimeDelayExt", UI.le_close_door_a))
     UI.btn_md_val_temp_alarm_sens_a.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera tempo do alarme de sensores A:", "Cyl_DoorSideA.TimeBothSenOnOff", "int"))
+        lambda: change_int("Cyl_DoorSideA.TimeBothSenOnOff", UI.le_alarm_sens_a))
     UI.btn_md_val_temp_alarm_pos_port_a.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera tempo do alarme de posição da porta A:", "Cyl_DoorSideA.TimeOut", "int"))
-
+        lambda: change_int("Cyl_DoorSideA.TimeOut", UI.le_alarm_door_a))
 
 #######################################################################################################
 def def_delayB():
     """Define os botões do Ajuste de Tempo do lado B"""
-    global UI, DIALOG
+    global UI
     UI.btn_md_val_delay_abre_porta_b.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera delay para abrir porta B:", "Cyl_DoorSideB.TimeDelayRet", "int"))
+        lambda: change_int("Cyl_DoorSideB.TimeDelayRet", UI.le_open_door_b))
     UI.btn_md_val_delay_fecha_porta_b.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera delay para fechar porta B:", "Cyl_DoorSideB.TimeDelayExt", "int"))
+        lambda: change_int("Cyl_DoorSideB.TimeDelayExt", UI.le_close_door_b))
     UI.btn_md_val_temp_alarm_sens_b.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera tempo do alarme de sensores B:", "Cyl_DoorSideB.TimeBothSenOnOff", "int"))
+        lambda: change_int("Cyl_DoorSideB.TimeBothSenOnOff", UI.le_alarm_sens_b))
     UI.btn_md_val_temp_alarm_pos_port_b.clicked.connect(
-        lambda: DIALOG.show_dialog("Altera tempo do alarme de posição da porta B:", "Cyl_DoorSideB.TimeOut", "int"))
-
+        lambda: change_int("Cyl_DoorSideB.TimeOut", UI.le_alarm_door_b))
 
 #######################################################################################################
 def def_set_validators():
     # Validators
     float_validator = QDoubleValidator(0.0, 5.0, 2)
-    int_validators_01 = QIntValidator(0, 100)
+    int_validators_max_pts = QIntValidator(0, 250)
+    int_validators_cut_spd = QIntValidator(0, 100)
+    int_validators_delay = QIntValidator(0, 10000)
 
     UI.le_prof_corte_a1.setValidator(float_validator)
     UI.le_prof_corte_a2.setValidator(float_validator)
@@ -170,13 +126,33 @@ def def_set_validators():
     UI.le_dist_h.setValidator(float_validator)
     UI.le_dist_d0.setValidator(float_validator)
 
+    UI.le_num_max_pts.setValidator(int_validators_max_pts)
+    UI.le_cut_spd.setValidator(int_validators_cut_spd)
+
+    UI.le_close_door_a.setValidator(int_validators_delay)
+    UI.le_close_door_b.setValidator(int_validators_delay)
+    UI.le_open_door_a.setValidator(int_validators_delay)
+    UI.le_open_door_b.setValidator(int_validators_delay)
+    UI.le_alarm_door_a.setValidator(int_validators_delay)
+    UI.le_alarm_door_b.setValidator(int_validators_delay)
+    UI.le_alarm_sens_a.setValidator(int_validators_delay)
+    UI.le_alarm_sens_b.setValidator(int_validators_delay)
 
 #######################################################################################################
-def write_tags_eng(tag_name, value):
-    worker = Worker_WriteTags(tag_name, value)
-    thread_write_tags.start(worker)
+def change_int(tag_name: str, line_edit: QLineEdit):
+    if line_edit.text():
+        value = int(line_edit.text())
+        line_edit.clear()
+        worker = Worker_WriteTags(tag_name, value)
+        thread_write_tags.start(worker)
 
-
+#######################################################################################################
+def change_float(tag_name: str, line_edit: QLineEdit):
+    if line_edit.text():
+        value = float(line_edit.text())
+        line_edit.clear()
+        worker = Worker_WriteTags(tag_name, value)
+        thread_write_tags.start(worker)
 #######################################################################################################
 # Funções de Atualização
 #######################################################################################################

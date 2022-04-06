@@ -15,6 +15,7 @@ class AlarmDialog(QDialog):
         self.setWindowFlag(Qt.WindowContextHelpButtonHint, False)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.define_buttons()
     ###################################################################################################
     def show_dialog(self, show_alarm_screen):
         """
@@ -23,7 +24,6 @@ class AlarmDialog(QDialog):
         :param show_alarm_screen: Função para mostra a tela de alarmes
         """
         self.show_alarm_screen = show_alarm_screen
-        self.define_buttons()
         self.exec_()
     ###################################################################################################
     def closeEvent(self, event):

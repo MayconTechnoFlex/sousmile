@@ -9,6 +9,7 @@ from typing import List
 import matplotlib.pyplot as plt
 import pandas as pd
 from pycomm3 import LogixDriver
+import requests
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from utils.coord_filter.functions import position_filter_while
@@ -105,6 +106,9 @@ class Worker_Data_to_PLC(QRunnable):
         write_tag(f'{data_ctrl_str}.Started', True)
         try:
             ##############################################################################################
+            req = requests.get(filepath)
+            if not req.ok:
+                raise Exception(req.text)
             print("- Lendo arquivo...")
             data = pd.read_csv(filepath, sep=',', header=None)  # Copia o arquivo csv do caminho # -filepath
             write_tag(f'{data_ctrl_str}.FileNumPos', len(data.index))  # Number of positions in the original file
@@ -199,6 +203,14 @@ class Worker_Data_to_PLC(QRunnable):
             self.signal.result_list.emit([data_list_pos, data_list_X, data_list_Y,
                                           data_list_Z, data_list_C, data_list_D, data_list_info])
         except Exception as e:
+            if data_ctrl_str.__contains__("A1"):
+                ui.lbl_sts_TransDataSideA1.setText(e)
+            elif data_ctrl_str.__contains__("A2"):
+                ui.lbl_sts_TransDataSideA2.setText(e)
+            elif data_ctrl_str.__contains__("B1"):
+                ui.lbl_sts_TransDataSideB1.setText(e)
+            elif data_ctrl_str.__contains__("B2"):
+                ui.lbl_sts_TransDataSideB2.setText(e)
             print(e)
             with LogixDriver('192.168.1.10') as plc:
                 plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))

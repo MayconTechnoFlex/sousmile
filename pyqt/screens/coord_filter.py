@@ -3,9 +3,9 @@
 # Importações
 #######################################################################################################
 from typing import List
-from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QGraphicsScene
-from PyQt5.QtCore import QThreadPool, QRectF, Qt, QRegExp
-from PyQt5.QtGui import QPen, QRegExpValidator
+from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QGraphicsScene, QGraphicsEllipseItem
+from PyQt5.QtCore import QThreadPool, Qt, QRegExp
+from PyQt5.QtGui import QPen, QRegExpValidator, QBrush
 from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.coord_filter.data.plc import Worker_Data_to_PLC
@@ -108,6 +108,14 @@ class CoordFilter:
         self.ui.graphicsView.setScene(self.scene)
         self.ui.graphicsView.scale(5, 5)
         self.ui.graphicsView.rotate(180)
+        self.scene_a1 = QGraphicsScene(0, 0, 2.5, 15)
+        self.scene_a2 = QGraphicsScene(0, 0, 2.5, 15)
+        self.scene_b1 = QGraphicsScene(0, 0, 2.5, 15)
+        self.scene_b2 = QGraphicsScene(0, 0, 2.5, 15)
+        self.ui.graphicView_A1.setScene(self.scene_a1)
+        self.ui.graphicView_A2.setScene(self.scene_a2)
+        self.ui.graphicView_B1.setScene(self.scene_b1)
+        self.ui.graphicView_B2.setScene(self.scene_b2)
     ###################################################################################################
     def define_buttons(self):
         """Define os botões da tela"""
@@ -271,7 +279,8 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.result_list.connect(lambda result:
+                                                                          self.create_table_and_graphic(result, "A1"))
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A1')
             ###########################################################################################
@@ -296,7 +305,8 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.result_list.connect(lambda result:
+                                                                          self.create_table_and_graphic(result, "A2"))
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_A2')
             ###########################################################################################
@@ -322,7 +332,8 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.result_list.connect(lambda result:
+                                                                          self.create_table_and_graphic(result, "B1"))
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B1')
             ###########################################################################################
@@ -347,7 +358,8 @@ class CoordFilter:
                                                                     self.scene,
                                                                     self.code_read)
                     self.my_thread_data_to_plc.start(self.my_worker_data_to_plc)
-                    self.my_worker_data_to_plc.signal.result_list.connect(self.create_table_and_graphic)
+                    self.my_worker_data_to_plc.signal.result_list.connect(lambda result:
+                                                                          self.create_table_and_graphic(result, "B2"))
             except Exception as e:
                 print(f'{e} - trying to read DataCtrl_B2')
             ###########################################################################################
@@ -384,7 +396,7 @@ class CoordFilter:
             print("Selecione um arquivo")
             self.test_signal = False
     ###################################################################################################
-    def create_table_and_graphic(self, lists_pos=None):
+    def create_table_and_graphic(self, lists_pos=None, side: str=None):
         """Função para criação da tabela de posições"""
         if lists_pos is not None:
             self.list_pos = lists_pos[0]
@@ -405,6 +417,18 @@ class CoordFilter:
         self.scene.clear()
         self.ui.graphicsView.scene().clear()
         self.ui.graphicsView.update()
+        if side == "A1":
+            self.ui.graphicView_A1.scene().clear()
+            self.ui.graphicView_A1.update()
+        elif side == "A2":
+            self.ui.graphicView_A2.scene().clear()
+            self.ui.graphicView_A2.update()
+        elif side == "B1":
+            self.ui.graphicView_B1.scene().clear()
+            self.ui.graphicView_B1.update()
+        elif side == "B2":
+            self.ui.graphicView_B2.scene().clear()
+            self.ui.graphicView_B2.update()
         ###########################################################################################
         # Cria o gráfico da tela
         ###########################################################################################
@@ -418,10 +442,36 @@ class CoordFilter:
             self.ui.tbl_positions.setItem(i, 6, QTableWidgetItem(str(self.list_pos_info[i])))
             self.ui.tbl_positions.resizeColumnsToContents()
 
-            self.scene.addEllipse(QRectF(self.list_pos_x[i], self.list_pos_y[i], 0.2, 0.2), QPen(Qt.blue))
+            ellipse = QGraphicsEllipseItem(0, 0, 2, 2)
+            ellipse.setPos(self.list_pos_x[i], self.list_pos_y[i])
+            brush = QBrush(Qt.blue)
+            ellipse.setBrush(brush)
+            pen = QPen(Qt.transparent)
+            ellipse.setPen(pen)
+            self.scene.addItem(ellipse)
+            if side == "A1":
+                self.scene_a1.addItem(ellipse)
+            elif side == "A2":
+                self.scene_a2.addItem(ellipse)
+            elif side == "B1":
+                self.scene_b1.addItem(ellipse)
+            elif side == "B2":
+                self.scene_b2.addItem(ellipse)
         ###########################################################################################
         self.ui.graphicsView.update()
         self.ui.graphicsView.show()
+        if side == "A1":
+            self.ui.graphicView_A1.update()
+            self.ui.graphicView_A1.show()
+        elif side == "A2":
+            self.ui.graphicView_A2.update()
+            self.ui.graphicView_A2.show()
+        elif side == "B1":
+            self.ui.graphicView_B1.update()
+            self.ui.graphicView_B1.show()
+        elif side == "B2":
+            self.ui.graphicView_B2.update()
+            self.ui.graphicView_B2.show()
     ###################################################################################################
     def runnable_error_plc(self):
         """Função executada quando é recebido um erro"""

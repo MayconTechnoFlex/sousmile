@@ -2,37 +2,47 @@
 #######################################################################################################
 # Importações
 #######################################################################################################
-from ui_py.ui_gui_final import Ui_MainWindow
-from dialogs.altera_valor import AlteraValorDialog
-
+from PyQt5.Qt import QIntValidator
+from PyQt5.QtCore import QThreadPool
 from PyQt5.QtWidgets import QApplication
+
+from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.functions.gui_functions import change_status, set_reset_btn_int
 from utils.Types import PLCReturn
 from utils.btn_style import *
+from utils.workers.workers import Worker_WriteTags
 #######################################################################################################
 # Definição das variáveis globais
 #######################################################################################################
 UI: Ui_MainWindow
 tag_list: PLCReturn
+thread_write_tags = QThreadPool()
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
-def define_buttons(main_ui: Ui_MainWindow, altValDialog: AlteraValorDialog):
+def define_buttons(main_ui: Ui_MainWindow):
     """
     Define os botões da tela
 
     :param main_ui: Ui da aplicação
-    :param altValDialog: Dialog para alterar valor de tag
     """
     global UI
     UI = main_ui
+    int_validators_cut_spd = QIntValidator(0, 100)
 
     UI.btn_parar_robo.clicked.connect(lambda: set_reset_btn_int(2, tag_list, UI.btn_parar_robo))
+    UI.btn_alt_vel_robo_screen.clicked.connect(altera_velocidade)
 
-    UI.btn_alt_vel_robo_screen.clicked.connect(
-        lambda: altValDialog.show_dialog("Alterar velocidade do robô:", "Robo.Output.Speed", "int")
-    )
+    UI.le_vel_robo.setValidator(int_validators_cut_spd)
+#######################################################################################################
+def altera_velocidade():
+    global UI
+    if UI.le_vel_robo.text():
+        vel = int(UI.le_vel_robo.text())
+        worker = Worker_WriteTags("Robo.Output.Speed", vel)
+        thread_write_tags.start(worker)
+        UI.le_vel_robo.clear()
 #######################################################################################################
 # Funções de Atualização
 #######################################################################################################

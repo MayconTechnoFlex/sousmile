@@ -18,6 +18,8 @@ class BarCodeDialog(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
+        self.define_buttons()
+
         # configura a porta inicialmente, se houver
         self.serial_ports = get_serial_ports()
     ###################################################################################################
@@ -27,7 +29,6 @@ class BarCodeDialog(QDialog):
         if len(self.serial_ports) != 1:
             for port in self.serial_ports:
                 self.ui.comboBox.addItem(port)
-            self.define_buttons()
             self.exec_()
         else:
             print(f"Somente uma porta serial conectada ({self.serial_ports[0]}), aguarde a conexão automática...")

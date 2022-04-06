@@ -90,10 +90,10 @@ def define_buttons(receive_ui: Ui_MainWindow, dialog: InsertCodeDialog):
     """
     global UI, tag_list
     UI = receive_ui
-    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A1.ProdCode', "string", UI, "A1"))
-    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_A2.ProdCode', "string", UI, "A2"))
-    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B1.ProdCode', "string", UI, "B1"))
-    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog('DataCtrl_B2.ProdCode', "string", UI, "B2"))
+    UI.btn_in_cod_man_a1.clicked.connect(lambda: dialog.show_dialog(UI, "A1"))
+    UI.btn_in_cod_man_a2.clicked.connect(lambda: dialog.show_dialog(UI, "A2"))
+    UI.btn_in_cod_man_b1.clicked.connect(lambda: dialog.show_dialog(UI, "B1"))
+    UI.btn_in_cod_man_b2.clicked.connect(lambda: dialog.show_dialog(UI, "B2"))
 
     UI.btn_trans_dados_man_a1.clicked.connect(lambda: transfer_data("A1", UI.btn_trans_dados_man_a1))
     UI.btn_trans_dados_man_a2.clicked.connect(lambda: transfer_data("A2", UI.btn_trans_dados_man_a2))
@@ -177,10 +177,10 @@ def UpdateHMI(tag):
         sts_string(tag['Sts']['TransDataSideB1'], UI.lbl_sts_TransDataSideB1, "B")
         sts_string(tag['Sts']['TransDataSideB2'], UI.lbl_sts_TransDataSideB2, "B")
 
-        setButton(UI.btn_trans_dados_man_a1, "Transferir dados\n manualmente A1")
-        setButton(UI.btn_trans_dados_man_a2, "Transferir dados\n manualmente A2")
-        setButton(UI.btn_trans_dados_man_b1, "Transferir dados\n manualmente B1")
-        setButton(UI.btn_trans_dados_man_b2, "Transferir dados\n manualmente B2")
+        setButton(UI.btn_trans_dados_man_a1, "Transferir dados\nmanualmente")
+        setButton(UI.btn_trans_dados_man_a2, "Transferir dados\nmanualmente")
+        setButton(UI.btn_trans_dados_man_b1, "Transferir dados\nmanualmente")
+        setButton(UI.btn_trans_dados_man_b2, "Transferir dados\nmanualmente")
 
         ### buttons manual <-> auto
         if tag['SideA']['Manual']:
