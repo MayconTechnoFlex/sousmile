@@ -9,7 +9,7 @@ from typing import List
 import matplotlib.pyplot as plt
 import pandas as pd
 from pycomm3 import LogixDriver
-import requests
+import requests  # collect error HTTP
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from utils.coord_filter.functions import position_filter_while

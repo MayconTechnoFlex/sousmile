@@ -6,6 +6,6 @@ PyInstaller.__main__.run([
     # '--noconsole',
     '--noconfirm',
     '--specpath=dist',
-    "--add-data=../assets/images/RN_Logo.png;assets/images",
+    "--add-data=../assets/images/RN_Logo.png;assets/images/",
     "--add-data=../assets/images/RN_Logo.ico;.",
 ])

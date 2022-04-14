@@ -140,7 +140,7 @@ class RnRobotics_Gui(QMainWindow):
         robot.define_buttons(self.ui)
         alarms.define_buttons(self.ui, self.alarm_dialog, self.show_alarm)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.confirm_dialog, self.check_uf)
+        maint.define_buttons(self.ui, self.confirm_dialog)
         eng.define_buttons(self.ui, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
@@ -299,6 +299,8 @@ class RnRobotics_Gui(QMainWindow):
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
             robot.UpdateOutput(tag)
+        elif self.ui.stackedWidget.currentIndex() == 5:
+            maint.UpdateRobotOutputs(tag)
         elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateRobotOutput(tag)
     ########################################################################

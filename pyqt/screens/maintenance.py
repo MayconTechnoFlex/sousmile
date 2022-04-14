@@ -2,9 +2,11 @@
 #######################################################################################################
 # Importações
 #######################################################################################################
+import time
+
 from PyQt5.Qt import QIntValidator
 from PyQt5.QtCore import QThreadPool
-from PyQt5.QtWidgets import QPushButton, QLineEdit
+from PyQt5.QtWidgets import QPushButton, QLineEdit, QWidget
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
@@ -17,6 +19,7 @@ from utils.Types import PLCReturn
 from utils.btn_style import setErrorButton, setButton
 from utils.workers.workers import Worker_ToggleBtnValue, Worker_Pressed_WriteTags, Worker_WriteTags
 from utils.btn_style import base_button_style, checked_button_style
+
 #######################################################################################################
 # Definição das variáveis globais
 #######################################################################################################
@@ -25,10 +28,12 @@ tag_list: PLCReturn = []
 write_thread = QThreadPool()
 HomePos: int = 1
 not_connected = True
+
+
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
-def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog, checkUF: CheckUserFrame):
+def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog):
     """
     Define os botões da tela
 
@@ -43,7 +48,10 @@ def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog, ch
     tempo_manut_validators()
 
     buttons_ConfirmDialogs(confirmDialog)
-    UI.btn_check_uf.clicked.connect(checkUF.show_dialog)
+
+    UI.btn_check_uf.clicked.connect(lambda: check_uf("Robo.Output.UFCheck", "HMI.btnCheckUF", UI.le_check_user_frame,
+                                                     UI.btn_check_uf))
+
     UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_button(4, UI.btn_menos_1_mm))
     UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_button(5, UI.btn_termina_check_uf))
 
@@ -68,6 +76,8 @@ def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog, ch
     UI.btn_SpindleRobo_TimeMaint.clicked.connect(
         lambda: change_tempo_manut("Cyl_SpindleRobo.TimeMaintTest", UI.le_tempo_manut_spindle)
     )
+
+
 #######################################################################################################
 def tempo_manut_validators():
     global UI
@@ -76,6 +86,8 @@ def tempo_manut_validators():
     UI.le_tempo_manut_a.setValidator(int_validator)
     UI.le_tempo_manut_b.setValidator(int_validator)
     UI.le_tempo_manut_spindle.setValidator(int_validator)
+
+
 #######################################################################################################
 def change_tempo_manut(tag_name: str, line_edit: QLineEdit):
     if line_edit.text():
@@ -83,6 +95,19 @@ def change_tempo_manut(tag_name: str, line_edit: QLineEdit):
         line_edit.clear()
         worker = Worker_WriteTags(tag_name, value)
         write_thread.start(worker)
+
+
+#######################################################################################################
+def check_uf(tag_robo_uf: str, tag_check_uf: str, line_edit: QLineEdit, widget: QWidget):
+    if line_edit.text():
+        value = int(line_edit.text())
+        line_edit.clear()
+        worker = Worker_WriteTags(tag_robo_uf, value)
+        write_thread.start(worker)
+        time.sleep(1)
+        worker = Worker_ToggleBtnValue(tag_check_uf, 0, widget)
+        write_thread.start(worker)
+
 
 #######################################################################################################
 def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
@@ -104,6 +129,8 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
         lambda: dialog.show_dialog("ChangeTool",
                                    "Cuidado! Você vai movimentar o robô para trocar sua ferramenta.")
     )
+
+
 #######################################################################################################
 def setup_buttons_style():
     """Configura os botões para Erro caso hajá problema de conexão"""
@@ -128,6 +155,8 @@ def setup_buttons_style():
     # botões do spindle
     setButton(UI.btn_SpindleRobo_abrir, "LIGAR")
     setButton(UI.btn_SpindleRobo_manut, "MANUTENÇÃO")
+
+
 #######################################################################################################
 def error_buttons():
     """Configura os botões para Erro caso hajá problema de conexão"""
@@ -152,6 +181,8 @@ def error_buttons():
     # botões do spindle
     setErrorButton(UI.btn_SpindleRobo_abrir)
     setErrorButton(UI.btn_SpindleRobo_manut)
+
+
 #######################################################################################################
 # Funções de Controles
 #######################################################################################################
@@ -166,6 +197,8 @@ def spindle_on():
     except Exception as e:
         print(e, "Erro no ligar spindle")
         UI.btn_SpindleRobo_abrir.setStyleSheet(base_button_style)
+
+
 #######################################################################################################
 def spindle_off():
     """Desliga o spindle quando o botão é solto"""
@@ -178,6 +211,8 @@ def spindle_off():
     except Exception as e:
         print(e, "Erro no ligar spindle")
         UI.btn_SpindleRobo_abrir.setStyleSheet(checked_button_style)
+
+
 #######################################################################################################
 def set_reset_button(i: int, button: QPushButton):
     """Muda o valor da tag para 1 e depois para 0"""
@@ -189,6 +224,8 @@ def set_reset_button(i: int, button: QPushButton):
         write_thread.start(worker_toggle, priority=0)
     except Exception as e:
         print(e, "botão de manutenção falhou")
+
+
 #######################################################################################################
 # Funções de Atualização
 #######################################################################################################
@@ -202,7 +239,6 @@ def UpdateCylA(tag):
     try:
         UI.lbl_TimeMaint_A.setText(str(tag["TimeMaintTest"]))
         change_status(tag["InSenExt"], UI.sts_port_fech_a)
-        change_status(tag["InSenRet"], UI.sts_port_aber_a)
         change_status(tag["OutExtCyl"], UI.sts_plc_port_fech_a)
         change_status(tag["OutRetCyl"], UI.sts_plc_port_aber_a)
 
@@ -212,6 +248,8 @@ def UpdateCylA(tag):
             UI.btn_DoorSideA_manut.setStyleSheet(base_button_style)
     except:
         pass
+
+
 #######################################################################################################
 def UpdateCylB(tag):
     """
@@ -223,7 +261,6 @@ def UpdateCylB(tag):
     try:
         UI.lbl_TimeMaint_B.setText(str(tag["TimeMaintTest"]))
         change_status(tag["InSenExt"], UI.sts_port_fech_b)
-        change_status(tag["InSenRet"], UI.sts_port_aber_b)
         change_status(tag["OutExtCyl"], UI.sts_plc_port_fech_b)
         change_status(tag["OutRetCyl"], UI.sts_plc_port_aber_b)
 
@@ -233,6 +270,8 @@ def UpdateCylB(tag):
             UI.btn_DoorSideB_manut.setStyleSheet(base_button_style)
     except:
         pass
+
+
 #######################################################################################################
 def UpdateCylSpindle(tag):
     """
@@ -252,6 +291,8 @@ def UpdateCylSpindle(tag):
             UI.btn_SpindleRobo_manut.setStyleSheet(base_button_style)
     except:
         pass
+
+
 #######################################################################################################
 def UpdateBarCode(tag):
     """
@@ -266,6 +307,8 @@ def UpdateBarCode(tag):
         change_status(tag["ReadComplete"], WStatus)
     except:
         pass
+
+
 #######################################################################################################
 def UpdateHMI(tag):
     """
@@ -331,6 +374,8 @@ def UpdateHMI(tag):
     except Exception:
         error_buttons()
         not_connected = True
+
+
 #######################################################################################################
 def UpdateRobotInput(tag):
     """
@@ -347,8 +392,22 @@ def UpdateRobotInput(tag):
         UI.btn_termina_check_uf.setEnabled(False)
 
     HomePos = tag["HomePos"]
+
+#######################################################################################################
+def UpdateRobotOutputs(tag):
+    """
+    Atualiza os botões da tela com os valores do CLP
+
+    :param tag: Tag lida do CLP
+    """
+    global UI
+
+    try:
+        UI.lbl_check_user_frame.setText(str(tag["UFCheck"]))
+    except Exception as e:
+        print(e)
+
 #######################################################################################################
 def UpdateTagsList(tags):
     global UI, tag_list
     tag_list = tags
-#######################################################################################################

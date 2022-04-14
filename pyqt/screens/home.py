@@ -206,8 +206,6 @@ def UpdateHMI(tag):
         # setting status
         change_status(tag["SideA"]["Manual"], UI.sts_auto_man_a)
         change_status(tag["SideB"]["Manual"], UI.sts_auto_man_b)
-        change_status(tag["RobotCuttingSideA"], UI.sts_robo_cort_a)
-        change_status(tag["RobotCuttingSideB"], UI.sts_robo_cort_b)
         if tag_list:
             change_status(tag_list[15], UI.sts_seg_cort_a)
             change_status(tag_list[16], UI.sts_seg_cort_b)
@@ -270,10 +268,18 @@ def UpdateRobotInput(tag):
     try:
         if tag["Prg_running"] and tag["RSA"]:
             UI.btn_man_auto_lado_a.setEnabled(False)
-            UI.btn_man_auto_lado_b.setEnabled(False)
+            change_status(True, UI.sts_robo_cort_a)
         else:
             UI.btn_man_auto_lado_a.setEnabled(True)
+            change_status(False, UI.sts_robo_cort_a)
+        if tag["Prg_running"] and tag["RSB"]:
+            UI.btn_man_auto_lado_b.setEnabled(False)
+            change_status(True, UI.sts_robo_cort_b)
+        else:
+            change_status(False, UI.sts_robo_cort_b)
             UI.btn_man_auto_lado_b.setEnabled(True)
+
+
     except Exception as e:
         print(f"{e} - UpdateRobotInput - home")
 #######################################################################################################

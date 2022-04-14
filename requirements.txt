@@ -4,3 +4,5 @@ pyinstaller==4.10
 pyserial==3.5
 pyqt5==5.15.4
 pycomm3==1.2.6
+serial~=0.0.97
+requests~=2.27.1

@@ -406,7 +406,7 @@ class Worker_Alarms(QRunnable, WorkerParent):
                 print(f'{e} Worker_Alarms - in workers.py')
                 # self.stop()
                 # break
-            time.sleep(sleep_time)
+            time.sleep(1)
 #######################################################################################################
 class Worker_InOut(QRunnable, WorkerParent):
     """Worker para receber dados do CLP referentes às tags na TagList de Entradas e Saídas (InOut)"""
@@ -556,7 +556,9 @@ class Worker_ToggleBtnValue(QRunnable, WorkerParent):
             time.sleep(1)
             write_tag(self.tag, 0)
         else:
-            raise ValueError("Valor atual da tag invalido")
+            write_tag(self.tag, 0)
+
+            # raise ValueError("Valor atual da tag invalido")
         QApplication.restoreOverrideCursor()
         self.widget.setEnabled(True)
 #######################################################################################################

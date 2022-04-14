@@ -19,7 +19,7 @@ SHOW_ALARM_SCREEN = None
 CURRENT_ROW = 0
 
 hasAlarm: List[bool] = []
-for i in range(0, 97):
+for i in range(0, 129):
     hasAlarm.append(False)
 #######################################################################################################
 # Funções de Definição
@@ -54,12 +54,15 @@ def verify_alarms(alarm_time: str, alarm_id: int, alarm_active: bool):
     :param alarm_id: Número do alarme
     :param alarm_active: O sinal que vem do CLP
     """
-    if alarm_active and not hasAlarm[alarm_id]:
+    listWidget: QTableWidget = UI.alarm_list_widget
+
+    if alarm_active and (not hasAlarm[alarm_id] or listWidget.rowCount() == 0):
         hasAlarm[alarm_id] = True
         define_new_alarm(alarm_time, alarm_id)
     elif not alarm_active and hasAlarm[alarm_id]:
         hasAlarm[alarm_id] = False
         delete_alarm_row(alarm_id)
+
 #######################################################################################################
 def define_new_alarm(alarm_time: str, alarm_id: int):
     """
@@ -68,6 +71,7 @@ def define_new_alarm(alarm_time: str, alarm_id: int):
     :param alarm_time: String do momento que o alarme aparece
     :param alarm_id: Número do alarme
     """
+
     listWidget = UI.alarm_list_widget
     histWidget = UI.hist_alarm_list_widget
     dialogsListWidget = DIALOG.ui.alarm_list_widget
@@ -112,14 +116,17 @@ def delete_alarm_row(alarm_id: int):
 
     :param alarm_id: Número do alarme
     """
+    print("Deletando alarme")
+
     listWidget: QTableWidget = UI.alarm_list_widget
 
-    itemFound = listWidget.findItems(f"Alarme {alarm_id}:", Qt.MatchContains)
-    listWidget.setCurrentItem(itemFound[0])
+    # itemFound = listWidget.findItems(f"Alarme {alarm_id}:", Qt.MatchContains)
+    # listWidget.setCurrentItem(itemFound[0])
 
-    row_num = itemFound[0].row()
+    # row_num = itemFound[0].row()
+    while listWidget.rowCount() > 0:
+        listWidget.removeRow(0)
 
-    listWidget.removeRow(row_num)
     delete_alarm_from_list(alarm_id)
 #######################################################################################################
 def row_down(listWidget: QTableWidget):
@@ -159,5 +166,5 @@ def UpdateAlarms(tag):
             verify_alarms(time_now[0:19], alarms_count, alarm[1])
             alarms_count += 1
     except Exception as e:
-        print(f"{e} - dialogs/alarms.py - UpdateAlarms")
+        print(f"{e} - {alarms_count} - screens/alarms.py - UpdateAlarms")
 #######################################################################################################
