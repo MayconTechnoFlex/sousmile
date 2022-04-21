@@ -442,7 +442,7 @@ class CoordFilter:
             self.ui.tbl_positions.setItem(i, 6, QTableWidgetItem(str(self.list_pos_info[i])))
             self.ui.tbl_positions.resizeColumnsToContents()
 
-            ellipse = QGraphicsEllipseItem(0, 0, 2, 2)
+            ellipse = QGraphicsEllipseItem(0, 0, 0.5, 0.5)
             ellipse.setPos(self.list_pos_x[i], self.list_pos_y[i])
             brush = QBrush(Qt.blue)
             ellipse.setBrush(brush)

@@ -9,9 +9,12 @@ from ui_py.ui_gui_final import Ui_MainWindow
 
 from utils.functions.ctrl_plc import write_tag
 from utils.btn_style import setErrorButton, setButton
+
+
 #######################################################################################################
 class ThreadResetProduct(QThread):
     """Thread para reset das tags dos produtos"""
+
     def __init__(self, button, *tags: str):
         super(ThreadResetProduct, self).__init__()
         self.button = button
@@ -27,6 +30,7 @@ class ThreadResetProduct(QThread):
             print(e)
         self.button.setEnabled(True)
 
+
 #######################################################################################################
 # Definição das variáveis globais
 #######################################################################################################
@@ -37,6 +41,8 @@ resetA: ThreadResetProduct
 resetB1: ThreadResetProduct
 resetB2: ThreadResetProduct
 resetB: ThreadResetProduct
+
+
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
@@ -62,6 +68,8 @@ def define_buttons(main_ui: Ui_MainWindow):
     UI.btn_reset_prod_b2.clicked.connect(resetB2.start)
     UI.btn_reset_prod_total_a.clicked.connect(resetA.start)
     UI.btn_reset_prod_total_b.clicked.connect(resetB.start)
+
+
 #######################################################################################################
 # Funções de Atualização
 #######################################################################################################
@@ -104,4 +112,77 @@ def UpdateHMI(tag):
         setErrorButton(UI.btn_reset_prod_b1)
         setErrorButton(UI.btn_reset_prod_b2)
         setErrorButton(UI.btn_reset_prod_total_b)
+
+
+#######################################################################################################
+
+def UpdateDataCtrl_A1(tag):
+    """
+    Updates the screen's labels with the readed tag values
+
+    Params:
+        tag = readed tag from DataCtrl_A1
+    """
+    global UI
+    try:
+        UI.lbl_FileNumPos_A1.setText(str(tag["FileNumPos"]))
+        UI.lbl_NumPos_A1.setText(str(tag["NumPos"]))
+        UI.lbl_IndexPos_A1.setText(str(tag["IndexPos"]))
+    except:
+        pass
+
+
+#######################################################################################################
+
+def UpdateDataCtrl_A2(tag):
+    """
+    Updates the screen's labels with the readed tag values
+
+    Params:
+        tag = readed tag from DataCtrl_A2
+    """
+    global UI
+    try:
+        UI.lbl_FileNumPos_A2.setText(str(tag["FileNumPos"]))
+        UI.lbl_NumPos_A2.setText(str(tag["NumPos"]))
+        UI.lbl_IndexPos_A2.setText(str(tag["IndexPos"]))
+    except:
+        pass
+
+
+#######################################################################################################
+
+def UpdateDataCtrl_B1(tag):
+    """
+    Updates the screen's labels with the readed tag values
+
+    Params:
+        tag = readed tag from DataCtrl_B1
+    """
+    global UI
+    try:
+        UI.lbl_FileNumPos_B1.setText(str(tag["FileNumPos"]))
+        UI.lbl_NumPos_B1.setText(str(tag["NumPos"]))
+        UI.lbl_IndexPos_B1.setText(str(tag["IndexPos"]))
+    except:
+        pass
+
+
+#######################################################################################################
+
+def UpdateDataCtrl_B2(tag):
+    """
+    Updates the screen's labels with the readed tag values
+
+    Params:
+        tag = readed tag from DataCtrl_B2
+    """
+    global UI
+    try:
+        UI.lbl_FileNumPos_B2.setText(str(tag["FileNumPos"]))
+        UI.lbl_NumPos_B2.setText(str(tag["NumPos"]))
+        UI.lbl_IndexPos_B2.setText(str(tag["IndexPos"]))
+    except:
+        pass
+
 #######################################################################################################

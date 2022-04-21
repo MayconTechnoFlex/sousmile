@@ -25,6 +25,7 @@ tag_list: PLCReturn
 
 thread_write_tags = QThreadPool()
 
+
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
@@ -81,6 +82,7 @@ def def_pts():
     UI.btn_md_val_max_pts.clicked.connect(lambda: change_int("HMI.NumPosMax", UI.le_num_max_pts))
     UI.btn_md_val_vel_corte.clicked.connect(lambda: change_int("Robo.Output.CutSpeed", UI.le_cut_spd))
 
+
 #######################################################################################################
 def def_delayA():
     """Define os botões do Ajuste de Tempo do lado A"""
@@ -94,6 +96,7 @@ def def_delayA():
     UI.btn_md_val_temp_alarm_pos_port_a.clicked.connect(
         lambda: change_int("Cyl_DoorSideA.TimeOut", UI.le_alarm_door_a))
 
+
 #######################################################################################################
 def def_delayB():
     """Define os botões do Ajuste de Tempo do lado B"""
@@ -106,6 +109,7 @@ def def_delayB():
         lambda: change_int("Cyl_DoorSideB.TimeBothSenOnOff", UI.le_alarm_sens_b))
     UI.btn_md_val_temp_alarm_pos_port_b.clicked.connect(
         lambda: change_int("Cyl_DoorSideB.TimeOut", UI.le_alarm_door_b))
+
 
 #######################################################################################################
 def def_set_validators():
@@ -138,6 +142,7 @@ def def_set_validators():
     UI.le_alarm_sens_a.setValidator(int_validators_delay)
     UI.le_alarm_sens_b.setValidator(int_validators_delay)
 
+
 #######################################################################################################
 def change_int(tag_name: str, line_edit: QLineEdit):
     if line_edit.text():
@@ -146,13 +151,21 @@ def change_int(tag_name: str, line_edit: QLineEdit):
         worker = Worker_WriteTags(tag_name, value)
         thread_write_tags.start(worker)
 
+
 #######################################################################################################
 def change_float(tag_name: str, line_edit: QLineEdit):
     if line_edit.text():
-        value = float(line_edit.text())
+        txt = line_edit.text()
+        if txt.find(",") == -1:
+            value = float(txt)
+        else:
+            new_txt = txt.replace(",", ".")
+            value = float(new_txt)
         line_edit.clear()
         worker = Worker_WriteTags(tag_name, value)
         thread_write_tags.start(worker)
+
+
 #######################################################################################################
 # Funções de Atualização
 #######################################################################################################

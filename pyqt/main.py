@@ -18,8 +18,8 @@ from security.functions import UpdateUserAccess
 from utils.functions.serial_ports import get_serial_ports, set_my_port, get_my_port
 from utils.workers.workers import *
 
-from screens import home, robot, alarms,\
-    production as prod, maintenance as maint,\
+from screens import home, robot, alarms, \
+    production as prod, maintenance as maint, \
     engineering as eng, in_out as inOut, coord_filter as cf
 
 from dialogs.alarm import AlarmDialog
@@ -28,6 +28,8 @@ from dialogs.checkUF import CheckUserFrame
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.login import LoginDialog
 from dialogs.insert_code import InsertCodeDialog
+
+
 #######################################################################################################
 
 class RnRobotics_Gui(QMainWindow):
@@ -162,6 +164,7 @@ class RnRobotics_Gui(QMainWindow):
         self.ui.graphicView_B1.rotate(180)
         self.ui.graphicView_B2.scale(2.5, 2.5)
         self.ui.graphicView_B2.rotate(180)
+
     ####################################################################
     # Bar Code Scanner Function
     ####################################################################
@@ -178,6 +181,7 @@ class RnRobotics_Gui(QMainWindow):
         except Exception as e:
             print(e)
             time.sleep(2)
+
     ####################################################################
     # functions to navigate between screens
     ####################################################################
@@ -197,53 +201,75 @@ class RnRobotics_Gui(QMainWindow):
         ### alarm
         self.ui.btn_atual_alarm.clicked.connect(self.show_alarm)
         self.ui.btn_hist_alarm.clicked.connect(self.show_alarm_history)
+
     #######################################################################
     def show_home(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_screen)
+
     #######################################################################
     def show_robot(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.robot_screen)
+
     #######################################################################
     def show_alarm(self):
         self.ui.alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarms_screen)
+
     #######################################################################
     def show_production(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.production_screen)
+
     #######################################################################
     def show_coor_filter(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.coord_filter)
+
     #######################################################################
     def show_maintenance(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.maintenace_screen)
+
     #######################################################################
     def show_in_out(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.inOut_screen)
+
     #######################################################################
     def show_engineering(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.engineering_screen)
+
     #######################################################################
     def show_alarm_history(self):
         self.ui.hist_alarm_list_widget.horizontalHeader().setVisible(True)
         self.ui.stackedWidget.setCurrentWidget(self.ui.alarm_history_screen)
+
     #######################################################################
     # Updating Tags on the PLC
     #######################################################################
     def update_DataCtrl_A1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_A1(tag)
+        elif self.ui.stackedWidget.currentIndex() == 3:
+            prod.UpdateDataCtrl_A1(tag)
+
     #######################################################################
     def update_DataCtrl_A2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_A2(tag)
+        elif self.ui.stackedWidget.currentIndex() == 3:
+            prod.UpdateDataCtrl_A2(tag)
+
     #######################################################################
     def update_DataCtrl_B1(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_B1(tag)
+        elif self.ui.stackedWidget.currentIndex() == 3:
+            prod.UpdateDataCtrl_B1(tag)
+
     #######################################################################
     def update_DataCtrl_B2(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
             home.UpdateDataCtrl_B2(tag)
+        elif self.ui.stackedWidget.currentIndex() == 3:
+            prod.UpdateDataCtrl_B2(tag)
+
     #######################################################################
     def update_hmi(self, tag):
         if type(tag) is tuple:
@@ -263,30 +289,36 @@ class RnRobotics_Gui(QMainWindow):
                 maint.UpdateHMI(tag)
             elif self.ui.stackedWidget.currentIndex() == 7:
                 eng.UpdateHMI(tag)
+
     ########################################################################
     def update_ConfigPontos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateConfigPts(tag)
+
     ########################################################################
     def update_CylDoorSideA(self, tag):
         if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateCylA(tag)
         elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateCylA(tag)
+
     ########################################################################
     def update_CylDoorSideB(self, tag):
         if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateCylB(tag)
         elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateCylB(tag)
+
     ########################################################################
     def update_CylSpindle(self, tag):
         if self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateCylSpindle(tag)
+
     ########################################################################
     def update_indexRobotPos(self, tag):
         if self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateRobotPos(tag)
+
     ########################################################################
     def update_RoboInput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 0:
@@ -295,6 +327,7 @@ class RnRobotics_Gui(QMainWindow):
             robot.UpdateInput(tag)
         elif self.ui.stackedWidget.currentIndex() == 5:
             maint.UpdateRobotInput(tag)
+
     ########################################################################
     def update_RoboOutput(self, tag):
         if self.ui.stackedWidget.currentIndex() == 1:
@@ -303,6 +336,7 @@ class RnRobotics_Gui(QMainWindow):
             maint.UpdateRobotOutputs(tag)
         elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateRobotOutput(tag)
+
     ########################################################################
     def update_BarCode(self, tag):
         maint.UpdateBarCode(tag)
@@ -315,13 +349,16 @@ class RnRobotics_Gui(QMainWindow):
         serial_ports = get_serial_ports()
         if len(serial_ports) == 1:
             set_my_port(serial_ports[0])
+
     ########################################################################
     def update_Alarms(self, tag):
         alarms.UpdateAlarms(tag)
+
     ########################################################################
     def update_InOut(self, tag):
         if self.ui.stackedWidget.currentIndex() == 5:
             inOut.UpdateInOut(tag)
+
     ########################################################################
     def update_tag_list(self, tags):
         if self.ui.stackedWidget.currentIndex() == 0:
@@ -332,6 +369,7 @@ class RnRobotics_Gui(QMainWindow):
             maint.UpdateTagsList(tags)
         elif self.ui.stackedWidget.currentIndex() == 7:
             eng.UpdateTagsList(tags)
+
     ########################################################################
     # Stop Threads
     ########################################################################
@@ -358,6 +396,8 @@ class RnRobotics_Gui(QMainWindow):
         except Exception as e:
             print(f"{e} -> main.py - stop_threads")
         print("Threads finalizadas")
+
+
 #######################################################################################################
 
 if __name__ == '__main__':

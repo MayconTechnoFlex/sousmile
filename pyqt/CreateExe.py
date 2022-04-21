@@ -7,5 +7,8 @@ PyInstaller.__main__.run([
     '--noconfirm',
     '--specpath=dist',
     "--add-data=../assets/images/RN_Logo.png;assets/images/",
-    "--add-data=../assets/images/RN_Logo.ico;.",
+    "--add-data=../assets/images/rn_logo_icon.ico;.",
+    # "--onefile",
+    # '--windowed',
+    "--icon=../assets/images/rn_logo_icon.ico"
 ])

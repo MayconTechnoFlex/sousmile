@@ -204,13 +204,13 @@ class Worker_Data_to_PLC(QRunnable):
                                           data_list_Z, data_list_C, data_list_D, data_list_info])
         except Exception as e:
             if data_ctrl_str.__contains__("A1"):
-                ui.lbl_sts_TransDataSideA1.setText(e)
+                ui.lbl_sts_TransDataSideA1.setText(str(e))
             elif data_ctrl_str.__contains__("A2"):
-                ui.lbl_sts_TransDataSideA2.setText(e)
+                ui.lbl_sts_TransDataSideA2.setText(str(e))
             elif data_ctrl_str.__contains__("B1"):
-                ui.lbl_sts_TransDataSideB1.setText(e)
+                ui.lbl_sts_TransDataSideB1.setText(str(e))
             elif data_ctrl_str.__contains__("B2"):
-                ui.lbl_sts_TransDataSideB2.setText(e)
+                ui.lbl_sts_TransDataSideB2.setText(str(e))
             print(e)
             with LogixDriver('192.168.1.10') as plc:
                 plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))

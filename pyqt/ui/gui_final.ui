@@ -989,7 +989,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>5</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -13216,12 +13216,13 @@ lado B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Número de posições B2:</string>
+                                 <string>Número de posições no
+arquivo original B2:</string>
                                 </property>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QLabel" name="lbl_NumPos_B2">
+                               <widget class="QLabel" name="lbl_FileNumPos_B2">
                                 <property name="font">
                                  <font>
                                   <family>Equinox Bold</family>
@@ -13278,7 +13279,7 @@ lado B2:</string>
                              <property name="frameShadow">
                               <enum>QFrame::Raised</enum>
                              </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_210">
+                             <layout class="QHBoxLayout" name="horizontalLayout_82">
                               <property name="spacing">
                                <number>0</number>
                               </property>
@@ -13309,12 +13310,12 @@ lado B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Posição atual B2:</string>
+                                 <string>Número de posições B2:</string>
                                 </property>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QLabel" name="lbl_IndexPos_B2">
+                               <widget class="QLabel" name="lbl_NumPos_B2">
                                 <property name="font">
                                  <font>
                                   <family>Equinox Bold</family>
@@ -13371,7 +13372,7 @@ lado B2:</string>
                              <property name="frameShadow">
                               <enum>QFrame::Raised</enum>
                              </property>
-                             <layout class="QHBoxLayout" name="horizontalLayout_211">
+                             <layout class="QHBoxLayout" name="horizontalLayout_66">
                               <property name="spacing">
                                <number>0</number>
                               </property>
@@ -13388,7 +13389,7 @@ lado B2:</string>
                                <number>0</number>
                               </property>
                               <item>
-                               <widget class="QLabel" name="label_95">
+                               <widget class="QLabel" name="label_89">
                                 <property name="sizePolicy">
                                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                                   <horstretch>0</horstretch>
@@ -13402,12 +13403,12 @@ lado B2:</string>
                                  </font>
                                 </property>
                                 <property name="text">
-                                 <string>Tempo de corte lado B2:</string>
+                                 <string>Posição atual B2:</string>
                                 </property>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QLabel" name="lbl_production_TimeCutB2_2">
+                               <widget class="QLabel" name="lbl_IndexPos_B2">
                                 <property name="font">
                                  <font>
                                   <family>Equinox Bold</family>
