@@ -108,7 +108,7 @@ class Worker_Data_to_PLC(QRunnable):
             ##############################################################################################
             req = requests.get(filepath)
             if not req.ok:
-                raise Exception(req.text)
+                raise Exception((req.text, req.status_code, req.reason))
             print("- Lendo arquivo...")
             data = pd.read_csv(filepath, sep=',', header=None)  # Copia o arquivo csv do caminho # -filepath
             write_tag(f'{data_ctrl_str}.FileNumPos', len(data.index))  # Number of positions in the original file
@@ -202,15 +202,19 @@ class Worker_Data_to_PLC(QRunnable):
             ########################################################################################
             self.signal.result_list.emit([data_list_pos, data_list_X, data_list_Y,
                                           data_list_Z, data_list_C, data_list_D, data_list_info])
+            ui.lbl_http_a1.setText('')
         except Exception as e:
-            if data_ctrl_str.__contains__("A1"):
-                ui.lbl_sts_TransDataSideA1.setText(str(e))
-            elif data_ctrl_str.__contains__("A2"):
-                ui.lbl_sts_TransDataSideA2.setText(str(e))
-            elif data_ctrl_str.__contains__("B1"):
-                ui.lbl_sts_TransDataSideB1.setText(str(e))
-            elif data_ctrl_str.__contains__("B2"):
-                ui.lbl_sts_TransDataSideB2.setText(str(e))
+            if e[1] == 422:
+                if data_ctrl_str.__contains__("A1"):
+                    ui.lbl_http_a1.setText(str(e[0]))
+                elif data_ctrl_str.__contains__("A2"):
+                    ui.lbl_http_a2.setText(str(e[0]))
+                elif data_ctrl_str.__contains__("B1"):
+                    ui.lbl_http_b1.setText(str(e[0]))
+                elif data_ctrl_str.__contains__("B2"):
+                    ui.lbl_http_b2.setText(str(e[0]))
+            else:
+                ui.lbl_http_a1.setText(str(e[2]))
             print(e)
             with LogixDriver('192.168.1.10') as plc:
                 plc.write((f'{data_ctrl_str}.Error', True), (f'{data_ctrl_str}.Status', 'Erro na Transferencia de Dados'))
