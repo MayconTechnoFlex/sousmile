@@ -989,7 +989,7 @@ background-color: white;
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="home_screen">
            <property name="minimumSize">
@@ -3238,25 +3238,63 @@ manualmente</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="lbl_sts_TransDataSideA1">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
+                            <widget class="QFrame" name="frame_84">
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>12</pointsize>
-                              </font>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
-                             <property name="text">
-                              <string>Aguardando conexão</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
+                             <widget class="QLabel" name="lbl_sts_TransDataSideA1">
+                              <property name="geometry">
+                               <rect>
+                                <x>40</x>
+                                <y>20</y>
+                                <width>193</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox Bold</family>
+                                <pointsize>12</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Aguardando conexão</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                             <widget class="QLabel" name="lbl_http_a1">
+                              <property name="geometry">
+                               <rect>
+                                <x>37</x>
+                                <y>37</y>
+                                <width>201</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox</family>
+                                <pointsize>9</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Ok</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
                             </widget>
                            </item>
                           </layout>
@@ -3334,25 +3372,63 @@ manualmente</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="lbl_sts_TransDataSideA2">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
+                            <widget class="QFrame" name="frame_89">
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>12</pointsize>
-                              </font>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
-                             <property name="text">
-                              <string>Aguardando conexão</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
+                             <widget class="QLabel" name="lbl_sts_TransDataSideA2">
+                              <property name="geometry">
+                               <rect>
+                                <x>40</x>
+                                <y>20</y>
+                                <width>193</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox Bold</family>
+                                <pointsize>12</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Aguardando conexão</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                             <widget class="QLabel" name="lbl_http_a2">
+                              <property name="geometry">
+                               <rect>
+                                <x>37</x>
+                                <y>37</y>
+                                <width>201</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox</family>
+                                <pointsize>9</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Ok</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
                             </widget>
                            </item>
                           </layout>
@@ -6078,25 +6154,63 @@ manualmente</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="lbl_sts_TransDataSideB1">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
+                            <widget class="QFrame" name="frame_90">
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>12</pointsize>
-                              </font>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
-                             <property name="text">
-                              <string>Aguardando conexão</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
+                             <widget class="QLabel" name="lbl_sts_TransDataSideB1">
+                              <property name="geometry">
+                               <rect>
+                                <x>40</x>
+                                <y>20</y>
+                                <width>193</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox Bold</family>
+                                <pointsize>12</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Aguardando conexão</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                             <widget class="QLabel" name="lbl_http_b1">
+                              <property name="geometry">
+                               <rect>
+                                <x>37</x>
+                                <y>37</y>
+                                <width>201</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox</family>
+                                <pointsize>9</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Ok</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
                             </widget>
                            </item>
                           </layout>
@@ -6174,25 +6288,63 @@ manualmente</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLabel" name="lbl_sts_TransDataSideB2">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
+                            <widget class="QFrame" name="frame_91">
+                             <property name="frameShape">
+                              <enum>QFrame::StyledPanel</enum>
                              </property>
-                             <property name="font">
-                              <font>
-                               <family>Equinox Bold</family>
-                               <pointsize>12</pointsize>
-                              </font>
+                             <property name="frameShadow">
+                              <enum>QFrame::Raised</enum>
                              </property>
-                             <property name="text">
-                              <string>Aguardando conexão</string>
-                             </property>
-                             <property name="alignment">
-                              <set>Qt::AlignCenter</set>
-                             </property>
+                             <widget class="QLabel" name="lbl_sts_TransDataSideB2">
+                              <property name="geometry">
+                               <rect>
+                                <x>40</x>
+                                <y>20</y>
+                                <width>193</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox Bold</family>
+                                <pointsize>12</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Aguardando conexão</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                             <widget class="QLabel" name="lbl_http_b2">
+                              <property name="geometry">
+                               <rect>
+                                <x>37</x>
+                                <y>37</y>
+                                <width>201</width>
+                                <height>16</height>
+                               </rect>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Equinox</family>
+                                <pointsize>9</pointsize>
+                               </font>
+                              </property>
+                              <property name="text">
+                               <string>Ok</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
                             </widget>
                            </item>
                           </layout>
