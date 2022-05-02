@@ -480,7 +480,7 @@ class CoordFilter:
     ###################################################################################################
     def runnable_error_test(self):
         """Função executada quando é recebido um erro"""
-        if self.ui.rb_teste.isChecked():
+        if self.ui.rb_test.isChecked():
             print("Erro no worker para o teste de arquivo local")
     ###################################################################################################
     def stop_threads(self):

@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QPushButton, QLineEdit, QWidget
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
-from dialogs.checkUF import CheckUserFrame
+from dialogs.ajuste_fresa import AjusteFrasaDialog
 
 from security.db_users import get_connected_username
 
@@ -33,7 +33,7 @@ not_connected = True
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
-def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog):
+def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog, ajustDialog: AjusteFrasaDialog):
     """
     Define os botões da tela
 
@@ -51,6 +51,8 @@ def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog):
 
     UI.btn_check_uf.clicked.connect(lambda: check_uf("Robo.Output.UFCheck", "HMI.btnCheckUF", UI.le_check_user_frame,
                                                      UI.btn_check_uf))
+
+    UI.btn_check_utool.clicked.connect(ajustDialog.show_dialog)
 
     UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_button(4, UI.btn_menos_1_mm))
     UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_button(5, UI.btn_termina_check_uf))
@@ -121,10 +123,6 @@ def buttons_ConfirmDialogs(dialog: ConfirmationDialog):
         lambda: dialog.show_dialog("MoveHome",
                                    "Cuidado! Você vai movimentar o robô para a posição inicial, "
                                    "caso tenha risco de colisão, movimente o robô para a posição inicial manualmente!"))
-    UI.btn_check_utool.clicked.connect(
-        lambda: dialog.show_dialog("CheckUTOOL",
-                                   "Cuidado! Você vai movimentar o robô para ajustar a fresa.")
-    )
     UI.btn_change_tool.clicked.connect(
         lambda: dialog.show_dialog("ChangeTool",
                                    "Cuidado! Você vai movimentar o robô para trocar sua ferramenta.")

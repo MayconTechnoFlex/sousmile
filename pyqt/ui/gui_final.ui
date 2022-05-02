@@ -3239,6 +3239,12 @@ manualmente</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_84">
+                             <property name="minimumSize">
+                              <size>
+                               <width>321</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -3248,9 +3254,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_sts_TransDataSideA1">
                               <property name="geometry">
                                <rect>
-                                <x>40</x>
+                                <x>0</x>
                                 <y>20</y>
-                                <width>193</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -3276,9 +3282,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_http_a1">
                               <property name="geometry">
                                <rect>
-                                <x>37</x>
+                                <x>0</x>
                                 <y>37</y>
-                                <width>201</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -3373,6 +3379,12 @@ manualmente</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_89">
+                             <property name="minimumSize">
+                              <size>
+                               <width>321</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -3382,9 +3394,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_sts_TransDataSideA2">
                               <property name="geometry">
                                <rect>
-                                <x>40</x>
+                                <x>0</x>
                                 <y>20</y>
-                                <width>193</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -3410,9 +3422,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_http_a2">
                               <property name="geometry">
                                <rect>
-                                <x>37</x>
+                                <x>0</x>
                                 <y>37</y>
-                                <width>201</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -6155,6 +6167,12 @@ manualmente</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_90">
+                             <property name="minimumSize">
+                              <size>
+                               <width>321</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -6164,9 +6182,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_sts_TransDataSideB1">
                               <property name="geometry">
                                <rect>
-                                <x>40</x>
+                                <x>0</x>
                                 <y>20</y>
-                                <width>193</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -6192,9 +6210,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_http_b1">
                               <property name="geometry">
                                <rect>
-                                <x>37</x>
+                                <x>0</x>
                                 <y>37</y>
-                                <width>201</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -6289,6 +6307,12 @@ manualmente</string>
                            </item>
                            <item>
                             <widget class="QFrame" name="frame_91">
+                             <property name="minimumSize">
+                              <size>
+                               <width>321</width>
+                               <height>0</height>
+                              </size>
+                             </property>
                              <property name="frameShape">
                               <enum>QFrame::StyledPanel</enum>
                              </property>
@@ -6298,9 +6322,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_sts_TransDataSideB2">
                               <property name="geometry">
                                <rect>
-                                <x>40</x>
+                                <x>0</x>
                                 <y>20</y>
-                                <width>193</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>
@@ -6326,9 +6350,9 @@ manualmente</string>
                              <widget class="QLabel" name="lbl_http_b2">
                               <property name="geometry">
                                <rect>
-                                <x>37</x>
+                                <x>0</x>
                                 <y>37</y>
-                                <width>201</width>
+                                <width>321</width>
                                 <height>16</height>
                                </rect>
                               </property>

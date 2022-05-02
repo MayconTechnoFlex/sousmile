@@ -40,6 +40,8 @@ def altera_velocidade():
     global UI
     if UI.le_vel_robo.text():
         vel = int(UI.le_vel_robo.text())
+        if vel > 100:
+            vel = 100
         worker = Worker_WriteTags("Robo.Output.Speed", vel)
         thread_write_tags.start(worker)
         UI.le_vel_robo.clear()

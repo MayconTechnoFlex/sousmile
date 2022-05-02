@@ -40,7 +40,7 @@ class AlteraValorDialog(QDialog):
         """
         self.TAG_INDEX = tag
         self.TAG_TYPE = tag_type
-        validator: QValidator
+        validator: QRegExpValidator
 
         # configura a validação do QLineEdit
         try:
