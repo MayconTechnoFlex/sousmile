@@ -3289,7 +3289,11 @@ manualmente</string>
                                </font>
                               </property>
                               <property name="text">
+<<<<<<< HEAD
                                <string/>
+=======
+                               <string>Ok</string>
+>>>>>>> 9cfd6aa265f50812b3b60c5c6c46a4325ccd5d94
                               </property>
                               <property name="alignment">
                                <set>Qt::AlignCenter</set>
@@ -3423,7 +3427,11 @@ manualmente</string>
                                </font>
                               </property>
                               <property name="text">
+<<<<<<< HEAD
                                <string/>
+=======
+                               <string>Ok</string>
+>>>>>>> 9cfd6aa265f50812b3b60c5c6c46a4325ccd5d94
                               </property>
                               <property name="alignment">
                                <set>Qt::AlignCenter</set>
@@ -6205,7 +6213,11 @@ manualmente</string>
                                </font>
                               </property>
                               <property name="text">
+<<<<<<< HEAD
                                <string/>
+=======
+                               <string>Ok</string>
+>>>>>>> 9cfd6aa265f50812b3b60c5c6c46a4325ccd5d94
                               </property>
                               <property name="alignment">
                                <set>Qt::AlignCenter</set>
@@ -6339,7 +6351,11 @@ manualmente</string>
                                </font>
                               </property>
                               <property name="text">
+<<<<<<< HEAD
                                <string/>
+=======
+                               <string>Ok</string>
+>>>>>>> 9cfd6aa265f50812b3b60c5c6c46a4325ccd5d94
                               </property>
                               <property name="alignment">
                                <set>Qt::AlignCenter</set>
