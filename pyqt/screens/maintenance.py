@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QPushButton, QLineEdit, QWidget
 
 from ui_py.ui_gui_final import Ui_MainWindow
 from dialogs.confirmation import ConfirmationDialog
-from dialogs.checkUF import CheckUserFrame
+from dialogs.check_uf import CheckUF
 
 from security.db_users import get_connected_username
 
@@ -33,7 +33,7 @@ not_connected = True
 #######################################################################################################
 # Funções de Definição
 #######################################################################################################
-def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog):
+def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog, ufDialog: CheckUF):
     """
     Define os botões da tela
 
@@ -49,8 +49,7 @@ def define_buttons(main_ui: Ui_MainWindow, confirmDialog: ConfirmationDialog):
 
     buttons_ConfirmDialogs(confirmDialog)
 
-    UI.btn_check_uf.clicked.connect(lambda: check_uf("Robo.Output.UFCheck", "HMI.btnCheckUF", UI.le_check_user_frame,
-                                                     UI.btn_check_uf))
+    UI.btn_check_uf.clicked.connect(ufDialog.show_dialog)
 
     UI.btn_menos_1_mm.clicked.connect(lambda: set_reset_button(4, UI.btn_menos_1_mm))
     UI.btn_termina_check_uf.clicked.connect(lambda: set_reset_button(5, UI.btn_termina_check_uf))
@@ -94,18 +93,6 @@ def change_tempo_manut(tag_name: str, line_edit: QLineEdit):
         value = int(line_edit.text())
         line_edit.clear()
         worker = Worker_WriteTags(tag_name, value)
-        write_thread.start(worker)
-
-
-#######################################################################################################
-def check_uf(tag_robo_uf: str, tag_check_uf: str, line_edit: QLineEdit, widget: QWidget):
-    if line_edit.text():
-        value = int(line_edit.text())
-        line_edit.clear()
-        worker = Worker_WriteTags(tag_robo_uf, value)
-        write_thread.start(worker)
-        time.sleep(1)
-        worker = Worker_ToggleBtnValue(tag_check_uf, 0, widget)
         write_thread.start(worker)
 
 
@@ -162,7 +149,7 @@ def error_buttons():
     """Configura os botões para Erro caso hajá problema de conexão"""
     # botões da parte inferior
     setErrorButton(UI.btn_move_home)
-    setErrorButton(UI.btn_check_uf)
+    # setErrorButton(UI.btn_check_uf)
     setErrorButton(UI.btn_menos_1_mm)
     setErrorButton(UI.btn_termina_check_uf)
     setErrorButton(UI.btn_check_utool)

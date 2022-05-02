@@ -24,7 +24,8 @@ from screens import home, robot, alarms, \
 
 from dialogs.alarm import AlarmDialog
 from dialogs.barcode_config import BarCodeDialog
-from dialogs.checkUF import CheckUserFrame
+# from dialogs.checkUF import CheckUserFrame
+from dialogs.check_uf import CheckUF
 from dialogs.confirmation import ConfirmationDialog
 from dialogs.login import LoginDialog
 from dialogs.insert_code import InsertCodeDialog
@@ -42,7 +43,8 @@ class RnRobotics_Gui(QMainWindow):
         ##################################################################
         self.alarm_dialog = AlarmDialog(self)
         self.config_barcode_dialog = BarCodeDialog(self)
-        self.check_uf = CheckUserFrame(self)
+        # self.check_uf = CheckUserFrame(self)
+        self.check_uf = CheckUF(self)
         self.confirm_dialog = ConfirmationDialog(self)
         self.login_dialog = LoginDialog(self)
         self.insert_code_dialog = InsertCodeDialog(self)
@@ -142,7 +144,7 @@ class RnRobotics_Gui(QMainWindow):
         robot.define_buttons(self.ui)
         alarms.define_buttons(self.ui, self.alarm_dialog, self.show_alarm)
         prod.define_buttons(self.ui)
-        maint.define_buttons(self.ui, self.confirm_dialog)
+        maint.define_buttons(self.ui, self.confirm_dialog, self.check_uf)
         eng.define_buttons(self.ui, self.config_barcode_dialog)
         inOut.define_buttons(self.ui, self.show_maintenance)
         ###################################################################
