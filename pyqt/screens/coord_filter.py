@@ -261,7 +261,8 @@ class CoordFilter:
             # Espera pelo Trigger do lado A1
             ###########################################################################################
             try:
-                if (self.trigger_a1 or data_ctrl_a1["Trigger"]) and not self.transferring_data:
+                if (self.trigger_a1 or data_ctrl_a1["Trigger"]) and not self.transferring_data \
+                        and not data_ctrl_a2["Started"] and not data_ctrl_b1["Started"] and not data_ctrl_b2["Started"]:
 
                     self.transferring_data = True
 
@@ -289,7 +290,8 @@ class CoordFilter:
             # Espera pelo Trigger do lado A2
             ###########################################################################################
             try:
-                if (self.trigger_a2 or data_ctrl_a2["Trigger"]) and not self.transferring_data:
+                if (self.trigger_a2 or data_ctrl_a2["Trigger"]) and not self.transferring_data \
+                        and not data_ctrl_a1["Started"] and not data_ctrl_b1["Started"] and not data_ctrl_b2["Started"]:
 
                     self.transferring_data = True
 
@@ -317,7 +319,8 @@ class CoordFilter:
             # Espera pelo Trigger do lado B1
             ###########################################################################################
             try:
-                if (self.trigger_b1 or data_ctrl_b1["Trigger"]) and not self.transferring_data:
+                if (self.trigger_b1 or data_ctrl_b1["Trigger"]) and not self.transferring_data \
+                        and not data_ctrl_a1["Started"] and not data_ctrl_a2["Started"] and not data_ctrl_b2["Started"]:
 
                     self.transferring_data = True
 
@@ -345,7 +348,8 @@ class CoordFilter:
             # Espera pelo Trigger do lado B2
             ###########################################################################################
             try:
-                if (self.trigger_b2 or data_ctrl_b2["Trigger"]) and not self.transferring_data:
+                if (self.trigger_b2 or data_ctrl_b2["Trigger"]) and not self.transferring_data \
+                        and not data_ctrl_a1["Started"] and not data_ctrl_a2["Started"] and not data_ctrl_b1["Started"]:
 
                     self.transferring_data = True
 
