@@ -262,10 +262,12 @@ class CoordFilter:
             ###########################################################################################
             try:
                 if (self.trigger_a1 or data_ctrl_a1["Trigger"]) and not self.transferring_data:
+
+                    self.transferring_data = True
+
                     if data_ctrl_a1["Trigger"]:
                         self.code_read = self.ui.lbl_ProdCode_A1.text()
 
-                    self.transferring_data = True
                     self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_a1,
                                                                     'CutDepthA1',
                                                                     HMI['EnableLog'],
@@ -288,10 +290,12 @@ class CoordFilter:
             ###########################################################################################
             try:
                 if (self.trigger_a2 or data_ctrl_a2["Trigger"]) and not self.transferring_data:
+
+                    self.transferring_data = True
+
                     if data_ctrl_a2["Trigger"]:
                         self.code_read = self.ui.lbl_ProdCode_A2.text()
 
-                    self.transferring_data = True
                     self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_a2,
                                                                     'CutDepthA2',
                                                                     HMI['EnableLog'],
@@ -314,10 +318,11 @@ class CoordFilter:
             ###########################################################################################
             try:
                 if (self.trigger_b1 or data_ctrl_b1["Trigger"]) and not self.transferring_data:
-                    if data_ctrl_b1["Trigger"]:
-                        self.code_read = self.ui.lbl_ProdCode_B1.text()
 
                     self.transferring_data = True
+
+                    if data_ctrl_b1["Trigger"]:
+                        self.code_read = self.ui.lbl_ProdCode_B1.text()
 
                     self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_b1,
                                                                     'CutDepthB1',
@@ -341,10 +346,12 @@ class CoordFilter:
             ###########################################################################################
             try:
                 if (self.trigger_b2 or data_ctrl_b2["Trigger"]) and not self.transferring_data:
+
+                    self.transferring_data = True
+
                     if data_ctrl_b2["Trigger"]:
                         self.code_read = self.ui.lbl_ProdCode_B2.text()
 
-                    self.transferring_data = True
                     self.my_worker_data_to_plc = Worker_Data_to_PLC(data_ctrl_b2,
                                                                     'CutDepthB2',
                                                                     HMI['EnableLog'],
