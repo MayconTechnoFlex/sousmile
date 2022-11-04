@@ -92,7 +92,7 @@ def pos_filter(in_data: DataFrame, lx: List[float], ly: List[float], lz: List[fl
     print('- Entrando no loop while para filtrar os pontos')
     while pos_1 <= len(in_data.index):
 
-        if (pos_1 + 2) < len(in_data.index):
+        if (pos_1 + 4) < len(in_data.index):
             while True:
                 #################################################################################################
                 dist_XYZ = dist_between_points(in_data, pos_1, pos_2)  # Calc distance between points
