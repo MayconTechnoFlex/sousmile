@@ -17,6 +17,7 @@ from utils.coord_filter.functions.detect_error import find_error_filter
 from utils.coord_filter.workers_coord_filter import *
 
 from utils.coord_filter.workers_coord_filter import WorkerSignals
+from utils.operator import get_operator_id
 #######################################################################################################
 # Definição das Variáveis Globais
 #######################################################################################################
@@ -98,7 +99,13 @@ class Worker_Data_to_PLC(QRunnable):
         #######################################
         print('- Iniciando transferência de dados para o CLP Rockwell')
         # filepath = f'{url}/{data_ctrl["ProdCode"]}.csv'
-        filepath = f'{url}/{code}.csv'
+        # filepath = f'{url}/{code}.csv'
+        operator_id = get_operator_id()
+        if cloud_signal:
+            print(f"Operador: {operator_id}")
+            filepath = f'{url}/{code}/{operator_id}'
+        else:
+            filepath = f'{url}/{code}'
         print(filepath)
         print('-Inicia tempo de tranferência')
         start = time.time()  # Inicio da contagem de tempo para a transferência de dados

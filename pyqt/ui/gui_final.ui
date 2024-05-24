@@ -223,6 +223,77 @@ background-color: white;
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
+         <widget class="QFrame" name="frame_92">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>0</y>
+            <width>400</width>
+            <height>80</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_210" stretch="0,0">
+           <property name="spacing">
+            <number>3</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_95">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Equinox</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Operador:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lbl_OperatorName">
+             <property name="font">
+              <font>
+               <family>Equinox</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>- - -</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
        <item alignment="Qt::AlignRight">
@@ -14293,11 +14364,11 @@ QTableWidget {
                        <attribute name="horizontalHeaderCascadingSectionResizes">
                         <bool>false</bool>
                        </attribute>
-                       <attribute name="horizontalHeaderMinimumSectionSize">
-                        <number>20</number>
-                       </attribute>
                        <attribute name="horizontalHeaderHighlightSections">
                         <bool>true</bool>
+                       </attribute>
+                       <attribute name="horizontalHeaderMinimumSectionSize">
+                        <number>20</number>
                        </attribute>
                        <attribute name="verticalHeaderVisible">
                         <bool>false</bool>

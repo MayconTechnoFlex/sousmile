@@ -6,9 +6,10 @@ import traceback
 from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from pycomm3.exceptions import CommError
 from utils.functions.ctrl_plc import read_multiples, write_tag
-
 from utils.functions.serial_ports import get_my_port, set_my_port
 from serial import *
+
+from utils.operator import set_operator
 #######################################################################################################
 # Definição das variáveis globais
 #######################################################################################################
@@ -153,6 +154,19 @@ class Worker_BarCodeScanner(QRunnable, WorkerParent):
                         if self.code_size > 4:
                             self.code_read = self.info[2:(self.code_size - 3)]
                             print(f"Código do leitor: {self.code_read}")
+                            if self.code_read[0] == "#":
+                                # the code must be in this format: '#Name_Surname&ID' e.g. "#John_Doe&0001"
+                                strIndex1 = self.code_read.index('_')
+                                strIndex2 = self.code_read.index('&')
+
+                                name = self.code_read[1:strIndex1]
+                                surname = self.code_read[strIndex1 + 1:strIndex2]
+                                employee_name = f"{name.capitalize()} {surname.capitalize()}"
+
+                                employee_id = self.code_read[strIndex2 + 1:]
+
+                                print(f"Usuário conectado: {employee_name}")
+                                set_operator(employee_name, employee_id)
                             if self.code_read == "A1":
                                 self.read_a1 = True
                                 self.read_a2 = False

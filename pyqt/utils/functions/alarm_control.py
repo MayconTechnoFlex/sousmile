@@ -27,7 +27,7 @@ alarm_message_list = ["Alarme 00: Botão de Emergência Pressionado", "Alarme 01
                       "Alarme 39: Coordenada recebida com risco de colisão no lado A2",
                       "Alarme 40: Proteção da porta do lado A foi acionada",
                       "Alarme 41: Robô no lado A e sensor de segurança da porta lado A não esta acionado",
-                      "Alarme 42:", "Alarme 43:", "Alarme 44:", "Alarme 45:", "Alarme 46:", "Alarme 47:", "Alarme 48:",
+                      "Alarme 42: Falha de comunicação do robô", "Alarme 43:", "Alarme 44:", "Alarme 45:", "Alarme 46:", "Alarme 47:", "Alarme 48:",
                       "Alarme 49:", "Alarme 50:", "Alarme 51:",
                       "Alarme 52:", "Alarme 53:", "Alarme 54:", "Alarme 55:",
                       "Alarme 56:", "Alarme 57:", "Alarme 58:", "Alarme 59:",

@@ -15,6 +15,8 @@ from utils.btn_style import *
 from utils.functions.gui_functions import change_status
 
 from utils.workers.workers import Worker_ToggleBtnValue
+
+from utils.operator import get_operator_name
 #######################################################################################################
 # Definição das Variáveis Globais
 #######################################################################################################
@@ -181,6 +183,9 @@ def UpdateHMI(tag):
         setButton(UI.btn_trans_dados_man_a2, "Transferir dados\nmanualmente")
         setButton(UI.btn_trans_dados_man_b1, "Transferir dados\nmanualmente")
         setButton(UI.btn_trans_dados_man_b2, "Transferir dados\nmanualmente")
+
+        operator_name = get_operator_name()
+        UI.lbl_OperatorName.setText(operator_name)
 
         ### buttons manual <-> auto
         if tag['SideA']['Manual']:
