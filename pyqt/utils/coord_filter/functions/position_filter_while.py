@@ -196,21 +196,21 @@ def pos_filter(in_data: DataFrame, lx: List[float], ly: List[float], lz: List[fl
         else:
             print('- Terminando de filtrar posições')
 
-            # for _ in range(5):
-            #     lx.append(round(cut_depth_x(in_data, l_pos[_], p), 1))
-            #     ly.append(round(cut_depth_y(in_data, l_pos[_], p), 1))
-            #     lz.append(round(cut_depth_z(in_data, l_pos[_], p), 1))
-            #     ld.append(round(calc_attack_angle(in_data, l_pos[_]), 1))
-            #
-            #     # Check if the limits of "C" are between 180 and -180
-            #     if round(float(in_data.values[l_pos[_]][5].replace('C=', '')), 1) > 180:
-            #         lc.append(180)
-            #     elif round(float(in_data.values[l_pos[_]][5].replace('C=', '')), 1) < -180:
-            #         lc.append(-180)
-            #     else:
-            #         lc.append(round(float(in_data.values[l_pos[_]][5].replace('C=', '')), 1))
-            #
-            #     l_pos.append(l_pos[_])
-            #     l_info.append(f'Ponto adicionado para terminar o ciclo')
+            """for _ in range(5):
+                lx.append(round(cut_depth_x(in_data, l_pos[_], p), 1))
+                ly.append(round(cut_depth_y(in_data, l_pos[_], p), 1))
+                lz.append(round(cut_depth_z(in_data, l_pos[_], p), 1))
+                ld.append(round(calc_attack_angle(in_data, l_pos[_]), 1))
+
+                # Check if the limits of "C" are between 180 and -180
+                if round(float(in_data.values[l_pos[_]][5].replace('C=', '')), 1) > 180:
+                    lc.append(180)
+                elif round(float(in_data.values[l_pos[_]][5].replace('C=', '')), 1) < -180:
+                    lc.append(-180)
+                else:
+                    lc.append(round(float(in_data.values[l_pos[_]][5].replace('C=', '')), 1))
+
+                l_pos.append(l_pos[_])
+                l_info.append(f'Ponto adicionado para terminar o ciclo')"""
             break
 #######################################################################################################

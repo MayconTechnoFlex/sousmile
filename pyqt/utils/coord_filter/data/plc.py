@@ -18,6 +18,9 @@ from utils.coord_filter.workers_coord_filter import *
 
 from utils.coord_filter.workers_coord_filter import WorkerSignals
 from utils.operator import get_operator_id
+
+import ssl
+
 #######################################################################################################
 # Definição das Variáveis Globais
 #######################################################################################################
@@ -117,6 +120,7 @@ class Worker_Data_to_PLC(QRunnable):
             if not req.ok:
                 raise Exception(req.text)
             print("- Lendo arquivo...")
+            ssl._create_default_https_context = ssl._create_unverified_context
             data = pd.read_csv(filepath, sep=',', header=None)  # Copia o arquivo csv do caminho # -filepath
             write_tag(f'{data_ctrl_str}.FileNumPos', len(data.index))  # Number of positions in the original file
             ##############################################################################################
